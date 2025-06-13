@@ -1,0 +1,77 @@
+.lessoncard{
+    background-color: white;
+    color: #001040;
+    text-align: left !important;
+    box-shadow: 1px 1px 10px 1px #d4e6ef;
+}
+.logbutton{
+    background-color: #001040;
+    color: #fff;
+}
+.lesson{
+    height: 250px;
+    width: 300px;
+    /* max-height: 250px;
+    max-width: 300px; */
+}
+
+.arrowclr,.clrcrd{
+    color: #001040;
+}
+
+@media (max-width:426px){
+    .lesson{
+        max-height: 150px;
+        max-width: 250px;
+    }
+    .lessonview{
+        display: flex;
+        flex-direction: column;
+    } 
+}
+
+.logbutton{
+    background-color: #001040 !important;
+    color: white ;
+}
+
+.logbutton:hover{
+    color: #001040;
+    background-color: white;
+    border: 1px solid #001040;   
+}
+
+
+.logbutton1{
+    background-color: #ffa200 !important;
+    color: white;
+}
+
+.logbutton1:hover{
+    color: #ffa200;
+    background-color: white;
+    border: 1px solid #ffa200;   
+}
+
+
+
+
+
+
+@media (min-width:426px) and (max-width:768px){
+    .lesson{
+        height: 150px;
+    } 
+}
+
+@media (min-width:769px){
+    .lesson{
+        height: 170px;
+        width: 270px;
+    } 
+    .lessonview{
+        display: flex;
+        flex-direction: row;
+        color: #001040;
+    }
+}

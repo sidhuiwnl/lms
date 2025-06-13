@@ -1,0 +1,19 @@
+.curvedarea {
+  background-image: url("../assets/curvedbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;        /* Ensures the background fills the area */
+  background-position: center;   /* Keeps the image centered */
+  color: white;
+  border-radius: 20px;
+}
+
+
+
+.curvedarea label{
+color: #ffa200;
+}
+.txt{
+  line-height: 50px;
+  font-size: 40px !important;
+  text-align: left;
+}
