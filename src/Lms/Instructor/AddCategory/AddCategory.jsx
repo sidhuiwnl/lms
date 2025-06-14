@@ -1,6 +1,4 @@
 
-
-
 import React, { useState, useEffect } from "react";
 import "./AddCategory.css";
 import axios from "axios";
@@ -40,7 +38,7 @@ function AddCategory() {
           })
           .then((response) => {
             if (
-              response.data.message === "Quiz and context created successfully."
+              response.status === 201
             ) {
               toast.success("Category added successfully");
               fetchCategories();
@@ -101,7 +99,7 @@ function AddCategory() {
         <div>
           <div className="px-0">
             <h4 className="mb-4 mt-4 mt-md-5 categorytitle">Added Category List</h4>
-            <div>
+            <div className="flex flex-col space-y-3">
               {categories.map((category) => (
                 <div
                   key={category.id}

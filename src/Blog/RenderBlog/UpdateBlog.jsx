@@ -244,6 +244,8 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+
 function UpdateBlogPage() {
   const { blogId } = useParams();
   const [title, setTitle] = useState('');
@@ -251,6 +253,7 @@ function UpdateBlogPage() {
   const [isLoading, setIsLoading] = useState(false);
   const quillRef = useRef(null);
 
+   const decodedId = atob(blogId)
   // Fetch blog post
   useEffect(() => {
     const fetchBlog = async () => {
@@ -262,7 +265,7 @@ function UpdateBlogPage() {
           return;
         }
 
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${blogId}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`, {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -353,7 +356,7 @@ function UpdateBlogPage() {
         return;
       }
 
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${blogId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

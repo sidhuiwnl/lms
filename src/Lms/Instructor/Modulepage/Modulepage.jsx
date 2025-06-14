@@ -437,11 +437,11 @@ function Modulepage() {
   return (
     <div className="courselist-container">
       <h3 className="heading-center">Add Module</h3>
-        <ToastContainer />
+        
         <div className=" course-cards-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group ">
-            <div className="form-group-inner w-100">
+            <div className="form-group-inner ">
               <label className="labelcourse">Select the Course</label>
               <select
                 className="form-control fc1 custom-dropdown border-0 rounded-2 w-100"

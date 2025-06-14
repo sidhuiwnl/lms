@@ -1,32 +1,29 @@
-import  { useEffect } from "react";
-import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import "./Drmenubar.css";
-import loginimg from "../../../assets/profile1.png";
-import Mainlogo from "../../../assets/image 39.png";
 import axios from "axios";
+import Mainlogo from "../../../assets/image 39.png";
+import loginimg from "../../../assets/profile1.png";
+import "./Drmenubar.css"
 
 export default function DrMenuBarUser() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   useEffect(() => {
     const verifyToken = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_REACT_APP_API_URL}auth/protected`,
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
-        console.log("Token is valid:", response.data);
+        console.log("Token is valid.", response.data);
       } catch (error) {
-        console.error("Token verification error:", error);
+        console.error("Token verification error.", error);
         navigate("/llmlogin");
       }
     };
-
     verifyToken();
   }, [navigate]);
 
@@ -37,166 +34,191 @@ export default function DrMenuBarUser() {
         {},
         { withCredentials: true }
       );
-      document.cookie =
-        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/llmlogin");
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error("Logout error.", error);
     }
   };
 
   return (
-    <Navbar expand="lg" className="navbarcontenttext py-4">
-      <Container>
-        <Navbar.Brand as={NavLink} to="/myspinecoach">
-          <img src={Mainlogo} alt="Main Logo" className="ms-5 ms-lg-5" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
-          <Nav className="me-auto d-lg-none">
-            <Nav.Link
-              as={NavLink}
-              to={`/user/${id}`}
-              className="navpart px-3" 
-              activeClassName="active-link"
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to={`/allcourselist/${id}`}
-              className="navpart px-3 text-white"
-              activeClassName="active-link"
-            >
-              My Course
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to={`/grade/${id}`}
-              className="navpart px-3"
-              activeClassName="active-link"
-            >
-              Grade
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to={`/badge/${id}`}
-              className="navpart px-3"
-              activeClassName="active-link"
-            >
-              Badge
-            </Nav.Link>
+    <nav className="bg-[#001040] py-6 px-4 sm:px-6">
+      <div className="container mx-auto flex flex-wrap items-center justify-between">
+        {/* Logo */}
+        <NavLink to="/myspinecoach" className="flex items-center">
+          <img src={Mainlogo} alt="Main Logo" className="h-10" />
+        </NavLink>
 
-
-            <Nav.Link
-              as={NavLink}
-              to={`/feedback/${id}`}
-              className="navpart px-3 me-4"
-              activeClassName="active-link"
-            >
-              Feedback
-            </Nav.Link>
-
-            {/* <div className="search-bar d-flex align-items-center px-5 mt-2 bg-light">
-              <FontAwesomeIcon icon={faSearch} className="search-icon" />
-              <input
-                type="search"
-                placeholder="Search"
-                className="border-0 searchinput"
+        {/* Hamburger menu button for mobile */}
+        <button
+          className="lg:hidden text-white focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
               />
-            </div> */}
-
-            <Nav.Link
-              as={NavLink}
-              to={`/user/${id}/profile`}
-              className="navpart px-3"
-              activeClassName="active-link"
-            >
-              Profile
-            </Nav.Link>
-
-            <Nav.Link
-              as={NavLink}
-              to="/llmlogin"
-              className="navpart ps-3"
-              activeClassName="active-link"
-            >
-              Logout
-            </Nav.Link>
-          </Nav>
-          <Nav className="ms-auto d-none d-lg-flex align-items-center">
-            <NavLink
-              to={`/user/${id}`}
-              className="navpart pe-3"
-              activeClassName="active-link"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to={`/allcourselist/${id}`}
-              className="navpart px-3 nxpart"
-              activeClassName="active-link"
-            >
-              My Course
-            </NavLink>
-            <NavLink
-              to={`/grade/${id}`}
-              className="navpart px-3"
-              activeClassName="active-link"
-            >
-              Grade
-            </NavLink>
-            <NavLink
-              to={`/badge/${id}`}
-              className="navpart px-3"
-              activeClassName="active-link">
-              Badge
-            </NavLink>
-            <NavLink
-              to={`/feedback/${id}`}
-              className="navpart px-3 "
-              activeClassName="active-link">
-              Feedback
-            </NavLink>
-           {/* <div className="search-bar d-none d-lg-flex align-items-center p-2 bg-light">
-              <FontAwesomeIcon icon={faSearch} className="search-icon" />
-              <input
-                type="search"
-                placeholder="Search"
-                className="border-0 searchinput"
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
               />
-            </div>  */}
-            <Dropdown className="ms-4">
-              <Dropdown.Toggle
-                style={{ color: "#001040" ,cursor:"pointer"}}
-                as="a"
-                className="d-flex align-items-center p-0"
-                id="dropdown-custom-components"
+            )}
+          </svg>
+        </button>
+
+        {/* Mobile menu */}
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full lg:hidden`}>
+          <ul className="flex flex-col space-y-4 mt-4">
+            <li>
+              <NavLink
+                to={`/user/${id}`}
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
               >
-                <img src={loginimg} alt="Profile" className="imglogin" />
-              </Dropdown.Toggle>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/allcourselist/${id}`}
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                My Course
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/grade/${id}`}
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Grade
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/badge/${id}`}
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Badge
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/feedback/${id}`}
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Feedback
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/user/${id}/profile`}
+                className=" text-[#001040] px-3 py-2 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Profile
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/llmlogin"
+                className="text-white hover:text-[#ffa200] px-3 py-2 block"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleLogout();
+                }}
+              >
+                Logout
+              </NavLink>
+            </li>
+          </ul>
+        </div>
 
-              <Dropdown.Menu className="dropdown-menu-end custom-dropdown-menu">
-                <Dropdown.Item
-                  as={NavLink}
-                  to={`/user/${id}/profile`}
-                  className="custom-dropdown-item"
+        {/* Desktop menu */}
+        <div className="hidden font-bold lg:flex items-center space-x-6">
+          <NavLink
+            to={`/user/${id}`}
+            className="text-white hover:text-[#ffa200] transition-colors duration-200"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to={`/allcourselist/${id}`}
+            className="text-white hover:text-[#ffa200] transition-colors duration-200"
+          >
+            My Course
+          </NavLink>
+          <NavLink
+            to={`/grade/${id}`}
+            className="text-white hover:text-[#ffa200] transition-colors duration-200"
+          >
+            Grade
+          </NavLink>
+          <NavLink
+            to={`/badge/${id}`}
+            className="text-white hover:text-[#ffa200] transition-colors duration-200"
+          >
+            Badge
+          </NavLink>
+          <NavLink
+            to={`/feedback/${id}`}
+            className="text-white hover:text-[#ffa200] transition-colors duration-200"
+          >
+            Feedback
+          </NavLink>
+
+          
+          <div className="relative ml-4">
+            <button
+              className="focus:outline-none"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <img src={loginimg} alt="Profile" className="w-8 h-8" />
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <button
+                 
+                   className="block w-full text-left px-4 py-2 text-[#001040] hover:bg-[#001040]/10"
+                  onClick={() => {
+                    navigate(`/user/${id}/profile`)
+                    setIsDropdownOpen(false)
+                  }}
                 >
                   Profile
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={handleLogout}
-                  className="custom-dropdown-item"
+                </button>
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    handleLogout();
+                  }}
+                  className="block w-full text-left px-4 py-2 text-[#001040] hover:bg-[#001040]/10"
                 >
                   Logout
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 }
-
-

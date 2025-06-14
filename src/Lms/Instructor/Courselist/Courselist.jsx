@@ -50,14 +50,14 @@ function Courselist() {
 
   return (
     <div className="courselist-container">
-      <h3 className="heading-center">Course Overview</h3>
+      <h3 className="heading-center ">Course Overview</h3>
 
       {/* Button to toggle user list table */}
-      <button onClick={handleToggleTable} className="user-list-button">
+      <button onClick={handleToggleTable} className="user-list-button ">
         User List
       </button>
 
-      <div className="course-cards-container">
+      <div className="course-cards-container ">
         {course.map((e, index) => (
           <div className="course-card" key={index}>
             <div

@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import DOMPurify from "dompurify";
 import { Modal } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is included
+
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -661,7 +661,7 @@ function CourseVideos() {
               {!startQuiz ? (
                 <div>
                   
-                <div className="quizpart p-3 quizparttext">
+                <div className="quizpart p-3 quizparttext rounded-lg">
                  
                   <h1 className="profoundhead my-4">
                     To Me Testing Is A Profound Duty.
@@ -823,7 +823,7 @@ function CourseVideos() {
                           {" "}
                           {/* Bootstrap class to make the table responsive */}
                           <table className="table mt-4 border-0 tabletextpart">
-                            <thead>
+                            <thead className="border border-b">
                               <tr className="tabletextpart ">
                                 <th>Attempt</th>
                                 <th>State</th>
@@ -832,9 +832,9 @@ function CourseVideos() {
                                 <th>Review</th>
                               </tr>
                             </thead>
-                            <tbody style={{ border: "0px" }}>
+                            <tbody className="border border-white">
                               {attempts.map((attempt) => (
-                                <tr key={attempt.id} style={{ border: "0px" }}>
+                                <tr className="text-white " key={attempt.id} style={{ border: "0px" }}>
                                   <td>{attempt.attempt_count}</td>
                                   <td>
                                     Finished
@@ -1045,7 +1045,7 @@ function CourseVideos() {
                         {/* Navigation Buttons */}
                         <div className="d-flex justify-content-between my-3">
                           <button
-                            className="prevbtn rounded-2"
+                            className="prevbtn rounded-2 p-3 "
                             onClick={handlePrevious}
                             // disabled={currentIndex === 0}
                           >
@@ -1056,7 +1056,7 @@ function CourseVideos() {
                               backgroundColor: "#001040",
                               color: "white",
                             }}
-                            className="btn btn-success"
+                            className="btn btn-success "
                             onClick={handleNext}
                             // disabled={
                             //   currentIndex === questions.length - 1 || currentIndex <= 1
@@ -1190,7 +1190,7 @@ function CourseVideos() {
             className="d-flex flex-column justify-content-center align-items-center text-light"
             style={{ backgroundColor: "#001040", padding: "20px" }}
           >
-            <h5 className="mb-4">Well done! Chapter {module} is complete</h5>
+            <h5 className="mb-4 text-white">Well done! Chapter {module} is complete</h5>
             <p className="text-center">Rate Lesson</p>
             <div className="d-flex">
               {[1, 2, 3, 4, 5].map((star) => (

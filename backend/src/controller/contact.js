@@ -90,7 +90,7 @@ export function handleEmailContactForm(req, res) {
                 });
             }
 
-            // Send email (assuming sendEmailListEmail is now callback-based)
+         
             sendEmailListEmail(email)
                 
                 

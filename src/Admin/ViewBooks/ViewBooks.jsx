@@ -61,23 +61,23 @@ export default function ViewBooks() {
 
   return (
     <>
-      <div className="container my-4">
+      <div className="container  my-4">
         <div className="d-flex justify-content-between">
           <h3 className="keynotespeakerhead">Book Updation</h3>
           <button
             onClick={() => navigate("/admin/book")}
-            className="btn btn-warning text-white px-4"
+            className="btn btn-warning text-white px-4" 
           >
             ADD BOOK
           </button>
         </div>
         <div className="row mb-4"></div>
 
-        <div className="row g-4">
+        <div className="row g-4 ">
           {books.map((book) => (
-            <div className="col-12 col-md-6 col-lg-4" key={book.id}>
-              <div className="card h-100 shadow-sm">
-                <div onClick={() => navigate(`/book/${book.id}`)} style={{ cursor: "pointer" }}>
+            <div className="col-12 col-md-6 col-lg-4 " key={book.id}>
+              <div className="card  shadow-sm">
+                <div onClick={() => navigate(`/book/${btoa(book.id)}`)} style={{ cursor: "pointer" }}>
                   <img
                     src={
                       book.images?.[0]
@@ -90,7 +90,7 @@ export default function ViewBooks() {
                   />
                 </div>
 
-                <div className="card-body d-flex flex-column">
+                <div className="card-body  d-flex flex-column">
                   <h5 className="card-title text-truncate" title={book.title}>
                     {book.title}
                   </h5>
@@ -100,13 +100,13 @@ export default function ViewBooks() {
                   </div>
                   <div className="mt-auto d-flex justify-content-between gap-2">
                     <button
-                      onClick={() => navigate(`/bookupdate/${book.id}`)}
+                      onClick={() => navigate(`/bookupdate/${btoa(book.id)}`)}
                       className="btn btn-sm btn-secondary w-100"
                     >
                       UPDATE
                     </button>
                     <button
-                      onClick={() => navigate(`/book/${book.id}`)}
+                      onClick={() => navigate(`/book/${btoa(book.id)}`)}
                       className="btn btn-sm btn-warning text-white w-100"
                     >
                       View Details

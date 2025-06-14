@@ -50,7 +50,7 @@ function  Contactform() {
     <div className="max-w-7xl  mx-3 md:mx-auto p-3 curvedarea flex  my-8 font-normal">
       <div className="flex flex-col md:flex-row gap-2 items-start p-0 md:p-8">
         <div className="md:w-1/2 p-4">
-          <h1 className="text-xl md:text-4xl font-bold mb-4 txt">
+          <h1 className="text-xl text-white md:text-4xl font-bold mb-4 txt">
             Join Our Email List For<br />
             The Latest Podcasts,<br />
             Interviews, and<br />

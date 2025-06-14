@@ -15,7 +15,7 @@ function Instructors() {
     AOS.init();
   }, []);;
   return (
-    <div className="container certparts">
+    <div className="container overflow-hidden certparts">
       <div className="row">
         <h1 className="authortext my-5 text-center">Author Introduction</h1>
         <div className="col-sm-12 col-lg-6"  data-aos="fade-right" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="200">
@@ -60,7 +60,7 @@ function Instructors() {
         <div className="col-sm-12 col-lg-6" data-aos="flip-left" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="600">
           <div className="certificatecards  rounded-4">
             <div className="row px-0 px-md-2 py-4">
-              <div className="col text-center">
+              <div className="col flex flex-col items-center text-center">
                 <h3 className="certifiedheading my-2">Professional Training</h3>
                 <img src={cert3} className="imparts" data-aos="zoom-in-up" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="1000"/>
               </div>
@@ -102,11 +102,11 @@ function Instructors() {
         <div className="col-sm-12 col-lg-6" data-aos="flip-right" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="600">
           <div className="rounded-4 certificatecards">
             <div className="row rounded-3 px-2 py-2">
-              <div className="col text-center">
+              <div className="col flex flex-col items-center  text-center">
                 <h3 className="certifiedheading mt-4">
                   Board Certifications
                 </h3>
-                <img src={cert1} className="imparts" data-aos="zoom-in-up" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="1000"/>
+                <img src={cert1} className="imparts mt-2" data-aos="zoom-in-up" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="1000"/>
               </div>
             </div>
             <div className="text-start px-5">

@@ -336,7 +336,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+            <div className="h-screen  flex-grow-1 overflow-y-lg-auto">
               <main className="py-6 bg-surface-secondary">
                 <div className="container-fluid">
                   <div className="card shadow border-0 mb-7">

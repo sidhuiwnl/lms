@@ -94,7 +94,7 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
           </Link>
         </li>
         <li>
-          <Link to={`/admindashboard/${id}/purlicense`}>
+          <Link to={`/admindashboard/${id}/purelicense`}>
             <FontAwesomeIcon icon={faIdBadge} className="mx-1 text-light " />
             <motion.span
               variants={linkVariants}

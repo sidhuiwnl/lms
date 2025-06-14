@@ -18,6 +18,8 @@ function UpdateBookDetails() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
+   const decodedId = atob(id)
+
   const [book, setBook] = useState({
     title: "",
     author_detail: "",
@@ -40,7 +42,7 @@ function UpdateBookDetails() {
     const fetchBook = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/getBookById/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/getBookById/${decodedId}`);
         setBook({
           title: res.data.book.title || "",
           author_detail: res.data.book.author_detail || "",
@@ -141,7 +143,7 @@ function UpdateBookDetails() {
       });
 
     const res = await axios.put(
-      `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/updateBook/${id}`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/updateBook/${decodedId}`,
       formData,
       {
         headers: {

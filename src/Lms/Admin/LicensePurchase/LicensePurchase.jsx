@@ -68,7 +68,7 @@ export default function LicensePurchase() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12 mb-4 ">
-              <div className="card h-100 shadow-lg">
+              <div className="card  shadow-lg">
                 <div className="card-body">
                   <div className="text-center p-3">
                     <span className="h2">$20</span>/License

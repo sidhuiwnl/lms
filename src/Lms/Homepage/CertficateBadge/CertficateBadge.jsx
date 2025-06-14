@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import "bootstrap/dist/css/bootstrap.css"
+
 
 function CertificateBadge() {
   const { id } = useParams();
@@ -68,7 +68,7 @@ function CertificateBadge() {
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <ToastContainer />
       <div className="container certificateparts">
         <h5 className="certificatepara text-center py-3">
@@ -76,7 +76,7 @@ function CertificateBadge() {
         </h5>
         
         {/* Ref applied only to certificate content */}
-        <div className="cetbg my-3" ref={certificateContentRef}>
+        <div className="cetbg my-3 border" ref={certificateContentRef}>
           <h1>CERTIFICATE</h1>
           <h5>OF COMPLETION</h5>
           <p>PRESENTED TO:</p>

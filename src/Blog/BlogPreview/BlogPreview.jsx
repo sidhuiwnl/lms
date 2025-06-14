@@ -8,10 +8,12 @@ export default function BlogPreview() {
   const [blog, setBlog] = useState(null);
   const [latestBlogs, setLatestBlogs] = useState([]);
 
+  const decodedId = atob(blogId)
+
   // Fetch selected blog
   const fetchBlog = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${blogId}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`);
       setBlog(response.data.blog);
     } catch (err) {
       console.error("Error fetching blog:", err);
@@ -25,7 +27,7 @@ export default function BlogPreview() {
       const sorted = response.data.blogs.sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
       );
-      const filtered = sorted.filter((b) => b.id !== parseInt(blogId)); // exclude current
+      const filtered = sorted.filter((b) => b.id !== parseInt(decodedId)); // exclude current
       setLatestBlogs(filtered.slice(0, 2));
     } catch (err) {
       console.error("Error fetching latest blogs:", err);
@@ -65,7 +67,7 @@ export default function BlogPreview() {
         <div className="space-y-4">
           <h2 className="text-xl font-semibold"  style={{color:"#001040"}}>Latest Blogs</h2>
           {latestBlogs.length > 0 ? latestBlogs.map((b) => (
-            <Link to={`/blog/${b.id}`} key={b.id} className="block text-decoration-none">
+            <Link to={`/blog/${btoa(b.id)}`} key={b.id} className="block text-decoration-none">
               <div className="border rounded-md p-3 hover:shadow-md transition bg-white">
                 <h3 className="font-semibold text-decoration-none text-lg" style={{color:"#001040"}}>{b.title}</h3>
                 <p className="text-sm text-gray-600 line-clamp-2">

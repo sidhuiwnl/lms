@@ -55,7 +55,7 @@ function Drkenhome() {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-10">
       <div
         className={
           activeTab === "lessons" ? "video-wrapper my-2" : "video-wrapper1 my-2"
@@ -78,9 +78,9 @@ function Drkenhome() {
         </h5>
       </div>
       <div className="row storypart mx-1">
-        <div className="d-flex justify-content-between align-items-center lessontext px-4 flex-wrap w-100">
-          <div className="text-center">
-            <p className="iconpara fw-bold">
+        <div className="d-flex justify-content-between rounded-xl border align-items-center lessontext px-4 flex-wrap w-100">
+          <div className="text-center py-3 ">
+            <p className="iconpara fw-bold flex items-center">
               <img
                 src={icon1}
                 className="mx-2"
@@ -91,7 +91,7 @@ function Drkenhome() {
             </p>
           </div>
           <div className="text-center">
-            <p className="iconpara fw-bold pt-2">
+            <p className="iconpara fw-bold pt-2  flex items-center">
               <img
                 src={icon2}
                 className="mx-2"
@@ -102,7 +102,7 @@ function Drkenhome() {
             </p>
           </div>
           <div className="text-center">
-            <p className="iconpara fw-bold pt-2">
+            <p className="iconpara fw-bold pt-2  flex items-center">
               <img
                 src={icon3}
                 className="mx-2"

@@ -61,11 +61,11 @@ export default function BookPage() {
         <div className="row">
           {books.map((book) => (
             <div key={book.id} className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <div className="card h-100 shadow-md border-0">
+              <div className="card h-100 shadow-md border-1 p-2">
                 {/* Image occupying full card width */}
                 <div
                   role="button"
-                  onClick={() => navigate(`/book/${book.id}`)}
+                  onClick={() => navigate(`/book/${btoa(book.id)}`)}
                   className="d-flex justify-content-center align-items-center"
                 >
                   {/* Production
@@ -87,7 +87,7 @@ export default function BookPage() {
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title fw-semibold">{book.title}</h5>
                   <div className="d-flex justify-content-between">
-                    <p className="text-[#ffa200] fw-bold mb-1" style={{ fontSize: "25px" }}>
+                    <p className="text-[#ffa200] font-extrabold mb-1" style={{ fontSize: "25px" }}>
                       ${getFirstAvailablePrice(book)}
                     </p>
                     <p className="text-[#ffa200] mb-2" style={{ fontSize: "22px" }}>
@@ -96,7 +96,7 @@ export default function BookPage() {
                   </div>
                   <div className="mt-auto">
                     <button
-                      onClick={() => navigate(`/book/${book.id}`)}
+                      onClick={() => navigate(`/book/${btoa(book.id)}`)}
                       className="bluebutton px-3 py-2"
                     >
                       View Details

@@ -15,7 +15,7 @@ export default function Hero() {
       <img 
         src="./surgery.png"
         alt="Surgery Background"
-        className="w-full h-[600px] sm:h-[500px] md:h-[530px] lg:h-[530px] object-cover"
+        className="w-full h-[600px] sm:h-[500px] md:h-[1200px] lg:h-[530px] object-cover"
       />
 
       <div className="absolute inset-0 flex items-start px-4 md:px-10 pt-6 md:pt-10 ">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./Availablecourses.css";
 import { Link, useParams } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";

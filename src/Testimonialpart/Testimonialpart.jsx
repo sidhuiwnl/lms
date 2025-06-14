@@ -54,10 +54,7 @@ function Testimonialpart() {
               </div>
             </div>
           ) : (
-            
-              <p className="text-black text-3xl">Currently No testimonial</p>
-            
-            
+              <p className="text-black text-2xl">Currently No testimonial</p>
           )}
 
         </div>

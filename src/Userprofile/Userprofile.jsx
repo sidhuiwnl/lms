@@ -6,7 +6,7 @@ import {
   faBoxOpen,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import axios from 'axios';
 
 function Userprofile() {

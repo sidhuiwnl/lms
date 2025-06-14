@@ -29,7 +29,7 @@ import AdminBookForm from "./Admin/AdminBookForm/AdminBookForm"
 import Admindatapage from "./Admin/Admindatapage/Admindatapage"
 import ViewBooks from "./Admin/ViewBooks/ViewBooks"
 import Updatebookdetails from "./Admin/Bookdetails/Updatebookdetails"
-import "bootstrap/dist/css/bootstrap.css"
+
 import Testimonialpart from "./Testimonialpart/Testimonialpart"
 import Addblog from "./Blog/Addblog/Addblog"
 import Updateblog from "./Blog/Updateblog/Updateblog"
@@ -147,7 +147,7 @@ function App() {
         <Route path="/admin/blogview" element={[<ProtectedRoute>,<Adminblogview/>,</ProtectedRoute>]}/>
         <Route path="/profile" element={<UserProtectedRoute><Navbar/>,<Userprofile/>,<Footer/></UserProtectedRoute>}/>
 
-        {/* lmm routes */}
+        {/* lms routes */}
 
         <Route path="/llmlogin" element={[<Login/>]} />
         <Route path="/llmregister" element={<Registerpage />} />
@@ -194,7 +194,7 @@ function App() {
             <Route path="admincredential" element={<AdminCredential />} />
             <Route path="category" element={<Categorycreation />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="purlicense" element={<LicensePurchase />} />
+            <Route path="purelicense" element={<LicensePurchase />} />
             <Route path="check/:quantity" element={<CheckPayment />} />
             <Route path="neft/:quantity" element={<NeftPayment />} />
             <Route path="notenroll" element={<Notenrolledfile />} />

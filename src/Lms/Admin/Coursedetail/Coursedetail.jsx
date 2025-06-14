@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./Coursedetail.css";
 import { Link } from "react-router-dom";
 import coursecontent1 from "../../../assets/coursecontent1.jpg";

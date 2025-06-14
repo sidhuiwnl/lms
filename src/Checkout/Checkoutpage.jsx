@@ -72,7 +72,7 @@ function Checkoutpage() {
           <table className='checkout-table'>
             <thead>
               <tr>
-                <th>
+                <th className='text-white'>
                   <input
                     type='checkbox'
                     checked={isAllSelected}
@@ -81,12 +81,12 @@ function Checkoutpage() {
                   />
                   <span className='ms-2'>Select all</span>
                 </th>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th>Action</th>
+                <th className='text-white'>Image</th>
+                <th className='text-white'>Product</th>
+                <th className='text-white'>Quantity</th>
+                <th className='text-white'>Price</th>
+                <th className='text-white'>Total</th>
+                <th className='text-white'>Action</th>
               </tr>
             </thead>
             <tbody>

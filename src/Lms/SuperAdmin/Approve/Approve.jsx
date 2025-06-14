@@ -180,7 +180,7 @@ export function Approve() {
             {activeTable === 2 && (
               <tbody>
                 {checkapproved.map((value, index) => (
-                  <tr>
+                  <tr className="text-white">
                     <td>
                       <img
                         alt="..."
@@ -230,7 +230,7 @@ export function Approve() {
         <div className="table-responsive">
           <table className="w-100  table table-hover table-nowrap">
             <thead className="text-light">
-              <tr >
+              <tr className="text-white" >
                 <th className="text-light">Id</th>
                 <th className="text-light">email</th>
                 <th className="text-light">Transaction Id</th>
@@ -266,7 +266,7 @@ export function Approve() {
             {activeTable2 === 2 && (
               <tbody>
                 {neftapproved.map((value, index) => (
-                  <tr>
+                  <tr  className="text-white">
                     <td>
                       <img
                         alt="..."

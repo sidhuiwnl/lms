@@ -76,22 +76,22 @@ function Lessons() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className=" ">
       {module.map((e) => (
-        <div key={e.moduleId} className="row lessoncard py-2 rounded-3 my-4">
+        <div key={e.moduleId} className="row lessoncard w-full py-2 rounded-3 my-4">
           {/* If the user has paid, show all modules */}
           {hasPaid ? (
             <Link
               to={`/ken/1/${e.moduleId}/${id}`}
               className="col-sm-12 lessonview text-decoration-none"
               style={{ color: "#001040" }}>
-              <div className="col-lg-4 d-flex flex-column justify-content-center">
+              <div className="col-lg-4 border-2  rounded-lg d-flex flex-column justify-content-center">
                 <img
                   src={e.module_image}
                   alt="lesson"
-                  className="rounded-3 lesson"/>
+                  className=" rounded lesson w-full"/>
               </div>
-              <div className="col-lg-6 d-flex flex-column justify-content-center textpart">
+              <div className="col-lg-6 d-flex ml-3 flex-column justify-content-center textpart">
                 <h5>Chapter {e.moduleId}</h5>
                 <h3>{e.modulename}</h3>
                 <p>{e.activities}</p>

@@ -29,7 +29,7 @@ export default function Adminblogview() {
       <div className="row">
         {blogs.map((blog) => (
           <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={blog.id}>
-            <div className="bg-white border rounded-xl shadow-md p-4 h-100 d-flex flex-column">
+            <div className="bg-white border rounded-xl shadow-md p-4  d-flex flex-column">
               <img
                 src="/blog.jpg"
                 alt="Default Blog"
@@ -37,13 +37,13 @@ export default function Adminblogview() {
               />
               <div className="flex-grow-1">
                 <h2 className="text-lg font-semibold mb-2 text-black">{blog.title}</h2>
-                <p className="text-muted small">{getPreview(blog.content)}</p>
+                <p className="text-neutral-800 small">{getPreview(blog.content)}</p>
               </div>
-              <Link to={`/admin/blog/${blog.id}`} className="mt-auto text-decoration-none">
-                <button className="btn btn-sm btn-warning w-100 mt-3 ">View More</button>
+              <Link to={`/admin/blog/${btoa(blog.id)}`} className="mt-auto text-decoration-none">
+                <button className="btn btn-sm btn-warning w-full mt-3 ">View More</button>
               </Link>
-              <Link to={`/admin/renderblog/${blog.id}`} className="mt-auto text-decoration-none">
-                <button className="btn btn-sm btn-warning w-100 mt-3 ">Update</button>
+              <Link to={`/admin/renderblog/${btoa(blog.id)}`} className="mt-auto text-decoration-none">
+                <button className="btn btn-sm btn-warning w-full mt-3 ">Update</button>
               </Link>
             </div>
           </div>

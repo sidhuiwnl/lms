@@ -88,7 +88,7 @@ function Aboutpage() {
         </div>
 
         {/* Right Card Section */}
-        <div className="col-md-6 d-flex justify-content-center">
+        <div className="col-md-6 mb-10 d-flex justify-content-center">
           <div className="position-relative  text-white rounded p-5 shadow" style={{ maxWidth: "480px",backgroundColor:"#001040" }}>
             <h1 className=" mb-3 fs-2" style={{color:"#ffa200"}}>Dr. Ken Hansraj</h1>
             <ul className="list-unstyled">
@@ -104,7 +104,7 @@ function Aboutpage() {
             </div>
 
             {/* Floating Spine Image */}
-            <div className="position-absolute" style={{ bottom: "-60px", right: "-10px" }}>
+            <div className="position-absolute " style={{ bottom: "-60px", right: "-10px" }}>
               <div
                 className="rounded-circle bg-warning d-flex justify-content-center align-items-center shadow"
                 style={{

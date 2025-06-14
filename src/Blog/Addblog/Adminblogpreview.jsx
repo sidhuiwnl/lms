@@ -10,12 +10,12 @@ export default function Adminblogpreview() {
   const [blogs, setBlog] = useState(null); // keep blogs
   const [latestBlogs, setLatestBlogs] = useState([]);
 
-  console.log(blogs)
+   const decodedId = atob(blogId)
 
   // Fetch selected blog
   const fetchBlog = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${blogId}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`);
       setBlog(response.data.blog);
     } catch (err) {
       console.error("Error fetching blog:", err);

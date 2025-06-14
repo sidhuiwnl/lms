@@ -18,7 +18,7 @@ export default function AdditionalDetail({ reviews,book }) {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/v1/admin/reviews", {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}api/v1/admin/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export default function AdditionalDetail({ reviews,book }) {
   return (
     <div className="py-10">
       
-      <div className="flex justify-center space-x-4 border-b pb-2 mb-6">
+      <div className="flex justify-center space-x-4  pb-2 mb-6">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -76,6 +76,7 @@ export default function AdditionalDetail({ reviews,book }) {
             {tab.label}
           </button>
         ))}
+        
       </div>
 
       {/* Tab Content */}

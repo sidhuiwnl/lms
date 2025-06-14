@@ -18,6 +18,8 @@ function BookPurchase() {
   const [showModal, setShowModal] = useState(false);
   const [token, setToken] = useState('');
 
+  const decodedId = atob(id)
+
   // Helper to get available formats with prices > 0
   const getAvailableFormats = (bookData) => {
     const formats = [
@@ -41,7 +43,7 @@ function BookPurchase() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/getBookById/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/getBookById/${decodedId}`)
       .then((res) => {
         if (res.data && res.data.book) {
           const bookData = res.data.book;
@@ -80,7 +82,7 @@ function BookPurchase() {
     const fetchBookReviews = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/reviews/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/reviews/${decodedId}`
         );
         setBookReviews(response.data.reviews);
       } catch (err) {

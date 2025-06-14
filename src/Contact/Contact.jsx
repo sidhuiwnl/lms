@@ -69,7 +69,7 @@ function Contact() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-8 md:py-12 font-normal">
+    <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-20 py-8 md:py-12 font-normal">
       <Helmet>
         <title>Contact Dr. Ken Hansraj – Get in Touch</title>
         <meta name="description" content="Have questions or need assistance? Contact Dr. Ken Hansraj for expert advice on spine health." />
@@ -78,9 +78,9 @@ function Contact() {
         <link rel="canonical" href="https://drken.us/contact" />
       
       </Helmet>
-      <div className="flex flex-col md:flex-row gap-8 sm:gap-12">
+      <div className="flex flex-col md:flex-row  gap-8 sm:gap-12">
         
-        <div className="w-full lg:w-1/2 xl:w-7/12 space-y-2"> 
+        <div className="w-full lg:w-1/2 xl:w-7/12  space-y-2"> 
           <div className="bg-white p-6 rounded-lg">
              <h1 className=" my-1 md:my-5 headingarea contacttxt">Contact Us</h1>
             <p className=" text-[#ffa200] text-2xl mb-4">For Patient Inquiries, Please Contact:</p>
@@ -112,7 +112,7 @@ function Contact() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="w-full lg:w-1/2 xl:w-5/12">
+        <div className="w-full border rounded-lg lg:w-1/2 xl:w-5/12">
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg font-normal">
             <p className="text-center text-gray-600 mb-6">
               For Inquiries, Please Send a Message
@@ -128,7 +128,7 @@ function Contact() {
                   name="full_name"
                   id="full_name"
                   placeholder="Enter your Name"
-                  className={`w-full px-4 py-2 shadow-md rounded-md focus:outline-none focus:ring-2 ${
+                  className={`w-full px-4 py-2 border shadow-md rounded-md focus:outline-none focus:ring-2 ${
                     errors.name ? 'border-red-500 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
                   }`}
                   value={formData.name}
@@ -149,7 +149,7 @@ function Contact() {
                   name="email"
                   id="email"
                   placeholder="Enter your Email"
-                  className={`w-full shadow-md px-4 py-2  rounded-md focus:outline-none focus:ring-2 ${
+                  className={`w-full shadow-md border px-4 py-2  rounded-md focus:outline-none focus:ring-2 ${
                     errors.email ? 'border-red-500 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
                   }`}
                   value={formData.email}
@@ -170,7 +170,7 @@ function Contact() {
                   id="message"
                   rows="4"
                   placeholder="Your message"
-                  className="w-full px-4 py-2 shadow-md rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  className="w-full px-4 py-2 border shadow-md rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
                   value={formData.message}
                   onChange={handleChange}
                   minLength="10"
