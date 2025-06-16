@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import "./Adminsidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
-  faUser,
   faBars,
-  faFile,
+  faTimes,
   faPowerOff,
   faFileLines,
-  faLayerGroup,
-  faDriversLicense,
   faIdBadge,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -18,23 +14,16 @@ import axios from "axios";
 
 const sidebarVariants = {
   open: { width: "220px" },
-  closed: { width: "50px" },
+  closed: { width: "0px" },
 };
 
 const linkVariants = {
-  open: { opacity: 1, display: "inline-block" },
-  closed: { opacity: 0, display: "none" },
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: -10, },
 };
 
 function Adminsidebar({ isOpen, toggleSidebar }) {
-  // const [isOpen, setIsOpen] = React.useState(false);
-
   const { id } = useParams();
-  // console.log("adminside", id);
-  // const toggleSidebar = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,9 +31,7 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_REACT_APP_API_URL}auth/protected`,
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
         console.log("Token is valid:", response.data);
       } catch (error) {
@@ -52,7 +39,6 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
         navigate("/llmlogin");
       }
     };
-
     verifyToken();
   }, [navigate]);
 
@@ -63,8 +49,7 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
         {},
         { withCredentials: true }
       );
-      document.cookie =
-        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/llmlogin");
     } catch (error) {
       console.error("Logout error:", error);
@@ -72,106 +57,77 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
   };
 
   return (
-    <motion.div
-      className="sidebar"
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      variants={sidebarVariants}
-    >
-      <div className="toggle-btn" onClick={toggleSidebar}>
-        <FontAwesomeIcon icon={faBars} />
+    <>
+      {/* Toggle icon - positioned independently with higher z-index */}
+      <div
+        className="fixed top-2.5 left-2.5 p-3 cursor-pointer bg-transparent rounded z-[60]"
+        onClick={toggleSidebar}
+      >
+        <FontAwesomeIcon
+          icon={isOpen ? faTimes : faBars}
+          size="lg"
+          style={{
+            color : isOpen ? "white" : "black"
+          }}
+          
+        />
       </div>
-      <ul>
-        <li>
-          <Link to={`/admindashboard/${id}/dashboard`}>
-            <FontAwesomeIcon icon={faHome} className="mx-1 text-light " />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none "
+
+      {/* Sidebar content */}
+      <motion.div
+        className="fixed h-full bg-[#001040] shadow-lg z-50 overflow-hidden"
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        variants={sidebarVariants}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        {/* Links */}
+        <motion.ul
+          className="mt-16 pt-2"
+          initial={isOpen ? "open" : "closed"}
+          animate={isOpen ? "open" : "closed"}
+          variants={linkVariants}
+          transition={{ duration: 0.2 }}
+        >
+          <li>
+            <Link
+              to={`/admindashboard/${id}/dashboard`}
+              className="flex items-center  text-white  transition-colors duration-200"
             >
-              Dashboard
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/purelicense`}>
-            <FontAwesomeIcon icon={faIdBadge} className="mx-1 text-light " />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none "
+              <FontAwesomeIcon icon={faHome} className="min-w-[20px] text-center mr-3" />
+              <span className={isOpen ? "inline-block whitespace-nowrap" : "hidden"}>Dashboard</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`/admindashboard/${id}/purelicense`}
+              className="flex items-center  text-white  transition-colors duration-200"
             >
-              Purchase License
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/courselist`}>
-            <FontAwesomeIcon icon={faFileLines} className="mx-1 text-light " />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none "
+              <FontAwesomeIcon icon={faIdBadge} className="min-w-[20px] text-center mr-3" />
+              <span className={isOpen ? "inline-block whitespace-nowrap" : "hidden"}>Purchase License</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`/admindashboard/${id}/courselist`}
+              className="flex items-center  text-white  transition-colors duration-200"
             >
-              Course
-            </motion.span>
-          </Link>
-        </li>
-        {/* <li>
-          <Link to={`/admindashboard/${id}/admincredential`}>
-            <FontAwesomeIcon icon={faUser} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
+              <FontAwesomeIcon icon={faFileLines} className="min-w-[20px] text-center mr-3" />
+              <span className={isOpen ? "inline-block whitespace-nowrap" : "hidden"}>Course</span>
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="flex items-center  text-white  transition-colors duration-200 w-full text-left"
             >
-              User Registration
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/category`}>
-            <FontAwesomeIcon icon={faLayerGroup} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Add Category
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/coursedetail`}>
-            <FontAwesomeIcon icon={faFileLines} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Courses
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/courseupdate`}>
-            <FontAwesomeIcon icon={faFile} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Add Courses
-            </motion.span>
-          </Link>
-        </li> */}
-        <li>
-          <Link onClick={handleLogout}>
-            <FontAwesomeIcon icon={faPowerOff} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Logout
-            </motion.span>
-          </Link>
-        </li>
-      </ul>
-    </motion.div>
+              <FontAwesomeIcon icon={faPowerOff} className="min-w-[20px] text-center mr-3" />
+              <span className={isOpen ? "inline-block whitespace-nowrap" : "hidden"}>Logout</span>
+            </button>
+          </li>
+        </motion.ul>
+      </motion.div>
+    </>
   );
 }
 

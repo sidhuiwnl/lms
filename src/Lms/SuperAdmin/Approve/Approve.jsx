@@ -117,12 +117,24 @@ export function Approve() {
         <div className="d-flex justify-content-between my-3">
           <h5 className="mb-0 pointer">Cheque Transaction</h5>
           {activeTable === 1 ? (
+           
             <button
-              className="mb-0 pointer btn btn-success my-2"
-              onClick={() => changeTable(2)}
-            >
-              Approved
-            </button>
+  className="flex items-center px-4 py-2 mr-2 rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
+ 
+ onClick={() => changeTable(2)}
+>
+  Approved
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    className="ml-2"
+  >
+    <path fill="currentColor" d="M10.95 15.55L16.6 9.9l-1.425-1.425L10.95 12.7l-2.1-2.1l-1.425 1.425zM12 22q-3.475-.875-5.737-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22" />
+  </svg>
+</button>
+
           ) : (
             <h5
               className="mb-0 pointer btn btn-primary"
@@ -168,10 +180,9 @@ export function Approve() {
                     <td id="quantity">{value.quantity}</td>
                     <td id="amount">{value.amount}</td>
                     <td>
-                      <i
-                        className="bi bi-check btn btn-success"
-                        onClick={handleupdate}
-                      ></i>
+                      <svg xmlns="http://www.w3.org/2000/svg" 
+                        onClick={handleupdate} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                    
                     </td>
                   </tr>
                 ))}
@@ -213,10 +224,19 @@ export function Approve() {
           <h5 className="mb-0 pointer">NEFT Transaction</h5>
           {activeTable2 === 1 ? (
             <button
-              className="mb-0 pointer btn btn-success"
+             className="flex items-center px-4 py-2 mr-2 rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
+ 
               onClick={() => changeTable1(2)}
             >
-              Approved
+              Approved<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    className="ml-2"
+  >
+    <path fill="currentColor" d="M10.95 15.55L16.6 9.9l-1.425-1.425L10.95 12.7l-2.1-2.1l-1.425 1.425zM12 22q-3.475-.875-5.737-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22" />
+  </svg>
             </button>
           ) : (
             <h5
@@ -254,10 +274,8 @@ export function Approve() {
                     <td id="neftquantity">{value.quantity}</td>
                     <td id="neftamount">{value.amount}</td>
                     <td>
-                      <i
-                        className="bi bi-check btn btn-success"
-                        onClick={handleupdateneft}
-                      ></i>
+                       <svg xmlns="http://www.w3.org/2000/svg" 
+                         onClick={handleupdateneft} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                     </td>
                   </tr>
                 ))}

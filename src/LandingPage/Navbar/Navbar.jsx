@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Links } from "../../utils/Links";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -17,6 +16,7 @@ export default function Navbar() {
           />
         </div>
 
+        {/* Mobile menu button */}
         <button
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
@@ -48,42 +48,44 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <div className="hidden sm:flex gap-6">
-         {Links.map((link) => (
-          <Link
-            key={link.id}
-            to={link.link}
-            className="lnknav text-[14px] sm:text-[16px] font-normal duration-300 montserrat-main"
-            {...(link.name === "My Spine Coach"
-              ? {  rel: "noopener noreferrer" }
-              : {})}
-          >
-            {link.name}
-          </Link>
-  ))}
-
+        {/* Desktop Navigation */}
+        <div className="hidden  sm:flex space-x-3 gap-4 md:gap-6 lg:gap-8">
+          {Links.map((link) => (
+            <Link
+              key={link.id}
+              to={link.link}
+              className="text-white font-bold  md:text-base  hover:text-amber-400 transition-colors duration-300"
+              {...(link.name === "My Spine Coach"
+                ? {  rel: "noopener noreferrer" }
+                : {})}
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
       </div>
 
+      {/* Mobile Navigation - shows all links */}
       {isOpen && (
         <div
           id="mobile-menu"
-          className="sm:hidden flex flex-col items-center gap-4 pb-4"
+          className="sm:hidden bg-[#001040] w-full absolute left-0 z-10 px-4 pb-6 shadow-lg"
         >
-          {Links.map((link) => (
-  <Link
-    key={link.id}
-    to={link.link}
-    className="lnknav text-[14px] font-normal montserrat-main"
-    onClick={() => setIsOpen(false)}
-    {...(link.name === "My Spine Coach"
-      ? { target: "_blank", rel: "noopener noreferrer" }
-      : {})}
-  >
-    {link.name}
-  </Link>
-))}
-
+          <div className="flex flex-col items-start  gap-4 pt-2">
+            {Links.map((link) => (
+              <Link
+                key={link.id}
+                to={link.link}
+                className="text-white text-base font-medium w-full  py-2 border-b border-blue-900 hover:text-amber-400 transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+                {...(link.name === "My Spine Coach"
+                  ? {  rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </nav>

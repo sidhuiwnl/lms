@@ -83,6 +83,9 @@
   .sidebar {
     width: 60px;
   }
+  .side-nav ul {
+    display: none;
+  }
 
   .sidebar .toggle-btn {
     display: none;
@@ -94,3 +97,4 @@ a {
   color: inherit;
   color: white;
 }
+

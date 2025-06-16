@@ -1,58 +1,37 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import "./SuperAdminSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHome,
-  faUser,
   faBars,
-  faFile,
-  faPowerOff,
-  faFileLines,
-  faLayerGroup,
-  faDriversLicense,
+  faTimes,
   faDashboard,
+  faDriversLicense,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const sidebarVariants = {
   open: { width: "200px" },
-  closed: { width: "50px" },
-};
-
-const linkVariants = {
-  open: { opacity: 1, display: "inline-block" },
-  closed: { opacity: 0, display: "none" },
+  closed: { width: "0px" },
 };
 
 function SuperAdminSidebar({ isOpen, toggleSidebar }) {
-  // const [isOpen, setIsOpen] = React.useState(false);
-
   const { id } = useParams();
-  // console.log("adminside", id);
-  // const toggleSidebar = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await axios.get(
+        await axios.get(
           `${import.meta.env.VITE_REACT_APP_API_URL}auth/protected`,
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
-        console.log("Token is valid:", response.data);
       } catch (error) {
-        console.error("Token verification error:", error);
+        console.error("Token verification error.", error);
         navigate("/llmlogin");
       }
     };
-
     verifyToken();
   }, [navigate]);
 
@@ -63,104 +42,65 @@ function SuperAdminSidebar({ isOpen, toggleSidebar }) {
         {},
         { withCredentials: true }
       );
-      document.cookie =
-        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/llmlogin");
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error("Logout error.", error);
     }
   };
 
   return (
-    <motion.div
-      className="sidebar"
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      variants={sidebarVariants}
-    >
-      <div className="toggle-btn" onClick={toggleSidebar}>
-        <FontAwesomeIcon icon={faBars} />
+    <>
+      {/* Toggle icon - positioned independently with higher z-index */}
+      <div
+        className="fixed top-2.5 left-2.5 p-3 text-black cursor-pointer bg-transparent rounded z-[60]"
+        onClick={toggleSidebar}
+      >
+        <FontAwesomeIcon
+          icon={isOpen ? faTimes : faBars}
+          style={{ color: isOpen ? "white" : "black " }}
+          size="lg"
+        />
       </div>
-      <ul>
-        <li>
-          <Link to={`/superadmin/${id}/dashboard`}>
-            <FontAwesomeIcon icon={faDashboard} className="mx-1 text-light " />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none "
+
+      {/* Sidebar content */}
+      <motion.div
+        className="fixed h-full  bg-[#001040] shadow-lg z-50 overflow-hidden"
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        variants={sidebarVariants}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        {/* Links (only rendered when sidebar is open) */}
+        {isOpen && (
+          <div className="mt-16 pt-2">
+            <Link
+              to={`/superadmin/${id}/dashboard`}
+              className="flex items-center p-3 text-gray-100 "
             >
-              Dashboard
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/superadmin/${id}/approve`}>
-            <FontAwesomeIcon icon={faDriversLicense} className="mx-1 text-light " />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none "
+              <FontAwesomeIcon icon={faDashboard} className="min-w-[20px] text-center mr-3" />
+              <span>Dashboard</span>
+            </Link>
+
+            <Link
+              to={`/superadmin/${id}/approve`}
+              className="flex items-center p-3 text-gray-100 "
             >
-              Approve
-            </motion.span>
-          </Link>
-        </li>
-        {/* <li>
-          <Link to={`/admindashboard/${id}/admincredential`}>
-            <FontAwesomeIcon icon={faUser} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
+              <FontAwesomeIcon icon={faDriversLicense} className="min-w-[20px] text-center mr-3" />
+              <span>Approve</span>
+            </Link>
+
+            <button
+              onClick={handleLogout}
+              className="flex items-center p-3 text-gray-100  w-full text-left"
             >
-              User Registration
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/category`}>
-            <FontAwesomeIcon icon={faLayerGroup} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Add Category
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/coursedetail`}>
-            <FontAwesomeIcon icon={faFileLines} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Courses
-            </motion.span>
-          </Link>
-        </li>
-        <li>
-          <Link to={`/admindashboard/${id}/courseupdate`}>
-            <FontAwesomeIcon icon={faFile} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Add Courses
-            </motion.span>
-          </Link>
-        </li> */}
-        <li>
-          <Link onClick={handleLogout}>
-            <FontAwesomeIcon icon={faPowerOff} className="mx-1 text-light" />
-            <motion.span
-              variants={linkVariants}
-              className="text-white text-decoration-none ms-1"
-            >
-              Logout
-            </motion.span>
-          </Link>
-        </li>
-      </ul>
-    </motion.div>
+              <FontAwesomeIcon icon={faPowerOff} className="min-w-[20px] text-center mr-3" />
+              <span>Logout</span>
+            </button>
+          </div>
+        )}
+      </motion.div>
+    </>
   );
 }
 

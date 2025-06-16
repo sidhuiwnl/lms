@@ -114,13 +114,13 @@ function Drkenhome() {
           </div>
         </div>
 
-        <div className="row my-3 py-3 ">
-              <div className="d-flex justify-content-between text-center flex-wrap px-5 py-3">
+        <div className="row my-3 py-3">
+              <div className="d-flex justify-content-between  text-center flex-wrap px-5 py-3 space-y-3">
               <div className="col-auto">
                 <Link
                   to="#"
                   onClick={() => setActiveTab("overview")}
-                  className={activeTab === "overview" ? "active-link" : "font-bold "}
+                  className={activeTab === "overview" ? "active-link text-white" : "font-bold  "}
                   style={{ textDecoration: "none", color : "#001040" }}
                 >
                   Overview
@@ -131,7 +131,7 @@ function Drkenhome() {
                 <Link
                   to="#"
                   onClick={() => setActiveTab("Instructor")}
-                  className={activeTab === "Instructor" ? "active-link" : "font-bold"}
+                  className={activeTab === "Instructor" ? "active-link text-white" : "font-bold"}
                   style={{ textDecoration: "none" , color : "#001040" }}
                 >
                   About Instructor
@@ -142,7 +142,7 @@ function Drkenhome() {
                 <Link
                   to="#"
                   onClick={() => setActiveTab("lessons")}
-                  className={activeTab === "lessons" ? "active-link" : "font-bold"}
+                  className={activeTab === "lessons" ? "active-link text-white" : "font-bold"}
                   style={{ textDecoration: "none", color : "#001040" }}
                 >
                   Lessons

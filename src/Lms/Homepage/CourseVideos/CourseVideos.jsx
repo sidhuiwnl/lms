@@ -46,7 +46,14 @@ function CourseVideos() {
 
   const [haspaid, setHasPaid] = useState();
 
-  const decodedId = atob(id)
+  
+  
+ let decodedId = id === undefined || id === "undefined" ? 0 : atob(id);
+  
+
+ 
+
+  
 
   //Payment status
   useEffect(() => {
@@ -307,7 +314,6 @@ function CourseVideos() {
           setAttempts(res.data.attempts);
           setShowScoreCard(true);
           setSelectedOptions({})
-          // console.log(res.data);
         } else {
           toast.error("Error saving quiz");
         }

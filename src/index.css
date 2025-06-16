@@ -91,3 +91,7 @@ body,html{
 p{
   text-align: justify;
 }
+
+button:hover{
+cursor: pointer;
+}

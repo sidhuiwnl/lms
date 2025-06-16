@@ -85,7 +85,7 @@ function Lessons() {
               to={`/ken/1/${e.moduleId}/${id}`}
               className="col-sm-12 lessonview text-decoration-none"
               style={{ color: "#001040" }}>
-              <div className="col-lg-4 border-2  rounded-lg d-flex flex-column justify-content-center">
+              <div className="col-lg-4 border-2  rounded-lg d-flex flex-column  justify-content-center">
                 <img
                   src={e.module_image}
                   alt="lesson"
@@ -101,8 +101,33 @@ function Lessons() {
               </div>
             </Link>
           ) : (
-            <div
-                  className="col-sm-12 lessonview locked"
+            <>
+              {e.moduleId === 1 ? (
+                <Link
+                  to={`/ken/1/${e.moduleId}/${id}`}
+                  className="col-sm-12 lessonview text-decoration-none"
+                  style={{ color: "#001040" }}>
+                  <div className="col-lg-4 d-flex flex-column justify-content-center gap-2">
+                    <img
+                      src={e.module_image}
+                      alt="lesson"
+                      className="rounded-3 lesson"
+                      accept=".jpg,.jpeg,.png,.tiff,.tif"
+                    />
+                  </div>
+                  <div className="col-lg-6 d-flex flex-column justify-content-center textpart">
+                    <h5>Chapter {e.moduleId}</h5>
+                    <h3>{e.modulename}</h3>
+                    <p>{e.activities}</p>
+                  </div>
+                  <div className="col-lg-2 d-flex justify-content-center align-items-center">
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </Link>
+              ) : (
+                // Other modules are locked
+                <div
+                  className=" lessonview locked flex flex-col space-y-3"
                   onClick={() => handleShowModal(e)}
                   style={{ cursor: "pointer" }}
                 >
@@ -122,12 +147,14 @@ function Lessons() {
                     <FontAwesomeIcon icon={faLock} />
                   </div>
                 </div>
+              )}
+            </>
             
           )}
         </div>
       ))}
 
-      {/* Modal for locked content */}
+      
       <Modal
         show={showModal}
         onHide={handleCloseModal}

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import "../UserProfile/UserProfile.css";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Indiviualdashboardmain } from "../Profile/Profile";
 import axios from "axios";
@@ -8,6 +7,8 @@ export function Indiviualmenu() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     const verifyToken = async () => {
       try {
@@ -15,79 +16,95 @@ export function Indiviualmenu() {
           `${import.meta.env.VITE_REACT_APP_API_URL}auth/protected`,
           { withCredentials: true }
         );
-        console.log("Token is valid:", response.data);
+        console.log("Token is valid.", response.data);
       } catch (error) {
-        console.error("Token verification error:", error);
+        console.error("Token verification error.", error);
         navigate("/llmlogin");
       }
     };
- verifyToken();
+    verifyToken();
   }, [navigate]);
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
+    e.preventDefault();
     try {
       await axios.post(
         `${import.meta.env.VITE_REACT_APP_API_URL}auth/logout`,
         {},
         { withCredentials: true }
       );
-      document.cookie =
-        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/llmlogin");
+
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error("Logout error.", error);
     }
   };
 
   return (
-    <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-      <nav
-        className="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
-        id="navbarVertical">
-        <div className="container-fluid">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <nav className=" text-gray-50 lg:w-60 border border-neutral-900 p-6">
+        {/* Logo */}
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-xxl font-bold">My Spine Coach</h3>
           <button
-            className="navbar-toggler ms-n2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#sidebarCollapse"
-            aria-controls="sidebarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+            aria-label="Toggle Menu"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="lg:hidden p-2 rounded-md border border-gray-50">
+           <span className="text-black">☰</span>
           </button>
-          <a className="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
-            <h3 className="brand-title">My Spine Coach</h3>
-          </a>
-          <div className="collapse navbar-collapse" id="sidebarCollapse">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link text-black" to={`/user/${id}/profile`}>
-                  <i className="bi bi-house "></i> <span className="text-black">Dashboard</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to={`/user/${id}/message`}>
-                  <i className="bi bi-chat"></i> <span className="text-black">Messages</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to={`/user/${id}/payment`}>
-                  <i className="bi bi-chat"></i> <span className="text-black">Payment</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-dark"
-                  to="#"
-                  onClick={handleLogout}>
-                  <i className="bi bi-box-arrow-left"></i><span className="text-black">Logout</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
+
+        {/* Menu links */}
+        <ul
+          className={`flex-col gap-4 ${
+            isOpen ? "flex" : "hidden"
+          } lg:flex`}
+        >
+          <li>
+            <Link
+              to={`/user/${id}/profile`}
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+            >
+              Dashboard
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to={`/user/${id}/message`}
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+            >
+              Messages
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to={`/user/${id}/payment`}
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+            >
+              Payment
+            </Link>
+          </li>
+
+          <li>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors w-full text-left">
+              Logout
+            </button>
+          </li>
+        </ul>
       </nav>
-      <Indiviualdashboardmain />
+
+      {/* Main content */}
+      <div className="flex-grow p-6">
+        <Indiviualdashboardmain />
+      </div>
     </div>
   );
 }
+
+export default Indiviualmenu;

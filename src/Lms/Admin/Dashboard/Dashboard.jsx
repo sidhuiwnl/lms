@@ -191,9 +191,9 @@ export default function Dashboard() {
   return (
     <>
       <div class="container-fluid">
-        <header class="bg-surface-primary border-bottom pt-6">
+        <header class="bg-surface-primary border-bottom ">
           <div class="container-fluid">
-            <div class="mb-npx">
+            <div class="mb-npx p-5">
               <div class="row align-items-center">
                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                   <h1 class="h2 mb-0 ls-tight">
@@ -214,11 +214,11 @@ export default function Dashboard() {
         <main class="py-6 bg-surface-secondary">
           <div class="container-fluid">
             {/* <!-- Card stats --> */}
-            <div class="row g-6 mb-6">
+            <div class="row g-6 mb-6  ">
               <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-100">
+                <div class="card shadow border-0 h-60">
                   <div className="overline"></div>
-                  <div class="card-body">
+                  <div class="card-body  rounded-2xl">
                     <div class="row">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2 ">
@@ -247,7 +247,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-100">
+                <div class="card shadow border-0 h-60">
                   <div className="overline"></div>
                   <div class="card-body">
                     <div class="row">
@@ -279,16 +279,7 @@ export default function Dashboard() {
                           Add License
                         </span>
                       ) : (
-                        // <Link>
-                        //   <span
-                        //     class="textend"
-                        //     data-bs-toggle="modal"
-                        //     data-bs-target="#exampleModal"
-                        //     disable={totallicense === 0}
-                        //   >
-                        //     Invite Learners..
-                        //   </span>
-                        // </Link>
+                       
                         <Link onClick={handleModalOpen}>
                           <span
                             class="textend"
@@ -305,7 +296,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-100">
+                <div class="card shadow border-0 h-60">
                   <div className="overline"></div>
                   <div class="card-body">
                     <div class="row">

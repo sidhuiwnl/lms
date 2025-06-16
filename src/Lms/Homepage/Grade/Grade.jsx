@@ -26,8 +26,9 @@ function Grade() {
   const handleNavigate = () => {
     navigate("/"); // Replace with the actual path you want to navigate to
   };
+
   return (
-    <div className="container-fluid">
+    <div className="container-fluid mt-5">
       {/* <div className='my-4'>
           <FontAwesomeIcon icon={faArrowLeft} className='arrowsize' onClick={handleNavigate()}/>
           </div> */}

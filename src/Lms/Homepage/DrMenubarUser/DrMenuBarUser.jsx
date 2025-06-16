@@ -55,7 +55,7 @@ export default function DrMenuBarUser() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 "
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -185,12 +185,12 @@ export default function DrMenuBarUser() {
           </NavLink>
 
           
-          <div className="relative ml-4">
+          <div className="relative ml-4 ">
             <button
-              className="focus:outline-none"
+              className="focus:outline-none "
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <img src={loginimg} alt="Profile" className="w-8 h-8" />
+              <img src={loginimg} alt="Profile" className="w-8 h-8 mt-2" />
             </button>
 
             {isDropdownOpen && (

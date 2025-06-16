@@ -13,7 +13,7 @@ const Admindashboard = () => {
   return (
     <div className='dashboard-container'>
       <Adminsidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className={`dashboard-content ${isOpen ? 'expanded' : 'collapsed'}`}>
+      <div className={`dashboard-content ${isOpen ? 'expanded' : ' '}`}>
         <Outlet />
       </div>
     </div>

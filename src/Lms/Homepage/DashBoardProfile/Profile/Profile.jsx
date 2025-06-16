@@ -134,10 +134,10 @@ export function Indiviualdashboardmain() {
 
   return (
     <>
-      <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+      <div className="h-screen flex-grow-1 overflow-y-auto">
        
 
-        <header className="bg-surface-primary border-bottom pt-6">
+        <header className="bg-surface-primary border pt-6 rounded-lg">
           <div className="container-fluid">
             <div className="mb-npx">
               <div className="row align-items-center">
@@ -155,7 +155,7 @@ export function Indiviualdashboardmain() {
         </header>
 
         <div className="row g-4 m-3">
-          <div className="col-sm-12 col-lg-6" style={{ width: "550px" }}>
+          <div className="col-sm-12 col-lg-6 " >
             <div className="bg-white shadow p-4 rounded-4">
               <div className="text-center mb-4">
                 <DatePicker
@@ -166,15 +166,19 @@ export function Indiviualdashboardmain() {
                 />
               </div>
 
-             <ResponsiveContainer width="100%" height={300}>
+            <div className="w-full p-4">
+  
+              <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={chartData.data}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" stroke="#000" />
                   <YAxis stroke="#000" />
                   <Tooltip />
-                  <Bar dataKey="value" fill="#001040" radius={[10, 10, 0, 0]}/>
+                  <Bar dataKey="value" fill="#001040" radius={[10, 10, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
+            </div>
+
 
             </div>
           </div>
@@ -283,10 +287,7 @@ export function Indiviualdashboardmain() {
         </div>
       )}
 
-      {/* Bootstrap JS (Optional) */}
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     
     </>
   );
 }

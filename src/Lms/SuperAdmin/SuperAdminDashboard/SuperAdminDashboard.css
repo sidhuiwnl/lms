@@ -1,15 +1,20 @@
 .dashboard-container {
-    display: flex;
-  }
+  display: flex;
+  width: 100%; /* Ensure container takes full width */
+}
+
+.dashboard-content {
+  transition: margin-left 1s ease;
+  flex-grow: 1; /* This makes the content expand to fill remaining space */
+}
+
+.dashboard-content.collapsed {
+  margin-left: 100px; /* No margin when sidebar is collapsed */
+  width: 100%; /* Full width */
+  flex-grow: 1 !important;
   
-  .dashboard-content {
-    transition: margin-left 1s ease;
-  }
-  
-  .dashboard-content.collapsed {
-    margin-left: 50px; /* When sidebar is collapsed */
-  }
-  
-  .dashboard-content.expanded {
-    margin-left: 200px; /* When sidebar is expanded */
-  }
+}
+
+.dashboard-content.expanded {
+  margin-left: 200px; /* When sidebar is expanded */
+}

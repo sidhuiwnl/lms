@@ -1,5 +1,6 @@
 .dashboard-container {
     display: flex;
+    padding: 0px;
   }
   
   .dashboard-content {

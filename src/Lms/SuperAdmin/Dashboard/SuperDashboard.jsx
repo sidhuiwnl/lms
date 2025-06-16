@@ -126,53 +126,33 @@ export function SuperDashboard() {
 
   return (
     <>
-      <div className="container-fluid p-0 m-0">
-        {/* <!-- Header --> */}
-        <header className="bg-surface-primary border-bottom pt-6">
-          <div className="container-fluid p-0 m-0">
-            <div className="mb-npx">
+      
+        {/* <!-- Main --> */}
+        <main className="py-6 bg-surface-secondary">
+
+          <div className="mb-10 p-4">
               <div className="row ">
                 <div className="col-sm-10  mb-4 mb-sm-0">
                   {/* <!-- Title --> */}
-                  <h1 className="h2 mb-0 ls-tight p-3">
+                  <h1 className="h2 mb-0 ls-tight ">
                     Hi, <span style={{ color: "#DC3545" }}> Dr.Ken</span>
                   </h1>
                 </div>
 
                 <div className="col-sm-2  mb-4 mb-sm-0">
                   {/* <!-- Title --> */}
-                  <Link to="/business_register" className="subbtn1 rounded-2 my-2 text-decoration-none">Register</Link>
-{/*                   
-                   <link to="/business_register" className="subbtn1 rounded-2 my-2">Register</link> */}
-                
+                  <Link to="/business_register" className="subbtn1 rounded-2 my-2 text-decoration-none">Register </Link>
+
                 </div>
-
-
-                {/* <!-- Actions --> */}
               </div>
-              {/* <!-- Nav --> */}
-              {/* <ul className="nav nav-tabs mt-4 overflow-x border-0">
-                                <li className="nav-item ">
-                                    <a href="#" className="nav-link active">All files</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="#" className="nav-link font-regular">Shared</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="#" className="nav-link font-regular">File requests</a>
-                                </li>
-                            </ul> */}
+           
             </div>
-          </div>
-        </header>
-        {/* <!-- Main --> */}
-        <main className="py-6 bg-surface-secondary">
           <div className="container-fluid">
             {/* <!-- Card stats --> */}
             <div className="row g-6 mb-6">
               <div className="col-xl-3 col-sm-6 col-12 my-2">
-                <div className="card shadow border-0 h-100">
-                  <div className="overline"></div>
+                <div className="card shadow border-0 h-48">
+                
                   <div className="card-body">
                     <div className="row">
                       <div className="col">
@@ -192,8 +172,8 @@ export function SuperDashboard() {
                 </div>
               </div>
               <div className="col-xl-3 col-sm-6 col-12 my-2">
-                <div className="card shadow border-0 h-100">
-                  <div className="overline"></div>
+                <div className="card shadow border-0 ">
+                
                   <div className="card-body">
                     <div className="row">
                       <div className="col">
@@ -220,8 +200,8 @@ export function SuperDashboard() {
                 </div>
               </div>
               <div className="col-xl-3 col-sm-6 col-12 my-2">
-                <div className="card shadow border-0 h-100">
-                  <div className="overline"></div>
+                <div className="card shadow border-0 ">
+                
                   <div className="card-body">
                     <div className="row">
                       <div className="col">
@@ -233,8 +213,8 @@ export function SuperDashboard() {
                         </span>
                       </div>
                       <div className="col-auto">
-                        <div className="icon icon-shape bg-info text-white text-lg rounded-circle">
-                          <i className="bi bi-people"></i>
+                        <div className="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign-icon lucide-dollar-sign"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         </div>
                       </div>
                     </div>
@@ -249,8 +229,8 @@ export function SuperDashboard() {
                 </div>
               </div>
               <div className="col-xl-3 col-sm-6 col-12 my-2">
-                <div className="card shadow border-0 h-100">
-                  <div className="overline"></div>
+                <div className="card shadow border-0">
+                
                   <div className="card-body">
                     <div className="row">
                       <div className="col">
@@ -280,11 +260,11 @@ export function SuperDashboard() {
           </div>
           <h3 className="p-3">Organization</h3>
           <br />
-          <div className="container-fluid">
-            <div className="row">
+          <div className="container-fluid ">
+            <div className="row ">
               <div className="col-lg-6">
-                <div className="table-responsive">
-                  <table className="table table-hover table-nowrap">
+                <div className="table-responsive rounded-xl">
+                  <table className="table table-hover table-nowrap ">
                     <thead className="bg-white text-light">
                       <tr>
                         <th className="text-light" scope="col">
@@ -378,67 +358,67 @@ export function SuperDashboard() {
           <br />
           <h3 className="p-3">Subscribers</h3>
           <br />
-          <div className="table-responsive mx-2">
-            <table className="table table-hover table-nowrap">
-              <thead className="bg-white">
-                <tr>
-                  <th scope="col" className="text-light">
-                    Name
-                  </th>
-                  <th scope="col" className="text-light">
-                    Enrollment_date
-                  </th>
-                  <th scope="col" className="text-light">
-                    No. of module completed
-                  </th>
-                  <th scope="col" className="text-light">
-                    Completed percentage
-                  </th>
-                  {/* <th scope="col">Point</th> */}
-                  {/* <th></th> */}
-                </tr>
-              </thead>
-              <tbody>
-                {subscribers.map((value, index) => (
-                  <tr className="bg-white">
-                    <td>
-                      <img
-                        alt="..."
-                        src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                        className="avatar avatar-sm rounded-circle me-2"
-                      />
-                      <a
-                        className="text-heading font-semibold text-decoration-none " 
-                        href="#"
-                      >
-                        {value.first_name}
-                      </a>
-                    </td>
-                    <td>
-                      {new Date(value.enrollment_date).toLocaleString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
-                      })}
-                    </td>
+          <div className="bg-gray-50 rounded-lg shadow-md p-4 overflow-x-auto">
+  <table className="min-w-full table-auto rounded-md overflow-hidden">
+    <thead className="bg-gray-100">
+      <tr>
+        <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+          Name
+        </th>
+        <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+          Enrollment Date
+        </th>
+        <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+          Module Completed
+        </th>
+        <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+          Completion %
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {subscribers.map((value, index) => (
+        <tr
+          key={index}
+          className="bg-gray-50 border-t border-gray-200 hover:bg-gray-100 transition-colors">
+          <td className="px-4 py-2 flex items-center space-x-2">
+            <img
+              alt="avatar"
+              src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+              className="rounded-full w-10 h-10"
+            />
+            <a
+              className="text-gray-900 font-semibold hover:underline"
+              href="#">
+              {value.first_name}
+            </a>
+          </td>
+          <td className="px-4 py-2">
+            {new Date(value.enrollment_date).toLocaleString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+            })}
+          </td>
 
-                    <td>{value.completed_modules}</td>
-                    <td>
-                      <ProgressBar
-                        completed={Math.round(value.completion_percentage)}
-                        bgColor="#8f231b"
-                        animateOnRender="true"
-                        transitionDuration="1s"
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <td className="px-4 py-2">{value.completed_modules}</td>
+          <td className="px-4 py-2">
+            <ProgressBar
+              completed={Math.round(value.completion_percentage)}
+              bgColor="#8f231b"
+              animateOnRender="true"
+              transitionDuration="1s"
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
           <br />
           <h3 className="p-3">Active user</h3>
           <br />
@@ -503,7 +483,7 @@ export function SuperDashboard() {
             </table>
           </div>
         </main>
-      </div>
+      
     </>
   );
 }

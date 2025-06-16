@@ -165,6 +165,12 @@ function App() {
         <Route path="/grade/:id" element={[<DrMenuBarUser  />,<Grade />]} />
         <Route path="/badge/:id" element={[<DrMenuBarUser  />, <CertificateBadge />]}/>
         <Route path="/feedback/:id" element={[<DrMenuBarUser  />,<Feedbackpage/>]}/>
+
+        <Route
+            path="/ken/:course/:module/undefined"
+            element={[<Drmenubar />, <CourseVideos />]}
+          />
+          
         <Route
             path="/user/:id/profile"
             element={[<DrMenuBarUser  />, <DashBoardProfile />]}

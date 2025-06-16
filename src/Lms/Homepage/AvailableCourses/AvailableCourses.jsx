@@ -49,7 +49,7 @@ function Availablecourses() {
         <h3 className="text-start p-4">Enrolled Courses</h3>
         <hr />
         <div className="row">
-          <div className="col-sm-12 col-md-4 mb-3">
+          <div className="col-sm-12 col-md-4 mb-3 ">
             <div className="card">
               <img
                 src={Course.course_image || "placeholder-image.jpg"}
