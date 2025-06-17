@@ -101,7 +101,7 @@ export function Approve() {
   return (
     <div className="container-fluid">
 
-       <div className="row py-3">
+       <div className="row py-15">
                       <div className="col-sm-10  mb-4 mb-sm-0">
                         <h1 className="h2 mb-0 ls-tight">
                           Hi, <span style={{ color: "#DC3545" }}> Dr.Ken</span>

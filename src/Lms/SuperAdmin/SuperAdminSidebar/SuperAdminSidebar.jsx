@@ -12,8 +12,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const sidebarVariants = {
-  open: { width: "200px" },
-  closed: { width: "0px" },
+  open: {
+    width: "200px",
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+  closed: {
+    width: "0px",
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
 };
 
 function SuperAdminSidebar({ isOpen, toggleSidebar }) {
@@ -51,53 +57,68 @@ function SuperAdminSidebar({ isOpen, toggleSidebar }) {
 
   return (
     <>
-      {/* Toggle icon - positioned independently with higher z-index */}
-      <div
-        className="fixed top-2.5 left-2.5 p-3 text-black cursor-pointer bg-transparent rounded z-[60]"
+       <motion.div
+        className="fixed top-2.5 left-2.5 p-3 cursor-pointer rounded-lg z-[100] bg-transparent bg-opacity-50 backdrop-blur-md"
         onClick={toggleSidebar}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && toggleSidebar()}
+        aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >
         <FontAwesomeIcon
           icon={isOpen ? faTimes : faBars}
-          style={{ color: isOpen ? "white" : "black " }}
+          style={{ color: isOpen ? "white" : "black" }}
           size="lg"
+          
         />
-      </div>
+      </motion.div>
 
-      {/* Sidebar content */}
+
       <motion.div
-        className="fixed h-full  bg-[#001040] shadow-lg z-50 overflow-hidden"
+        className="fixed h-full bg-[#001040] overflow-hidden"
         initial={false}
         animate={isOpen ? "open" : "closed"}
         variants={sidebarVariants}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {/* Links (only rendered when sidebar is open) */}
         {isOpen && (
-          <div className="mt-16 pt-2">
-            <Link
-              to={`/superadmin/${id}/dashboard`}
-              className="flex items-center p-3 text-gray-100 "
-            >
-              <FontAwesomeIcon icon={faDashboard} className="min-w-[20px] text-center mr-3" />
-              <span>Dashboard</span>
-            </Link>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.2 }}
+            className="mt-16 pt-2 w-[200px] flex flex-col justify-center space-y-7"
+          >
+            <motion.div whileHover={{ x: 5 }}>
+              <Link
+                to={`/superadmin/${id}/dashboard`}
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
+              >
+                <FontAwesomeIcon icon={faDashboard} className="min-w-[20px] text-center mr-3" />
+                <span>Dashboard</span>
+              </Link>
+            </motion.div>
 
-            <Link
-              to={`/superadmin/${id}/approve`}
-              className="flex items-center p-3 text-gray-100 "
-            >
-              <FontAwesomeIcon icon={faDriversLicense} className="min-w-[20px] text-center mr-3" />
-              <span>Approve</span>
-            </Link>
+            <motion.div whileHover={{ x: 5 }}>
+              <Link
+                to={`/superadmin/${id}/approve`}
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
+              >
+                <FontAwesomeIcon icon={faDriversLicense} className="min-w-[20px] text-center mr-3" />
+                <span>Approve</span>
+              </Link>
+            </motion.div>
 
-            <button
-              onClick={handleLogout}
-              className="flex items-center p-3 text-gray-100  w-full text-left"
-            >
-              <FontAwesomeIcon icon={faPowerOff} className="min-w-[20px] text-center mr-3" />
-              <span>Logout</span>
-            </button>
-          </div>
+            <motion.div whileHover={{ x: 5 }}>
+              <button
+                onClick={handleLogout}
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
+              >
+                <FontAwesomeIcon icon={faPowerOff} className="min-w-[20px] text-center mr-3" />
+                <span>Logout</span>
+              </button>
+            </motion.div>
+          </motion.div>
         )}
       </motion.div>
     </>

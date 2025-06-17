@@ -86,6 +86,7 @@ export default function HeroSection() {
         <link rel="canonical" href="https://drken.us/" />
       
       </Helmet>
+      
       <section className="p-4 flex flex-col lg:flex-row items-center md:items-start gap-6 md:gap-10 overflow-hidden">
         <div className="w-full lg:w-1/2 flex justify-center">
           <img
@@ -118,8 +119,7 @@ export default function HeroSection() {
               <span className="text-white font-bold text-base sm:text-lg px-2">Buy Now</span>
             </button>
             <button
-              className=" px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 secondbtn shadow-sm"
-              
+              className=" px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 secondbtn shadow-sm"  
             >
               <Link
   to="/myspinecoach"
@@ -128,10 +128,7 @@ export default function HeroSection() {
 >
   <img src="./play.png" alt="Play Icon" className="w-10 h-10" />
   <span className="text-white font-bold text-base sm:text-lg text-decoration-none" >My Spine Coach</span>
-</Link>
-              
-              
-         
+</Link>        
             </button>
           </div>
         </div>

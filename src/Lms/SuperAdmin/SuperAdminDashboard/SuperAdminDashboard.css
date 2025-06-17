@@ -1,6 +1,7 @@
 .dashboard-container {
   display: flex;
-  width: 100%; /* Ensure container takes full width */
+  min-height: 100vh;
+  position: relative;
 }
 
 .dashboard-content {
@@ -9,8 +10,8 @@
 }
 
 .dashboard-content.collapsed {
-  margin-left: 100px; /* No margin when sidebar is collapsed */
-  width: 100%; /* Full width */
+  margin-left: 100px; 
+  width: 100%; 
   flex-grow: 1 !important;
   
 }

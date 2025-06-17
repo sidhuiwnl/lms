@@ -1,5 +1,5 @@
 import express from "express";
-import { checkUserPaymentStatus, composeMessage, getAllMessage, getAllUsers, getModuleCompletion, getModuleCompletionForCertificate, getUserAssessmentLogs, getUserById, getUserWorkHours, updateUserProfile, userPaymentVerification} from "../../controller/User/user.controller.js";
+import { checkUserPaymentStatus, composeMessage, getAllMessage, getAllUsers, getModuleCompletion, getModuleCompletionForCertificate, getUserAssessmentLogs, getUserById, getUserWorkHours, updateUserProfile, userPaymentVerification,createFeedback,getAllFeedbacks} from "../../controller/User/user.controller.js";
 import upload from "../../middleware/multer-config.js";
 
 const router = express.Router();
@@ -15,5 +15,7 @@ router.post('/updateprofile/:id',upload.single("profile_image"),updateUserProfil
 router.get('/payverify/:id',userPaymentVerification)
 router.get("/grade/:userId",getModuleCompletion)
 router.get("/gradecertificate/:user_id",getModuleCompletionForCertificate)
+router.post("/feedback",createFeedback)
+router.get("/feedback",getAllFeedbacks)
 
 export default router;

@@ -183,7 +183,7 @@ function App() {
             path="/user/:id/payment"
             element={[<DrMenuBarUser  />, <DashBoardPayment />]}
           />
-          <Route path="/user/:id/editprofile" element={<Edit />} />
+          <Route path="/user/:id/editprofile" element={[<DrMenuBarUser/>,<Edit />]} />
           <Route path="/forgot_password" element={<LmsForgotPassword />} />
           <Route path="/reset_password/:token" element={<ResetPassword />} />
           <Route path="/inv_register/:id" element={<InvitedRegister />} />

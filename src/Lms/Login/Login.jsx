@@ -67,6 +67,8 @@ function Login() {
             const encode_user_id = btoa(user_id)
             const encode_company_id = btoa(company_id)
 
+           
+
             if (role_id === 4) {
               navigate(`/user/${encode_user_id}`);
             } else if (role_id === 5) {

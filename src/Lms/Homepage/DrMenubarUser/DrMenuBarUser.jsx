@@ -81,8 +81,8 @@ export default function DrMenuBarUser() {
 
         {/* Mobile menu */}
         <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full lg:hidden`}>
-          <ul className="flex flex-col space-y-4 mt-4">
-            <li>
+          <div className="flex flex-col space-y-4 mt-4">
+          
               <NavLink
                 to={`/user/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -90,8 +90,8 @@ export default function DrMenuBarUser() {
               >
                 Home
               </NavLink>
-            </li>
-            <li>
+            
+           
               <NavLink
                 to={`/allcourselist/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -99,8 +99,8 @@ export default function DrMenuBarUser() {
               >
                 My Course
               </NavLink>
-            </li>
-            <li>
+            
+            
               <NavLink
                 to={`/grade/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -108,8 +108,7 @@ export default function DrMenuBarUser() {
               >
                 Grade
               </NavLink>
-            </li>
-            <li>
+            
               <NavLink
                 to={`/badge/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -117,8 +116,7 @@ export default function DrMenuBarUser() {
               >
                 Badge
               </NavLink>
-            </li>
-            <li>
+            
               <NavLink
                 to={`/feedback/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -126,8 +124,7 @@ export default function DrMenuBarUser() {
               >
                 Feedback
               </NavLink>
-            </li>
-            <li>
+            
               <NavLink
                 to={`/user/${id}/profile`}
                 className=" text-[#001040] px-3 py-2 block"
@@ -135,8 +132,7 @@ export default function DrMenuBarUser() {
               >
                 Profile
               </NavLink>
-            </li>
-            <li>
+            
               <NavLink
                 to="/llmlogin"
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
@@ -147,11 +143,11 @@ export default function DrMenuBarUser() {
               >
                 Logout
               </NavLink>
-            </li>
-          </ul>
+            
+          </div>
         </div>
 
-        {/* Desktop menu */}
+       
         <div className="hidden font-bold lg:flex items-center space-x-6">
           <NavLink
             to={`/user/${id}`}

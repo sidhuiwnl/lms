@@ -32,6 +32,7 @@
 /* Progress Bar Customization */
 .custom-progress-bar {
   height: 1.5rem;
+  color: #000 !important;
 }
 
 .sidebartext {
@@ -39,6 +40,7 @@
   padding: 5px;
   border: 0px;
   text-decoration: none;
+  
 }
 
 .sidebartext:hover {
@@ -63,9 +65,10 @@
 .rightcards {
   background-color: #f8f9fa;
 }
-.custom-progress-bar {
-  height: 10px !important;
-  border-radius: 5px;
+
+.custom-progress-bar .progress-bar {
+  background-color: #001040 !important; /* Gray color for the filled portion */
+  transition: width 0.3s ease; /* Smooth transition for progress updates */
 }
 .sidetext {
   font-size: 20px;
@@ -79,6 +82,10 @@
   }
   .secondpartquiz {
     margin: 0px 0px;
+  }
+  .sidebar-content {
+    display: flex !important; /* Ensure sidebar content is visible on mobile */
+    flex-direction: column !important; /* Stack sidebar items vertically */
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Indiviualdashboardmain } from "../Profile/Profile";
 import axios from "axios";
+import {  FaEnvelope,FaCreditCard,FaSignOutAlt,FaChartArea } from "react-icons/fa";
 
 export function Indiviualmenu() {
   const navigate = useNavigate();
@@ -43,11 +44,9 @@ export function Indiviualmenu() {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <nav className=" text-gray-50 lg:w-60 border border-neutral-900 p-6">
-        {/* Logo */}
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xxl font-bold">My Spine Coach</h3>
+      <nav className="border border-neutral-900 p-6 ">
+        <div className="flex items-center justify-between mb-6  lg:w-50   ">
+          <h3 className="text-xl font-bold ">My Spine Coach</h3>
           <button
             aria-label="Toggle Menu"
             onClick={() => setIsOpen((prev) => !prev)}
@@ -57,46 +56,48 @@ export function Indiviualmenu() {
         </div>
 
         {/* Menu links */}
-        <ul
+        <div
           className={`flex-col gap-4 ${
             isOpen ? "flex" : "hidden"
           } lg:flex`}
         >
-          <li>
+          
             <Link
               to={`/user/${id}/profile`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100 font-bold transition-colors"
             >
+              <FaChartArea/>
               Dashboard
             </Link>
-          </li>
-
-          <li>
+         
             <Link
               to={`/user/${id}/message`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black  hover:bg-blue-100  font-bold transition-colors"
             >
+              <FaEnvelope/>
               Messages
             </Link>
-          </li>
+        
 
-          <li>
+         
             <Link
               to={`/user/${id}/payment`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100  font-bold transition-colors"
             >
+              <FaCreditCard/>
               Payment
             </Link>
-          </li>
+        
 
-          <li>
+          
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors w-full text-left">
+              className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-100  text-black font-bold transition-colors w-full text-left">
+                <FaSignOutAlt/>
               Logout
             </button>
-          </li>
-        </ul>
+          
+        </div>
       </nav>
 
       {/* Main content */}

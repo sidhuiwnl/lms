@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MessageHistory  from "./MessageHistory";
 import axios from "axios";
+import {  FaEnvelope,FaCreditCard,FaSignOutAlt,FaChartArea } from "react-icons/fa";
 
 export function Message() {
   const navigate = useNavigate();
@@ -57,46 +58,48 @@ export function Message() {
         </div>
 
         {/* Menu links */}
-        <ul
-          className={`flex-col gap-4 ${
-            isOpen ? "flex" : "hidden"
-          } lg:flex`}
-        >
-          <li>
-            <Link
-              to={`/user/${id}/profile`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
-            >
-              Dashboard
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to={`/user/${id}/message`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
-            >
-              Messages
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to={`/user/${id}/payment`}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors"
-            >
-              Payment
-            </Link>
-          </li>
-
-          <li>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-black font-bold transition-colors w-full text-left">
-              Logout
-            </button>
-          </li>
-        </ul>
+       <div
+                 className={`flex-col gap-4 ${
+                   isOpen ? "flex" : "hidden"
+                 } lg:flex`}
+               >
+                 
+                   <Link
+                     to={`/user/${id}/profile`}
+                     className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100 font-bold transition-colors"
+                   >
+                     <FaChartArea/>
+                     Dashboard
+                   </Link>
+                
+                   <Link
+                     to={`/user/${id}/message`}
+                     className="flex items-center gap-2 px-4 py-2 rounded-md text-black  hover:bg-blue-100  font-bold transition-colors"
+                   >
+                     <FaEnvelope/>
+                     Messages
+                   </Link>
+               
+       
+                
+                   <Link
+                     to={`/user/${id}/payment`}
+                     className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100  font-bold transition-colors"
+                   >
+                     <FaCreditCard/>
+                     Payment
+                   </Link>
+               
+       
+                 
+                   <button
+                     onClick={handleLogout}
+                     className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-100  text-black font-bold transition-colors w-full text-left">
+                       <FaSignOutAlt/>
+                     Logout
+                   </button>
+                 
+               </div>
       </nav>
 
       {/* Main content */}

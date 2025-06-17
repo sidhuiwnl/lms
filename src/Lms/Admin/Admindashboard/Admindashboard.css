@@ -1,16 +1,16 @@
 .dashboard-container {
-    display: flex;
-    padding: 0px;
-  }
-  
-  .dashboard-content {
-    transition: margin-left 1s ease;
-  }
-  
-  .dashboard-content.collapsed {
-    margin-left: 50px; /* When sidebar is collapsed */
-  }
-  
-  .dashboard-content.expanded {
-    margin-left: 200px; /* When sidebar is expanded */
-  }
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.dashboard-content {
+  flex: 1;
+  transition: margin-left 0.2s ease-out;
+  margin-left: 0;
+  width: 100%;
+}
+
+.dashboard-content.expanded {
+  margin-left: 220px;
+}

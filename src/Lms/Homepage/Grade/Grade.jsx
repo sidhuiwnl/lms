@@ -28,19 +28,19 @@ function Grade() {
   };
 
   return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid mt-5 ">
       {/* <div className='my-4'>
           <FontAwesomeIcon icon={faArrowLeft} className='arrowsize' onClick={handleNavigate()}/>
           </div> */}
-      <div className="d-flex justify-content-center align-items-center px-1 px-lg-5">
+      <div className="d-flex justify-content-center align-items-center px-1  px-lg-5">
         <table className="responsive-table">
           <thead>
             <tr className="text-center">
               <th>Lessons</th>
-              <th>Grade</th>
+              <th>Completion</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-blue-100">
             {grade.map((module, index) => (
               <tr key={module.moduleid} className="texttable">
                 <td className="ps-5 ">

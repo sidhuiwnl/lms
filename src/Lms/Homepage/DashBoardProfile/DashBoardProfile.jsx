@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Indiviualmenu } from "./IndividualMenu/IndividualMenu";
 import { Message } from "./Message/Message";
 import { Payment } from "./Payment/Payment";

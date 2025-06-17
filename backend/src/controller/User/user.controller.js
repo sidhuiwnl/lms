@@ -535,3 +535,30 @@ export const getModuleCompletionForCertificate = (req, res) => {
     }
   });
 };
+
+
+export function createFeedback(req,res){
+  const { content, stars, name } = req.body;
+
+  db.query(
+    "INSERT INTO feedback (content, stars, name) VALUES (?, ?, ?)", 
+    [content, stars, name],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({error: "Database error while inserting"});
+      }
+      res.status(201).json({ message: "Feedback successfully created!", id: result.insertId });
+    }
+  );
+}
+
+export function getAllFeedbacks(req,res){
+  db.query("SELECT * FROM feedback", (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({error: "Database error while retrieving"});
+    }
+    res.json(results);
+  });
+}

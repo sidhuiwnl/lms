@@ -178,16 +178,6 @@ function CourseVideos() {
       setCurrentIndex(currentIndex - 1);
     }
   };
-
-  // const handleOptionChange = (event) => {
-  //   const selectedOption = event.target.value;
-  //   setSelectedOptions((prev) => ({
-  //     ...prev,
-  //     [currentIndex]: selectedOption,
-  //   }));
-  //   setAnsweredQuestions((prev) => new Set(prev).add(currentIndex));
-  // };
-
   const handleOptionChange = (questionId, subquestionId = null, event) => {
     const selectedOption = event.target.value;
 
@@ -206,13 +196,6 @@ function CourseVideos() {
         };
       }
     });
-
-    // Mark the question as answered
-    // setAnsweredQuestions((prev) => {
-    //   const updatedSet = new Set(prev);
-    //   updatedSet.add(questionId); // Add only the main questionId to the answered set
-    //   return updatedSet;
-    // });
     setAnsweredQuestions((prev) => new Set(prev).add(currentIndex));
     console.log(answeredQuestions);
   };
@@ -566,19 +549,12 @@ function CourseVideos() {
             className={`col-auto ${
               isSidebarOpen ? "sidebar-open" : "sidebar-closed"
             }`}
-            style={{ width: isSidebarOpen ? "250px" : "50px" }} // Set a fixed width
+            style={{ width: isSidebarOpen ? "250px" : "250px" }} // Set a fixed width
           >
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="btn btn-light toggle-button"
-            >
-              <FaBars />
-            </button>
+            
           
             <div
-              className={`sidebar-content ${
-                isSidebarOpen ? "d-block" : "d-none"
-              }`}
+             className={`sidebar-content ${isSidebarOpen ? "d-block" : "d-none d-md-block"}`}
             >
               <p className="my-1 sidetext p-2">
                 <b
@@ -618,7 +594,7 @@ function CourseVideos() {
                       maxWidth: "200px",
                     }}
                     key={index}
-                    className="card text-dark my-2 p-2 border-0 sideshadow"
+                    className="card   text-dark my-2 p-2 border-0 sideshadow"
                   >
                     <Link
                       style={{
@@ -628,7 +604,7 @@ function CourseVideos() {
                         maxWidth: "300px",
                       }}
                       to="#"
-                      className="sidebartext"
+                      className="sidebartext "
                       onClick={() => {
                         setStartQuiz(true);
                         item.quiz_type_name
@@ -650,8 +626,8 @@ function CourseVideos() {
           </div>
 
           <div
-            className={`col ${
-              isSidebarOpen ? "col-sm-12 col-md-6" : "col-sm-12 col-md-6"
+            className={`col  ${
+              isSidebarOpen ? "col-sm-12 col-md-6" : "col-sm-12 col-md-6 "
             } mt-5 secondpartquiz px-2`}
           >
             <div className="mt-lg-5">
@@ -714,7 +690,7 @@ function CourseVideos() {
                           <FontAwesomeIcon
                             icon={faAngleLeft}
                             onClick={() => setIsReviewing(false)}
-                            style={{ color: "#f99420" }}
+                            style={{ color: "#f99420",cursor: "pointer" }}
                           ></FontAwesomeIcon>{" "}
                           Review of the quiz:
                         </h3>
@@ -827,8 +803,8 @@ function CourseVideos() {
                         </h4>
                         <div className="table-responsive">
                           {" "}
-                          {/* Bootstrap class to make the table responsive */}
-                          <table className="table mt-4 border-0 tabletextpart">
+                          
+                          <table className="table mt-4 border-0 tabletextpart rounded-xl overflow-hidden shadow-sm">
                             <thead className="border border-b">
                               <tr className="tabletextpart ">
                                 <th>Attempt</th>
@@ -840,7 +816,7 @@ function CourseVideos() {
                             </thead>
                             <tbody className="border border-white">
                               {attempts.map((attempt) => (
-                                <tr className="text-white " key={attempt.id} style={{ border: "0px" }}>
+                                <tr  key={attempt.id} style={{ border: "0px" }}>
                                   <td>{attempt.attempt_count}</td>
                                   <td>
                                     Finished
@@ -1126,14 +1102,18 @@ function CourseVideos() {
             {hideCircularBar ? (
               <>
                 <div className="card py-2 px-2 my-3">
-                  <ProgressBar now={now} className="m-2 custom-progress-bar" />
+                  <ProgressBar 
+                  now={now} 
+                  className="m-2 custom-progress-bar"
+                  
+                   />
                   <div className="d-flex justify-content-between px-2">
                     <p>Overall Progress</p>
                     <p>{now.toFixed(0)}%</p>
                   </div>
                 </div>
                 <hr />
-                <div className="circular-question-numbers d-flex flex-wrap border border-2 p-3 rounded-3">
+                <div className="circular-question-numbers d-flex flex-wrap border  p-3 rounded-3">
                   {questions.map((_, index) => (
                     <div
                       key={index}

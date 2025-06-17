@@ -190,13 +190,10 @@ export default function Dashboard() {
 
   return (
     <>
-      <div class="container-fluid">
-        <header class="bg-surface-primary border-bottom ">
+      
+        <main class="py-14 px-3 bg-surface-secondary">
           <div class="container-fluid">
-            <div class="mb-npx p-5">
-              <div class="row align-items-center">
-                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-                  <h1 class="h2 mb-0 ls-tight">
+            <h1 class="h2 mb-1 ls-tight">
                     Hi,{" "}
                     <span
                       style={{ color: "#DC3545", textTransform: "capitalize" }}
@@ -204,16 +201,7 @@ export default function Dashboard() {
                       {spocname}
                     </span>
                   </h1>
-                </div>
-                {/* <!-- Actions --> */}
-              </div>
-            </div>
-          </div>
-        </header>
-        {/* <!-- Main --> */}
-        <main class="py-6 bg-surface-secondary">
-          <div class="container-fluid">
-            {/* <!-- Card stats --> */}
+  
             <div class="row g-6 mb-6  ">
               <div class="col-xl-4 col-sm-6 col-12">
                 <div class="card shadow border-0 h-60">
@@ -239,7 +227,7 @@ export default function Dashboard() {
                       </span>
                       <Link to={`/admindashboard/${id}/purlicense`}>
                         <span class="textend">
-                          <i class="bi bi-add me-1"></i>Add More License..
+                          <i class=" text-blue-900"></i>Add More License..
                         </span>
                       </Link>
                     </div>
@@ -460,7 +448,7 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-      </div>
+      
     </>
   );
 }

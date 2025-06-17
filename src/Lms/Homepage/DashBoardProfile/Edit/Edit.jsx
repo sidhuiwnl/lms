@@ -4,10 +4,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 // import { Indiviualdashboardmain } from "../Profile/Profile";
 import axios from "axios";
 import EditProfile from "./EditProfile";
+import {  FaEnvelope,FaCreditCard,FaSignOutAlt,FaChartArea } from "react-icons/fa";
+import { useState } from "react";
 
 export function Edit() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const verifyToken = async () => {
@@ -42,59 +45,62 @@ export function Edit() {
   };
 
   return (
-    <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-      <nav
-        className="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
-        id="navbarVertical"
-      >
-        <div className="container-fluid">
-          <button
-            className="navbar-toggler ms-n2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#sidebarCollapse"
-            aria-controls="sidebarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <a className="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
-            <h3 className="brand-title">My Spine Coach</h3>
-          </a>
-          <div className="collapse navbar-collapse" id="sidebarCollapse">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to={`/user/${id}/profile`}>
-                  <i className="bi bi-house"></i> <span className="text-black">Dashboard</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to={`/user/${id}/message`}>
-                  <i className="bi bi-chat"></i><span className="text-black">Messages</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to={`/user/${id}/payment`}>
-                  <i className="bi bi-chat"></i><span className="text-black">Payment</span>
-                </Link>
-              </li>
-            </ul>
-            <hr className="navbar-divider my-5 opacity-20" />
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-dark"
-                  to="#"
-                  onClick={handleLogout}
-                >
-                  <i className="bi bi-box-arrow-left"></i> <span className="text-black">Logout</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div className="d-flex flex-column flex-lg-row h-lg-full ">
+      <nav className="h-screen border border-r-neutral-950 p-6 ">
+              <div className="flex items-center justify-between mb-6  lg:w-50   ">
+                <h3 className="text-xl font-bold ">My Spine Coach</h3>
+                <button
+                  aria-label="Toggle Menu"
+                  onClick={() => setIsOpen((prev) => !prev)}
+                  className="lg:hidden p-2 rounded-md border border-gray-50">
+                 <span className="text-black">☰</span>
+                </button>
+              </div>
+      
+              {/* Menu links */}
+              <div
+                className={`flex-col gap-4 ${
+                  isOpen ? "flex" : "hidden"
+                } lg:flex`}
+              >
+                
+                  <Link
+                    to={`/user/${id}/profile`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100 font-bold transition-colors"
+                  >
+                    <FaChartArea/>
+                    Dashboard
+                  </Link>
+               
+                  <Link
+                    to={`/user/${id}/message`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md text-black  hover:bg-blue-100  font-bold transition-colors"
+                  >
+                    <FaEnvelope/>
+                    Messages
+                  </Link>
+              
+      
+               
+                  <Link
+                    to={`/user/${id}/payment`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md text-black hover:bg-blue-100  font-bold transition-colors"
+                  >
+                    <FaCreditCard/>
+                    Payment
+                  </Link>
+              
+      
+                
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-100  text-black font-bold transition-colors w-full text-left">
+                      <FaSignOutAlt/>
+                    Logout
+                  </button>
+                
+              </div>
+            </nav>
       <EditProfile />
     </div>
   );

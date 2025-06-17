@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import "./Admindashboard.css";
 import Adminsidebar from '../AdminSidebar/AdminSidebar';
@@ -12,8 +12,8 @@ const Admindashboard = () => {
 
   return (
     <div className='dashboard-container'>
-      <Adminsidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className={`dashboard-content ${isOpen ? 'expanded' : ' '}`}>
+      <Adminsidebar  isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <div className={`dashboard-content ${isOpen ? 'expanded' : ''}`}>
         <Outlet />
       </div>
     </div>
@@ -21,4 +21,3 @@ const Admindashboard = () => {
 };
 
 export default Admindashboard;
-

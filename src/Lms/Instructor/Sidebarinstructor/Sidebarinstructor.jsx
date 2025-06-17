@@ -18,7 +18,7 @@ import axios from "axios";
 import "./Sidebarinstructor.css"
 
 const sidebarVariants = {
-  open: { width: "200px" },
+  open: { width: "230px" },
   closed: { width: "0px" },
 };
 
@@ -87,7 +87,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/courselist`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200 "
               >
                 <FontAwesomeIcon icon={faHome} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Home</span>
@@ -96,7 +96,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/category`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
               >
                 <FontAwesomeIcon icon={faLayerGroup} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Add Category</span>
@@ -105,7 +105,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/coursecreation`}
-                className="flex items-center text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200 "
               >
                 <FontAwesomeIcon icon={faFile} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Add Courses</span>
@@ -114,7 +114,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/addmodule`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200 "
               >
                 <FontAwesomeIcon icon={faFileLines} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Module</span>
@@ -123,7 +123,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/addpagecontent`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
               >
                 <FontAwesomeIcon icon={faFileUpload} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Course Content</span>
@@ -132,7 +132,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/addquestion`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200 "
               >
                 <FontAwesomeIcon icon={faLightbulb} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Quiz</span>
@@ -141,7 +141,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <Link
                 to={`/instructordashboard/${id}/questionbank`}
-                className="flex items-center  text-white "
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200 "
               >
                 <FontAwesomeIcon icon={faBook} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Question Bank</span>
@@ -150,7 +150,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             <li>
               <button
                 onClick={handleLogout}
-                className="flex items-center  text-white  w-full text-left"
+                className=" p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
               >
                 <FontAwesomeIcon icon={faPowerOff} className="min-w-[20px] text-center mr-3 text-white" />
                 <span>Logout</span>
