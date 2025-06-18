@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from "axios";
 
+
 export default function Dashboard() {
   const [totallicense, setTotallicense] = useState("");
   const [learnerinvited, setLearnerinvited] = useState("");
@@ -22,7 +23,9 @@ export default function Dashboard() {
   const [inactive, setInactive] = useState([]);
   const [complete, setComplete] = useState([]);
 
+
   const decodedId = atob(id)
+
 
   useEffect(() => {
     axios
@@ -34,8 +37,10 @@ export default function Dashboard() {
       });
   }, [id]);
 
+
   function handleInvite(event) {
     event.preventDefault();
+
 
     // Split the email list by commas and trim whitespace
     const emailArray = emailList.split(",").map((email) => email.trim());
@@ -43,16 +48,20 @@ export default function Dashboard() {
       emails: emailList,
     };
 
+
     console.log(emailList);
+
 
     // Extract company domain from the companyEmail
     const companyDomain = companyMail.split("@")[1];
+
 
     // Check if the email list is empty
     if (emailArray.length === 0 || emailList === "") {
       alert("Please provide email addresses");
       return;
     }
+
 
     // Check if the number of emails exceeds the available licenses
     if (emailArray.length > totallicense) {
@@ -62,15 +71,18 @@ export default function Dashboard() {
       return;
     }
 
+
     // Check if each invited email ends with the company domain
     const invalidEmails = emailArray.filter(
       (email) => !email.endsWith(`@${companyDomain}`)
     );
 
+
     if (invalidEmails.length > 0) {
       alert(`All emails must end with @${companyDomain}`);
       return;
     }
+
 
     // Send the invitation request to the server
     axios
@@ -95,15 +107,19 @@ export default function Dashboard() {
       });
   }
 
+
   const [enrolledCount, setEnrolledCount] = useState(0);
   const [invitedUser, setInvitedUser] = useState(0);
+
 
   // Modal states for toggling
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailList, setEmailList] = useState(""); // For collecting email input
 
+
   const handleModalOpen = () => setIsModalOpen(true);
   const handleModalClose = () => setIsModalOpen(false);
+
 
   useEffect(() => {
     axios
@@ -112,12 +128,14 @@ export default function Dashboard() {
         setTotallicense(res.data.data.license);
       });
 
+
     axios
       .get(`${import.meta.env.VITE_REACT_APP_API_URL}admin/invitecount/${decodedId}`)
       .then((res) => {
         // console.log(res.data);
         setInvitedUser(res.data.invite_count);
       });
+
 
     axios
       .get(`${import.meta.env.VITE_REACT_APP_API_URL}admin/enrolledcount/${decodedId}`)
@@ -127,15 +145,18 @@ export default function Dashboard() {
       });
   }, []);
 
+
   const [activeTable, setActiveTable] = useState(1);
   const changeTable = (tableNumber) => {
     setActiveTable(tableNumber);
   };
 
+
   const [activeData, setActiveData] = useState([]);
   const [inactiveData, setInactiveData] = useState([]);
   const [completedData, setCompletedData] = useState([]);
   const [leaderBoardData, setLeaderBoardData] = useState([]);
+
 
   useEffect(() => {
     const fetchUserStates = async () => {
@@ -144,6 +165,7 @@ export default function Dashboard() {
           `${import.meta.env.VITE_REACT_APP_API_URL}admin/userstates/${decodedId}`
         );
         console.log(res.data);
+
 
         // setPaidUserCount(res.data.paidUsersCount);
         setActiveData(res.data.activeData);
@@ -155,11 +177,14 @@ export default function Dashboard() {
       }
     };
 
+
     fetchUserStates();
   }, []);
 
+
   const renderTableData = () => {
     let dataToRender = [];
+
 
     switch (activeTable) {
       case 1:
@@ -178,6 +203,7 @@ export default function Dashboard() {
         dataToRender = [];
     }
 
+
     return dataToRender.map((item, index) => (
       <tr key={index} className="bg-white">
         <td>{item.name.trim()}</td> {/* Use trim to remove any extra spaces */}
@@ -188,12 +214,16 @@ export default function Dashboard() {
     ));
   };
 
+
   return (
     <>
-      
-        <main class="py-14 px-3 bg-surface-secondary">
+      <div class="container-fluid">
+        <header class="bg-surface-primary border-bottom ">
           <div class="container-fluid">
-            <h1 class="h2 mb-1 ls-tight">
+            <div class="mb-npx p-5">
+              <div class="row align-items-center">
+                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                  <h1 class="h2 mb-0 ls-tight">
                     Hi,{" "}
                     <span
                       style={{ color: "#DC3545", textTransform: "capitalize" }}
@@ -201,11 +231,20 @@ export default function Dashboard() {
                       {spocname}
                     </span>
                   </h1>
-  
+                </div>
+                {/* <!-- Actions --> */}
+              </div>
+            </div>
+          </div>
+        </header>
+        {/* <!-- Main --> */}
+        <main class="py-6 bg-surface-secondary">
+          <div class="container-fluid">
+            {/* <!-- Card stats --> */}
             <div class="row g-6 mb-6  ">
               <div class="col-xl-4 col-sm-6 col-12">
                 <div class="card shadow border-0 h-60">
-                  <div className="overline"></div>
+             
                   <div class="card-body  rounded-2xl">
                     <div class="row">
                       <div class="col">
@@ -225,18 +264,37 @@ export default function Dashboard() {
                       <span class="badge badge-pill bg-soft-success text-success me-2">
                         {/* <i class="bi bi-arrow-up me-1"></i>13% */}
                       </span>
-                      <Link to={`/admindashboard/${id}/purlicense`}>
-                        <span class="textend">
-                          <i class=" text-blue-900"></i>Add More License..
-                        </span>
-                      </Link>
+                      <Link to={`/admindashboard/${id}/purelicense`}>
+  <span className="flex items-center gap-2 text-blue-600">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-copy-plus"
+    >
+      <line x1="15" x2="15" y1="12" y2="18" />
+      <line x1="12" x2="18" y1="15" y2="15" />
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+    Add More License
+  </span>
+</Link>
+
+
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6 col-12">
                 <div class="card shadow border-0 h-60">
-                  <div className="overline"></div>
+             
                   <div class="card-body">
                     <div class="row">
                       <div class="col">
@@ -246,6 +304,7 @@ export default function Dashboard() {
                         <span class="h3 font-bold mb-0">{invitedUser}</span>
                       </div>
                       <div class="col-auto">
+                       
                         <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
                           <i class="bi bi-people"></i>
                         </div>
@@ -266,18 +325,37 @@ export default function Dashboard() {
                         <span className="product-sold-out textend">
                           Add License
                         </span>
+                       
                       ) : (
                        
                         <Link onClick={handleModalOpen}>
-                          <span
-                            class="textend"
-                            // data-bs-toggle="modal"
-                            // data-bs-target="#exampleModal"
-                            disable={totallicense === 0}
-                          >
-                            Invite Learners..
-                          </span>
-                        </Link>
+  <span
+    className={`flex items-center text-green-600 my-2 gap-2 ${
+      totallicense === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+    }`}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-mail-plus"
+    >
+      <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      <path d="M19 16v6" />
+      <path d="M16 19h6" />
+    </svg>
+    Invite Learners
+  </span>
+</Link>
+
+
                       )}
                     </div>
                   </div>
@@ -285,7 +363,7 @@ export default function Dashboard() {
               </div>
               <div class="col-xl-4 col-sm-6 col-12">
                 <div class="card shadow border-0 h-60">
-                  <div className="overline"></div>
+             
                   <div class="card-body">
                     <div class="row">
                       <div class="col">
@@ -296,24 +374,43 @@ export default function Dashboard() {
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                          <i class="bi bi-people"></i>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check-icon lucide-user-check"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                         </div>
                       </div>
                     </div>
                     <hr />
                     <div class="mt-2 mb-0 text-sm">
-                      {/* <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                        <i class="bi bi-arrow-down me-1"></i>-
-                        {learnerjoinerpercentage}%
-                      </span> */}
-                      <Link to={`/admindashboard/${id}/notenroll`}>
-                        <span class="textend">Not Enrolled...</span>
-                      </Link>
+                     
+                     
+                     <Link to={`/admindashboard/${id}/notenroll`}>
+  <span className="flex items-center text-red-500 p-2 space-x-2 ">
+    <span>Not Enrolled</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-circle-arrow-right"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8 12h8" />
+      <path d="m12 16 4-4-4-4" />
+    </svg>
+  </span>
+</Link>
+
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
 
             <div className="h-screen  flex-grow-1 overflow-y-lg-auto">
               <main className="py-6 bg-surface-secondary">
@@ -350,59 +447,26 @@ export default function Dashboard() {
                       </Link>
                     </div>
 
-                    <div className="table-responsive">
-                      <table className="table table-hover table-nowrap">
-                        <thead className="text-light">
-                          <tr>
-                            <th scope="col" style={{ color: "white" }}>
-                              Name
-                            </th>
-                            <th scope="col" style={{ color: "white" }}>
-                              Enrollment Date
-                            </th>
-                            <th scope="col" style={{ color: "white" }}>
-                              No. of Modules Completed
-                            </th>
-                            <th scope="col" style={{ color: "white" }}>
-                              Completed Percentage
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="bg-light">{renderTableData()}</tbody>
-                      </table>
-                    </div>
-                    {/* <div class="card-footer border-0 py-5">
-                      <span class="text-muted text-sm">
-                        Showing 10 items out of 250 results found
-                      </span>
-                    </div> */}
+
+                    <div className="overflow-x-auto rounded-xl shadow-md">
+  <table className="min-w-full text-sm text-left text-gray-800 bg-white border border-gray-200 rounded-xl">
+    <thead className="bg-blue-700 text-white text-sm">
+      <tr>
+        <th className="px-4 py-3">Name</th>
+        <th className="px-4 py-3">Enrollment Date</th>
+        <th className="px-4 py-3">No. of Modules Completed</th>
+        <th className="px-4 py-3">Completed Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {renderTableData()}
+    </tbody>
+  </table>
+</div>
                   </div>
                 </div>
               </main>
             </div>
-            {/* <div class="card shadow border-0 mb-7">
-                    <div class="card-header d-flex justify-content-between">
-                        <Link class="mb-0 linktextclr" onClick={() => changeTable(1)}>Leader Board</Link>
-                        <Link class="mb-0 linktextclr" onClick={() => changeTable(2)}>Active</Link>
-                        <Link class="mb-0 linktextclr" onClick={() => changeTable(3)}>Inactive</Link>
-                        <Link class="mb-0 linktextclr" onClick={() => changeTable(4)}>completed</Link>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-nowrap">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">enrollment_date</th>
-                                    <th scope="col">No. of modlule completed</th>
-                                    <th scope="col">Completed percentage</th>   
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="card-footer border-0 py-5">
-                        <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
-                    </div>
-                </div> */}
           </div>
         </main>
         {isModalOpen && (
@@ -413,7 +477,7 @@ export default function Dashboard() {
                   <h5 className="modal-title">Invite Learners</h5>
                   <button
                     type="button"
-                    className="btn-close"
+                    className="btn-close text-red-500"
                     onClick={handleModalClose}
                   ></button>
                 </div>
@@ -431,14 +495,8 @@ export default function Dashboard() {
                       them with commas.
                     </p>
                     <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={handleModalClose}
-                      >
-                        Close
-                      </button>
-                      <button type="submit" className="btn btn-primary">
+                     
+                      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
                         Invite
                       </button>
                     </div>
@@ -448,7 +506,10 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-      
+      </div>
     </>
   );
 }
+
+
+

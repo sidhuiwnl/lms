@@ -153,17 +153,17 @@ export function Indiviualdashboardmain() {
   return (
     <>
       <div className=" flex-grow-1 overflow-y-auto">
-        <header className="bg-surface-primary mb-2 lg:w-[1000px] border pt-6 rounded-2xl g-4 m-3">
+        <header className="bg-surface-primary mb-2 lg:w-[1000px] border pt-6 rounded-2xl g-4 m-3 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl">
           <div className="container-fluid">
             <div className="mb-npx">
               <div className="row align-items-center">
                 <div className="col-sm-6 col-lg-12 mb-md-4 mb-sm-0">
-                  <h1 className="h2 mb-0 ls-tight">
+                  <h1 className="h2 mb-0 text-white">
                     Hi,{" "}
-                    <span style={{ color: "#DC3545" }}>
+                    <span style={{ color: "#ffff" }}>
                     {capitalize(user.first_name)}  {user.last_name}
 
-                    {getTimeBasedGreeting()}
+                    Welcome To My Spine Coach
                     </span>
                   </h1>
                 </div>

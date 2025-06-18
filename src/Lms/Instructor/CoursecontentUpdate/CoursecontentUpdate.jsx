@@ -5,6 +5,7 @@ import "./CoursecontentUpdate.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function CoursecontentUpdate() {
   const [modules, setModules] = useState([]);
   const [selectedModuleId, setSelectedModuleId] = useState("");
@@ -12,6 +13,7 @@ function CoursecontentUpdate() {
   const [selectedContentId, setSelectedContentId] = useState("");
   const [editorContentMap, setEditorContentMap] = useState({});
   const editorRefs = useRef({});
+
 
   useEffect(() => {
     // Fetch module data
@@ -25,9 +27,11 @@ function CoursecontentUpdate() {
       });
   }, []);
 
+
   const handleModuleChange = (e) => {
     const moduleId = e.target.value;
     setSelectedModuleId(moduleId);
+
 
     // Fetch module content based on selected moduleId
     axios
@@ -37,6 +41,7 @@ function CoursecontentUpdate() {
       .then((res) => {
         const contentData = res.data.result;
         setModuleContent(contentData);
+
 
         // Initialize editor content map
         const contentMap = {};
@@ -50,6 +55,7 @@ function CoursecontentUpdate() {
       });
   };
 
+
   const handleContentChange = (newContent, contentId) => {
     setEditorContentMap((prevMap) => ({
       ...prevMap,
@@ -58,11 +64,13 @@ function CoursecontentUpdate() {
     setSelectedContentId(contentId);
   };
 
+
   const handleUpdateContent = () => {
     if (!selectedContentId || !editorContentMap[selectedContentId]) {
       alert("Please select a content item and enter the updated content.");
       return;
     }
+
 
     axios
       .put(`${import.meta.env.VITE_REACT_APP_API_URL}course/updatepagecontent`, {
@@ -83,6 +91,7 @@ function CoursecontentUpdate() {
       });
   };
 
+
   // Custom handler to prevent form submit/refresh
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -90,10 +99,16 @@ function CoursecontentUpdate() {
     }
   };
 
+
   return (
-    <div className="container-fluid">
-      <h2 className="text-center py-4">Update Course Content</h2>
-      <div className="container coursecontentupdate p-4 rounded-3">
+ <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+       <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Update Course Content</h2>
+          </div>
+   
+      <div className=" p-4 rounded-3">
         <ToastContainer />
         <form>
           <div className="form-group">
@@ -112,13 +127,17 @@ function CoursecontentUpdate() {
 
 
 
+
+
+
           <div className="form-group">
             <div className="form-group-inner">
               <label className="labelcourse">Page Content</label>
             </div>
           </div>
         </form>
-        
+       
+
 
         <div className="py-2">
          
@@ -143,13 +162,20 @@ function CoursecontentUpdate() {
           )}
         </div>
 <div className="d-flex justify-content-end">
-        <button onClick={handleUpdateContent} className="updatebtn">
+        <button onClick={handleUpdateContent} className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+>
           Update Content
         </button>
         </div>
       </div>
     </div>
+    </div>
+    </div>
   );
 }
 
+
 export default CoursecontentUpdate;
+
+
+

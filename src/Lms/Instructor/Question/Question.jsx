@@ -1,5 +1,7 @@
 
 
+
+
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
 import * as XLSX from "xlsx";
@@ -12,6 +14,7 @@ import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "reactstrap";
+
 
 const Question = () => {
   const [content, setContent] = useState("");
@@ -37,6 +40,7 @@ const Question = () => {
   const editorRef = useRef(null);
   const [correctOptions, setCorrectOptions] = useState([]);
 
+
   const [courses, setCourses] = useState([]);
   const [modules, setModules] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -44,7 +48,9 @@ const Question = () => {
   const [courseid, setCourseid] = useState();
   const [moduleid, setModuleid] = useState();
 
+
   const { id } = useParams();
+
 
   useEffect(() => {
     axios
@@ -59,6 +65,7 @@ const Question = () => {
       });
   }, []);
 
+
   // Fetch courses on component mount
   useEffect(() => {
     axios
@@ -70,6 +77,7 @@ const Question = () => {
         console.error("Failed to fetch courses:", error);
       });
   }, []);
+
 
   // Fetch modules when the selected course changes
   useEffect(() => {
@@ -90,29 +98,36 @@ const Question = () => {
     }
   }, [selectedCourse]);
 
+
   const handleChange = (currentNode, selectedNodes) => {
     setSelected(selectedNodes);
 
+
     if (currentNode) {
       setSelectedModuleId(currentNode.value); // Use 'value' for module ID
+
 
       // Find the parent ID using the utility function
       const parentId = findParentNode(moduleStructure, currentNode.value);
       setParentModuleId(parentId);
     }
 
+
     if (currentNode && currentNode.label) {
       console.log(`Selected: ${currentNode.label}`);
     }
 
+
     console.log("Selected Nodes:", selectedNodes);
   };
+
 
   const handleOptionChange = (index, field, value) => {
     const newOptions = [...options];
     newOptions[index][field] = value;
     setOptions(newOptions);
   };
+
 
   const findParentNode = (data, childValue) => {
     for (let node of data) {
@@ -129,18 +144,22 @@ const Question = () => {
     return null; // No parent found
   };
 
+
   const handleEditorChange = (newContent) => {
     setContent(newContent);
   };
+
 
   const handleQuestionTypeChange = (event) => {
     setQuestionType(event.target.value);
     setCorrectOption("");
   };
 
+
   const handleCorrectOptionChange = (e) => {
     setCorrectOption(e.target.value);
   };
+
 
   const toggleFeedback = (index) => {
     const newShowFeedback = [...showFeedback];
@@ -148,19 +167,23 @@ const Question = () => {
     setShowFeedback(newShowFeedback);
   };
 
+
   const handleKeywordChange = (index, field, value) => {
     const newKeywords = [...keywords];
     newKeywords[index] = { ...newKeywords[index], [field]: value };
     setKeywords(newKeywords);
   };
 
+
   const addKeyword = () => {
     setKeywords([...keywords, { keyword: "", marks: "", feedback: "" }]);
   };
 
+
   const removeKeyword = (index) => {
     setKeywords(keywords.filter((_, i) => i !== index));
   };
+
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -178,7 +201,9 @@ const Question = () => {
     }
   };
 
+
   const [matchFeedback, setMatchFeedback] = useState([{ feedback: "" }]); // Initialize feedback as an array of objects
+
 
   // Handler for changes in left/right items
   const handleMatchChange = (index, value, side) => {
@@ -193,12 +218,14 @@ const Question = () => {
     }
   };
 
+
   // Handler for feedback change
   const handleMatchFeedbackChange = (index, value) => {
     const newFeedback = [...matchFeedback];
     newFeedback[index].feedback = value; // Store feedback as an object
     setMatchFeedback(newFeedback);
   };
+
 
   // Function to add new match pairs
   const addMatchPair = () => {
@@ -207,6 +234,7 @@ const Question = () => {
     setMatchFeedback([...matchFeedback, { feedback: "" }]); // Initialize feedback for new pair
   };
 
+
   // Function to remove match pairs
   const removeMatchPair = (index) => {
     setMatchLeft(matchLeft.filter((_, i) => i !== index));
@@ -214,12 +242,15 @@ const Question = () => {
     setMatchFeedback(matchFeedback.filter((_, i) => i !== index)); // Remove feedback for the pair
   };
 
+
   const [selectedCourseDetails, setSelectedCourseDetails] = useState({
     courseId: "",
     course_category_id: "",
   });
 
+
   const [selectedModule, setSelectedModule] = useState("");
+
 
   const handleCourseChange = (e) => {
     const selectedCourseId = e.target.value;
@@ -237,14 +268,17 @@ const Question = () => {
     }
   };
 
+
   // Handle module change
   const handleModuleChange = (e) => {
     setSelectedModule(e.target.value);
   };
 
+
   const handleSubmit = async () => {
     // Create a new FormData object
     const formData = new FormData();
+
 
     // Append form fields to the FormData object
     formData.append("content", content);
@@ -254,18 +288,22 @@ const Question = () => {
     formData.append("parentModuleId", selectedCourse);
     formData.append("correct", JSON.stringify(correctOptions));
 
+
     if (questionType === "multiple_choice" || questionType === "true/false") {
       formData.append("options", JSON.stringify(options)); // Append options
     }
+
 
     if (questionType === "description") {
       formData.append("keywords", JSON.stringify(keywords)); // Append keywords for descriptive questions
     }
 
+
     if (questionType === "check") {
       console.log(correctOptions);
       formData.append("options", JSON.stringify(options)); // Append keywords for descriptive questions
     }
+
 
     if (questionType === "match_following") {
       const matches = matchLeft.map((left, index) => ({
@@ -273,10 +311,13 @@ const Question = () => {
         rightItem: matchRight[index],
       }));
 
+
       formData.append("matches", JSON.stringify(matches)); // Append the matches
+
 
       formData.append("feedback", JSON.stringify(matchFeedback));
     }
+
 
     try {
       const res = await axios.post(
@@ -284,10 +325,13 @@ const Question = () => {
         formData
       );
 
+
       console.log(res.data);
+
 
       if (res.data.message === "quiz_added") {
         toast.success("Added successfully");
+
 
         // Clear all input and box values by resetting state
         setContent("");
@@ -306,6 +350,7 @@ const Question = () => {
         setSelectedModuleId(null);
         setParentModuleId(null);
 
+
         // Reset the JoditEditor content
         if (editorRef.current) {
           editorRef.current.editor.setValue(""); // Clear the editor content
@@ -319,16 +364,24 @@ const Question = () => {
     }
   };
 
+
   const addOption = () => {
     setOptions([...options, { option: "", feedback: "" }]); // Add new empty option
     setShowFeedback([...showFeedback, false]); // Add corresponding feedback toggle for the new option
   };
 
+
   return (
-    <div className="courselist-container">
+    <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
       <ToastContainer />
-      <h3 className="heading-center">Quiz</h3>
-      <div className="course-cards-container">
+             <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Quiz</h2>
+            <p className="text-blue-100 mt-1">Add Questions</p>
+          </div>
+     
+      <div className="course-cards-container p-3">
         <form>
           <div className="form-group my-1">
             <div className="form-group-inner">
@@ -353,16 +406,18 @@ const Question = () => {
             </div>
           </div>
 
+
           <div className="form-group my-1">
             <div className="form-group-inner">
               <label className="labelcourse">Module Name</label>
+
 
               <Input
                 type="select"
                 id="moduleSelect"
                 value={selectedModule}
                 onChange={handleModuleChange}
-                className="rounded-0 fc1 w-100">
+                className="rounded-0 fc1 w-full">
                 <option value="">Select Module</option>
                 {modules.map((module) => (
                   <option
@@ -375,8 +430,9 @@ const Question = () => {
             </div>
           </div>
 
+
           <div className="form-group">
-            <div className="form-group-inner w-100">
+            <div className="form-group-inner w-full">
               <label htmlFor="questionType" className="labelcourse">
                 Select Question Type
               </label>
@@ -384,7 +440,7 @@ const Question = () => {
                 id="questionType"
                 value={questionType}
                 onChange={handleQuestionTypeChange}
-                className="w-100 fc1">
+                className="w-full fc1">
                 <option value="Select Question Type" disabled>Select Question type</option>
                 <option value="multiple choice">Multiple Choice</option>
                 <option value="description">Description</option>
@@ -396,17 +452,18 @@ const Question = () => {
           </div>
         </form>
 
+
         <div className="d-flex justify-content-between py-2">
           <label className="labelcourse">Quiz Question</label>
           <Link to={`/instructordashboard/${id}/updatequestion`}>
             <button
-              className="btn updatebtn"
-              style={{ color: "#ffa200", backgroundColor: "#001040" }}
-            >
+              className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+ >
               Update Question
             </button>
           </Link>
         </div>
+
 
         <JoditEditor
           className="fc1 border-0"
@@ -419,6 +476,7 @@ const Question = () => {
           onBlur={handleEditorChange}
         />
 
+
         {questionType === "check" && (
           <div style={{ marginTop: "10px" }}>
             {options.map((optionObj, index) => (
@@ -427,7 +485,7 @@ const Question = () => {
                   Option {index + 1}:
                 </label>
                 <input
-                  className="py-2"
+                  className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   placeholder={`Option ${String.fromCharCode(65 + index)}`} // A, B, C, D, etc.
                   value={optionObj.option}
@@ -436,7 +494,7 @@ const Question = () => {
                   }
                 />
                 <button
-                  className="m-3 feedbackbtn rounded-2"
+                  className="m-3 bg-blue-200 rounded-2 p-3 text-black"
                   onClick={() => toggleFeedback(index)}
                 >
                   {showFeedback[index] ? "Hide Feedback" : "Add Feedback"}
@@ -460,12 +518,14 @@ const Question = () => {
               </div>
             ))}
 
+
             {/* Add the "+" button to add new options dynamically */}
             <div className="add-option-btn mt-3">
               <button className="btn btn-outline-danger" onClick={addOption}>
-                <FaPlus /> Add Option
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
               </button>
             </div>
+
 
             {/* Checkbox for correct options */}
             <div style={{ marginTop: "10px", marginBottom: "10px" }}>
@@ -502,10 +562,12 @@ const Question = () => {
           </div>
         )}
 
+
         {/* {questionType === "true/false" && (
-          <div className="true-false-options" style={{ marginTop: "10px" }}>   
+          <div className="true-false-options" style={{ marginTop: "10px" }}>  
           </div>
         )} */}
+
 
         {questionType === "match_following" && (
           <div style={{ marginTop: "10px" }}>
@@ -544,7 +606,7 @@ const Question = () => {
                     onClick={() => removeMatchPair(index)}
                     className="btn btn-danger btn-sm mx-1"
                   >
-                    Remove
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
                   </button>
                 </div>
                 <div style={{ marginTop: "10px" }}>
@@ -561,11 +623,21 @@ const Question = () => {
                 </div>
               </div>
             ))}
-            <button onClick={addMatchPair} className="btn btn-secondary mt-2">
-              <FaPlus /> Add Pair
-            </button>
+            <button onClick={addMatchPair} className="flex items-center gap-2 text-green-800 mt-2 hover:text-green-700">
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="24" height="24" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" strokeWidth="2"
+       strokeLinecap="round" strokeLinejoin="round"
+       className="lucide lucide-circle-plus">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M8 12h8" />
+    <path d="M12 8v8" />
+  </svg>
+  <span>Add Pair</span>
+</button>
           </div>
         )}
+
 
         {questionType === "multiple_choice" && (
           <div style={{ marginTop: "10px" }}>
@@ -575,6 +647,7 @@ const Question = () => {
                   Option {index + 1}:
                 </label>
                 <input
+                className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   placeholder={`Option ${String.fromCharCode(65 + index)}`} // A, B, C, D, etc.
                   value={optionObj.option}
@@ -583,7 +656,7 @@ const Question = () => {
                   }
                 />
                 <button
-                  className="m-3 feedbackbtn rounded-2"
+                  className="m-3 bg-blue-200  text-dark rounded-2 px-3 py-1"
                   onClick={() => toggleFeedback(index)}
                 >
                   {showFeedback[index] ? "Hide Feedback" : "Add Feedback"}
@@ -607,12 +680,18 @@ const Question = () => {
               </div>
             ))}
 
+
             {/* Add the "+" button to add new options dynamically */}
-            <div className="add-option-btn mt-3">
-              <button className="btn btn-outline-danger" onClick={addOption}>
-                <FaPlus /> Add Option
-              </button>
-            </div>
+           <div className="add-option-btn mt-3">
+  <button
+    className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow transition duration-300"
+    onClick={addOption}
+  >
+    <FaPlus />
+    Add Option
+  </button>
+</div>
+
 
             <div style={{ marginTop: "10px", marginBottom: "10px" }}>
               <label className="labelcourse">Select Correct Option</label>{" "}
@@ -635,6 +714,7 @@ const Question = () => {
           </div>
         )}
 
+
         {questionType === "description" && (
           <div style={{ marginTop: "20px" }}>
             <h5>Keywords</h5>
@@ -642,6 +722,7 @@ const Question = () => {
               <div key={index} style={{ marginBottom: "20px" }}>
                 <label>Keyword {index + 1}:</label>
                 <input
+                className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   value={keyword.keyword}
                   onChange={(e) =>
@@ -651,6 +732,7 @@ const Question = () => {
                 />
                 <label style={{ marginLeft: "20px" }}>Marks:</label>
                 <input
+                className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   value={keyword.marks}
                   onChange={(e) =>
@@ -658,6 +740,7 @@ const Question = () => {
                   }
                   style={{ marginLeft: "10px" }}
                 />
+
 
                 {/* Feedback for each keyword */}
                 <div style={{ marginTop: "10px" }}>
@@ -672,28 +755,37 @@ const Question = () => {
                   />
                 </div>
 
+
                 <button
                   className="btn btn-danger btn-sm mt-2"
                   onClick={() => removeKeyword(index)}
                 >
                   {" "}
-                  Remove
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                 
                 </button>
               </div>
             ))}
 
+
             <div className="mt-3">
-              <button className="btn btn-outline-primary" onClick={addKeyword}>
-                <FaPlus /> Add Keyword
-              </button>
+           <button
+  onClick={addKeyword}
+  className="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-300"
+>
+  <FaPlus className="text-white" />
+  Keyword
+</button>
+
+
             </div>
           </div>
         )}
 
-        <div className="col-sm-12 col-md-6 mt-4">
+
+        <div className="flex mt-4">
           <button
-            className="btn"
-            style={{ color: "#ffa200", backgroundColor: "#001040" }}
+            className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
             onClick={handleSubmit}
           >
             Submit Question
@@ -701,7 +793,13 @@ const Question = () => {
         </div>
       </div>
     </div>
+    </div>
+    </div>
   );
 };
 
+
 export default Question;
+
+
+

@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Coursecontent = () => {
   const editor = useRef(null);
   const [courses, setCourses] = useState([]);
@@ -30,7 +31,9 @@ const Coursecontent = () => {
   const [videoDuration, setVideoDuration] = useState(""); // State to store video duration
   const navigate = useNavigate();
 
+
   const { id } = useParams();
+
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -43,6 +46,7 @@ const Coursecontent = () => {
         console.error("Failed to fetch courses:", error);
       });
   }, []);
+
 
   // Fetch modules when the selected course changes
   useEffect(() => {
@@ -63,6 +67,7 @@ const Coursecontent = () => {
     }
   }, [selectedCourse]);
 
+
   // Handle course change
   const handleCourseChange = (e) => {
     const selectedCourseId = e.target.value;
@@ -79,15 +84,18 @@ const Coursecontent = () => {
     }
   };
 
+
   // Handle module change
   const handleModuleChange = (e) => {
     setSelectedModule(e.target.value);
   };
 
+
   // Handle description change
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
+
 
   // Handle editor change
   const handleEditorChange = (content) => {
@@ -95,6 +103,7 @@ const Coursecontent = () => {
       ...prevPost,
       content,
     }));
+
 
     // Extract video URL and fetch duration if a video is detected
     const videoUrl = extractVideoUrl(content);
@@ -115,6 +124,7 @@ const Coursecontent = () => {
     }
   };
 
+
   // Function to extract video URL from content
   const extractVideoUrl = (content) => {
     const urlRegex =
@@ -122,6 +132,7 @@ const Coursecontent = () => {
     const match = content.match(urlRegex);
     return match ? match[0] : null;
   };
+
 
   // Function to determine the platform from the video URL
   const determinePlatform = (url) => {
@@ -134,10 +145,12 @@ const Coursecontent = () => {
     return "Other";
   };
 
+
   // Function to fetch YouTube video duration using YouTube Data API
   const getYouTubeVideoDuration = async (videoUrl) => {
     const videoId = new URL(videoUrl).searchParams.get("v");
     const apiKey = "YOUR_YOUTUBE_API_KEY"; // Replace with your YouTube API key
+
 
     try {
       const response = await axios.get(
@@ -151,10 +164,12 @@ const Coursecontent = () => {
     }
   };
 
+
   // Function to fetch Vimeo video duration using Vimeo API
   const getVimeoVideoDuration = async (videoUrl) => {
     const videoId = videoUrl.split("/").pop();
     const token = "YOUR_VIMEO_ACCESS_TOKEN"; // Replace with your Vimeo access token
+
 
     try {
       const response = await axios.get(
@@ -173,10 +188,12 @@ const Coursecontent = () => {
     }
   };
 
+
   // Handle restriction access change
   const handleRestrictionAccessChange = (e) => {
     setRestrictionAccess(e.target.value);
   };
+
 
   // Handle form submit
   const handleSubmit = (event) => {
@@ -197,7 +214,9 @@ const Coursecontent = () => {
     formData.append("restrictionAccess", restrictionAccess);
     formData.append("videoDuration", videoDuration); // Append video duration
 
+
     console.log(formData);
+
 
     axios
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}course/submitcon`, formData)
@@ -207,20 +226,7 @@ const Coursecontent = () => {
         ) {
           toast.success("Content submitted successfully");
           window.location.reload();
-          // navigate(`/instructordashboard/${id}/addpagecontent`, {
-          //   state: {
-          //     ...selectedCourseDetails,
-          //     moduleId: selectedModule,
-          //     description,
-          //     content: post.content,
-          //     availableFrom,
-          //     availableUntil,
-          //     completionCriteria,
-          //     groupMode,
-          //     restrictionAccess,
-          //     videoDuration, // Pass video duration to the next page
-          //   },
-          // });
+         
         } else if (response.data.error) {
           toast.error(response.data.error || "Failed to submit content");
         }
@@ -230,14 +236,17 @@ const Coursecontent = () => {
       });
   };
 
+
   // Ritch Text Editior
   const [content, setContent] = useState("");
+
 
   // Function to handle file upload
   const uploadFile = async (file) => {
     try {
       const formData = new FormData();
       formData.append("video", file);
+
 
       // Upload the video
       const response = await axios.post(
@@ -248,8 +257,10 @@ const Coursecontent = () => {
         }
       );
 
+
       // Get the video URL from the response
       const videoUrl = response.data.url;
+
 
       // Insert video into the editor
       const editor = document.querySelector(".jodit-wysiwyg");
@@ -266,6 +277,7 @@ const Coursecontent = () => {
     }
   };
 
+
   const config = {
     buttons: ["upload", "source"], // Add more buttons as needed
     uploader: {
@@ -274,11 +286,18 @@ const Coursecontent = () => {
     // Other configuration options if needed
   };
 
+
   return (
-    <div className="courselist-container">
-      <h3 className="heading-center">Page Content</h3>
+    <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+       <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Page Content</h2>
+            <p className="text-blue-100 mt-1">Create and organize your course content</p>
+          </div>
+   
       <ToastContainer />
-      <div className="course-cards-container">
+      <div className="course-cards-container p-3">
         <form onSubmit={handleSubmit}>
           <div className="form-group my-1">
             <div className="form-group-inner">
@@ -303,9 +322,11 @@ const Coursecontent = () => {
             </div>
           </div>
 
+
           <div className="form-group my-1">
             <div className="form-group-inner">
               <label className="labelcourse">Module Name</label>
+
 
               <Input
                 type="select"
@@ -327,6 +348,7 @@ const Coursecontent = () => {
             </div>
           </div>
 
+
           <div className="form-group">
             <div className="form-group-inner">
               <label className="labelcourse">Description</label>
@@ -340,15 +362,36 @@ const Coursecontent = () => {
             </div>
           </div>
 
+
           <div className="my-3">
             <div className="d-flex justify-content-between py-3">
               <label for="content" className="labelcourse">
                 Page Content
               </label>
               <Link to={`/instructordashboard/${id}/updatepagecontent`}>
-                <button type="submit" className="updatebtn rounded-2 mx-2">
-                  Update Content
-                </button>
+               <button
+  type="submit"
+  className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="lucide lucide-pencil-icon"
+  >
+    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+    <path d="m15 5 4 4" />
+  </svg>
+  Update Content
+</button>
+
+
               </Link>
             </div>
             <JoditEditor
@@ -364,6 +407,7 @@ const Coursecontent = () => {
               // }}
             />
           </div>
+
 
           <div className="form-group">
             <div className="form-group-inner">
@@ -394,22 +438,25 @@ const Coursecontent = () => {
           {/* <div className="row">
             <div className="my-2 col-sm-12 col-md-5 float-start">
             <button type="submit" className="updatebtn rounded-2 mx-2"> Submit Content</button>
-              
+             
               </div>
 <div className="col-sm-12 col-md-6 my-2 float-end">
+
 
 <Link to={`/instructordashboard/${id}/updatepagecontent`} >
 <button type="submit" className="updatebtn rounded-2 mx-2">Update Content</button></Link>
   </div>
             </div> */}
 
+
           <div className="row">
             <div className="col-sm-12 d-flex justify-content-between my-2">
               <div className="col-sm-12 col-md-5">
-                <button type="submit" className="updatebtn rounded-2 mx-2">
+                <button type="submit" className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
                   Submit Content
                 </button>
               </div>
+
 
               {/* <div className="col-sm-12 col-md-5">
       <Link to={`/instructordashboard/${id}/updatepagecontent`}>
@@ -423,7 +470,13 @@ const Coursecontent = () => {
         </form>
       </div>
     </div>
+    </div>
+    </div>
   );
 };
 
+
 export default Coursecontent;
+
+
+

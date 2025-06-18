@@ -19,6 +19,8 @@ function PaymentInitiate() {
 
   const decodedId = atob(id)
 
+  console.log(hasPaid)
+
   // Fetch payment verification
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}user/payverify/${decodedId}`)
@@ -78,7 +80,7 @@ function PaymentInitiate() {
               <p className="paid-text">You have already purchased this course</p>
             </div>
           ) : (
-            <button className="purchase-button" onClick={handleCheckout}>
+            <button className="purchase-button bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" onClick={handleCheckout}>
               Purchase
             </button>
           )}

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Approve.css";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export function Approve() {
   const [checktransation, setChecktransation] = useState([]);
@@ -26,18 +29,22 @@ export function Approve() {
         setChecktransation(data);
       });
 
+
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}superadmin/checkapproved`)
       .then((res) => res.json())
       .then((data) => setCheckapproved(data));
+
 
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}superadmin/getneft`)
       .then((res) => res.json())
       .then((data) => setnefttransation(data));
 
+
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}superadmin/neftapproved`)
       .then((res) => res.json())
       .then((data) => setneftapproved(data));
   }, []);
+
 
   function handleupdate(event) {
     event.preventDefault();
@@ -55,14 +62,15 @@ export function Approve() {
     };
     console.log(key);
 
+
     if (transationid === "") {
-      alert("plz fill the transation id");
+      toast.warning("plz fill the transation id");
     } else {
       axios
         .put(`${import.meta.env.VITE_REACT_APP_API_URL}superadmin/checkupdate`, key)
         .then((res) => {
           if (res.data.status === "updated") {
-            alert("Approved");
+            toast.success("Approved");
             window.location.reload();
           }
         });
@@ -84,6 +92,7 @@ export function Approve() {
     };
     console.log(key);
 
+
     if (transationid === "") {
       alert("plz fill the transation id");
     } else {
@@ -98,16 +107,17 @@ export function Approve() {
     }
   }
 
+
   return (
     <div className="container-fluid">
-
-       <div className="row py-15">
+<ToastContainer/>
+       <div className="row py-3">
                       <div className="col-sm-10  mb-4 mb-sm-0">
                         <h1 className="h2 mb-0 ls-tight">
                           Hi, <span style={{ color: "#DC3545" }}> Dr.Ken</span>
                         </h1>
                       </div>
-      
+     
                       <div className="col-sm-2  mb-4 mb-sm-0">
                         <Link to="/business_register" className="subbtn1 rounded-2 my-2 text-decoration-none">Register</Link>                  
                       </div>
@@ -134,6 +144,7 @@ export function Approve() {
     <path fill="currentColor" d="M10.95 15.55L16.6 9.9l-1.425-1.425L10.95 12.7l-2.1-2.1l-1.425 1.425zM12 22q-3.475-.875-5.737-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22" />
   </svg>
 </button>
+
 
           ) : (
             <h5
@@ -171,6 +182,7 @@ export function Approve() {
                     <td>{value.checkno}</td>
                     <td>
                       <input
+                      className="border border-gray-500 rounded-xl p-2"
                         type="text"
                         placeholder="Enter the Transation Id"
                         name="transationid"
@@ -180,9 +192,9 @@ export function Approve() {
                     <td id="quantity">{value.quantity}</td>
                     <td id="amount">{value.amount}</td>
                     <td>
-                      <svg xmlns="http://www.w3.org/2000/svg" 
-                        onClick={handleupdate} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                    
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                        onClick={handleupdate} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check cursor-pointer"><path d="M20 6 9 17l-5-5"/></svg>
+                   
                     </td>
                   </tr>
                 ))}
@@ -191,13 +203,13 @@ export function Approve() {
             {activeTable === 2 && (
               <tbody>
                 {checkapproved.map((value, index) => (
-                  <tr className="text-white">
+                  <tr className="text-[#001040]">
                     <td>
-                      <img
+                      {/* <img
                         alt="..."
                         src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                         className="avatar avatar-sm rounded-circle me-2"
-                      />
+                      /> */}
                       <a className="text-heading font-semibold" href="#">
                         {value.id}
                       </a>
@@ -216,8 +228,9 @@ export function Approve() {
             )}
           </table>
         </div>
-      
+     
       </div>
+
 
       <div className="p-4 shadow border-0 mb-7">
         <div className="card-header d-flex justify-content-between my-3">
@@ -250,7 +263,7 @@ export function Approve() {
         <div className="table-responsive">
           <table className="w-100  table table-hover table-nowrap">
             <thead className="text-light">
-              <tr className="text-white" >
+              <tr  >
                 <th className="text-light">Id</th>
                 <th className="text-light">email</th>
                 <th className="text-light">Transaction Id</th>
@@ -262,20 +275,20 @@ export function Approve() {
             {activeTable2 === 1 && (
               <tbody>
                 {nefttransation.map((value, index) => (
-                  <tr className="bg-white">
-                    <td id="neftid">                                 
+                  <tr className="bg-white text-[#001040]">
+                    <td id="neftid">                                
                       {/* <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" className="avatar avatar-sm rounded-circle me-2"/> */}
                       <a className="text-heading font-bold text-decoration-none" href="#">
                         {value.id}
                       </a>
                     </td>
-                    <td id="neftemail">{value.email}</td>
+                    <td id="neftemail " className="text-[#001040]">{value.email}</td>
                     <td id="nefttransationalid">{value.transaction_id}</td>
                     <td id="neftquantity">{value.quantity}</td>
                     <td id="neftamount">{value.amount}</td>
                     <td>
-                       <svg xmlns="http://www.w3.org/2000/svg" 
-                         onClick={handleupdateneft} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                       <svg xmlns="http://www.w3.org/2000/svg"
+                         onClick={handleupdateneft} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check cursor-pointer"><path d="M20 6 9 17l-5-5"/></svg>
                     </td>
                   </tr>
                 ))}
@@ -286,19 +299,19 @@ export function Approve() {
                 {neftapproved.map((value, index) => (
                   <tr  className="text-white">
                     <td>
-                      <img
+                      {/* <img
                         alt="..."
                         src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                         className="avatar avatar-sm rounded-circle me-2"
-                      />
+                      /> */}
                       <a className="text-heading font-semibold" href="#">
                         {value.id}
                       </a>
                     </td>
-                    <td id="neftemail">{value.email}</td>
-                    <td id="nefttransationalid">{value.transaction_id}</td>
-                    <td id="neftquantity">{value.quantity}</td>
-                    <td id="neftamount">{value.amount}</td>
+                    <td id="neftemail" className="text-[#001040]">{value.email}</td>
+                    <td id="nefttransationalid" className="text-[#001040]">{value.transaction_id}</td>
+                    <td id="neftquantity" className="text-[#001040]">{value.quantity}</td>
+                    <td id="neftamount" className="text-[#001040]">{value.amount}</td>
                     <td>
                       <p className="text-success">Approved</p>
                     </td>
@@ -313,6 +326,12 @@ export function Approve() {
     </div>
   );
 }
+
+
+
+
+
+
 
 
 

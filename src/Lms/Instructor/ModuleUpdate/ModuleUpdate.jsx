@@ -1,13 +1,16 @@
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ModuleUpdate.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function ModuleUpdate() {
   const [modules, setModules] = useState([]);
   const [selectedModuleId, setSelectedModuleId] = useState("");
   const [updatedModuleName, setUpdatedModuleName] = useState("");
+
 
   useEffect(() => {
     // Fetch the list of modules from the backend and log the result
@@ -22,6 +25,7 @@ function ModuleUpdate() {
       });
   }, []);
 
+
   const handleUpdateModule = () => {
     // Ensure a module is selected and a new name is provided
     if (!selectedModuleId || !updatedModuleName) {
@@ -30,12 +34,15 @@ function ModuleUpdate() {
     }
     console.log("hello");
 
+
     const formData = new FormData();
     formData.append("moduleImage", moduleImage);
     formData.append("moduleid", selectedModuleId);
     formData.append("modulename", updatedModuleName);
 
+
     console.log(formData);
+
 
     // Send the updated module name to the backend
     axios
@@ -56,13 +63,16 @@ function ModuleUpdate() {
       });
   };
 
+
   // Handle dropdown change and set the module name in the input box
   const handleModuleSelection = (e) => {
     const selectedId = e.target.value;
     setSelectedModuleId(selectedId);
 
+
     // Log the selected module ID for debugging
     console.log("Selected Module ID:", selectedId);
+
 
     // Find the selected module by its id and set its name into the input box
     const selectedModule = modules.find(
@@ -77,12 +87,15 @@ function ModuleUpdate() {
     }
   };
 
+
   const [selectedImageModuleId, setSelectedImageModuleId] = useState("");
   const [moduleImage, setModuleImage] = useState(null);
+
 
   const handleImageModuleSelection = (e) => {
     setSelectedImageModuleId(e.target.value);
   };
+
 
   const handleUpdateModuleImage = async () => {
     if (!selectedImageModuleId || !moduleImage) {
@@ -90,10 +103,13 @@ function ModuleUpdate() {
       return;
     }
 
+
     const formData = new FormData();
     formData.append("moduleImage", moduleImage);
 
+
     // console.log(formData);
+
 
     try {
       axios
@@ -118,11 +134,18 @@ function ModuleUpdate() {
     }
   };
 
+
   return (
-    <div className="container-fluid">
-      <h2 className="text-center headinginstructor">Update Module</h2>
+    <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+      <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Update Module</h2>
+            <p className="text-blue-100 mt-1">Update Existing Modules</p>
+          </div>
+   
       <ToastContainer />
-      <div className="modpart p-3">
+      <div className="course-cards-container p-3">
         <form>
           <div className="form-group">
             <div className="form-group-inner">
@@ -142,6 +165,7 @@ function ModuleUpdate() {
             </div>
           </div>
 
+
           <div className="form-group">
             <div className="form-group-inner">
               <label className="labelcourse">New Module Name</label>
@@ -155,6 +179,7 @@ function ModuleUpdate() {
             </div>
           </div>
 
+
           <div className="form-group">
             <div className="form-group-inner">
               <label className="labelcourse">New Module Image</label>
@@ -167,14 +192,22 @@ function ModuleUpdate() {
           </div>
         </form>
 
+
         <div className="d-flex justify-content-end">
-          <button onClick={handleUpdateModule} className="updatebtn">
+          <button onClick={handleUpdateModule} className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2">
             Update Module
           </button>
         </div>
       </div>
     </div>
+      </div>
+    </div>
   );
 }
 
+
 export default ModuleUpdate;
+
+
+
+

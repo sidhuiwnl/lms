@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 export default function CheckPayment() {
   const { quantity } = useParams();
   const amt = quantity * 20;
@@ -11,7 +12,9 @@ export default function CheckPayment() {
   const nav = useNavigate();
   const [chequeNumberError, setChequeNumberError] = useState("");
 
+
   const decodedId = atob(id)
+
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/bussuserdetails/${decodedId}`)
@@ -22,6 +25,7 @@ export default function CheckPayment() {
       });
   }, [id]);
 
+
   function handlecheckdetails(event) {
     event.preventDefault();
     const email = document.getElementById("email").value;
@@ -29,8 +33,10 @@ export default function CheckPayment() {
     const quantity = document.getElementById("quantity").value;
     const amount = document.getElementById("amount").value;
 
+
     // Cheque number regex pattern: between 6 to 9 digits
     const chequePattern = /^\d{6,15}$/;
+
 
     // Validate cheque number
     if (!chequePattern.test(checkno)) {
@@ -40,10 +46,12 @@ export default function CheckPayment() {
       setChequeNumberError(""); // Clear error if validation passes
     }
 
+
     if (checkno === "") {
       alert("Kindly fill the Check number");
       return; // Do not proceed if cheque number is empty
     }
+
 
     const key = {
       email: email,
@@ -51,6 +59,7 @@ export default function CheckPayment() {
       quantity: quantity,
       amount: amount,
     };
+
 
     axios
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}admin/checktransation/${decodedId}`, key)
@@ -65,12 +74,15 @@ export default function CheckPayment() {
       });
   }
 
+
   return (
-     <div className="neft-container">
-    <div className="neftpart ">
-    <div className="container ">
-      <div className="row d-flex flex-column justify-content-center align-items-center ">
-        <h3 className="m-0 m-md-3 text-center">Transactional Details</h3>
+     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+    <div className="max-w-3xl mx-auto ">
+ <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Transactional Details</h2>
+           
+          </div>
         <div className="col-sm-12 login-form card p-3">
           <form onSubmit={handlecheckdetails}>
             <div className="form-group">
@@ -84,6 +96,7 @@ export default function CheckPayment() {
                 readOnly
               />
             </div>
+
 
             <div className="form-group">
               <label className="form-control-label text-start">Cheque No</label>
@@ -99,6 +112,7 @@ export default function CheckPayment() {
               )}
             </div>
 
+
             <div className="form-group">
               <label className="form-control-label text-start">Quantity</label>
               <input
@@ -111,6 +125,7 @@ export default function CheckPayment() {
               />
             </div>
 
+
             <div className="form-group">
               <label className="form-control-label text-start">Amount</label>
               <input
@@ -122,15 +137,16 @@ export default function CheckPayment() {
                 readOnly
               />
             </div>
-
-            <button type="submit" className="btn neftbtn">
+<div className="flex justify-center">
+            <button type="submit" className=" px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2">
               Sign Up
             </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
     </div>
-    </div>
+ 
   );
 }

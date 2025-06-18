@@ -89,9 +89,12 @@ function QuestionBankUpdate() {
   };
 
   return (
-    <div className="container">
-      <h3 className="text-center">Question Bank Update</h3>
-<div className="modpart p-2">
+    <div className="container py-10 ">
+      <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl">
+          <h2 className="text-2xl font-bold text-white">Question Bank Update</h2>    
+      </div>
+  
+    <div className="modpart p-2 rounded-b-xl">
       {/* Module Selection */}
       <div className="form-group py-2">
         <div className="form-group-inner">
@@ -113,9 +116,9 @@ function QuestionBankUpdate() {
       {/* Table for Selected Questions */}
       <h4>Selected Questions</h4>
       {selectedQuestions.length > 0 ? (
-        <table className="table table-bordered">
-          <thead>
-            <tr>
+        <table >
+          <thead >
+            <tr >
               <th>Quiz ID</th>
               <th>Question</th>
               <th>Action</th>
@@ -188,6 +191,7 @@ function QuestionBankUpdate() {
       )}
     </div>
     </div>
+    
   );
 }
 

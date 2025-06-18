@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./NeftPayment.css";
 
 
+
+
 export default function NeftPayment() {
   const { quantity } = useParams();
   const amt = quantity * 20;
@@ -14,7 +16,9 @@ export default function NeftPayment() {
   const [transactionError, setTransactionError] = useState("");
   const transactionPattern = /^[A-Za-z0-9]{6,20}$/;
 
+
   const decodedId = atob(id)
+
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/bussuserdetails/${decodedId}`)
@@ -25,13 +29,16 @@ export default function NeftPayment() {
       });
   }, [id]);
 
+
   function handleneftdetails(event) {
     event.preventDefault();
+
 
     const email = document.getElementById("email").value;
     const transactionId = document.getElementById("transactionid").value;
     const quantity = document.getElementById("quantity").value;
     const amount = document.getElementById("amount").value;
+
 
     // Validate transaction ID
     if (!transactionPattern.test(transactionId)) {
@@ -41,12 +48,14 @@ export default function NeftPayment() {
       setTransactionError(""); // Clear error if validation passes
     }
 
+
     const key = {
       email,
       transactionid: transactionId,
       quantity,
       amount,
     };
+
 
     // Send request to server
     axios
@@ -62,12 +71,18 @@ export default function NeftPayment() {
       });
   }
 
+
   return (
-     <div className="neft-container">
-    <div className="neftpart">
-    <div className="container">
-      <div className="row d-flex flex-column justify-content-center align-items-center">
-        <h3 className="m-0 m-md-3 text-center">Transactional Details</h3>
+     <div className=" min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+   <div className="max-w-3xl mx-auto" >
+
+
+  <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+     <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Transactional Details</h2>
+           
+          </div>
+       
         <div className="col-sm-12 login-form card p-3">
           <form onSubmit={handleneftdetails}>
             <div className="form-group">
@@ -81,6 +96,7 @@ export default function NeftPayment() {
                 required
               />
             </div>
+
 
             <div className="form-group">
               <label className="form-control-label text-start">Transaction Id</label>
@@ -96,6 +112,7 @@ export default function NeftPayment() {
               )}
             </div>
 
+
             <div className="form-group">
               <label className="form-control-label text-start">Quantity</label>
               <input
@@ -108,6 +125,7 @@ export default function NeftPayment() {
               />
             </div>
 
+
             <div className="form-group">
               <label className="form-control-label text-start">Amount</label>
               <input
@@ -118,15 +136,16 @@ export default function NeftPayment() {
                 value={amount}
                 readOnly/>
             </div>
-
-            <button type="submit" className="btn neftbtn">
+<div className="flex justify-center">
+            <button type="submit" className=" px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2">
               Sign Up
             </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
     </div>
-    </div>
+ 
   );
 }

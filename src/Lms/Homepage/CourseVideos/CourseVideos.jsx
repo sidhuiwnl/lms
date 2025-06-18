@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import sideicon1 from "../../../assets/listicon.png";
@@ -37,6 +37,11 @@ function CourseVideos() {
   });
   const [chapter, setChapter] = useState([]);
   const [content, setContent] = useState(false);
+  const[videoDuration,setVideoDuration] = useState(null);
+  const videoContainerRef = useRef(null);
+
+
+
 
   const { course, module, id } = useParams();
   const navigate = useNavigate();
@@ -51,7 +56,39 @@ function CourseVideos() {
  let decodedId = id === undefined || id === "undefined" ? 0 : atob(id);
   
 
- 
+ useEffect(() =>{
+      const videoElement = videoContainerRef.current?.querySelector("video");
+
+    if (videoElement) {
+      // Handle metadata load to get duration
+      const handleMetadata = () => {
+        const durationInSeconds = videoElement.duration;
+        if (!isNaN(durationInSeconds)) {
+          setVideoDuration(formatDuration(durationInSeconds));
+        }
+      };
+
+      // Add event listener for loadedmetadata
+      videoElement.addEventListener("loadedmetadata", handleMetadata);
+
+      // If metadata is already loaded (e.g., cached video), trigger manually
+      if (videoElement.readyState >= 1) {
+        handleMetadata();
+      }
+
+      // Cleanup event listener
+      return () => {
+        videoElement.removeEventListener("loadedmetadata", handleMetadata);
+      };
+    }
+
+ },[])
+
+ const formatDuration = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+  };
 
   
 
@@ -584,8 +621,7 @@ function CourseVideos() {
                     title
                   );
 
-                  
-
+                
                 return (
                   <div
                 
@@ -594,7 +630,7 @@ function CourseVideos() {
                       maxWidth: "200px",
                     }}
                     key={index}
-                    className="card   text-dark my-2 p-2 border-0 sideshadow"
+                    className="card  text-dark my-2 p-2 border-0 sideshadow"
                   >
                     <Link
                       style={{
@@ -602,6 +638,8 @@ function CourseVideos() {
                         fontWeight: "bold",
                         display: "block",
                         maxWidth: "300px",
+                        display : "flex",
+                        gap : 2
                       }}
                       to="#"
                       className="sidebartext "
@@ -1068,10 +1106,12 @@ function CourseVideos() {
                         {/* Use the response HTML structure for embedding Vimeo video */}
                         <div>
                           <div
+                          ref={videoContainerRef}
                             dangerouslySetInnerHTML={{
                               __html: item.page_content.replace(/<\/?p>/g, ""), // Clean up <p> tags
                             }}
                           ></div>
+                           {videoDuration && <p className="text-black">Video Duration: {videoDuration}</p>}
                         </div>
                       </div>
                     ))}

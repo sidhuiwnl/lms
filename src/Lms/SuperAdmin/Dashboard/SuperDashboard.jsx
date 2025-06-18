@@ -37,6 +37,7 @@ export function SuperDashboard({ isSidebarOpen }) {
     selfActiveUser: "",
     companyActiveUser: "",
   });
+  const[displayTotal,setDisplayTotal] = useState(0)
 
   const labels = [
     "January",
@@ -118,6 +119,18 @@ export function SuperDashboard({ isSidebarOpen }) {
         });
       });
   }, []);
+
+  const handleBarClick = (event, elements) => {
+    if (elements.length > 0) {
+      const clickedIndex = elements[0].index;
+      const clickedValue = monthly[clickedIndex].monthly_revenue;
+      setDisplayTotal(clickedValue);
+    } else {
+      // If clicked outside bars, show the grand total
+      // Convert strings to numbers before summing
+setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue), 0));
+    }
+  };
 
   return (
     <>
@@ -254,7 +267,7 @@ export function SuperDashboard({ isSidebarOpen }) {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-6">
-              <div className="table-responsive rounded-xl">
+              <div className="table-responsive ">
                 <table className="table table-hover table-nowrap">
                   <thead className="bg-white text-light">
                     <tr>
@@ -300,43 +313,78 @@ export function SuperDashboard({ isSidebarOpen }) {
                 </table>
               </div>
             </div>
-            <div className="col-lg-6 shadow card1">
-              <Bar
-                className="col-lg-12 p-1"
-                data={{
-                  labels,
-                  datasets: [
-                    {
-                      label: "Total Revenu",
-                      data: monthly.map((data) => data.monthly_revenue),
-                      borderRadius: 10,
-                      backgroundColor: pattern.draw("diagonal-right-left", "#001040"),
-                      borderWidth: 2,
-                    },
-                  ],
-                }}
-                options={{
-                  animation: {
-                    duration: 2000,
-                    delay: 30,
+            
+          <div className="col-lg-6 p-4 bg-white rounded-xl shadow-sm">
+           <div>
+            <h1 className="text-sm text-center">Total :  ${displayTotal.toLocaleString()} </h1>
+           </div>
+           <div className="h-[300px]">
+                    <Bar
+              data={{
+                labels,
+                datasets: [
+                  {
+                    label: "Total Revenue / Per Month",
+                    data: monthly.map((data) => data.monthly_revenue),
+                    borderRadius: 6,
+                    backgroundColor: "#001040",
+                    borderColor: "rgba(0, 40, 100, 1)",
+                    borderWidth: 2,
+                    hoverBackgroundColor: "#001040",
+                    hoverBorderWidth: 0,
                   },
-                  scales: {
-                    y: {
-                      grid: {
-                        display: false,
-                        color: "red",
-                      },
+                ],
+              }}
+              options={{
+                onClick : handleBarClick,
+                animation: {
+                  duration: 1000,
+                  easing: "easeOutQuart",
+                },
+                plugins: {
+                  legend: {
+                    display: true,
+                  },
+                  tooltip: {
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    padding: 12,
+                    cornerRadius: 8,
+                    usePointStyle: true,
+                    callbacks: {
+                      label: function(context) {
+                        return ` $${context.parsed.y.toLocaleString()}`;
+                      }
+                    }
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    grid: {
+                      drawBorder: false,
+                      color: "rgba(0, 0, 0, 0.05)",
                     },
-                    x: {
-                      grid: {
-                        display: false,
-                        color: "red",
-                      },
+                    ticks: {
+                      padding: 8,
+                      color: "rgba(0, 0, 0, 0.6)",
                     },
                   },
-                }}
-              />
-            </div>
+                  x: {
+                    grid: {
+                      display: false,
+                      drawBorder: false,
+                    },
+                    ticks: {
+                      color: "rgba(0, 0, 0, 0.6)",
+                    },
+                  },
+                },
+                maintainAspectRatio: false,
+              }}
+            />
+           </div>
+            
+        </div>
           </div>
         </div>
         <br />
@@ -346,16 +394,16 @@ export function SuperDashboard({ isSidebarOpen }) {
           <table className="min-w-full table-auto rounded-md overflow-hidden">
             <thead className="bg-gray-100">
               <tr>
-                <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
                   Name
                 </th>
-                <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
                   Enrollment Date
                 </th>
-                <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
                   Module Completed
                 </th>
-                <th scope="col" className="px-4 py-2 font-semibold text-gray-700">
+                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
                   Completion %
                 </th>
               </tr>
@@ -393,9 +441,9 @@ export function SuperDashboard({ isSidebarOpen }) {
                   <td className="px-4 py-2">
                     <ProgressBar
                       completed={Math.round(value.completion_percentage)}
-                      bgColor="#8f231b"
+                      bgColor="#001040"
                       animateOnRender="true"
-                      transitionDuration="1s"
+                      transitionDuration="1s" 
                     />
                   </td>
                 </tr>
@@ -454,7 +502,7 @@ export function SuperDashboard({ isSidebarOpen }) {
                   <td>
                     <ProgressBar
                       completed={Math.round(value.completion_percentage)}
-                      bgColor="#8f231b"
+                      bgColor="#001040"
                       animateOnRender="true"
                       transitionDuration="1s"
                     />

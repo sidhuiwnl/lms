@@ -208,10 +208,15 @@ const CategoryQuizList = () => {
   }, [maxRandomValue, quizzes, viewType]);
 
   return (
-    <div className="courselist-container">
+    <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+       <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
       <ToastContainer />
-      <h3 className="heading-center">Quiz</h3>
-      <div className="course-cards-container">
+     <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Questionbank</h2>
+            
+          </div>
+      <div className="course-cards-container p-3">
         <div style={{ marginBottom: "20px" }}>
           <div className="form-group">
             <div className="form-group-inner">
@@ -306,61 +311,65 @@ const CategoryQuizList = () => {
               )}
           </div>
         </div>
-        <table className="table table-bordered">
-          <thead>
+        <div className="overflow-x-auto rounded-xl  shadow ">
+        <table className="min-w-full divide-y divide-gray-200 overflow-hidden ">
+          <thead className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
             <tr>
-              <th className="text-light">Select</th>
-              <th className="text-light">Quiz ID</th>
-              <th className="text-light">Question</th>
-              <th className="text-light">Image</th>
-              <th className="text-light">Marks</th>
+              <th className="px-4 py-2 text-left">Select</th>
+              <th className="px-4 py-2 text-left">Quiz ID</th>
+              <th className="px-4 py-2 text-left">Question</th>
+              <th className="px-4 py-2 text-left">Image</th>
+              <th className="px-4 py-2 text-left">Marks</th>
             </tr>
           </thead>
-          <tbody>
-            {(viewType === "Sequential" ? quizzes : randomQuizzes).map(
-              (quiz) => (
-                <tr key={quiz.id}>
-                  <td>
-                    {/* Render checkbox only if viewType is Sequential */}
-                    {viewType === "Sequential" && (
-                      <input
-                        type="checkbox"
-                        checked={!!selectedQuizzes[quiz.id]}
-                        onChange={() => handleCheckboxChange(quiz.id)}
-                      />
-                    )}
-                  </td>
-                  <td>{viewType === "Random" ? "Random" : quiz.id}</td>
-                  <td>{viewType === "Random" ? "Random" : parse(quiz.text)}</td>
-                  <td>N/A</td>
-                  <td>
+          <tbody className="bg-neutral-200 divide-y divide-black">
+            {(viewType === "Sequential" ? quizzes : randomQuizzes).map((quiz) => (
+              <tr key={quiz.id}>
+                <td className="px-4 py-2">
+                  {viewType === "Sequential" && (
                     <input
-                      type="number"
-                      min="0"
-                      value={marks[quiz.id] || ""}
-                      onChange={(e) =>
-                        handleMarksChange(quiz.id, e.target.value)
-                      }
+                      type="checkbox"
+                      checked={!!selectedQuizzes[quiz.id]}
+                      onChange={() => handleCheckboxChange(quiz.id)}
                     />
-                  </td>
-                </tr>
-              )
-            )}
+                  )}
+                </td>
+                <td className="px-4 py-2">{quiz.id}</td>
+                <td className="px-4 py-2">{parse(quiz.text)}</td>
+                <td className="px-4 py-2">N/A</td>
+                <td className="px-4 py-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={marks[quiz.id] || 0}
+                    onChange={(e) => handleMarksChange(quiz.id, e.target.value)}
+                    className="border text-black border-black rounded px-2 py-1 w-20"
+                   
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
-        </table>
+  </table>
+</div>
+
         <div className="d-flex justify-content-between my-3">
           <button
-            className="updatebtn"
+           className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+
            
             onClick={handleAddQuizzes}
           >
             Add
           </button>
-          <Link to={`/instructordashboard/${id}/questionbankupdate`} className="updatebtn text-decoration-none">
+          <Link to={`/instructordashboard/${id}/questionbankupdate`} className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+>
             Update
           </Link>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

@@ -55,7 +55,7 @@ function Drkenhome() {
   };
 
   return (
-    <div className="container mt-10">
+    <div className="mt-10">
       <div
         className={
           activeTab === "lessons" ? "video-wrapper my-2" : "video-wrapper1 my-2"
@@ -78,41 +78,38 @@ function Drkenhome() {
         </h5>
       </div>
       <div className="row storypart mx-1">
-        <div className="d-flex justify-content-between rounded-xl border align-items-center lessontext px-4 flex-wrap w-100">
-          <div className="text-center py-3 ">
-            <p className="iconpara fw-bold flex items-center">
-              <img
-                src={icon1}
-                className="mx-2"
-                alt="Lessons"
-                style={{ height: "24px" }}
-              />
-              {count.moduleCount} Lessons
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="iconpara fw-bold pt-2  flex items-center">
-              <img
-                src={icon2}
-                className="mx-2"
-                alt="Hours"
-                style={{ height: "24px" }}
-              />
-              15 Hours
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="iconpara fw-bold pt-2  flex items-center">
-              <img
-                src={icon3}
-                className="mx-2"
-                alt="Enrolled"
-                style={{ height: "24px" }}
-              />
-              {count.enrolleCount} Enrolled
-            </p>
-          </div>
-        </div>
+        <div className="flex flex-wrap items-center justify-between border rounded-xl px-4 py-2 w-full text-xs sm:text-sm lg:text-5xl text-[#001040]">
+  <div className="flex items-center text-center py-2">
+    <img
+      src={icon1}
+      alt="Lessons"
+      className="h-5 w-5 mr-2"
+    />
+    <span className="text-sm font-medium lg:font-bold lg:text-5xl xl:text-xl">
+      {count.moduleCount} Lessons
+    </span>
+  </div>
+  <div className="flex items-center text-center py-2">
+    <img
+      src={icon2}
+      alt="Hours"
+      className="h-5 w-5 mr-2"
+    />
+    <span className="text-sm font-medium lg:font-bold lg:text-5xl xl:text-xl">
+      15 Hours
+    </span>
+  </div>
+  <div className="flex items-center text-center py-2">
+    <img
+      src={icon3}
+      alt="Enrolled"
+      className="h-5 w-5 mr-2"
+    />
+    <span className="text-sm font-medium lg:font-bold lg:text-5xl xl:text-xl">
+      {count.enrolleCount} Enrolled
+    </span>
+  </div>
+</div>
 
         <div className="row my-3 py-3">
               <div className="d-flex justify-content-between  text-center flex-wrap px-5 py-3 space-y-3">

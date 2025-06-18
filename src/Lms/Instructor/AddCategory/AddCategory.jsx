@@ -1,9 +1,12 @@
 
+
 import React, { useState, useEffect } from "react";
 import "./AddCategory.css";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 
 function AddCategory() {
@@ -12,6 +15,7 @@ function AddCategory() {
   useEffect(() => {
     fetchCategories();
   }, []);
+
 
   const fetchCategories = () => {
     axios
@@ -28,6 +32,7 @@ function AddCategory() {
         toast.error("Error fetching categories");
       });
   };
+
 
   const handleAddCategory = () => {
     inputFields.forEach(input => {
@@ -52,9 +57,11 @@ function AddCategory() {
     });
   };
 
+
   const handleAddInputField = () => {
     setInputFields([...inputFields, { id: inputFields.length + 1, value: "" }]);
   };
+
 
   const handleInputChange = (id, newValue) => {
     setInputFields(
@@ -64,10 +71,11 @@ function AddCategory() {
     );
   };
 
+
   return (
     <div className="courselist-container">
       <ToastContainer />
-      <h4 className="heading-center">Course Category Creation</h4>
+      <h4 className=" text-blue-500 text-center py-2">Course Category Creation</h4>
       <div className=" course-cards-container">
       <div className=" m-3 card d-flex p-1 p-lg-5">
         <div>
@@ -81,7 +89,7 @@ function AddCategory() {
                 onChange={(e) => handleInputChange(input.id, e.target.value)}
               />
               <button
-                className="ms-2 plusbtn text-light px-2"
+                className="ms-2 plusbtn text-white bg-gradient-to-r from-blue-600 to-indigo-700 px-2"
                 onClick={handleAddInputField}
               >
                 +
@@ -89,23 +97,44 @@ function AddCategory() {
             </div>
           ))}
           <button
-            className="mt-4 rounded-2 updatebtn p-2"
+           className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"  
             onClick={handleAddCategory}
           >
             Submit
           </button>
         </div>
 
+
         <div>
           <div className="px-0">
             <h4 className="mb-4 mt-4 mt-md-5 categorytitle">Added Category List</h4>
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col  space-y-3">
               {categories.map((category) => (
-                <div
-                  key={category.id}
-                  className="card p-2 fc1">
-                  <p className="m-0">{category.name}</p>
-                </div>
+               <div
+  key={category.id}
+  className="card p-2 fc1 bg-blue-200 text-dark-800 rounded-lg shadow-md flex w-fit max-w-xs mx-2  "
+>
+  <p className="m-0 flex items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-album-icon"
+    >
+      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+      <polyline points="11 3 11 11 14 8 17 11 17 3" />
+    </svg>
+    {category.name}
+  </p>
+</div>
+
+
               ))}
             </div>
           </div>
@@ -116,4 +145,8 @@ function AddCategory() {
   );
 }
 
+
 export default AddCategory;
+
+
+

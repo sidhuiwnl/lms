@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import JoditEditor from "jodit-react"; // Assuming JoditEditor is already installed
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function QuestionUpdate() {
   const [modules, setModules] = useState([]);
   const [selectedModuleId, setSelectedModuleId] = useState("");
   const [questions, setQuestions] = useState([]);
   const [updatedQuestions, setUpdatedQuestions] = useState({});
   const [showFeedbackEditor, setShowFeedbackEditor] = useState({}); // Track which feedback editors are visible
+
 
   useEffect(() => {
     axios
@@ -20,9 +22,11 @@ function QuestionUpdate() {
       });
   }, []);
 
+
   const handleModuleChange = (e) => {
     const moduleId = e.target.value;
     setSelectedModuleId(moduleId);
+
 
     axios
       .get(
@@ -30,6 +34,7 @@ function QuestionUpdate() {
       )
       .then((res) => {
         console.log(res);
+
 
         setQuestions(res.data.result);
         const initialUpdatedQuestions = {};
@@ -60,11 +65,13 @@ function QuestionUpdate() {
               : [], // If no subQuestions, default to an empty array
           };
 
+
           // Initially hide the feedback editor for each option
           q.option.forEach((opt, index) => {
             initialShowFeedbackEditor[`${q.id}_${index}`] = false;
           });
         });
+
 
         setUpdatedQuestions(initialUpdatedQuestions);
         setShowFeedbackEditor(initialShowFeedbackEditor);
@@ -74,7 +81,9 @@ function QuestionUpdate() {
       });
   };
 
+
   // console.log(updatedQuestions.feedback);
+
 
   const handleQuestionChange = (questionId, field, value) => {
     setUpdatedQuestions({
@@ -86,6 +95,7 @@ function QuestionUpdate() {
     });
   };
 
+
   const handleOptionChange = (
     questionId,
     subQIndex,
@@ -94,6 +104,7 @@ function QuestionUpdate() {
     optIndex = null
   ) => {
     const updatedQuestionsCopy = { ...updatedQuestions };
+
 
     if (updatedQuestionsCopy[questionId].question_type === "match") {
       if (field === "feedback") {
@@ -107,6 +118,7 @@ function QuestionUpdate() {
         const updatedSubQuestions = [
           ...updatedQuestionsCopy[questionId].subQuestions,
         ];
+
 
         if (field === "subquestion_text") {
           // Update the left side (subquestion_text)
@@ -122,11 +134,13 @@ function QuestionUpdate() {
             option_text: value,
           };
 
+
           updatedSubQuestions[subQIndex] = {
             ...updatedSubQuestions[subQIndex],
             options: updatedOptions,
           };
         }
+
 
         updatedQuestionsCopy[questionId] = {
           ...updatedQuestionsCopy[questionId],
@@ -141,14 +155,17 @@ function QuestionUpdate() {
         [field]: value,
       };
 
+
       updatedQuestionsCopy[questionId] = {
         ...updatedQuestionsCopy[questionId],
         options: updatedOptions,
       };
     }
 
+
     setUpdatedQuestions(updatedQuestionsCopy);
   };
+
 
   const toggleFeedbackEditor = (questionId, index) => {
     setShowFeedbackEditor((prevState) => ({
@@ -157,8 +174,10 @@ function QuestionUpdate() {
     }));
   };
 
+
   const handleSubmit = () => {
     console.log(selectedModuleId, updatedQuestions);
+
 
     axios
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}quiz/updatequestion`, {
@@ -170,30 +189,36 @@ function QuestionUpdate() {
         if (
           res.data.error === "An error occurred while updating the question"
         ) {
-          alert("An error occurred while updating the question");
+          toast.error("An error occurred while updating the question");
         } else if (res.data.message === "Questions updated successfully") {
-          alert("Questions updated successfully");
+        toast.success("Questions updated successfully");
           window.location.reload();
         }
       })
       .catch((err) => {
         console.error("Error updating questions:", err);
-        alert("Error updating questions:", err);
+        toast.error("Error updating questions:", err);
       });
   };
 
+
   return (
-    <div className="container-fluid">
-      <h2 className="text-center">Update Questions</h2>
+    <div className="courselist-container min-h-screen  py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+        <ToastContainer />
+       <div className="max-w-4xl mx-auto" >
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <h2 className="text-2xl font-bold text-white">Update Questions</h2>
+          </div>
       <div className=" container entirequizpart p-4 rounded-3">
         <form>
           <div className="form-group">
             <div className="form-group-inner">
               <label className="labelcourse">Select Module</label>
-              <select value={selectedModuleId} onChange={handleModuleChange}>
+              <select value={selectedModuleId} onChange={handleModuleChange} className="w-full border border-gray-900 rounded-xl">
             <option value="">Select Module</option>
             {modules.map((module) => (
-              <option key={module.moduleid} value={module.moduleid}>
+              <option key={module.moduleid} value={module.moduleid} className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-30">
                 {module.modulename}
               </option>
             ))}
@@ -204,11 +229,12 @@ function QuestionUpdate() {
         {/* Select Box for Modules */}
        
 
+
         {/* Display Questions */}
         <div className="py-5">
           <h5 className="labelcourse">Questions for Selected Module:</h5>
           {questions.length > 0 ? (
-            <ul>
+            <ol>
               {questions.map((question, index) => (
                 <li key={question.id}>
                   {/* Rich text editor for question text */}
@@ -219,6 +245,7 @@ function QuestionUpdate() {
                       handleQuestionChange(question.id, "text", newText)
                     }
                   />
+
 
                   {/* Descriptive Question Type */}
                   {question.question_type === "descriptive" && (
@@ -242,6 +269,7 @@ function QuestionUpdate() {
                               cols={40}
                             />
 
+
                             {/* Add Feedback Button */}
                             <button
                               style={{
@@ -260,6 +288,7 @@ function QuestionUpdate() {
                                 ? "Hide Feedback"
                                 : "Add Feedback"}
                             </button>
+
 
                             {/* Conditionally show rich text editor for feedback */}
                             {showFeedbackEditor[`${question.id}_${index}`] && (
@@ -285,16 +314,17 @@ function QuestionUpdate() {
                     </div>
                   )}
 
+
                   {/* Multiple Choice Question Type */}
                   {question.question_type === "multiple_choice" && (
                     <div>
                       <h4>Multiple Choice Options</h4>
                       {updatedQuestions[question.id].options.map(
                         (opt, index) => (
-                          <div key={index} style={{ marginBottom: "15px" }}>
-                            <label className="labelcourse"> Option:</label>
+                          <div key={index} style={{ marginBottom: "15px" }} className="flex flex-wrap items-start gap-4 mb-4">
+                            <label > Option:</label>
                             <textarea
-                              className="opttext"
+                              className="border border-gray-600"
                               value={opt.option}
                               onChange={(e) =>
                                 handleOptionChange(
@@ -308,17 +338,11 @@ function QuestionUpdate() {
                               cols={40}
                             />
 
+
                             {/* Add Feedback Button */}
                             <button
-                            className="rounded-2"
-                              style={{
-                                marginLeft: "10px",
-                                backgroundColor: "#001040",
-                                color: "white",
-                                border: "none",
-                                padding: "5px 10px",
-                                cursor: "pointer",
-                              }}
+                            className="bg bg-blue-400 text-white rounded-md px-3 py-2"
+                             
                               onClick={() =>
                                 toggleFeedbackEditor(question.id, index)
                               }
@@ -327,6 +351,7 @@ function QuestionUpdate() {
                                 ? "Hide Feedback"
                                 : "Add Feedback"}
                             </button>
+
 
                             {/* Conditionally show rich text editor for feedback */}
                             {showFeedbackEditor[`${question.id}_${index}`] && (
@@ -352,6 +377,7 @@ function QuestionUpdate() {
                     </div>
                   )}
 
+
                   {/* Check Question Type */}
                   {question.question_type === "check" && (
                     <div>
@@ -375,6 +401,7 @@ function QuestionUpdate() {
                               cols={40}
                             />
 
+
                             {/* Add Feedback Button */}
                             <button
                               style={{
@@ -393,6 +420,7 @@ function QuestionUpdate() {
                                 ? "Hide Feedback"
                                 : "Add Feedback"}
                             </button>
+
 
                             {/* Conditionally show rich text editor for feedback */}
                             {showFeedbackEditor[`${question.id}_${index}`] && (
@@ -417,10 +445,12 @@ function QuestionUpdate() {
                     </div>
                   )}
 
+
                   {/* Match the Following Question Type */}
                   {question.question_type === "match" && (
                     <div>
                       <h4>Match the Following</h4>
+
 
                       {/* Single, constant feedback box for the entire match question */}
                       <div style={{ marginBottom: "15px" }}>
@@ -431,18 +461,19 @@ function QuestionUpdate() {
                             updatedQuestions[question.id].feedbacks.length > 0
                               ? updatedQuestions[question.id].feedbacks[0]
                                   .feedback // Access the first feedback object
-                              : "" 
+                              : ""
                           }
                           onBlur={(newFeedback) =>
                             handleOptionChange(
                               question.id,
-                              null, 
-                              "feedback", 
-                              newFeedback 
+                              null,
+                              "feedback",
+                              newFeedback
                             )
                           }
                         />
                       </div>
+
 
                       {/* Iterate over subQuestions */}
                       {updatedQuestions[question.id].subQuestions.map(
@@ -464,6 +495,7 @@ function QuestionUpdate() {
                               rows={3}
                               cols={20}
                             />
+
 
                             {/* Right side (option text) */}
                             {subQ.options.map((opt, optIndex) => (
@@ -495,11 +527,13 @@ function QuestionUpdate() {
                     </div>
                   )}
 
+
                   {/* Correct Answer (Common for all types) */}
                   <div>
                     <label className="labelcourse">Correct Answer:</label>
                     <input
-                      type="text"
+                    className="border border-gray-500 rounded-md px-3 py-2  "
+                      type="text "
                       value={
                         question.question_type === "multiple_choice"
                           ? updatedQuestions[question.id].correct_answer || ""
@@ -514,6 +548,7 @@ function QuestionUpdate() {
                             : question.question_type === "check"
                             ? "check_data"
                             : "correct_answer";
+
 
                         // If it's a check type, we handle the array structure for check_data
                         if (question.question_type === "check") {
@@ -532,19 +567,26 @@ function QuestionUpdate() {
                   </div>
                 </li>
               ))}
-            </ul>
+            </ol>
           ) : (
             <p>No questions available for this module.</p>
           )}
         </div>
 <div className="d-flex justify-content-end">
-        <button onClick={handleSubmit} className="updatebtn">
+        <button onClick={handleSubmit}  className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+            >
           Update Questions
         </button>
         </div>
       </div>
     </div>
+       </div>
+    </div>
   );
 }
 
+
 export default QuestionUpdate;
+
+
+

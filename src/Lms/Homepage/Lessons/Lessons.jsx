@@ -76,38 +76,41 @@ function Lessons() {
   };
 
   return (
-    <div className=" ">
+    <div className="ml-5 ">
       {module.map((e) => (
-        <div key={e.moduleId} className="row lessoncard w-full py-2 rounded-3 my-4">
+        <div key={e.moduleId} className="row sm:ml-5 lessoncard w-full py-2 rounded-3 my-4">
           {/* If the user has paid, show all modules */}
           {hasPaid ? (
-            <Link
-              to={`/ken/1/${e.moduleId}/${id}`}
-              className="col-sm-12 lessonview text-decoration-none"
-              style={{ color: "#001040" }}>
-              <div className="col-lg-4 border-2  rounded-lg d-flex flex-column  justify-content-center">
-                <img
-                  src={e.module_image}
-                  alt="lesson"
-                  className=" rounded lesson w-full"/>
-              </div>
-              <div className="col-lg-6 d-flex ml-3 flex-column justify-content-center textpart">
-                <h5>Chapter {e.moduleId}</h5>
-                <h3>{e.modulename}</h3>
-                <p>{e.activities}</p>
-              </div>
-              <div className="col-lg-2 d-flex justify-content-center align-items-center">
-                <FontAwesomeIcon icon={faAngleRight} />
-              </div>
-            </Link>
+                  <Link
+        to={`/ken/1/${e.moduleId}/${id}`}
+        className="lessonview text-decoration-none flex flex-col sm:flex-row items-center sm:items-start sm:text-left text-center gap-4 w-full p-4 rounded-3 shadow"
+        style={{ color: "#001040" }}
+      >
+        <div className="sm:w-1/4 w-full flex justify-center">
+          <img
+            src={e.module_image}
+            alt="lesson"
+            className="rounded lesson w-40 h-40 object-cover"
+          />
+        </div>
+        <div className="col-lg-6 d-flex gap-2 flex-column justify-content-center items-center text-center lg:items-start lg:text-left sm:mt-5 textpart">
+                    <h5>Chapter {e.moduleId}</h5>
+                    <h3>{e.modulename}</h3>
+                    <p>{e.activities}</p>
+                   </div>
+        <div className="flex items-center justify-center w-10 sm:mt-20 h-10 ml-auto mr-4 sm:mr-6">
+            <FontAwesomeIcon icon={faAngleRight} />
+        </div>
+      </Link>
+
           ) : (
-            <>
+            <div>
               {e.moduleId === 1 ? (
                 <Link
                   to={`/ken/1/${e.moduleId}/${id}`}
-                  className="col-sm-12 lessonview text-decoration-none"
+                  className="col-sm-12 lessonview  text-decoration-none"
                   style={{ color: "#001040" }}>
-                  <div className="col-lg-4 d-flex flex-column justify-content-center gap-2">
+                  <div className="col-lg-4 d-flex flex-column justify-content-center items-center  gap-2">
                     <img
                       src={e.module_image}
                       alt="lesson"
@@ -115,13 +118,14 @@ function Lessons() {
                       accept=".jpg,.jpeg,.png,.tiff,.tif"
                     />
                   </div>
-                  <div className="col-lg-6 d-flex flex-column justify-content-center textpart">
+                 <div className="col-lg-6 d-flex gap-2 flex-column justify-content-center  items-center text-center lg:items-start lg:text-left sm:mt-5 textpart">
                     <h5>Chapter {e.moduleId}</h5>
                     <h3>{e.modulename}</h3>
                     <p>{e.activities}</p>
-                  </div>
-                  <div className="col-lg-2 d-flex justify-content-center align-items-center">
-                    <FontAwesomeIcon icon={faAngleRight} />
+                   </div>
+
+                  <div className="flex items-center justify-center sm:mt-20 w-10 h-10 ml-auto mr-4 sm:mr-6">
+                      <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </Link>
               ) : (
@@ -131,24 +135,24 @@ function Lessons() {
                   onClick={() => handleShowModal(e)}
                   style={{ cursor: "pointer" }}
                 >
-                  <div className="col-lg-4 d-flex flex-column justify-content-center">
+                  <div className="col-lg-4 d-flex flex-column justify-content-center items-center ">
                     <img
                       src={e.module_image}
                       alt="lesson"
                       className="rounded-3 lesson locked-image"
                     />
                   </div>
-                  <div className="col-lg-6 d-flex flex-column justify-content-center textpart">
+                 <div className="col-lg-6  d-flex gap-2 flex-column justify-content-center items-center text-center lg:items-start lg:text-left sm:mt-5 textpart">
                     <h5>Chapter {e.moduleId}</h5>
                     <h3>{e.modulename}</h3>
                     <p>{e.activities}</p>
-                  </div>
-                  <div className="col-lg-2 d-flex justify-content-center align-items-center">
+                   </div>
+                  <div className="flex items-center justify-center w-10 sm:mt-20 h-10 ml-auto mr-4 sm:mr-6">
                     <FontAwesomeIcon icon={faLock} />
                   </div>
                 </div>
               )}
-            </>
+            </div>
             
           )}
         </div>
