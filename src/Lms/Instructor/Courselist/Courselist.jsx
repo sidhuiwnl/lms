@@ -6,10 +6,14 @@ import "./Courselist.css";
 function Courselist() {
   const [course, setCourse] = useState([]);
   const [users, setUsers] = useState([]); // State for user data
+
+  
   const [showTable, setShowTable] = useState(false); // State to control table visibility
   const navigate = useNavigate(); // Use the useNavigate hook
   const { id } = useParams(); // Use useParams to get the `id` from the URL
   const [activeCount, setActiveCount] = useState(0);
+
+  
 
   useEffect(() => {
     axios
@@ -28,6 +32,7 @@ function Courselist() {
       .get(`${import.meta.env.VITE_REACT_APP_API_URL}user/getallusers`)
       .then((res) => {
         console.log(res.data.users);
+        
         setUsers(res.data.users); // Store user data in state
         setActiveCount(res.data.activeUserCount);
       });
@@ -120,8 +125,8 @@ function Courselist() {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user.user_id} className={getRowClass(user.isActive)}>
+              {users.map((user,index) => (
+                <tr key={index} className={getRowClass(user.isActive)}>
                   <td>{user.user_id}</td>
                   <td>{user.first_name}</td>
                   <td>{user.email}</td>

@@ -376,7 +376,7 @@ const Question = () => {
       <ToastContainer />
              <div className="max-w-4xl mx-auto" >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+       <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Quiz</h2>
             <p className="text-blue-100 mt-1">Add Questions</p>
           </div>
@@ -457,7 +457,7 @@ const Question = () => {
           <label className="labelcourse">Quiz Question</label>
           <Link to={`/instructordashboard/${id}/updatequestion`}>
             <button
-              className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+              className=" bg-[#001040] p-2 rounded-lg text-white"
  >
               Update Question
             </button>
@@ -785,7 +785,7 @@ const Question = () => {
 
         <div className="flex mt-4">
           <button
-            className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+            className=" bg-[#001040] p-2 rounded-lg text-white"
             onClick={handleSubmit}
           >
             Submit Question

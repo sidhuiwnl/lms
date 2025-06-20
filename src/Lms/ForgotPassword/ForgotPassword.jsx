@@ -13,6 +13,8 @@ const LmsForgotPassword = () => {
 
   const handleEmailChange = (e) => setEmail(e.target.value);
 
+  console.log(email)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,8 +27,9 @@ const LmsForgotPassword = () => {
     setMessage("");
 
     try {
-      axios.post(`${process.env.REACT_APP_API_URL}auth/forgot_password`, { email })
+     await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}auth/forgot_password`, { email })
       .then(res=>{
+        console.log(res)
         if(res.data.message === "Email is required"){
             toast.error("Email is required")
         }

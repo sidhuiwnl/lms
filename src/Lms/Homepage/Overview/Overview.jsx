@@ -34,7 +34,7 @@ function Overview() {
         </div>
       </div>
 
-      <div className="row unique-story-content mt-4">
+      <div className="row unique-story-content mt-4 mb-10">
         {selectedStory === "jimsStory" && (
           <div className="col-12">
             <h5 className="unique-story-title my-3 text-center">Jim's Story</h5>

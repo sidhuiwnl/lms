@@ -6,7 +6,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#001040] w-full h-[100px]">
+    <nav className="bg-[#001040] w-full h-[100px] sticky top-0 z-50 ">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-10 md:px-16 lg:px-20 py-4">
         <div className="w-[150px] sm:w-[200px] md:w-[250px] lg:w-[296px] h-[32px] sm:h-[40px] md:h-[48px] lg:h-[52px]">
           <img
@@ -49,14 +49,14 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden  sm:flex space-x-3 gap-4 md:gap-6 lg:gap-8">
+        <div className="hidden sm:flex space-x-3 gap-4 md:gap-6 lg:gap-8">
           {Links.map((link) => (
             <Link
               key={link.id}
               to={link.link}
-              className="text-white font-bold  md:text-base  hover:text-amber-400 transition-colors duration-300"
+              className="text-white font-bold md:text-base hover:text-amber-400 transition-colors duration-300"
               {...(link.name === "My Spine Coach"
-                ? {  rel: "noopener noreferrer" }
+                ? { rel: "noopener noreferrer" }
                 : {})}
             >
               {link.name}
@@ -71,15 +71,15 @@ export default function Navbar() {
           id="mobile-menu"
           className="sm:hidden bg-[#001040] w-full absolute left-0 z-10 px-4 pb-6 shadow-lg"
         >
-          <div className="flex flex-col items-start  gap-4 pt-2">
+          <div className="flex flex-col items-start gap-4 pt-2">
             {Links.map((link) => (
               <Link
                 key={link.id}
                 to={link.link}
-                className="text-white text-base font-medium w-full  py-2 border-b border-blue-900 hover:text-amber-400 transition-colors duration-300"
+                className="text-white text-base font-medium w-full py-2 border-b border-blue-900 hover:text-amber-400 transition-colors duration-300"
                 onClick={() => setIsOpen(false)}
                 {...(link.name === "My Spine Coach"
-                  ? {  rel: "noopener noreferrer" }
+                  ? { rel: "noopener noreferrer" }
                   : {})}
               >
                 {link.name}

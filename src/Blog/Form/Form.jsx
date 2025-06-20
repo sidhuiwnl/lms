@@ -76,12 +76,12 @@ export default function Form() {
   };
 
   return (
-    <div className="w-full max-w-[442px] mx-auto px-7 bg-white rounded-2xl shadow-md">
-      <h2 className="text-center text-[20px] font-bold mb-6"  style={{color:"#001040"}}>
+    <div className="w-full max-w-[442px] mx-auto px-7  bg-white rounded-2xl shadow-md ">
+      <h2 className="text-center  text-[20px] font-bold mb-6"  style={{color:"#001040"}}>
         Drop your thoughts below!
       </h2>
 
-      <form className="space-y-5 font-medium" onSubmit={handleSubmit}>
+      <form className=" font-medium" onSubmit={handleSubmit}>
         <div>
           <label className="block text-sm text-[15px] text-[#001040] mb-1">Name</label>
           <input

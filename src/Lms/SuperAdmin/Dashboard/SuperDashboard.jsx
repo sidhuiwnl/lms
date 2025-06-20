@@ -153,7 +153,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
           {/* <!-- Card stats --> */}
           <div className="row g-6 mb-6">
             <div className="col-xl-3 col-sm-6 col-12 my-2">
-              <div className="card shadow border-0 h-48">
+              <div className="card shadow border  h-48">
                 <div className="card-body">
                   <div className="row">
                     <div className="col">
@@ -173,7 +173,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 my-2">
-              <div className="card shadow border-0">
+              <div className="card shadow border">
                 <div className="card-body">
                   <div className="row">
                     <div className="col">
@@ -198,7 +198,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 my-2">
-              <div className="card shadow border-0">
+              <div className="card shadow border">
                 <div className="card-body">
                   <div className="row">
                     <div className="col">
@@ -236,7 +236,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 my-2">
-              <div className="card shadow border-0">
+              <div className="card shadow border">
                 <div className="card-body">
                   <div className="row">
                     <div className="col">
@@ -264,12 +264,12 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         </div>
         <h3 className="p-3">Organization</h3>
         <br />
-        <div className="container-fluid">
+        <div className="container-fluid ">
           <div className="row">
             <div className="col-lg-6">
-              <div className="table-responsive ">
-                <table className="table table-hover table-nowrap">
-                  <thead className="bg-white text-light">
+              <div className="table-responsive lg:mt-10 mb-5    border-none  w-full overflow-x-auto">
+                <table className="table table-hover border border-black table-nowrap ">
+                  <thead className="bg-white text-light  ">
                     <tr>
                       <th className="text-light" scope="col">
                         Company Name
@@ -318,7 +318,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
            <div>
             <h1 className="text-sm text-center">Total :  ${displayTotal.toLocaleString()} </h1>
            </div>
-           <div className="h-[300px]">
+           <div className="h-[300px] ">
                     <Bar
               data={{
                 labels,
@@ -390,44 +390,41 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         <br />
         <h3 className="p-3">Subscribers</h3>
         <br />
-        <div className="bg-gray-50 rounded-lg shadow-md p-4 overflow-x-auto">
-          <table className="min-w-full table-auto rounded-md overflow-hidden">
+        <div className="table-responsive mx-2 overflow-auto">
+          <table className="table table-hover table-nowrap ">
             <thead className="bg-gray-100">
               <tr>
-                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
+                <th scope="col" className="text-light">
                   Name
                 </th>
-                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
+                <th scope="col" className="text-light">
                   Enrollment Date
                 </th>
-                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
+                <th scope="col" className="text-light">
                   Module Completed
                 </th>
-                <th scope="col" className="px-4 py-3 text-sm font-semibold text-gray-700">
+                <th scope="col" className="text-light ">
                   Completion %
                 </th>
               </tr>
             </thead>
-            <tbody>
+             <tbody>
               {subscribers.map((value, index) => (
-                <tr
-                  key={index}
-                  className="bg-gray-50 border-t border-gray-200 hover:bg-gray-100 transition-colors"
-                >
-                  <td className="px-4 py-2 flex items-center space-x-2">
+                <tr className="bg-white" key={index}>
+                  <td>
                     <img
-                      alt="avatar"
-                      src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                      className="rounded-full w-10 h-10"
+                      alt="..."
+                      src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                      className="avatar avatar-sm rounded-circle me-2"
                     />
                     <a
-                      className="text-gray-900 font-semibold hover:underline"
+                      className="text-heading font-semibold text-decoration-none"
                       href="#"
                     >
                       {value.first_name}
                     </a>
                   </td>
-                  <td className="px-4 py-2">
+                  <td>
                     {new Date(value.enrollment_date).toLocaleString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -437,13 +434,13 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
                       hour12: true,
                     })}
                   </td>
-                  <td className="px-4 py-2">{value.completed_modules}</td>
-                  <td className="px-4 py-2">
+                  <td>{value.completed_modules}</td>
+                  <td>
                     <ProgressBar
                       completed={Math.round(value.completion_percentage)}
                       bgColor="#001040"
                       animateOnRender="true"
-                      transitionDuration="1s" 
+                      transitionDuration="1s"
                     />
                   </td>
                 </tr>
@@ -454,8 +451,8 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         <br />
         <h3 className="p-3">Active user</h3>
         <br />
-        <div className="table-responsive mx-2">
-          <table className="table table-hover table-nowrap">
+        <div className="table-responsive mx-2  overflow-auto ">
+          <table className="table table-hover table-nowrap ">
             <thead className="bg-white">
               <tr>
                 <th scope="col" className="text-light">

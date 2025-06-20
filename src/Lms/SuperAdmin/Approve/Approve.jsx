@@ -110,7 +110,7 @@ export function Approve() {
 
   return (
     <div className="container-fluid">
-<ToastContainer/>
+        <ToastContainer/>
        <div className="row py-3">
                       <div className="col-sm-10  mb-4 mb-sm-0">
                         <h1 className="h2 mb-0 ls-tight">
@@ -155,7 +155,7 @@ export function Approve() {
             </h5>
           )}
         </div>
-        <div className="table-responsive">
+        <div className="table-responsive  overflow-auto">
           <table className="w-100 table table-hover table-nowrap">
             <thead className="text-light">
               <tr className="tw">
@@ -260,7 +260,7 @@ export function Approve() {
             </h5>
           )}
         </div>
-        <div className="table-responsive">
+        <div className="table-responsive  overflow-auto">
           <table className="w-100  table table-hover table-nowrap">
             <thead className="text-light">
               <tr  >

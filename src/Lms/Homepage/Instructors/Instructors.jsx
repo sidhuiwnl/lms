@@ -1,27 +1,70 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DrKen from "../../../assets/face.png";
 import "./Instructor.css";
 import cert1 from "../../../assets/boardcert.jpg";
 import cert2 from "../../../assets/Rotatingspine.gif";
 import cert3 from "../../../assets/HSS.jpg";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function Instructors() {
+  // Optimized animation variants
+  const slideRight = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0 }
+  };
 
-  useEffect(() => {
-    AOS.init();
-  }, []);;
+  const slideLeft = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
+  // Optimized transition settings
+  const smoothTransition = {
+    duration: 0.4,
+    ease: [0.25, 0.1, 0.25, 1]
+  };
+
+  const quickTransition = {
+    duration: 0.3,
+    ease: [0.25, 0.1, 0.25, 1]
+  };
+
   return (
     <div className="container overflow-hidden certparts">
       <div className="row">
         <h1 className="authortext my-5 text-center">Author Introduction</h1>
-        <div className="col-sm-12 col-lg-6"  data-aos="fade-right" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="200">
+        
+        <motion.div 
+          className="col-sm-12 col-lg-6"
+          variants={slideRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={smoothTransition}
+        >
           <img src={DrKen} alt="About Dr.Ken Hansraj,M.D" className="drimg" />
-        </div>
-        <div className="col-sm-12 col-lg-6 aboutDr mt-5" data-aos="fade-left" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="200">
+        </motion.div>
+
+        <motion.div 
+          className="col-sm-12 col-lg-6 aboutDr mt-5"
+          variants={slideLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={smoothTransition}
+        >
           <h2 className="Drtext my-4">Dr.Ken Hansraj,M.D</h2>
           <p className="abtken">
             For more than 20 years, Dr. Ken Hansraj has dedicated his life to
@@ -29,16 +72,17 @@ function Instructors() {
             vast experience in spine care, he has discovered andsimplified the
             core factors and strategies that can be applied to improve the
             quality of spinal health. His work helps people to understand spine
-            wellness, spinal conditions, and to augment people’s physical,
+            wellness, spinal conditions, and to augment people's physical,
             mental and emotional well-being through the spine.
           </p>
           <p className="abtken my-4">
-            Dr. Ken’s work has influenced people in every country to feel better
+            Dr. Ken's work has influenced people in every country to feel better
             and to do more. His studies on spine care costs, text neck and
             backpack forces have influenced global positions, and global trends
           </p>
-        </div>
+        </motion.div>
       </div>
+
       <div className="row my-5 abtken secondpara">
         <p>
           Kenneth K. Hansraj, M.D. is a spinal and orthopedic surgeon
@@ -52,17 +96,34 @@ function Instructors() {
         <p>
           Dr. Ken believes in whole body wellness, preventative care, and that
           the spine is a principal indicator of general health impacted by
-          “human software and hardware.”
+          "human software and hardware."
         </p>
       </div>
 
       <div className="row">
-        <div className="col-sm-12 col-lg-6" data-aos="flip-left" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="600">
-          <div className="certificatecards  rounded-4">
+        <motion.div 
+          className="col-sm-12 col-lg-6"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={smoothTransition}
+        >
+          <motion.div 
+            className="certificatecards rounded-4"
+            variants={scaleIn}
+            transition={quickTransition}
+          >
             <div className="row px-0 px-md-2 py-4">
               <div className="col flex flex-col items-center text-center">
                 <h3 className="certifiedheading my-2">Professional Training</h3>
-                <img src={cert3} className="imparts" data-aos="zoom-in-up" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="1000"/>
+                <motion.img 
+                  src={cert3} 
+                  className="imparts"
+                  variants={scaleIn}
+                  transition={quickTransition}
+                  loading="lazy"
+                />
               </div>
             </div>
 
@@ -96,17 +157,34 @@ function Instructors() {
                 </p>
               </ul>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="col-sm-12 col-lg-6" data-aos="flip-right" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="600">
-          <div className="rounded-4 certificatecards">
+        <motion.div 
+          className="col-sm-12 col-lg-6"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={smoothTransition}
+        >
+          <motion.div 
+            className="rounded-4 certificatecards"
+            variants={scaleIn}
+            transition={quickTransition}
+          >
             <div className="row rounded-3 px-2 py-2">
-              <div className="col flex flex-col items-center  text-center">
+              <div className="col flex flex-col items-center text-center">
                 <h3 className="certifiedheading mt-4">
                   Board Certifications
                 </h3>
-                <img src={cert1} className="imparts mt-2" data-aos="zoom-in-up" data-aos-offset="30" data-aos-easing="ease-in-sine" data-aos-duration="1000"/>
+                <motion.img 
+                  src={cert1} 
+                  className="imparts mt-2"
+                  variants={scaleIn}
+                  transition={quickTransition}
+                  loading="lazy"
+                />
               </div>
             </div>
             <div className="text-start px-5">
@@ -116,9 +194,14 @@ function Instructors() {
                 <li>National Board of Medical Examiners</li>
               </ul>
             </div>
-          </div>
-          <div className="rounded-4 certificatecards my-4">
-            <div className="row rounded-3 px-4 ">
+          </motion.div>
+
+          <motion.div 
+            className="rounded-4 certificatecards my-4"
+            variants={scaleIn}
+            transition={quickTransition}
+          >
+            <div className="row rounded-3 px-4">
               <h3 className="certifiedheading mt-3 py-0 py-md-1">
                 Professional Affiliations
               </h3>
@@ -138,14 +221,21 @@ function Instructors() {
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-4 order-1 order-lg-2 d-flex justify-content-center" data-aos="fade-in-down" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="200">
-                <img src={cert2} className="sm-mt-0 md-mt-5 imparts1 imp1"/>
+              <div className="col-sm-4 order-1 order-lg-2 d-flex justify-content-center">
+                <motion.img 
+                  src={cert2} 
+                  className="sm-mt-0 md-mt-5 imparts1 imp1"
+                  variants={fadeIn}
+                  transition={quickTransition}
+                  loading="lazy"
+                />
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
 }
-export default Instructors;
+
+export default React.memo(Instructors);

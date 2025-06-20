@@ -80,7 +80,7 @@ function PaymentInitiate() {
               <p className="paid-text">You have already purchased this course</p>
             </div>
           ) : (
-            <button className="purchase-button bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" onClick={handleCheckout}>
+            <button className="purchase-button bg-[#001040] rounded-t-xl" onClick={handleCheckout}>
               Purchase
             </button>
           )}

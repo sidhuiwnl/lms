@@ -4,7 +4,7 @@ import Mainlogo from "../../../assets/image 39.png";
 
 function Drmenubar() {
   return (
-    <nav className="navbarcontenttext h-20 py-4">
+    <nav className="navbarcontenttext h-20 py-4 sticky top-0 z-50">
       <div className="flex flex-row justify-between items-center">
         
         <NavLink to="/myspinecoach">
@@ -12,12 +12,7 @@ function Drmenubar() {
         </NavLink>
         
         <div className="flex items-center lg:mr-10 ">
-          <div className="d-lg-flex flex-grow-1">
-            <NavLink to="/" className="navpart px-3">
-              Home
-            </NavLink>
-          </div>
-
+          
           <NavLink to="/llmlogin" className="ms-4">
             <img src={loginimg} alt="Login" />
           </NavLink>

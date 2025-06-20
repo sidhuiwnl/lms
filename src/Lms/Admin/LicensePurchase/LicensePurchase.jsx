@@ -241,7 +241,7 @@ export default function LicensePurchase() {
         <h3>We Provide Best Catalogue</h3>
       </div>
 
-      <div className="max-w-md px-4 py-6 bg-gray-50 rounded-lg shadow-md m-auto">
+      <div className="max-w-md px-4 py-6 bg-gray-50 rounded-lg border shadow-md m-auto">
         <div className="text-center p-3">
           <span className="text-2xl font-semibold">$20</span> / License
           <br /><br />

@@ -59,7 +59,7 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
   return (
     <>
       <motion.div
-          className="fixed top-2.5 left-2.5 rounded-lg z-[100] bg-black bg-opacity-60 backdrop-blur-md"
+          className="fixed top-2.5 left-2.5 rounded-lg z-[100]  bg-opacity-10 backdrop-blur-md"
           onClick={toggleSidebar}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

@@ -100,14 +100,14 @@ function MessageHistory() {
       <ToastContainer />
       <nav className="message-nav flex gap-3">
         <button
-          className={`nav-btn flex gap-2 ${view === "compose" ? "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" : "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl"}`}
+          className={`nav-btn flex gap-2 ${view === "compose" ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"}`}
           onClick={() => handleViewChange("compose")}
           
         >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-icon lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>          Compose Message
         </button>
         <button
-          className={`nav-btn flex gap-2 ${view === "history" ? "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" : "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl"}`}
+          className={`nav-btn flex gap-2 ${view === "history" ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"}`}
           onClick={() => handleViewChange("history")}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-clock-icon lucide-file-clock"><path d="M16 22h2a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="8" cy="16" r="6"/><path d="M9.5 17.5 8 16.25V14"/></svg>
@@ -123,7 +123,7 @@ function MessageHistory() {
               <div className="recipient-buttons">
                 <button
                   className={`recipient-btn ${
-                    recipients.includes("1") ? "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" : "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl"
+                    recipients.includes("1") ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"
                   }`}
                   onClick={() => handleRecipientChange("1")}
                 >
@@ -136,7 +136,7 @@ function MessageHistory() {
 
                 <button
                   className={`recipient-btn ${
-                    recipients.includes("2") ? "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl" : "bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl"
+                    recipients.includes("2") ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"
                   }`}
                   onClick={() => handleRecipientChange("2")}
                 >
@@ -176,7 +176,7 @@ function MessageHistory() {
               ></textarea>
             </div>
             <button
-              className="submit-btn bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl"
+              className="submit-btn bg-[#001040] rounded-t-xl"
               onClick={handleSubmit}
               disabled={loading}
             >

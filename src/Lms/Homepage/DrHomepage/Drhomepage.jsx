@@ -67,9 +67,10 @@ function Drkenhome() {
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
             title="Lessons Video"
+           
           />
         ) : (
-          <img src={frontgif} alt="Loading animation" className="rounded-5" />
+          <img src={frontgif} alt="Loading animation" className="rounded-5 lg:ml-15" />
         )}
       </div>
       <div className="m-5">

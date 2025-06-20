@@ -89,7 +89,7 @@ function AddCategory() {
                 onChange={(e) => handleInputChange(input.id, e.target.value)}
               />
               <button
-                className="ms-2 plusbtn text-white bg-gradient-to-r from-blue-600 to-indigo-700 px-2"
+                className="ms-2 plusbtn text-white bg-[#001040] px-2"
                 onClick={handleAddInputField}
               >
                 +
@@ -97,7 +97,7 @@ function AddCategory() {
             </div>
           ))}
           <button
-           className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"  
+           className="w-full mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"  
             onClick={handleAddCategory}
           >
             Submit
@@ -111,28 +111,28 @@ function AddCategory() {
             <div className="flex flex-col  space-y-3">
               {categories.map((category) => (
                <div
-  key={category.id}
-  className="card p-2 fc1 bg-blue-200 text-dark-800 rounded-lg shadow-md flex w-fit max-w-xs mx-2  "
->
-  <p className="m-0 flex items-center gap-2">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-album-icon"
-    >
-      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-      <polyline points="11 3 11 11 14 8 17 11 17 3" />
-    </svg>
-    {category.name}
-  </p>
-</div>
+                key={category.id}
+                className="card p-2 fc1 bg-blue-800 text-white rounded-lg shadow-md flex w-fit max-w-xs mx-2  "
+                >
+                <p className="m-0 flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-album-icon "
+                  >
+                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                    <polyline points="11 3 11 11 14 8 17 11 17 3" />
+                  </svg>
+                  {category.name}
+                </p>
+            </div>
 
 
               ))}

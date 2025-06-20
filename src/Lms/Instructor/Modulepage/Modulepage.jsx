@@ -103,7 +103,7 @@ function Modulepage() {
     <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
        <div className="max-w-4xl mx-auto" >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+       <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Add Module</h2>
             <p className="text-blue-100 mt-1">Create new Modules</p>
           </div>
@@ -167,14 +167,14 @@ function Modulepage() {
               </label>
               <input
                 type="file"
-                className="w-full border border-gray-300 rounded px-3 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:bg-blue-50 file:text-[#001040] hover:file:bg-blue-100"
                 id="moduleImage"
                 onChange={handleFileChange}
               />
             </div>
           </div>
           <div className="d-flex justify-content-end">
-            <button type="submit"  className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+            <button type="submit"  className="mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
 >
               Submit
             </button>

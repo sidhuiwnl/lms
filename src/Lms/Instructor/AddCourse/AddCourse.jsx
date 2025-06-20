@@ -121,11 +121,11 @@ function AddCourse() {
   };
 
   return (
-    <div className="courselist-container min-h-screen  py-8 px-4 sm:px-6  rounded-3xl">
+    <div className="courselist-container min-h-screen   py-8 px-4 sm:px-6  rounded-3xl">
       <ToastContainer />
-       <div className="max-w-4xl mx-auto" >
+       <div className="max-w-4xl mx-auto border " >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+       <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Course Creation</h2>
             <p className="text-blue-100 mt-1">Add new Courses</p>
           </div>
@@ -139,7 +139,7 @@ function AddCourse() {
                 id="courseFullName"
                 name="courseFullName"
                 type="text"
-                className="form-control fc1"
+                className="form-control border"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@ function AddCourse() {
                 id="courseShortName"
                 name="courseShortName"
                 type="text"
-                className="form-control fc1"
+                className="form-control border"
               />
             </div>
           </div>
@@ -162,7 +162,7 @@ function AddCourse() {
               <select
                 id="courseCategory"
                 name="courseCategory"
-                className="form-control fc1"
+                className="form-control border"
                 onChange={(e) => setSelectedCategoryId(e.target.value)} // Set single ID
                 value={selectedCategoryId || ""}
               >
@@ -175,7 +175,7 @@ function AddCourse() {
               </select>
               <button
                 type="button"
-                className="px-6 py-3  mx-1 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+                className="px-6 py-3  mx-1 bg-[#001040] text-white font-medium rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
              
                 onClick={handleOpenModal}
               >
@@ -192,7 +192,7 @@ function AddCourse() {
                 id="courseStartDate"
                 name="courseStartDate"
                 type="date"
-                className="form-control fc1"
+                className="form-control border"
               />
             </div>
           </div>
@@ -203,7 +203,7 @@ function AddCourse() {
                 id="courseEndDate"
                 name="courseEndDate"
                 type="date"
-                className="form-control fc1"
+                className="form-control border"
               />
             </div>
           </div>
@@ -214,7 +214,7 @@ function AddCourse() {
                 id="courseImage"
                 name="courseImage"
                 type="file"
-                className="form-control fc1"
+                className="form-control border"
                 accept=".jpg, .jpeg"
                 required
               />
@@ -226,12 +226,12 @@ function AddCourse() {
               <textarea
                 id="courseDescription"
                 name="courseDescription"
-                className="form-control"
+                className="form-control border"
               ></textarea>
             </div>
           </div>
           <div className="d-flex justify-content-end">
-          <input type="submit" value={"Submit"} className=" mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+          <input type="submit" value={"Submit"} className=" mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
               />
           </div>
        

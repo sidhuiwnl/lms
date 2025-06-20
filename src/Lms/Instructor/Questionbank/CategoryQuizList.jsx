@@ -212,7 +212,7 @@ const CategoryQuizList = () => {
        <div className="max-w-4xl mx-auto" >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
       <ToastContainer />
-     <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+     <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Questionbank</h2>
             
           </div>
@@ -313,7 +313,7 @@ const CategoryQuizList = () => {
         </div>
         <div className="overflow-x-auto rounded-xl  shadow ">
         <table className="min-w-full divide-y divide-gray-200 overflow-hidden ">
-          <thead className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+          <thead className="bg-[#001040] text-white">
             <tr>
               <th className="px-4 py-2 text-left">Select</th>
               <th className="px-4 py-2 text-left">Quiz ID</th>
@@ -355,14 +355,14 @@ const CategoryQuizList = () => {
 
         <div className="d-flex justify-content-between my-3">
           <button
-           className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+           className="mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
 
            
             onClick={handleAddQuizzes}
           >
             Add
           </button>
-          <Link to={`/instructordashboard/${id}/questionbankupdate`} className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+          <Link to={`/instructordashboard/${id}/questionbankupdate`} className="mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
 >
             Update
           </Link>

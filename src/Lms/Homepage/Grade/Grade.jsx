@@ -5,14 +5,19 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
+
 function Grade() {
   const navigate = useNavigate(); // Correctly use useNavigate
   const { id } = useParams();
 
+
   const decodedId = atob(id)
 
 
+
+
   const [grade, setGrade] = useState([]);
+
 
   useEffect(() => {
     axios
@@ -23,39 +28,45 @@ function Grade() {
       });
   }, [id]);
 
+
   const handleNavigate = () => {
     navigate("/"); // Replace with the actual path you want to navigate to
   };
 
+
   return (
-    <div className="container-fluid mt-5 ">
-      {/* <div className='my-4'>
-          <FontAwesomeIcon icon={faArrowLeft} className='arrowsize' onClick={handleNavigate()}/>
-          </div> */}
-      <div className="d-flex justify-content-center align-items-center px-1  px-lg-5">
-        <table className="responsive-table">
-          <thead>
-            <tr className="text-center">
-              <th>Lessons</th>
-              <th>Completion</th>
-            </tr>
-          </thead>
-          <tbody className="bg-blue-100">
-            {grade.map((module, index) => (
-              <tr key={module.moduleid} className="texttable">
-                <td className="ps-5 ">
-                  {module.moduleid}. {module.modulename}
-                </td>
-                <td className="text-center ">
-                  {module.completion_percentage} %
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div className="container mx-auto px-2 mt-6 max-w-screen-lg py-10">
+  <div className="overflow-x-auto rounded-md shadow-sm  border">
+    <table className="min-w-full text-xs text-left text-gray-700  bg-white border border-gray-200">
+      <thead className="uppercase text-white bg-[#001040]">
+        <tr className="text-center">
+          <th className="px-3 py-3 text-sm">Lessons</th>
+          <th className="px-3 py-3 text-sm">Completion</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200">
+        {grade.map((module) => (
+          <tr key={module.moduleid} className="hover:bg-gray-50 transition-all">
+            <td className="px-3 py-2 whitespace-nowrap">
+              {module.moduleid}. {module.modulename}
+            </td>    
+            <td className="px-3 py-2 text-center text-green-700 font-medium">
+              {module.completion_percentage}%
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+   
   );
 }
 
+
 export default Grade;
+
+
+

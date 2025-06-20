@@ -74,6 +74,9 @@ export const updateBlogController = (req, res) => {
   const { blogId } = req.params;
   const { title, content } = req.body;
 
+  console.log("admin-id",adminId)
+  
+
   if (!title || !content) {
     return res.status(400).json({ message: 'Title and content are required' });
   }

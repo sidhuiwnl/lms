@@ -207,7 +207,7 @@ function QuestionUpdate() {
         <ToastContainer />
        <div className="max-w-4xl mx-auto" >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+       <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Update Questions</h2>
           </div>
       <div className=" container entirequizpart p-4 rounded-3">
@@ -573,7 +573,7 @@ function QuestionUpdate() {
           )}
         </div>
 <div className="d-flex justify-content-end">
-        <button onClick={handleSubmit}  className="btn bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+        <button onClick={handleSubmit}  className="btn bg-[#001040] text-white"
             >
           Update Questions
         </button>

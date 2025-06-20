@@ -264,6 +264,7 @@ function UpdateBlogPage() {
           toast.error('Authentication token not found. Please login again.');
           return;
         }
+        
 
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`, {
           method: 'GET',

@@ -4,7 +4,7 @@ import "./Admindashboard.css";
 import Adminsidebar from '../AdminSidebar/AdminSidebar';
 
 const Admindashboard = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);

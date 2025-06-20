@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
+
+
 export default function BuyingBook() {
+
+  
+
   const nav=useNavigate("")
    const handleBuyNow = () => {
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
@@ -15,7 +20,8 @@ export default function BuyingBook() {
             src="./spine-book.png"
             alt="Book cover of Secrets of the Cervical Spine by Dr. Kenneth Hansraj, promoting spinal health."
             title="Secrets of the Cervical Spine by Dr. Kenneth Hansraj reveals keys to spinal wellness and a vibrant life, focusing on cervical spine care for improved health and vitality."
-            className="w-full max-w-[300px] md:max-w-[400px] lg:max-w-[471px] h-auto"
+            className="w-full max-w-[300px] md:max-w-[400px] lg:max-w-[471px]  rounded-lg object-contain img-fluid mx-auto cursor-pointer transform transition-transform hover:scale-105"
+          
           />
           <button  className="contactbtn px-4" onClick={handleBuyNow}>
             Buy Now
@@ -41,6 +47,7 @@ export default function BuyingBook() {
           </div>
         </div>
       </div>
+    
     </section>
   );
 }

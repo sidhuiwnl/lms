@@ -4,6 +4,10 @@ import jwt from "jsonwebtoken";
 import transporter from "../../config/email.js";
 import path from "path";
 
+import dotenv from "dotenv"
+
+dotenv.config()
+
 const saltRounds = 10;
 
 export const registerBusiness = async (req, res) => {

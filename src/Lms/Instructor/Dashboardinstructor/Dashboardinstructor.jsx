@@ -4,7 +4,7 @@ import Sidebarinstructor from "../Sidebarinstructor/Sidebarinstructor";
 import "./Dashboardinstructor.css";
 
 const Dashboardinstructor = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);

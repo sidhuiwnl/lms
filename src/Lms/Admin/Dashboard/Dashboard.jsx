@@ -245,8 +245,8 @@ export default function Dashboard() {
               <div class="col-xl-4 col-sm-6 col-12">
                 <div class="card shadow border-0 h-60">
              
-                  <div class="card-body  rounded-2xl">
-                    <div class="row">
+                  <div class="card-body bg-[#f9d7e7]  rounded-2xl">
+                    <div class="row ">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2 ">
                           Total License
@@ -265,37 +265,37 @@ export default function Dashboard() {
                         {/* <i class="bi bi-arrow-up me-1"></i>13% */}
                       </span>
                       <Link to={`/admindashboard/${id}/purelicense`}>
-  <span className="flex items-center gap-2 text-blue-600">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-copy-plus"
-    >
-      <line x1="15" x2="15" y1="12" y2="18" />
-      <line x1="12" x2="18" y1="15" y2="15" />
-      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-    </svg>
-    Add More License
-  </span>
-</Link>
+                          <span className="flex items-center gap-2 text-blue-600">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="lucide lucide-copy-plus"
+                            >
+                              <line x1="15" x2="15" y1="12" y2="18" />
+                              <line x1="12" x2="18" y1="15" y2="15" />
+                              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                            Add More License
+                          </span>
+                        </Link>
 
 
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-60">
+              <div class="col-xl-4 col-sm-6  col-12">
+                <div class="card shadow border-0  lg:h-60">
              
-                  <div class="card-body">
+                  <div class="card-body bg-[#f5e2f2] rounded-xl  ">
                     <div class="row">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">
@@ -318,7 +318,7 @@ export default function Dashboard() {
                       <span class="badge badge-pill bg-danger text-white me-2  p-2">
                         Inactive: {inactiveData.length}
                       </span>
-                      <span class="badge badge-pill bg-soft-success text-success me-2 p-2">
+                      <span class="badge badge-pill bg-soft-success text-success mt-2 sm:mt-2 me-2 p-2">
                         completed: {completedData.length}
                       </span>
                       {totallicense === 0 ? (
@@ -329,42 +329,40 @@ export default function Dashboard() {
                       ) : (
                        
                         <Link onClick={handleModalOpen}>
-  <span
-    className={`flex items-center text-green-600 my-2 gap-2 ${
-      totallicense === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-    }`}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-mail-plus"
-    >
-      <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      <path d="M19 16v6" />
-      <path d="M16 19h6" />
-    </svg>
-    Invite Learners
-  </span>
-</Link>
-
-
+                              <span
+                                className={`flex items-center text-green-600 my-2 gap-2 ${
+                                  totallicense === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                                }`}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="lucide lucide-mail-plus"
+                                >
+                                  <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
+                                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                  <path d="M19 16v6" />
+                                  <path d="M16 19h6" />
+                                </svg>
+                                Invite Learners
+                              </span>
+                          </Link>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-60">
+              <div class="col-xl-4 col-sm-6  col-12">
+                <div class="card shadow border-0  h-60">
              
-                  <div class="card-body">
+                  <div class="card-body bg-[#ccd1e7] rounded-xl">
                     <div class="row">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">
@@ -383,28 +381,26 @@ export default function Dashboard() {
                      
                      
                      <Link to={`/admindashboard/${id}/notenroll`}>
-  <span className="flex items-center text-red-500 p-2 space-x-2 ">
-    <span>Not Enrolled</span>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-circle-arrow-right"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M8 12h8" />
-      <path d="m12 16 4-4-4-4" />
-    </svg>
-  </span>
-</Link>
-
-
+                    <span className="flex items-center text-red-500 p-2 space-x-2 ">
+                      <span>Not Enrolled</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-circle-arrow-right"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 12h8" />
+                        <path d="m12 16 4-4-4-4" />
+                      </svg>
+                      </span>
+                  </Link> 
                     </div>
                   </div>
                 </div>
@@ -412,61 +408,90 @@ export default function Dashboard() {
             </div>
 
 
-            <div className="h-screen  flex-grow-1 overflow-y-lg-auto">
-              <main className="py-6 bg-surface-secondary">
-                <div className="container-fluid">
-                  <div className="card shadow border-0 mb-7">
-                    <div className="card-header d-flex justify-content-between">
-                      <Link
-                        to="#"
-                        className="mb-0 linktextclr"
+            <div className="h-screen  flex-grow-1 overflow-y-auto">
+            <main className="py-6 bg-surface-secondary">
+            <div>
+              <div className="card shadow border-0 mb-7">
+                
+                <div className="card-header">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 overflow-x-auto pb-2 sm:pb-0">
+                    <div className="flex space-x-2 sm:space-x-4 min-w-max">
+                      <button
                         onClick={() => changeTable(1)}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTable === 1 
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }`}
                       >
                         Leader Board
-                      </Link>
-                      <Link
-                        to="#"
-                        className="mb-0 linktextclr"
+                      </button>
+                      <button
                         onClick={() => changeTable(2)}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTable === 2
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }`}
                       >
                         Active
-                      </Link>
-                      <Link
-                        to="#"
-                        className="mb-0 linktextclr"
+                      </button>
+                      <button
                         onClick={() => changeTable(3)}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTable === 3
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }`}
                       >
                         Inactive
-                      </Link>
-                      <Link
-                        to="#"
-                        className="mb-0 linktextclr"
+                      </button>
+                      <button
                         onClick={() => changeTable(4)}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTable === 4
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }`}
                       >
                         Completed
-                      </Link>
+                      </button>
                     </div>
-
-
-                    <div className="overflow-x-auto rounded-xl shadow-md">
-  <table className="min-w-full text-sm text-left text-gray-800 bg-white border border-gray-200 rounded-xl">
-    <thead className="bg-blue-700 text-white text-sm">
-      <tr>
-        <th className="px-4 py-3">Name</th>
-        <th className="px-4 py-3">Enrollment Date</th>
-        <th className="px-4 py-3">No. of Modules Completed</th>
-        <th className="px-4 py-3">Completed Percentage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {renderTableData()}
-    </tbody>
-  </table>
-</div>
                   </div>
                 </div>
-              </main>
+
+                {/* Improved Table with Horizontal Scrolling */}
+                <div className="relative overflow-x-auto shadow-sm ">
+                  <div className="inline-block min-w-full align-middle rounded-0">
+                    <div className="overflow-hidden">
+                      <table className="w-full divide-y divide-gray-200">
+                        <thead className="bg-blue-700">
+                          <tr>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                              Name
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                              Enrollment Date
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                              Modules Completed
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                              Completion %
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {renderTableData()}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+        </main>
+      </div>
           </div>
         </main>
         {isModalOpen && (

@@ -2,69 +2,47 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function QuestionBankUpdate() {
-  const [module, setModule] = useState([]); // Module data
-  const [moduleid, setModuleId] = useState(""); // Selected module ID
-  const [allQuestions, setAllQuestions] = useState([]); // All questions from API
-  const [selectedQuestions, setSelectedQuestions] = useState([]); // Questions for the current module
+  const [module, setModule] = useState([]);
+  const [moduleid, setModuleId] = useState("");
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
 
-  // Fetch all modules on component mount
+  // Fetch all modules
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_REACT_APP_API_URL}course/getmodule`)
-      .then((res) => {
-        setModule(res.data.result); // Populate module data
-      })
-      .catch((err) => {
-        console.error("Error fetching modules:", err);
-      });
+      .then((res) => setModule(res.data.result))
+      .catch((err) => console.error("Error fetching modules:", err));
   }, []);
 
   // Fetch questions when module ID changes
   useEffect(() => {
     if (moduleid) {
       axios
-        .get(
-          `${import.meta.env.VITE_REACT_APP_API_URL}quiz/updatequestionbank/${moduleid}`
-        )
-        .then((res) => {
-          setSelectedQuestions(res.data.questions); // Populate selected questions
-        })
-        .catch((err) => {
-          console.error("Error fetching selected questions:", err);
-        });
+        .get(`${import.meta.env.VITE_REACT_APP_API_URL}quiz/updatequestionbank/${moduleid}`)
+        .then((res) => setSelectedQuestions(res.data.questions))
+        .catch((err) => console.error("Error fetching selected questions:", err));
 
       axios
         .get(`${import.meta.env.VITE_REACT_APP_API_URL}quiz/getoldquestions/${moduleid}`)
-        .then((res) => {
-          setAllQuestions(res.data.questions); // Populate all available questions
-        })
-        .catch((err) => {
-          console.error("Error fetching all questions:", err);
-        });
+        .then((res) => setAllQuestions(res.data.questions))
+        .catch((err) => console.error("Error fetching all questions:", err));
     }
   }, [moduleid]);
 
-  // Handle remove question
   const handleRemoveQuestion = (id) => {
-    const updatedSelected = selectedQuestions.filter(
-      (question) => question.id !== id
-    );
-    setSelectedQuestions(updatedSelected);
+    setSelectedQuestions(selectedQuestions.filter(question => question.id !== id));
   };
 
-  // Handle add question
   const handleAddQuestion = (id) => {
-    const questionToAdd = allQuestions.find((question) => question.id === id);
-    if (questionToAdd && !selectedQuestions.some((q) => q.id === id)) {
+    const questionToAdd = allQuestions.find(question => question.id === id);
+    if (questionToAdd && !selectedQuestions.some(q => q.id === id)) {
       setSelectedQuestions([...selectedQuestions, questionToAdd]);
     }
   };
 
-  // Handle submit updated questions to API
   const handleSubmit = () => {
-    const updatedQuestionIds = selectedQuestions.map((q) => q.id);
-
-    console.log(moduleid, updatedQuestionIds);
+    const updatedQuestionIds = selectedQuestions.map(q => q.id);
 
     axios
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}quiz/updatequestionids`, {
@@ -72,8 +50,6 @@ function QuestionBankUpdate() {
         questionIds: updatedQuestionIds,
       })
       .then((res) => {
-        console.log(res);
-
         if (res.data.error === "No records found for the given moduleid.") {
           alert("No records found for the given module");
         } else if (res.data.error === "Failed to update records.") {
@@ -89,109 +65,146 @@ function QuestionBankUpdate() {
   };
 
   return (
-    <div className="container py-10 ">
-      <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl">
-          <h2 className="text-2xl font-bold text-white">Question Bank Update</h2>    
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      {/* Header */}
+      <div className="bg-[#001040] rounded-t-xl px-6 py-5">
+        <h2 className="text-2xl font-bold text-white">Question Bank Update</h2>    
       </div>
-  
-    <div className="modpart p-2 rounded-b-xl">
-      {/* Module Selection */}
-      <div className="form-group py-2">
-        <div className="form-group-inner">
-        <label htmlFor="module-select">Select Module</label>
-        <select
-          id="module-select"
-          value={moduleid}
-          className="fc1 w-100"
-          onChange={(e) => setModuleId(e.target.value)}>
-          <option value="">Select a Module</option>
-          {module.map((mod) => (
-            <option key={mod.moduleid} value={mod.moduleid}>
-              {mod.modulename}
-            </option>
-          ))}
-        </select>
-      </div>
-      </div>
-      {/* Table for Selected Questions */}
-      <h4>Selected Questions</h4>
-      {selectedQuestions.length > 0 ? (
-        <table >
-          <thead >
-            <tr >
-              <th>Quiz ID</th>
-              <th>Question</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedQuestions.map((question) => (
-              <tr key={question.id}>
-                <td>{question.id}</td>
-                <td dangerouslySetInnerHTML={{ __html: question.text }}></td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleRemoveQuestion(question.id)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
+      
+      {/* Main Content */}
+      <div className="bg-white shadow-md rounded-b-xl p-6">
+        {/* Module Selection */}
+        <div className="mb-8">
+          <label htmlFor="module-select" className="block text-sm font-medium text-gray-700 mb-1">
+            Select Module
+          </label>
+          <select
+            id="module-select"
+            value={moduleid}
+            className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            onChange={(e) => setModuleId(e.target.value)}
+          >
+            <option value="">Select a Module</option>
+            {module.map((mod) => (
+              <option key={mod.moduleid} value={mod.moduleid}>
+                {mod.modulename}
+              </option>
             ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No questions selected.</p>
-      )}
+          </select>
+        </div>
 
-      {/* Table for All Questions */}
-      <h4>Available Questions</h4>
-      {allQuestions.length > 0 ? (
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Quiz ID</th>
-              <th>Question</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allQuestions.map((question) => (
-              <tr key={question.id}>
-                <td>{question.id}</td>
-                <td dangerouslySetInnerHTML={{ __html: question.text }}></td>
-                <td>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => handleAddQuestion(question.id)}
-                    disabled={selectedQuestions.some(
-                      (q) => q.id === question.id
-                    )}
-                  >
-                    Add
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No available questions.</p>
-      )}
+        {/* Selected Questions Section */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Selected Questions</h3>
+          {selectedQuestions.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200 ">
+                <thead >
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Quiz ID
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Question
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-neutral-300 border divide-y divide-gray-200">
+                  {selectedQuestions.map((question) => (
+                    <tr key={question.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {question.id}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500">
+                        <div dangerouslySetInnerHTML={{ __html: question.text }} />
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button
+                          onClick={() => handleRemoveQuestion(question.id)}
+                          className="text-white hover:text-red-900 border p-3 bg-red-600 rounded-lg"
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-gray-500">No questions selected.</p>
+          )}
+        </div>
 
-      {/* Submit Button */}
-      {moduleid && (
-        <button
-          className="btn btn-primary"
-          onClick={handleSubmit}
-          disabled={selectedQuestions.length === 0}
-        >
-          Submit Updates
-        </button>
-      )}
+        {/* Available Questions Section */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Available Questions</h3>
+          {allQuestions.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y  divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Quiz ID
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Question
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-neutral-300 border divide-y divide-gray-600">
+                  {allQuestions.map((question) => (
+                    <tr key={question.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {question.id}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500">
+                        <div dangerouslySetInnerHTML={{ __html: question.text }} />
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button
+                          onClick={() => handleAddQuestion(question.id)}
+                          disabled={selectedQuestions.some(q => q.id === question.id)}
+                          className={`${selectedQuestions.some(q => q.id === question.id) 
+                            ? 'text-gray-400 cursor-not-allowed' 
+                            : 'text-green-600 hover:text-green-900'}`}
+                        >
+                          {selectedQuestions.some(q => q.id === question.id) ? 'Added' : 'Add'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-gray-500">No available questions.</p>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        {moduleid && (
+          <div className="flex justify-end">
+            <button
+              onClick={handleSubmit}
+              disabled={selectedQuestions.length === 0}
+              className={`px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white 
+                ${selectedQuestions.length === 0 
+                  ? 'bg-gray-400 cursor-not-allowed' 
+                  : 'bg-blue-600 hover:bg-blue-700'}`}
+            >
+              Submit Updates
+            </button>
+          </div>
+        )}
+      </div>
     </div>
-    </div>
-    
   );
 }
 

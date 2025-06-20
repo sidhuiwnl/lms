@@ -36,7 +36,7 @@ setError("")
           if (response.data.message === "Password updated successfully in both tables") {
             toast.success("Password updated successfully");
             setTimeout(() => {
-              navigate("/login"); // Redirect to login page after success
+              navigate("/lmlogin"); // Redirect to login page after success
             }, 2000);
           } else if (response.data.message === "Invalid or expired token") {
             toast.error("Invalid or expired token");

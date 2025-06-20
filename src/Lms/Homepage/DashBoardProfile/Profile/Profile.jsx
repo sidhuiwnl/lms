@@ -153,7 +153,7 @@ export function Indiviualdashboardmain() {
   return (
     <>
       <div className=" flex-grow-1 overflow-y-auto">
-        <header className="bg-surface-primary mb-2 lg:w-[1000px] border pt-6 rounded-2xl g-4 m-3 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl">
+        <header className=" mb-2 lg:w-[1000px] border pt-6 rounded-2xl g-4 m-3 bg-[#001040]  rounded-t-xl">
           <div className="container-fluid">
             <div className="mb-npx">
               <div className="row align-items-center">

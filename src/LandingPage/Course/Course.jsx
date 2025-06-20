@@ -20,7 +20,7 @@ export default function Course() {
           </button>
         </div>
         {/* Text Content */}
-        <div className="col-sm-12 col-md-5 text-center text-md-start ps-md-5">
+        <div className="col-sm-12 col-md-5 text-center  mt-16 text-md-start ps-md-5">
           <h1 className="fw-bold mb-3 headingarea">Enroll in the Course</h1>
           <h3 className="text-danger fw-bold mb-3" style={{ fontSize: '2.3rem' }}>
             My Spine Coach.

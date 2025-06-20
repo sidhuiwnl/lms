@@ -137,7 +137,7 @@ function EditProfile() {
           />
         </div>
 
-        <button type="submit"  className="btn btn-sm bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl text-white">
+        <button type="submit"  className="btn btn-sm bg-[#001040] rounded-t-xl text-white">
           Save Changes
         </button>
       </form>

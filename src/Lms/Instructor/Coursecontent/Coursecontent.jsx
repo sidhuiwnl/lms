@@ -291,7 +291,7 @@ const Coursecontent = () => {
     <div className="courselist-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
        <div className="max-w-4xl mx-auto" >
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-       <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+       <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Page Content</h2>
             <p className="text-blue-100 mt-1">Create and organize your course content</p>
           </div>
@@ -371,7 +371,7 @@ const Coursecontent = () => {
               <Link to={`/instructordashboard/${id}/updatepagecontent`}>
                <button
   type="submit"
-  className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
+  className="mt-6 px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -452,7 +452,7 @@ const Coursecontent = () => {
           <div className="row">
             <div className="col-sm-12 d-flex justify-content-between my-2">
               <div className="col-sm-12 col-md-5">
-                <button type="submit" className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
+                <button type="submit" className="mt-6 px-6 py-3 bg-gradient-to-r bg-[#001040] text-white font-medium rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
                   Submit Content
                 </button>
               </div>

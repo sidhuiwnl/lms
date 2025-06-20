@@ -87,7 +87,8 @@ export default function HeroSection() {
       
       </Helmet>
       
-      <section className="p-4 flex flex-col lg:flex-row items-center md:items-start gap-6 md:gap-10 overflow-hidden">
+      <section className="p-4 flex flex-col lg:flex-row items-center md:items-start gap-6 md:gap-10 ">
+        
         <div className="w-full lg:w-1/2 flex justify-center">
           <img
             src="./doctor.png"

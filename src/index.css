@@ -4,11 +4,13 @@
 body,html{
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 100vw;
+    height: 100vh; 
     overflow-x: hidden; 
     font-family: "Montserrat", "Arial", sans-serif;
     font-weight: 700;
 }
+
 
 
 .montserrat-main {
@@ -64,14 +66,7 @@ ul li{
   font-style: normal;
 }
 
-body,html{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden; 
-    font-family: "Inter" sans-serif !important;
-    font-weight: 600;
-}
+
 
 .bluebutton{
   background-color: #001040;
@@ -97,12 +92,63 @@ cursor: pointer;
 }
 
 
-@layer components{
-  .btn-gradient{
-    @apply bg-gradient-to-r from-blue-600 to-indigo-700 rounded-t-xl text-white px-4 py-2 font-medium shadow-md hover:opacity-90 transition duration-300;
-  }
+@keyframes scroll-marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
-.my-custom-progress > div {
-  background: linear-gradient(to right, #2563eb, #4338ca); /* blue-600 to indigo-700 */
+.marquee-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-inner {
+    display: inline-flex;
+    animation: scroll-marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 25s linear infinite;
+}
+
+
+.nocopy {
+  user-select: none;     /* Disable text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+
+.contactbtn{
+  background-color: #ffa200;
+  color: white;
+  border-radius: 40px !important;
+  border: 2px solid #C2C2C2;
+  padding: 5px 10px;
+  font-size: 23px;
+  transition: transform 0.5s ease;
+}
+
+.contactbtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Clean soft shadow */
 }

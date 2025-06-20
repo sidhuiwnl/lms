@@ -42,7 +42,7 @@ export default function DrMenuBarUser() {
   };
 
   return (
-    <nav className="bg-[#001040] py-6 px-4 sm:px-6">
+    <nav className="bg-[#001040] py-6 px-4 sm:px-6 sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         {/* Logo */}
         <NavLink to="/myspinecoach" className="flex items-center">
@@ -117,13 +117,13 @@ export default function DrMenuBarUser() {
                 Badge
               </NavLink>
             
-              <NavLink
+              {/* <NavLink
                 to={`/feedback/${id}`}
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Feedback
-              </NavLink>
+              </NavLink> */}
             
               <NavLink
                 to={`/user/${id}/profile`}
@@ -173,12 +173,12 @@ export default function DrMenuBarUser() {
           >
             Badge
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to={`/feedback/${id}`}
             className="text-white hover:text-[#ffa200] transition-colors duration-200"
           >
             Feedback
-          </NavLink>
+          </NavLink> */}
 
           
           <div className="relative ml-4 ">

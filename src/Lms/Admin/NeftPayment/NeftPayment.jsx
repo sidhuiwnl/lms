@@ -78,7 +78,7 @@ export default function NeftPayment() {
 
 
   <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-     <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-indigo-700">
+     <div className="px-6 py-5 bg-[#001040]">
             <h2 className="text-2xl font-bold text-white">Transactional Details</h2>
            
           </div>
@@ -137,7 +137,7 @@ export default function NeftPayment() {
                 readOnly/>
             </div>
 <div className="flex justify-center">
-            <button type="submit" className=" px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-medium rounded-lg shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2">
+            <button type="submit" className=" px-6 py-3 bg-[#001040] text-white font-medium rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center gap-2">
               Sign Up
             </button>
             </div>

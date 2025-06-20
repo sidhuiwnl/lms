@@ -255,11 +255,18 @@ export const checkUserPaymentStatus = (req, res) => {
 export const getAllUsers = (req, res) => {
   // SQL query to fetch all users and their isActive status, and count the number of active users
   const sqlQuery = `
-    SELECT u.*, ut.isActive, 
-    (SELECT COUNT(*) FROM user u2 LEFT JOIN user_track ut2 ON u2.user_id = ut2.user_id WHERE ut2.isActive = 1 AND u2.user_id NOT IN (1, 2)) AS activeUserCount
-    FROM user u
-    LEFT JOIN user_track ut ON u.user_id = ut.user_id
-    WHERE u.user_id NOT IN (1, 2);
+   SELECT 
+  u.*, 
+  MAX(ut.isActive) AS isActive,
+  (SELECT COUNT(DISTINCT u2.user_id) 
+   FROM user u2 
+   LEFT JOIN user_track ut2 ON u2.user_id = ut2.user_id 
+   WHERE ut2.isActive = 1 AND u2.user_id NOT IN (1, 2)) AS activeUserCount
+FROM user u
+LEFT JOIN user_track ut ON u.user_id = ut.user_id
+WHERE u.user_id NOT IN (1, 2)
+GROUP BY u.user_id;
+
   `;
 
   // Execute the query
