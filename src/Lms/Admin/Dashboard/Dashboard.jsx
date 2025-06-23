@@ -243,9 +243,12 @@ export default function Dashboard() {
             {/* <!-- Card stats --> */}
             <div class="row g-6 mb-6  ">
               <div class="col-xl-4 col-sm-6 col-12">
-                <div class="card shadow border-0 h-60">
+                <div 
+                class="card shadow-md border h-60"
+                style={{ borderColor: "#D3D3D3" }}
+                >
              
-                  <div class="card-body bg-[#f9d7e7]  rounded-2xl">
+                  <div class="card-body   rounded-2xl">
                     <div class="row ">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2 ">
@@ -259,7 +262,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <hr />
+                    <hr style={{ color: "#D3D3D3" }} />
                     <div class="mt-2 mb-0 text-sm">
                       <span class="badge badge-pill bg-soft-success text-success me-2">
                         {/* <i class="bi bi-arrow-up me-1"></i>13% */}
@@ -293,9 +296,9 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6  col-12">
-                <div class="card shadow border-0  lg:h-60">
+                <div class="card shadow-md border  lg:h-60" style={{ borderColor: "#D3D3D3" }}>
              
-                  <div class="card-body bg-[#f5e2f2] rounded-xl  ">
+                  <div class="card-body  rounded-xl  ">
                     <div class="row">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">
@@ -310,7 +313,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <hr />
+                    <hr style={{ color: "#D3D3D3" }} />
                     <div class="mt-2 mb-0 text-sm">
                       <span class="badge badge-pill bg-primary text-white me-2 p-2">
                         Active: {activeData.length}
@@ -360,9 +363,9 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6  col-12">
-                <div class="card shadow border-0  h-60">
+                <div class="card shadow-md border  h-60" style={{ borderColor: "#D3D3D3" }}> 
              
-                  <div class="card-body bg-[#ccd1e7] rounded-xl">
+                  <div class="card-body  rounded-xl">
                     <div class="row">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">
@@ -376,7 +379,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <hr />
+                    <hr style={{ color: "#D3D3D3" }} />
                     <div class="mt-2 mb-0 text-sm">
                      
                      

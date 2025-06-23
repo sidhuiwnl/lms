@@ -14,7 +14,7 @@ const SuperAdminDashboard = () => {
     <div className="dashboard-container">
       <div
         className="dashboard-sidebar"
-        style={{ width: isOpen ? "200px" : "60px" }} // adjust width as needed
+        style={{ width: isOpen ? "200px" : "40px" }} // adjust width as needed
       >
         <SuperAdminSidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       </div>

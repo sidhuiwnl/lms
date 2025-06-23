@@ -105,7 +105,7 @@ function CertificateBadge() {
         </div>
       )}
 
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 mb-4">
         <button className="downloadtext updatebtn" onClick={handleDownloadClick}>
           Download
         </button>

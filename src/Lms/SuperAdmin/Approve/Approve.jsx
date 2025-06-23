@@ -125,11 +125,11 @@ export function Approve() {
       <div className="row">
       <div className="rounded-2 p-4 shadow border-0 mb-5 w-100">
         <div className="d-flex justify-content-between my-3">
-          <h5 className="mb-0 pointer">Cheque Transaction</h5>
+          <h5 className="mb-0 pointer mr-2">Cheque Transaction</h5>
           {activeTable === 1 ? (
            
             <button
-  className="flex items-center px-4 py-2 mr-2 rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
+  className="flex items-center px-4 py-2 mr-2  rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
  
  onClick={() => changeTable(2)}
 >
@@ -148,7 +148,7 @@ export function Approve() {
 
           ) : (
             <h5
-              className="mb-0 pointer btn btn-primary"
+              className="mb-0 pointer btn btn-primary "
               onClick={() => changeTable(1)}
             >
               Waiting for Approval
@@ -232,24 +232,25 @@ export function Approve() {
       </div>
 
 
-      <div className="p-4 shadow border-0 mb-7">
-        <div className="card-header d-flex justify-content-between my-3">
-          <h5 className="mb-0 pointer">NEFT Transaction</h5>
+      <div className=" shadow border-0 mb-7">
+        <div className="card-header d-flex justify-content-between my-3 ">
+          <h5 className="mb-0 pointer mr-2">NEFT Transaction</h5>
           {activeTable2 === 1 ? (
             <button
              className="flex items-center px-4 py-2 mr-2 rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
  
               onClick={() => changeTable1(2)}
             >
-              Approved<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    className="ml-2"
-  >
-    <path fill="currentColor" d="M10.95 15.55L16.6 9.9l-1.425-1.425L10.95 12.7l-2.1-2.1l-1.425 1.425zM12 22q-3.475-.875-5.737-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22" />
-  </svg>
+              Approved
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="ml-2"
+              >
+              <path fill="currentColor" d="M10.95 15.55L16.6 9.9l-1.425-1.425L10.95 12.7l-2.1-2.1l-1.425 1.425zM12 22q-3.475-.875-5.737-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22" />
+          </svg>
             </button>
           ) : (
             <h5

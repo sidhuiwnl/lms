@@ -298,6 +298,7 @@ const CategoryQuizList = () => {
                 placeholder="Enter Marks"
                 value={headerMarks}
                 onChange={handleHeaderMarksChange}
+                className="border rounded px-2 py-2 border-black"
               />
             </div>
             {viewType === "Sequential" &&
@@ -313,13 +314,13 @@ const CategoryQuizList = () => {
         </div>
         <div className="overflow-x-auto rounded-xl  shadow ">
         <table className="min-w-full divide-y divide-gray-200 overflow-hidden ">
-          <thead className="bg-[#001040] text-white">
-            <tr>
-              <th className="px-4 py-2 text-left">Select</th>
-              <th className="px-4 py-2 text-left">Quiz ID</th>
-              <th className="px-4 py-2 text-left">Question</th>
-              <th className="px-4 py-2 text-left">Image</th>
-              <th className="px-4 py-2 text-left">Marks</th>
+          <thead className="bg-[#001040] text-white ">
+            <tr >
+              <th className="px-4 py-2 text-left text-lg ">Select</th>
+              <th className="px-4 py-2 text-left text-lg ">Quiz ID</th>
+              <th className="px-4 py-2 text-left text-lg ">Question</th>
+              <th className="px-4 py-2 text-left text-lg ">Image</th>
+              <th className="px-4 py-2 text-left text-lg ">Marks</th>
             </tr>
           </thead>
           <tbody className="bg-neutral-200 divide-y divide-black">
