@@ -100,7 +100,7 @@ function Login() {
   };
 
   const handleIndividualLogin = () => {
-    navigate("/llmregister");
+    navigate("/lmsregister");
   };
 
   const handleBusinessLogin = () => {

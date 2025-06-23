@@ -58,14 +58,14 @@ export default function Dashboard() {
 
     // Check if the email list is empty
     if (emailArray.length === 0 || emailList === "") {
-      alert("Please provide email addresses");
+      toast("Please provide email addresses");
       return;
     }
 
 
     // Check if the number of emails exceeds the available licenses
     if (emailArray.length > totallicense) {
-      alert(
+      toast(
         `Your available license is only ${totallicense}. You are trying to invite more than that. Please add more licenses.`
       );
       return;
@@ -79,7 +79,7 @@ export default function Dashboard() {
 
 
     if (invalidEmails.length > 0) {
-      alert(`All emails must end with @${companyDomain}`);
+      toast(`All emails must end with @${companyDomain}`);
       return;
     }
 
@@ -93,17 +93,17 @@ export default function Dashboard() {
           res.data.message ===
           "Learners invited, licenses updated, and emails sent successfully"
         ) {
-          alert("Mail sent successfully");
+          toast("Mail sent successfully");
           window.location.reload();
         } else if (res.data.message === "All emails are already invited") {
-          alert("Invite sent already for these emails");
+          toast("Invite sent already for these emails");
         } else {
-          alert("Failed to send mail");
+          toast("Failed to send mail");
         }
       })
       .catch((error) => {
         console.error("There was an error sending the invite:", error);
-        alert("An error occurred. Please try again.");
+        toast("An error occurred. Please try again.");
       });
   }
 
@@ -205,7 +205,7 @@ export default function Dashboard() {
 
 
     return dataToRender.map((item, index) => (
-      <tr key={index} className="bg-white">
+      <tr key={index} className="bg-white ">
         <td>{item.name.trim()}</td> {/* Use trim to remove any extra spaces */}
         <td>{item.date ? new Date(item.date).toLocaleString() : "N/A"}</td>{" "}
         <td>{item.modules}</td>
@@ -331,7 +331,7 @@ export default function Dashboard() {
                        
                       ) : (
                        
-                        <Link onClick={handleModalOpen}>
+                        <Link onClick={handleModalOpen} className="border">
                               <span
                                 className={`flex items-center text-green-600 my-2 gap-2 ${
                                   totallicense === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
@@ -484,7 +484,7 @@ export default function Dashboard() {
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
+                        <tbody className="bg-white divide-y divide-gray-200 hover:bg-neutral-400">
                           {renderTableData()}
                         </tbody>
                       </table>
@@ -498,9 +498,9 @@ export default function Dashboard() {
           </div>
         </main>
         {isModalOpen && (
-          <div className="modal fade show d-block" tabIndex="-1">
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
+          <div className="modal fade show d-block " tabIndex="-1">
+            <div className="modal-dialog modal-dialog-centered ">
+              <div className="modal-content ">
                 <div className="modal-header">
                   <h5 className="modal-title">Invite Learners</h5>
                   <button

@@ -74,7 +74,7 @@ function MessageHistory() {
           setSubject("");
           setMessage("");
         } else {
-          alert(res.data.message); // Alert if message fails
+          toast(res.data.message); // Alert if message fails
         }
       })
       .catch((err) => {

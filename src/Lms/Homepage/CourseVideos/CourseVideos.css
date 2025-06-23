@@ -300,3 +300,8 @@ tr {
   font-size: 16px;
   font-family: "Times New Roman", Times, serif !important;
 }
+
+.custom-close .btn-close{
+  filter: invert(1);
+  opacity: 1;
+}

@@ -64,14 +64,16 @@ import bookplay from "../../assets/bookplay.png";
 import "./HeroSection.css";
 import { Helmet } from "react-helmet";
 
+
+
 export default function HeroSection() {
   const navigate = useNavigate(); 
+ 
+
 
   const Bookspage = () => {
     navigate("/book"); 
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" }); 
-    }, 100); 
+     
   };
 
 

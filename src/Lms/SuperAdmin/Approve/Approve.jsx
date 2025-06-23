@@ -94,13 +94,13 @@ export function Approve() {
 
 
     if (transationid === "") {
-      alert("plz fill the transation id");
+      toast("plz fill the transation id");
     } else {
       axios
         .put(`${import.meta.env.VITE_REACT_APP_API_URL}superadmin/neftupdate`, key)
         .then((res) => {
           if (res.data.status === "updated") {
-            alert("Approved");
+            toast("Approved");
             window.location.reload();
           }
         });
@@ -233,7 +233,7 @@ export function Approve() {
 
 
       <div className=" shadow border-0 mb-7">
-        <div className="card-header d-flex justify-content-between my-3 ">
+        <div className="card-header d-flex justify-content-between my-3 p-0">
           <h5 className="mb-0 pointer mr-2">NEFT Transaction</h5>
           {activeTable2 === 1 ? (
             <button

@@ -67,7 +67,9 @@ export const getUserById = (req, res) => {
       phone: result[0].phone_no,
       user_id: result[0].user_id,
       profession: result[0].profession,
-      profile_image: process.env.URL + result[0].profile_image,
+      profile_image: result[0].profile_image
+  ? process.env.URL + result[0].profile_image
+  : null,
       completion_percentage: completionPercentage.toFixed(2),
       modules: modules,
     });

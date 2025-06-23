@@ -76,7 +76,7 @@ const LmsForgotPassword = () => {
           name="email"
           value={email}
           onChange={handleEmailChange}
-          className="formcontrolbox my-2 w-100"
+          className="formcontrolbox my-2 w-full"
           required
         />
           </div>

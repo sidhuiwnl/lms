@@ -241,7 +241,7 @@ export const registerUser = async(req, res) => {
   const defaultProfileImage = path.join("/uploads", "face1.jpg");
 
   // Check if email exists in User or Auth tables
-  await db.query(
+  db.query(
     "SELECT email FROM user WHERE email = ?",
     [email],
     (err, userRows) => {

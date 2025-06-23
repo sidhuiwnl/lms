@@ -60,13 +60,13 @@ export function Approve() {
 
 
     if (transationid === "") {
-      alert("plz fill the transation id");
+      toast("plz fill the transation id");
     } else {
       axios
         .put(`${process.env.REACT_APP_API_URL}superadmin/checkupdate`, key)
         .then((res) => {
           if (res.data.status === "updated") {
-            alert("Approved");
+            toast("Approved");
             window.location.reload();
           }
         });
@@ -90,13 +90,13 @@ export function Approve() {
 
 
     if (transationid === "") {
-      alert("plz fill the transation id");
+      toast("plz fill the transation id");
     } else {
       axios
         .put(`${process.env.REACT_APP_API_URL}superadmin/neftupdate`, key)
         .then((res) => {
           if (res.data.status === "updated") {
-            alert("Approved");
+            toast("Approved");
             window.location.reload();
           }
         });

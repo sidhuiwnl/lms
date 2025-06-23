@@ -114,7 +114,7 @@ const CategoryDropdown = () => {
 
     // Show alert with the label of the selected node
     if (currentNode && currentNode.label) {
-      alert(`Selected: ${currentNode.label}`);
+      toast(`Selected: ${currentNode.label}`);
     }
 
     console.log('Selected Nodes:', selectedNodes);

@@ -580,7 +580,7 @@ function CourseVideos() {
     <>
       <div className="container-fluid">
         <div className="row">
-          <h4 className="px-4 py-2" style={{color:"#001040"}}>{moduleName}</h4>
+          <h4 className="px-6 py-4 text-lg" style={{color:"#001040"}}>{moduleName}</h4>
           <ToastContainer />
           <div
             className={`col-auto ${
@@ -839,10 +839,10 @@ function CourseVideos() {
                         >
                           Summary of Your Previous Attempts
                         </h4>
-                        <div className="table-responsive">
+                        <div className="overflow-x-auto">
                           {" "}
                           
-                          <table className="table mt-4 border-0 tabletextpart rounded-xl overflow-hidden shadow-sm">
+                          <table className="table mt-4 border-0 tabletextpart rounded-xl  shadow-sm">
                             <thead className="border border-b">
                               <tr className="tabletextpart ">
                                 <th>Attempt</th>
@@ -1138,7 +1138,7 @@ function CourseVideos() {
             </div>
           </div>
 
-          <div className="col-md-12 col-lg-3 mt-5">
+          <div className="col-md-12 sm:w-full col-lg-3 mt-5">
             {hideCircularBar ? (
               <>
                 <div className="card py-2 px-2 my-3">
@@ -1170,38 +1170,62 @@ function CourseVideos() {
             ) : (
               <div></div>
             )}
-            <h5>Chapters</h5>
-            {chapter.map((e) => (
-              <React.Fragment key={e.moduleid}>
-                <div className="d-flex my-3">
-                  <div className="orangecircle d-flex flex-column justify-content-center align-items-center">
-                    <p className="m-2 numberclr">{e.moduleid}</p>
-                  </div>
-                  <div className="d-flex align-items-center card px-2 mx-3 rightcards border-0">
-                    {haspaid ? (
-                      <Link
-                        style={{ textDecoration: "none", color: "#001040" }}
-                        to={`/ken/${course}/${parseInt(e.moduleid)}/${id}`}
-                      >
-                        {e.modulename}{" "}
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className="text-dark px-4"
-                        />
-                      </Link>
-                    ) : (
-                      <span style={{ color: "#999", cursor: "not-allowed" }}>
-                        {e.modulename}{" "}
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className="text-dark px-4"
-                        />
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </React.Fragment>
-            ))}
+           <h5 className="mb-4">Chapters</h5>
+{chapter.map((e) => (
+  <div
+    className="d-flex align-items-center my-3"
+    key={e.moduleid}
+  >
+    {/* Circle with number */}
+    <div
+      className="orangecircle d-flex justify-content-center align-items-center"
+      style={{
+        width: "40px",
+        height: "40px",
+        borderRadius: "50%",
+        backgroundColor: "#ffa200",
+        color: "#fff",
+        fontWeight: "bold",
+        fontSize: "16px",
+      }}
+    >
+      {e.moduleid}
+    </div>
+
+    {/* Right side card */}
+    <div className="card border-0 px-3 mx-3 flex-grow-1">
+      {haspaid ? (
+        <Link
+          style={{
+            textDecoration: "none",
+            color: "#001040",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+          to={`/ken/${course}/${parseInt(e.moduleid)}/${id}`}
+        >
+          <span>{e.modulename}</span>
+          <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
+        </Link>
+      ) : (
+        <div
+          style={{
+            color: "#999",
+            cursor: "not-allowed",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span>{e.modulename}</span>
+          <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
+        </div>
+      )}
+    </div>
+  </div>
+))}
+
           </div>
         </div>
       </div>
@@ -1209,8 +1233,8 @@ function CourseVideos() {
         <div style={{ backgroundColor: "#001040" }}>
           <Modal.Header
             closeButton
-            style={{ borderBottom: "none" }}
-            className="custom-close"
+            style={{ borderBottom: "none", color : "white" }}
+            className="custom-close text-white"
           ></Modal.Header>
           <Modal.Body
             className="d-flex flex-column justify-content-center align-items-center text-light"

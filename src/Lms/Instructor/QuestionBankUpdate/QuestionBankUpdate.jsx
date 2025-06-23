@@ -51,16 +51,16 @@ function QuestionBankUpdate() {
       })
       .then((res) => {
         if (res.data.error === "No records found for the given moduleid.") {
-          alert("No records found for the given module");
+          toast("No records found for the given module");
         } else if (res.data.error === "Failed to update records.") {
-          alert("try again");
+          toast("try again");
         } else if (res.data.message === "Question IDs updated successfully.") {
-          alert("Questions updated successfully!");
+          toast("Questions updated successfully!");
         }
       })
       .catch((err) => {
         console.error("Error submitting updated questions:", err);
-        alert("Failed to update questions. Please try again.");
+        toast("Failed to update questions. Please try again.");
       });
   };
 

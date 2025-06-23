@@ -36,10 +36,10 @@ export default function Notenrolledfile() {
       .then((res) => {
         console.log(res);
         if (res.data.status === "Reminder sent and remainder count updated.") {
-          alert("Remainder Sended");
+          toast("Remainder Sended");
           window.location.reload();
         } else {
-          alert("Remainder not Sented");
+          toast("Remainder not Sented");
         }
       });
   }
@@ -51,10 +51,10 @@ export default function Notenrolledfile() {
       })
       .then((res) => {
         if (res.data.status === "changed") {
-          // alert("Remainder Sended")
+          // toast("Remainder Sended")
           window.location.reload();
         } else {
-          alert("Remainder not Sented");
+          toast("Remainder not Sented");
         }
       });
   }

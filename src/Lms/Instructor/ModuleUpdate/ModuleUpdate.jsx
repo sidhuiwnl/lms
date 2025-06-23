@@ -99,7 +99,7 @@ function ModuleUpdate() {
 
   const handleUpdateModuleImage = async () => {
     if (!selectedImageModuleId || !moduleImage) {
-      alert("Please select a module and an image file.");
+      toast("Please select a module and an image file.");
       return;
     }
 

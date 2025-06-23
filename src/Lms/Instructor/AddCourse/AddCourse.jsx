@@ -76,7 +76,7 @@ function AddCourse() {
       !courseDescription ||
       !selectedCategoryId // Ensure a category is selected
     ) {
-      alert("All fields are required.");
+      toast("All fields are required.");
       return;
     }
 

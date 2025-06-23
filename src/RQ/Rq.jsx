@@ -23,7 +23,7 @@ function RichTextEditor() {
         };
         reader.readAsDataURL(file);
       } else {
-        alert("Only image files are supported.");
+        toast("Only image files are supported.");
       }
     };
   };

@@ -22,6 +22,8 @@ function MessageHistory() {
     }
   };
 
+  const decodedId  = atob(id)
+
   const handleRecipientChange = (type) => {
     setRecipients((prev) =>
       prev.includes(type)
@@ -51,7 +53,7 @@ function MessageHistory() {
       email: recipients.join(","), // Join selected recipients
       subject,
       message,
-      user_id: id,
+      user_id: decodedId,
     };
     console.log(res);
 
@@ -60,7 +62,7 @@ function MessageHistory() {
         email: recipients.join(","), // Join selected recipients
         subject,
         message,
-        user_id: id,
+        user_id: decodedId,
       })
       .then((res) => {
         setLoading(false); // Stop loading spinner
@@ -74,7 +76,7 @@ function MessageHistory() {
           setSubject("");
           setMessage("");
         } else {
-          alert(res.data.message); // Alert if message fails
+          toast(res.data.message); // Alert if message fails
         }
       })
       .catch((err) => {
@@ -85,7 +87,7 @@ function MessageHistory() {
 
   const fetchMessageHistory = async () => {
     axios
-      .get(`${import.meta.env.VITE_REACT_APP_API_URL}user/getallmsg/` + id)
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}user/getallmsg/` + decodedId)
       .then((res) => {
         console.log(res);
         setMessageHistory(res.data.msg);
@@ -118,36 +120,38 @@ function MessageHistory() {
       <div>
         {view === "compose" && (
           <div className="compose-form">
-            <div className="form-group">
-              <label className="text-start">Select Recipient</label>
-              <div className="recipient-buttons">
-                <button
-                  className={`recipient-btn ${
-                    recipients.includes("1") ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"
-                  }`}
-                  onClick={() => handleRecipientChange("1")}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headset-icon lucide-headset"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
-                  <i className="fas fa-headset"></i> Support
-                  {recipients.includes("1") && (
-                    <i className="fas fa-check tick-icon"></i>
-                  )}
-                </button>
+            <div className="recipient-buttons flex gap-4">
+  <button
+    className={`recipient-btn px-4 py-2 text-white transition-colors duration-300 ${
+      recipients.includes("1")
+        ? "bg-[#001040] rounded-t-xl"
+        : "bg-blue-800 text-white rounded-t-xl"
+    }`}
+    onClick={() => handleRecipientChange("1")}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+    Support
+    {recipients.includes("1") && (
+      <i className="fas fa-check tick-icon ml-2"></i>
+    )}
+  </button>
 
-                <button
-                  className={`recipient-btn ${
-                    recipients.includes("2") ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"
-                  }`}
-                  onClick={() => handleRecipientChange("2")}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-pen-icon lucide-user-round-pen"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
-                  <i className="fas fa-chalkboard-teacher"></i> Instructor
-                  {recipients.includes("2") && (
-                    <i className="fas fa-check tick-icon"></i>
-                  )}
-                </button>
-              </div>
-            </div>
+  <button
+    className={`recipient-btn px-4 py-2 text-white transition-colors duration-300 ${
+      recipients.includes("2")
+        ? "bg-[#001040] rounded-t-xl"
+        : "bg-blue-800 text-white rounded-t-xl"
+    }`}
+    onClick={() => handleRecipientChange("2")}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
+    Instructor
+    {recipients.includes("2") && (
+      <i className="fas fa-check tick-icon ml-2"></i>
+    )}
+  </button>
+</div>
+
 
             <div className="form-group">
               <label htmlFor="subject-input" className="text-start">
@@ -201,14 +205,14 @@ function MessageHistory() {
 
         {view === "history" && (
           <div className="history-table">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Sender Name</th>
-                  <th>Subject</th>
-                  <th>Receiver Email</th>
-                  <th>Timestamp</th>
+            <table className="table table-striped ">
+              <thead  >
+                <tr >
+                  <th className="text-white">S.No</th>
+                  <th className="text-white">Sender Name</th>
+                  <th className="text-white">Subject</th>
+                  <th className="text-white">Receiver Email</th>
+                  <th className="text-white">Timestamp</th>
                 </tr>
               </thead>
               <tbody>

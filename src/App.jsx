@@ -94,11 +94,12 @@ import UpdateCourse from "./Lms/Instructor/UpdateCourse/UpdateCourse"
 import CategoryQuizList from "./Lms/Instructor/Questionbank/CategoryQuizList"
 import Dashboardinstructor from "./Lms/Instructor/Dashboardinstructor/Dashboardinstructor"
 import Question from "./Lms/Instructor/Question/Question"
-
+import ScrollToTop from "./ScrollToTop"
 
 function App() {
   return (
    <Router>
+    
       <Routes>
         
          <Route path="/instructordashboard/:id" element={<Dashboardinstructor />}>
@@ -150,7 +151,7 @@ function App() {
         {/* lms routes */}
 
         <Route path="/lmslogin" element={[<Login/>]} />
-        <Route path="/llmregister" element={<Registerpage />} />
+        <Route path="/lmsregister" element={<Registerpage />} />
         <Route path="/myspinecoach" element={[<Drmenubar/>,<Drkenhome/>]} />
         <Route path="/user/:id"
             element={[<DrMenuBarUser />, <Drkenhome />]}/>

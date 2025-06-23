@@ -120,6 +120,7 @@ function Registerpage() {
           ) {
             toast.error("user already registered");
           }
+          
         });
     } catch (err) {
       toast.error("Registration failed. Please try again.");

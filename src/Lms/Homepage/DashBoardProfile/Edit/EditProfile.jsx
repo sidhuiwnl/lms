@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function EditProfile() {
   const [user, setUser] = useState({
@@ -71,11 +72,12 @@ function EditProfile() {
       console.log(response.data.message); // Log success message
       // Optionally, handle success (like redirecting or showing a success alert)
       if (response.data.message === "User updated successfully.") {
-        alert("User updated successfully.");
+        toast.success("User updated successfully.");
       }
     } catch (error) {
-      console.error("Error updating profile:", error); // Log any errors
-      // Optionally, handle error (like showing an error alert)
+      console.error("Error updating profile:", error);
+      toast.error("Error updating profile:", error)
+      
     }
   };
 
@@ -137,7 +139,7 @@ function EditProfile() {
           />
         </div>
 
-        <button type="submit"  className="btn btn-sm bg-[#001040] rounded-t-xl text-white">
+        <button type="submit"  className=" py-2 rounded-lg px-2 bg-[#001040] rounded-t-xl text-white">
           Save Changes
         </button>
       </form>

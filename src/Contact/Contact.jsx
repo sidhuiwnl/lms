@@ -6,6 +6,9 @@ import axios from 'axios';
 import "./Contact.css"
 import { Helmet } from 'react-helmet';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+
+
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +16,10 @@ function Contact() {
     email: '',
     message: '',
   });
+
+  useEffect(() =>{
+    window.scroll(0,0)
+  },[])
 
   const [errors, setErrors] = useState({});
   const token = localStorage.getItem("user-token")
@@ -69,7 +76,7 @@ function Contact() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-20 py-8 md:py-12 font-normal">
+    <div id='contact-1' className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-20 py-8 md:py-12 font-normal">
       <Helmet>
         <title>Contact Dr. Ken Hansraj – Get in Touch</title>
         <meta name="description" content="Have questions or need assistance? Contact Dr. Ken Hansraj for expert advice on spine health." />
@@ -112,7 +119,8 @@ function Contact() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="w-full border rounded-lg lg:w-1/2 xl:w-5/12">
+        <div className="w-full border rounded-lg lg:w-2/5 xl:w-1/3 2xl:w-1/4">
+
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg font-normal">
             <p className="text-center text-gray-600 mb-6">
               For Inquiries, Please Send a Message

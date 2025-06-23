@@ -1,7 +1,9 @@
 
 import { Links, CONTACT_US, SOCIAL } from "../../utils/Links";
+import { NavLink } from "react-router";
 
 export default function Footer() {
+  
   return (
     <>
       <div className="container-fluid py-4 " style={{ backgroundColor: "#001040" }}>
@@ -15,22 +17,21 @@ export default function Footer() {
           <div className="col-12 col-md-3 mb-4 mb-md-0">
             <h5 className="fw-bold" style={{ color: "#ffa200" }}>Quick Links</h5>
             {Links.map((link) => (
-  <div key={link.id}>
-    {link.name === "My Spine Coach" ? (
-      <a
-        href="https://bit.ly/drkenlms"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-white text-decoration-none d-block my-1"
-      >
-        {link.name}
-      </a>
-    ) : (
-      <a href={link.link} className="text-white text-decoration-none d-block my-1">
-        {link.name}
-      </a>
-    )}
-  </div>
+              <div key={link.id}>
+                {link.name === "My Spine Coach" ? (
+                  <NavLink
+                    to="/myspinecoach"
+                    className="text-white text-decoration-none d-block my-1"
+                   
+                  >
+                    {link.name}
+                  </NavLink>
+                ) : (
+                  <NavLink  to={link.link} className="text-white text-decoration-none d-block my-1">
+                    {link.name}
+                  </NavLink>
+                )}
+              </div>
 ))}
 
           </div>

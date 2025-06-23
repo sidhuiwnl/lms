@@ -155,11 +155,11 @@ function CompanyRegister() {
         .then((res) => {
           console.log(res);
           if (res.data.message === "Business registered successfully") {
-            alert("Registered successfully");
+            toast("Registered successfully");
           } else if (
             res.data.message === "Company email domain is already registered."
           ) {
-            alert("Company email domain is already registered.");
+            toast("Company email domain is already registered.");
           }
         });
     } catch (error) {

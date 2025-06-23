@@ -48,7 +48,7 @@ export default function CheckPayment() {
 
 
     if (checkno === "") {
-      alert("Kindly fill the Check number");
+      toast("Kindly fill the Check number");
       return; // Do not proceed if cheque number is empty
     }
 
@@ -65,10 +65,10 @@ export default function CheckPayment() {
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}admin/checktransation/${decodedId}`, key)
       .then((res) => {
         if (res.data.status === "inserted") {
-          alert("Thank you! Your license will update after Admin Approval.");
+          toast("Thank you! Your license will update after Admin Approval.");
           window.location.assign(`/admindashboard/${id}/purlicense`);
         } else {
-          alert("Sorry, please refill the details.");
+          toast("Sorry, please refill the details.");
           window.location.reload();
         }
       });

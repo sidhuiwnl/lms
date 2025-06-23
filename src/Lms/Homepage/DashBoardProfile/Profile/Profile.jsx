@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons"; // You can replace with faEdit if needed
-import profile from "../../../../assets/profile1.png"
+import profile from "../../../../assets/Profile1.png"
 
 import {
   BarChart,
@@ -66,7 +66,7 @@ export function Indiviualdashboardmain() {
       .then((res) => {
         const userData = res.data;
 
-        
+        console.log("the image",userData.profile_image)
         setUser({
           first_name: userData.first_name.trim(),
           // last_name: userData.last_name.trim(),

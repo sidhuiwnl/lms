@@ -48,17 +48,17 @@
 // //     e.preventDefault();
 
 // //     if (!newQuestion.trim()) {
-// //       alert('Question cannot be empty!');
+// //       toast('Question cannot be empty!');
 // //       return;
 // //     }
 
 // //     if (questionType === 'MCQ' && options.some(option => !option.trim())) {
-// //       alert('All options must be filled!');
+// //       toast('All options must be filled!');
 // //       return;
 // //     }
 
 // //     if (questionType === 'MCQ' && !correctOption.trim()) {
-// //       alert('Correct option must be selected!');
+// //       toast('Correct option must be selected!');
 // //       return;
 // //     }
 
@@ -241,17 +241,17 @@ const Quilltxt = () => {
     e.preventDefault();
 
     // if (!newQuestion.trim()) {
-    //   alert('Question cannot be empty!');
+    //   toast('Question cannot be empty!');
     //   return;
     // }
 
     if (questionType === 'MCQ' && options.some(option => !option.trim())) {
-      alert('All options must be filled!');
+      toast('All options must be filled!');
       return;
     }
 
     if (questionType === 'MCQ' && !correctOption.trim()) {
-      alert('Correct option must be selected!');
+      toast('Correct option must be selected!');
       return;
     }
 
@@ -471,21 +471,21 @@ export default Quilltxt;
 //     e.preventDefault();
 
 //     // if (!content.trim()) {
-//     //   alert('Question cannot be empty!');
+//     //   toast('Question cannot be empty!');
 //     //   return;
 //     // }
 //     if (content.length < 1) {
-//       alert('Question cannot be empty!');
+//       toast('Question cannot be empty!');
 //       return;
 //   } 
 
 //     if (questionType === 'MCQ' && options.some(option => !option.trim())) {
-//       alert('All options must be filled!');
+//       toast('All options must be filled!');
 //       return;
 //     }
 
 //     if (questionType === 'MCQ' && !correctOption.trim()) {
-//       alert('Correct option must be selected!');
+//       toast('Correct option must be selected!');
 //       return;
 //     }
 

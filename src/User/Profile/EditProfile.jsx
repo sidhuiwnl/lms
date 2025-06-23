@@ -69,7 +69,7 @@ function EditProfile() {
       console.log(response.data.message); // Log success message
       // Optionally, handle success (like redirecting or showing a success alert)
       if (response.data.message === "User updated successfully.") {
-        alert("User updated successfully.");
+        toast("User updated successfully.");
       }
     } catch (error) {
       console.error("Error updating profile:", error); // Log any errors

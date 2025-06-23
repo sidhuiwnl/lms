@@ -54,13 +54,13 @@ function Modulepage() {
 
 
     if (moduleNames.length === 0) {
-      alert("Please enter at least one module name.");
+      toast("Please enter at least one module name.");
       return;
     }
 
 
     if (!selectedCourseId) {
-      alert("Please select a course.");
+      toast("Please select a course.");
       return;
     }
 

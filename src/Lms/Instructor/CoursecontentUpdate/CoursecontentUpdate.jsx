@@ -67,7 +67,7 @@ function CoursecontentUpdate() {
 
   const handleUpdateContent = () => {
     if (!selectedContentId || !editorContentMap[selectedContentId]) {
-      alert("Please select a content item and enter the updated content.");
+      toast("Please select a content item and enter the updated content.");
       return;
     }
 

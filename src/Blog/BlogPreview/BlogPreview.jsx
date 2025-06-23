@@ -62,7 +62,7 @@ export default function BlogPreview() {
       {/* Right Side: Fixed Form + Latest Blogs */}
       <div className="lg:w-1/2 sm:w-full">
         <div className="lg:sticky lg:top-[90px] space-y-6">
-          <div className="bg-white rounded-md shadow-sm p-4 border">
+          <div className="bg-white sticky rounded-md shadow-sm p-4 border">
             <Form />
           </div>
 

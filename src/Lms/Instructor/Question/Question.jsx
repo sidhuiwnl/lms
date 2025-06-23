@@ -61,7 +61,7 @@ const Question = () => {
       })
       .catch((error) => {
         console.error(error);
-        alert("Failed to fetch courses!"); // Or use a toast if you prefer
+        toast("Failed to fetch courses!"); // Or use a toast if you prefer
       });
   }, []);
 
