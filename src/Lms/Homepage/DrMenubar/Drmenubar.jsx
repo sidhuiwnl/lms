@@ -13,7 +13,7 @@ function Drmenubar() {
         
         <div className="flex items-center lg:mr-10 ">
           
-          <NavLink to="/llmlogin" className="ms-4">
+          <NavLink to="/lmslogin" className="ms-4">
             <img src={loginimg} alt="Login" />
           </NavLink>
         </div>

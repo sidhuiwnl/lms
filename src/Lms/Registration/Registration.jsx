@@ -334,7 +334,7 @@ function Registerpage() {
                   <p className="logpara">
                     Already have an account?{" "}
                     <Link
-                      to="/llmlogin"
+                      to="/lmslogin"
                       style={{ textDecoration: "none", fontWeight: "600" }}
                       className="register-link"
                     >

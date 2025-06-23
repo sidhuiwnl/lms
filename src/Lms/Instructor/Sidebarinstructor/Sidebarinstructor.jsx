@@ -50,7 +50,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
         { withCredentials: true }
       );
       document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/llmlogin");
+      navigate("/lmslogin");
     } catch (error) {
       console.error("Logout error:", error);
     }

@@ -21,7 +21,7 @@ export default function DrMenuBarUser() {
         console.log("Token is valid.", response.data);
       } catch (error) {
         console.error("Token verification error.", error);
-        navigate("/llmlogin");
+        navigate("/lmslogin");
       }
     };
     verifyToken();
@@ -35,7 +35,7 @@ export default function DrMenuBarUser() {
         { withCredentials: true }
       );
       document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/llmlogin");
+      navigate("/lmslogin");
     } catch (error) {
       console.error("Logout error.", error);
     }
@@ -134,7 +134,7 @@ export default function DrMenuBarUser() {
               </NavLink>
             
               <NavLink
-                to="/llmlogin"
+                to="/lmslogin"
                 className="text-white hover:text-[#ffa200] px-3 py-2 block"
                 onClick={() => {
                   setIsMenuOpen(false);

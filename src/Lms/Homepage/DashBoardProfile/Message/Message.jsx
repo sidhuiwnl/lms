@@ -20,7 +20,7 @@ export function Message() {
         console.log("Token is valid.", response.data);
       } catch (error) {
         console.error("Token verification error.", error);
-        navigate("/llmlogin");
+        navigate("/lmslogin");
       }
     };
     verifyToken();
@@ -35,7 +35,7 @@ export function Message() {
         { withCredentials: true }
       );
       document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/llmlogin");
+      navigate("/lmslogin");
 
     } catch (error) {
       console.error("Logout error.", error);

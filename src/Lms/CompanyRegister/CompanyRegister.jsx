@@ -393,7 +393,7 @@ function CompanyRegister() {
           </form>
           <p className="text-center mt-2">
             Already have an account?{" "}
-            <Link to="/llmlogin" className="logtext">
+            <Link to="/lmslogin" className="logtext">
               Log in
             </Link>
           </p>

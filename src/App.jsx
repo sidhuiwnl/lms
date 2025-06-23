@@ -149,7 +149,7 @@ function App() {
 
         {/* lms routes */}
 
-        <Route path="/llmlogin" element={[<Login/>]} />
+        <Route path="/lmslogin" element={[<Login/>]} />
         <Route path="/llmregister" element={<Registerpage />} />
         <Route path="/myspinecoach" element={[<Drmenubar/>,<Drkenhome/>]} />
         <Route path="/user/:id"

@@ -71,7 +71,7 @@ function Lessons() {
   };
 
   const handleLoginRedirect = () => {
-    navigate("/llmlogin");
+    navigate("/lmslogin");
     handleCloseModal();
   };
 
