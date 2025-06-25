@@ -76,10 +76,10 @@ import { STUDIES } from "../../utils/Links";
 
 export default function Studies() {
   return (
-    <section className="py-20 flex flex-col md:flex-row items-center justify-center relative px-4 space-y-10 md:space-y-0 md:space-x-6">
+    <section className="py-20 flex flex-col md:flex-row items-center justify-center relative space-y-10 md:space-y-0 md:space-x-6">
     
      
-     <div className="hidden md:flex relative rounded-r-full bg-[#FFA200] w-full max-w-[543px] h-[180px] md:h-[230px] text-white items-center justify-center px-8">
+     <div className="hidden md:flex relative rounded-r-full bg-[#FFA200] w-full max-w-[400px] h-[180px] md:h-[230px] text-white items-center justify-center px-8">
         <div className="text-start">
           <h1 className="text-3xl md:text-3xl font-bold text-white">Completed</h1>
           <h1 className="text-3xl md:text-3xl font-bold text-white">Studies.</h1>

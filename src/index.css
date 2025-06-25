@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 
-body,html{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    max-height: 100vh;
-    overflow-x: hidden; 
-    font-family: "Montserrat", "Arial", sans-serif;
-    font-weight: 700;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh; 
+  overflow-x: hidden;
+  font-family: "Montserrat", "Arial", sans-serif;
+  font-weight: 700;
+   
 }
-
-
 
 
 .montserrat-main {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,NavLink } from "react-router-dom";
 import "./Register.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -342,6 +342,9 @@ function Registerpage() {
                       Login
                     </Link>
                   </p>
+                  <NavLink to="/myspinecoach" className="flex flex-col items-center mt-4" >
+                           <span className="text-blue-600 ">Move to Home</span>
+                  </NavLink>
                 </div>
               </div>
             </div>

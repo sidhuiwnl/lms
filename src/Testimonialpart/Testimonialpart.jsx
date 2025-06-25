@@ -75,11 +75,7 @@ function Testimonialpart() {
                       </h5>
                       <p className="text-muted mb-0">{testimonial.content}</p>
                     </div>
-                    <div className="card-footer bg-transparent border-top-0 text-end">
-                      <small className="text-muted">
-                        {new Date(testimonial.created_at).toLocaleDateString()}
-                      </small>
-                    </div>
+                    
                   </div>
                 </div>
               ))}

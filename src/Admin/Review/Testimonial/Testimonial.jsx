@@ -191,7 +191,7 @@ export default function Reviews() {
             rows={4}
             required
             minLength="100" 
-            maxLength="200"
+            maxLength="500"
           />
         </div>
 

@@ -20,15 +20,25 @@ function Instructors() {
     visible: { opacity: 1, x: 0 }
   };
 
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  };
+  // motionVariants.js
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  },
+};
 
-  const scaleIn = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1 }
-  };
+ const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  },
+};
+
 
   // Optimized transition settings
   const smoothTransition = {
@@ -101,139 +111,138 @@ function Instructors() {
       </div>
 
       <div className="row">
-        <motion.div 
-          className="col-sm-12 col-lg-6"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={smoothTransition}
-        >
-          <motion.div 
-            className="certificatecards rounded-4"
+  {/* Left Certificate Card */}
+  <motion.div
+    className="col-sm-12 col-lg-6"
+    variants={fadeIn}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+  >
+    <motion.div
+      className="certificatecards rounded-4"
+      variants={scaleIn}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <div className="row px-0 px-md-2 py-4">
+        <div className="col flex flex-col items-center text-center">
+          <h3 className="certifiedheading my-2">Professional Training</h3>
+          <motion.img
+            src={cert3}
+            className="imparts"
             variants={scaleIn}
-            transition={quickTransition}
-          >
-            <div className="row px-0 px-md-2 py-4">
-              <div className="col flex flex-col items-center text-center">
-                <h3 className="certifiedheading my-2">Professional Training</h3>
-                <motion.img 
-                  src={cert3} 
-                  className="imparts"
-                  variants={scaleIn}
-                  transition={quickTransition}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <div className="text-start mx-4">
-              <ul>
-                <li>
-                  <b>Fellowship in Scoliosis and Spinal Surgery</b>
-                </li>
-                <p> <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>The Hospital for Special Surgery, New York, New York</p>
-                <li>
-                  <b>Fellowship in Minimally Invasive Spinal Surgery</b>
-                </li>
-                <p><FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>
-                  California Center for Minimally Invasive Spine Surgery,
-                  Thousand Oaks, California
-                </p>
-                <li>
-                  <b>Orthopaedic Surgery Residency Training</b>
-                </li>
-                <p> <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>King/Drew Medical Center,Los Angeles, California</p>
-                <li>
-                  <b>General Surgery Training</b>
-                </li>
-                
-                <p><FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>Mount Sinai Hospital, New York, New York</p>
-                <li>
-                  <b>Fellowship in Orthopedic Biomechanics</b>
-                </li>
-                <p className="pb-5">
-                 <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon> The Hospital for Special Surgery, New York, New York
-                </p>
-              </ul>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="col-sm-12 col-lg-6"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={smoothTransition}
-        >
-          <motion.div 
-            className="rounded-4 certificatecards"
-            variants={scaleIn}
-            transition={quickTransition}
-          >
-            <div className="row rounded-3 px-2 py-2">
-              <div className="col flex flex-col items-center text-center">
-                <h3 className="certifiedheading mt-4">
-                  Board Certifications
-                </h3>
-                <motion.img 
-                  src={cert1} 
-                  className="imparts mt-2"
-                  variants={scaleIn}
-                  transition={quickTransition}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <div className="text-start px-5">
-              <ul>
-                <li>American Board of Orthopedic Surgeons</li>
-                <li>American Board of Minimally Invasive Spinal Medicine and Surgery</li>
-                <li>National Board of Medical Examiners</li>
-              </ul>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="rounded-4 certificatecards my-4"
-            variants={scaleIn}
-            transition={quickTransition}
-          >
-            <div className="row rounded-3 px-4">
-              <h3 className="certifiedheading mt-3 py-0 py-md-1">
-                Professional Affiliations
-              </h3>
-              <div className="col-sm-8 text-start my-0 my-md-3 order-2 order-lg-1">
-                <div>
-                  <ul>
-                    <li>
-                      <b>Attending Orthopaedic Spine Surgeon</b>
-                    </li>
-                    <p><FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>Westchester Medical Center Valhalla, New York</p>
-                    <li>
-                      <b>Attending Orthopaedic Spine Surgeon</b>
-                    </li>
-                    <p><FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1"></FontAwesomeIcon>
-                      Mid-Hudson Regional Hospital of Westchester Medical Center
-                    </p>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-sm-4 order-1 order-lg-2 d-flex justify-content-center">
-                <motion.img 
-                  src={cert2} 
-                  className="sm-mt-0 md-mt-5 imparts1 imp1"
-                  variants={fadeIn}
-                  transition={quickTransition}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            loading="lazy"
+          />
+        </div>
       </div>
+
+      <div className="text-start mx-4">
+        <ul>
+          <li><b>Fellowship in Scoliosis and Spinal Surgery</b></li>
+          <p>
+            <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+            The Hospital for Special Surgery, New York, New York
+          </p>
+          <li><b>Fellowship in Minimally Invasive Spinal Surgery</b></li>
+          <p>
+            <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+            California Center for Minimally Invasive Spine Surgery, Thousand Oaks, California
+          </p>
+          <li><b>Orthopaedic Surgery Residency Training</b></li>
+          <p>
+            <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+            King/Drew Medical Center, Los Angeles, California
+          </p>
+          <li><b>General Surgery Training</b></li>
+          <p>
+            <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+            Mount Sinai Hospital, New York, New York
+          </p>
+          <li><b>Fellowship in Orthopedic Biomechanics</b></li>
+          <p className="pb-5">
+            <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+            The Hospital for Special Surgery, New York, New York
+          </p>
+        </ul>
+      </div>
+    </motion.div>
+  </motion.div>
+
+  {/* Right Certificate Column */}
+  <motion.div
+    className="col-sm-12 col-lg-6"
+    variants={fadeIn}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+  >
+    {/* Board Certifications Card */}
+    <motion.div
+      className="rounded-4 certificatecards"
+      variants={scaleIn}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <div className="row rounded-3 px-2 py-2">
+        <div className="col flex flex-col items-center text-center">
+          <h3 className="certifiedheading mt-4">Board Certifications</h3>
+          <motion.img
+            src={cert1}
+            className="imparts mt-2"
+            variants={scaleIn}
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div className="text-start px-5">
+        <ul>
+          <li>American Board of Orthopedic Surgeons</li>
+          <li>American Board of Minimally Invasive Spinal Medicine and Surgery</li>
+          <li>National Board of Medical Examiners</li>
+        </ul>
+      </div>
+    </motion.div>
+
+    {/* Professional Affiliations Card */}
+    <motion.div
+      className="rounded-4 certificatecards my-4"
+      variants={scaleIn}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <div className="row rounded-3 px-4">
+        <h3 className="certifiedheading mt-3 py-0 py-md-1">Professional Affiliations</h3>
+        <div className="col-sm-8 text-start my-0 my-md-3 order-2 order-lg-1">
+          <ul>
+            <li><b>Attending Orthopaedic Spine Surgeon</b></li>
+            <p>
+              <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+              Westchester Medical Center Valhalla, New York
+            </p>
+            <li><b>Attending Orthopaedic Spine Surgeon</b></li>
+            <p>
+              <FontAwesomeIcon icon={faLocationDot} className="text-danger beating-icon mx-1" />
+              Mid-Hudson Regional Hospital of Westchester Medical Center
+            </p>
+          </ul>
+        </div>
+        <div className="col-sm-4 order-1 order-lg-2 d-flex justify-content-center">
+          <motion.img
+            src={cert2}
+            className="sm-mt-0 md-mt-5 imparts1 imp1"
+            variants={fadeIn}
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+</div>
+
     </div>
   );
 }

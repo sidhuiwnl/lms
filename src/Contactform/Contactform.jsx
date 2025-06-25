@@ -107,12 +107,11 @@ function  Contactform() {
               {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
             </div>
 
-                  <button
-                   type="submit"
-                  className="block mx-auto bg-[#ffa200] rounded-full text-white py-3 px-6 hover:bg-[#e69100] transition-colors focus:outline-none focus:ring-2 focus:ring-[#ffa200] focus:ring-offset-2 font-medium border-2 border-white hover:border-white hover:text-white cursor-pointer"
-                  >
-                    Get Updates
+                 <div className="flex justify-center pt-4">
+                  <button type="submit" className="btn-slide">
+                    Get Updates<span className="arrow">➤</span>
                   </button>
+                  </div>
 
           </form>
         </div>

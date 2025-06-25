@@ -45,7 +45,7 @@ export default function DrMenuBarUser() {
     <nav className="bg-[#001040] py-6 px-4 sm:px-6 sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         {/* Logo */}
-        <NavLink to={`/user/${id}`} className="flex items-center">
+        <NavLink to={`/`} className="flex items-center">
           <img src={Mainlogo} alt="Main Logo" className="h-10" />
         </NavLink>
 

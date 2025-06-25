@@ -96,12 +96,12 @@ import Dashboardinstructor from "./Lms/Instructor/Dashboardinstructor/Dashboardi
 import Question from "./Lms/Instructor/Question/Question"
 import ScrollToTop from "./ScrollToTop"
 
+
 function App() {
   return (
    <Router>
-    
+    <ScrollToTop/>
       <Routes>
-        
          <Route path="/instructordashboard/:id" element={<Dashboardinstructor />}>
               <Route path="courselist" element={<Courselist />} />
               <Route path="addpagecontent" element={[<Coursecontent />]} />

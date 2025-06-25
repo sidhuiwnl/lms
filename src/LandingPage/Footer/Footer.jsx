@@ -75,7 +75,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="col-12 col-md-3">
             <h5 className="fw-bold" style={{ color: "#ffa200" }}>Follow Us</h5>
-            <div className="d-flex gap-3">
+            <div className="d-flex gap-5 mt-2">
               {SOCIAL.map((item) => {
                 const Icon = item.icon;
                 return (

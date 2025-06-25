@@ -6,6 +6,8 @@ import userRegister from "./src/routes/user/register.js"
 import userLogin from "./src/routes/user/login.js"
 import { authenticateAdmin, authenticateToken } from "./src/middleware/authmiddleware.js"
 import { getCurrentUser } from "./src/controller/user-controller.js"
+import login from "./src/routes/Login/login.routes.js"
+
 import cookieParser from "cookie-parser"
 import dotenv from "dotenv";
 import cors from "cors"
@@ -38,7 +40,7 @@ app.use(express.json())
 
 //This is our backend
 app.use("/api/v1/user",userRoute)
-
+app.use("/api/v1",login)
 app.use("/api/v1/admin",adminRoutes)
 app.use("/api/v1/admin",adminLogin)
 app.use("/api/v1/user",userRegister)

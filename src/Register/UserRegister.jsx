@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Userregistration() {
@@ -162,8 +162,12 @@ function Userregistration() {
           Register
         </button>
         <p className="text-center py-4">
-          Already have an account? <a href="/login"><span className="text-blue-600">Login</span></a>
+          Already have an account? <NavLink to="/login"><span className="text-blue-600">Login</span></NavLink>
         </p>
+        <NavLink to="/" className="flex flex-col items-center" >
+         <span className="text-blue-600 ">Move to Home</span>
+        </NavLink>
+        
       </form>
       <ToastContainer />
     </div>

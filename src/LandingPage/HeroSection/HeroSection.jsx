@@ -107,7 +107,7 @@ export default function HeroSection() {
             <p className="text-[#001040] font-bold text-2xl sm:text-3xl md:text-4xl">U.S. Spine Surgeon.</p>
             <p className="text-[#001040] font-bold subheadken my-3">Buy Dr. Ken Hansraj’s Best-Selling Book</p>
             <p className="font-bold text-[#E00000] text-xl sm:text-2xl md:text-2xl mt-6">Watch Your Back</p>
-            <p className="mt-3 pt">Nine Proven Strategies to Reduce</p>
+            <p className="mt-3 my-2 pt">Nine Proven Strategies to Reduce</p>
             <p className="pt">Your Neck and Back Pain Without Surgery</p>
             <p className="font-bold text-[#E00000] text-xl sm:text-2xl md:text-2xl my-3">Lift</p>
             <p className="pt">Meditations To Boost Back Health</p>

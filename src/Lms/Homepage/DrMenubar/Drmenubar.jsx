@@ -7,7 +7,7 @@ function Drmenubar() {
     <nav className="navbarcontenttext h-25 py-6 px-2 sticky top-0 z-50">
       <div className="flex flex-row justify-between items-center">
         
-        <NavLink to="/myspinecoach">
+        <NavLink to="/">
           <img src={Mainlogo} alt="Main Logo" className="logoken ms-lg-5" />
         </NavLink>
         

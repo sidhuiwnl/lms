@@ -636,7 +636,7 @@ function CourseVideos() {
                       style={{
                         fontSize: "14px",
                         fontWeight: "bold",
-                        display: "block",
+                        
                         maxWidth: "300px",
                         display : "flex",
                         gap : 2

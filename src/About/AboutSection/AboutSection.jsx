@@ -52,7 +52,10 @@ import {
   certificationsData,
 } from '../../utils/Links';
 
+
 export default function AboutSection() {
+
+  
   return (
     <div className="flex flex-col gap-6 m-4">
       {/* First Row: Training + Affiliations (compact card) */}

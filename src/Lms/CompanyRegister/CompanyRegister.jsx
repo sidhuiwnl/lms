@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CompanyRegister.css";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import loginim from "../../assets/logimg.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
@@ -175,7 +175,7 @@ function CompanyRegister() {
         </div>
         <div className="col-lg-8 col-sm-12">
           <h2 className="text-center py-2">Sign Up</h2>
-          <p className="logpara text-center">How can we help you today?</p>
+          <p className="logpara text-center mb-2">How can we help you today?</p>
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-lg-6">
@@ -190,6 +190,7 @@ function CompanyRegister() {
                     value={formData.companyName}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter Company Name"
                   />
                   {errors.companyName && (
                     <p className="error-text text-start">
@@ -229,6 +230,7 @@ function CompanyRegister() {
                     value={formData.country}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter Your Country"
                   />
                   <p className="error-text text-start">{errors.country}</p>
                 </div>
@@ -244,6 +246,7 @@ function CompanyRegister() {
                     value={formData.zipcode}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter ZipCode"
                   />
                   <p className="error-text text-start">{errors.zipcode}</p>
                 </div>
@@ -259,6 +262,7 @@ function CompanyRegister() {
                     value={formData.companyPhone}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter PhoneNumber"
                   />
                   {errors.companyPhone && (
                     <p className="error-text text-start">
@@ -278,6 +282,7 @@ function CompanyRegister() {
                     value={formData.spocName}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter your SPOC Name"
                   />
                   {errors.spocName && (
                     <p className="error-text text-start">{errors.spocName}</p>
@@ -296,6 +301,7 @@ function CompanyRegister() {
                     value={formData.spocEmail}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter your SPOC Email"
                   />
                   {errors.spocEmail && (
                     <p className="error-text text-start">{errors.spocEmail}</p>
@@ -313,6 +319,7 @@ function CompanyRegister() {
                     value={formData.spocPhone}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter your SPOC Phone Number"
                   />
                   {errors.spocPhone && (
                     <p className="error-text text-start">{errors.spocPhone}</p>
@@ -330,6 +337,7 @@ function CompanyRegister() {
                     value={formData.companySize}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter your Company Size"
                   />
                   {errors.companySize && (
                     <p className="error-text text-start">
@@ -349,6 +357,7 @@ function CompanyRegister() {
                     value={formData.companyType}
                     onChange={handleChange}
                     className="frmcontrol"
+                    placeholder="Enter your Company Type"
                   />
                   {errors.companyType && (
                     <p className="error-text text-start">
@@ -369,6 +378,7 @@ function CompanyRegister() {
                       value={formData.password}
                       onChange={handleChange}
                       className="frmcontrol"
+                      placeholder="Enter your Password"
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
@@ -397,6 +407,9 @@ function CompanyRegister() {
               Log in
             </Link>
           </p>
+          <NavLink to="/myspinecoach" className="flex flex-col items-center mt-4" >
+                   <span className="text-blue-600 ">Move to Home</span>
+          </NavLink>
         </div>
       </div>
     </div>

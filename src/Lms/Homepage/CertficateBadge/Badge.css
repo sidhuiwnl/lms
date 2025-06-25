@@ -10,7 +10,7 @@
 }
 
 .cetbg {
-    background-image: url('../../../Asset/Certificatebg.jpg'); /* Background image for the card */
+    background-image: url('../../../assets/Certificatebg.jpg'); /* Background image for the card */
     background-size: cover;
     /* background-position: center; */
     background-repeat: no-repeat;

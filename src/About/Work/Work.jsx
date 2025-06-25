@@ -52,7 +52,7 @@ export default function Work() {
         </h1>
 
         
-        <p className="text-black  text-[15px] sm:text-[16px] max-w-[850px] tracking-wide leading-7">
+        <p className="text-black my-4  text-[15px] sm:text-[16px] max-w-[850px] tracking-wide leading-7">
           Dr. Ken Hansraj helps populations by improving their physical health, emotional life, and even mental well-being. His keynote strategies are life-changing. He will speak to your audience about achieving optimal spinal and overall vibrant health in order to <strong>feel better and do more!</strong>
         </p>
 
