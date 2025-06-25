@@ -73,6 +73,7 @@ function  Contactform() {
                 className={`bg-white w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-dark ${
                   errors.firstName ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
                 required
+                placeholder='First Name'
               />
               {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
             </div>
@@ -84,6 +85,7 @@ function  Contactform() {
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleChange}
+                placeholder='Last Name'
                 className={`w-full bg-white px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 text-dark${
                   errors.lastName ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
                 }`}
@@ -99,6 +101,7 @@ function  Contactform() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder='Email'
                 className={`w-full bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-dark ${
                   errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
                 }`}

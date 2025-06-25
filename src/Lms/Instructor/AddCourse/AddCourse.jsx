@@ -140,6 +140,7 @@ function AddCourse() {
                 name="courseFullName"
                 type="text"
                 className="form-control border"
+                placeholder="Course Name"
               />
             </div>
           </div>
@@ -151,6 +152,7 @@ function AddCourse() {
                 name="courseShortName"
                 type="text"
                 className="form-control border"
+                placeholder="Course Short Name"
               />
             </div>
           </div>
@@ -227,6 +229,7 @@ function AddCourse() {
                 id="courseDescription"
                 name="courseDescription"
                 className="form-control border"
+                 placeholder="Course Description"
               ></textarea>
             </div>
           </div>

@@ -358,6 +358,7 @@ const Coursecontent = () => {
                 value={description}
                 onChange={handleDescriptionChange}
                 className="rounded-0 fc1"
+                placeholder="Description"
               />
             </div>
           </div>

@@ -91,6 +91,7 @@ export default function Form() {
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#001040] shadow-sm"
             required
+            placeholder="First Name"
           />
         </div>
 
@@ -101,6 +102,7 @@ export default function Form() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+             placeholder="Email"
             className={`w-full px-4 py-2 rounded-md border ${
               errors.email ? "border-red-500" : "border-gray-200"
             } focus:outline-none focus:ring-2 focus:ring-[#001040] shadow-sm`}
@@ -120,6 +122,7 @@ export default function Form() {
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#001040] shadow-sm"
             placeholder="https://example.com (optional)"
+            
           />
         </div>
 
@@ -134,6 +137,7 @@ export default function Form() {
             required
             minLength="10"
             maxLength="100"
+            placeholder="Enter your thought's"
           />
         </div>
 
