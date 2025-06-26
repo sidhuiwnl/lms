@@ -86,8 +86,8 @@ function PaymentInitiate() {
           </p>
           {hasPaid ? (
             <div className="paid-message">
-              <i className="fa fa-check-circle paid-icon"></i>
-              <p className="paid-text">You have already purchased this course</p>
+              <p className=" text-center">✅</p>
+              <p className="paid-text text-center">You have already purchased this course</p>
             </div>
           ) : (
             <button className="purchase-button bg-[#001040] rounded-t-xl" onClick={handleCheckout}>

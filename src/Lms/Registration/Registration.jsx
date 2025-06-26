@@ -21,6 +21,9 @@ function Registerpage() {
 
   const emailPattern =
     /^[a-z][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const phpattern=/^[0-9]{6,15}$/;
+  const usernamepattern = /^[A-Za-z.\s]{2,70}$/;
+  const qualificationpattern = /^[A-Za-z.\s]{2,70}$/;
 
   const validateInput = () => {
     let isValid = true;
@@ -30,28 +33,41 @@ function Registerpage() {
     if (!fullname) {
       newErrors.fullname = "Full Name is required";
       isValid = false;
+    }else if(!usernamepattern.test(fullname)){
+      newErrors.fullname="Enter valid Name";
+      isValid=false;
     }
+
 
     // Email validation
     if (!email) {
       newErrors.email = "Email is required";
       isValid = false;
     } else if (!emailPattern.test(email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = "Enter valid Email";
       isValid = false;
     }
+
 
     // Phone number validation
     if (!phone) {
       newErrors.phone = "Phone number is required";
       isValid = false;
+    }else if (!phpattern.test(phone)) {
+      newErrors.phone = "Enter valid Phone Number";
+      isValid = false;
     }
+
 
     // Qualification validation
     if (!qualification) {
       newErrors.qualification = "Qualification is required";
       isValid = false;
+    }else if (!qualificationpattern.test(qualification)) {
+      newErrors.qualification = "Enter valid Qualification";
+      isValid = false;
     }
+
 
     // If 'Other' is selected, validate the input for 'other profession'
     if (jobStatus === "Other" && !otherProfession) {

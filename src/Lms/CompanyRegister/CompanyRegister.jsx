@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CompanyRegister.css";
-import { Link,NavLink } from "react-router-dom";
+import { Link,NavLink,useNavigate } from "react-router-dom";
 import loginim from "../../assets/logimg.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
+import { toast } from "react-toastify";
 
 function CompanyRegister() {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ function CompanyRegister() {
   const companysizepattern = /^[0-9]+$/; // Only numbers for company size
   const zipcodePattern = /^[0-9]{5,10}$/; // Assuming US zip code format (5-10 digits)
   const companytypepattern = /^[a-zA-Z\s]{2,}$/;
-
+  const navigate  = useNavigate()
   // Handle input changes
   const handleChange = (e) => {
     setFormData({
@@ -156,6 +156,7 @@ function CompanyRegister() {
           console.log(res);
           if (res.data.message === "Business registered successfully") {
             toast("Registered successfully");
+            navigate("/lmslogin")
           } else if (
             res.data.message === "Company email domain is already registered."
           ) {

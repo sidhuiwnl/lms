@@ -22,27 +22,33 @@ export const registerBusiness = async (req, res) => {
     spoc_phone_number,
     company_size,
     company_type,
-    password, // User's raw password
+    password,
   } = req.body;
 
   const saltRounds = 10;
 
   try {
-    const domain = company_email_id.split("@")[1]; // Extract domain from email
+    const domain = company_email_id.split("@")[1];
 
-    // Query to check if any company with the same domain already exists
     const checkDomainQuery = `SELECT company_email_id FROM business_register WHERE company_email_id LIKE ?`;
-    await db.query(
-      checkDomainQuery,
-      [`%${domain}`],
-      async (err, existingCompanies) => {
+    
+    // Step 1: Get a connection
+    db.getConnection(async (err, connection) => {
+      if (err) {
+        console.error("Error getting DB connection:", err);
+        return res.status(500).json({ message: "Database connection error" });
+      }
+
+      // Step 2: Check if domain already exists
+      connection.query(checkDomainQuery, [`%${domain}`], async (err, existingCompanies) => {
         if (err) {
+          connection.release();
           console.error("Error checking company domain:", err);
           return res.json({ message: "Error checking company domain." });
         }
 
-        // If any company with the same domain exists, return an error
         if (existingCompanies.length > 0) {
+          connection.release();
           return res.json({
             message: "Company email domain is already registered.",
           });
@@ -50,19 +56,20 @@ export const registerBusiness = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        // Start transaction
-        db.beginTransaction((err) => {
+        // Step 3: Begin transaction
+        connection.beginTransaction((err) => {
           if (err) {
+            connection.release();
             return res.json({ message: "Error starting database transaction" });
           }
 
-          // Insert the business information into the business_register table
           const insertBusinessQuery = `
-          INSERT INTO business_register 
-          (company_name, company_email_id, country, zipcode, company_phone_number, spoc_name, spoc_email_id, spoc_phone_number, company_size, company_type, password)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            INSERT INTO business_register 
+            (company_name, company_email_id, country, zipcode, company_phone_number, spoc_name, spoc_email_id, spoc_phone_number, company_size, company_type, password)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `;
 
-          db.query(
+          connection.query(
             insertBusinessQuery,
             [
               company_name,
@@ -75,26 +82,27 @@ export const registerBusiness = async (req, res) => {
               spoc_phone_number,
               company_size,
               company_type,
-              hashedPassword, // Store hashed password
+              hashedPassword,
             ],
             (err, result) => {
               if (err) {
-                return db.rollback(() => {
+                return connection.rollback(() => {
+                  connection.release();
                   console.error(err);
                   res.json({ message: "Error registering business" });
                 });
               }
 
-              const companyId = result.insertId; // Get the inserted company_id
+              const companyId = result.insertId;
 
-              // Now insert into the auth table for the SPOC
               const insertAuthQuery = `INSERT INTO auth (company_id, email, password, role_id) VALUES (?, ?, ?, ?)`;
-              db.query(
+              connection.query(
                 insertAuthQuery,
-                [companyId, spoc_email_id, hashedPassword, 5], // role_id is 5 for SPOC
+                [companyId, spoc_email_id, hashedPassword, 5],
                 (err, authResult) => {
                   if (err) {
-                    return db.rollback(() => {
+                    return connection.rollback(() => {
+                      connection.release();
                       console.error(err);
                       res.json({
                         message: "Error registering SPOC in auth table",
@@ -102,14 +110,14 @@ export const registerBusiness = async (req, res) => {
                     });
                   }
 
-                  // Insert into the license table
                   const insertLicenseQuery = `INSERT INTO license (company_id, license, invite, enrolled) VALUES (?, ?, ?, ?)`;
-                  db.query(
+                  connection.query(
                     insertLicenseQuery,
-                    [companyId, 0, 0, 0], // Set license, invite, and enrolled to 0
+                    [companyId, 0, 0, 0],
                     (err, licenseResult) => {
                       if (err) {
-                        return db.rollback(() => {
+                        return connection.rollback(() => {
+                          connection.release();
                           console.error(err);
                           res.json({
                             message: "Error inserting into license table",
@@ -117,14 +125,14 @@ export const registerBusiness = async (req, res) => {
                         });
                       }
 
-                      // Insert into the context table after inserting into auth
                       const insertContextQuery = `INSERT INTO context (contextlevel, instanceid) VALUES (?, ?)`;
-                      db.query(
+                      connection.query(
                         insertContextQuery,
-                        [7, companyId], // contextlevel = 7, instanceid = companyId
+                        [7, companyId],
                         (err, contextResult) => {
                           if (err) {
-                            return db.rollback(() => {
+                            return connection.rollback(() => {
+                              connection.release();
                               console.error(err);
                               res.json({
                                 message: "Error inserting into context table",
@@ -132,16 +140,16 @@ export const registerBusiness = async (req, res) => {
                             });
                           }
 
-                          const contextId = contextResult.insertId; // Get the inserted context_id
+                          const contextId = contextResult.insertId;
 
-                          // Update the business_register table with the context_id
                           const updateBusinessQuery = `UPDATE business_register SET context_id = ? WHERE company_id = ?`;
-                          db.query(
+                          connection.query(
                             updateBusinessQuery,
                             [contextId, companyId],
                             (err, updateResult) => {
                               if (err) {
-                                return db.rollback(() => {
+                                return connection.rollback(() => {
+                                  connection.release();
                                   console.error(err);
                                   res.json({
                                     message:
@@ -150,10 +158,11 @@ export const registerBusiness = async (req, res) => {
                                 });
                               }
 
-                              // Commit the transaction if all inserts succeed
-                              db.commit(async (err) => {
+                              // Final Commit
+                              connection.commit((err) => {
                                 if (err) {
-                                  return db.rollback(() => {
+                                  return connection.rollback(() => {
+                                    connection.release();
                                     console.error(err);
                                     res.json({
                                       message: "Error committing transaction",
@@ -161,7 +170,10 @@ export const registerBusiness = async (req, res) => {
                                   });
                                 }
 
-                                // Send confirmation email to SPOC
+                                // Release connection
+                                connection.release();
+
+                                // Send email
                                 const mailData = {
                                   from: "sivaranji5670@gmail.com",
                                   to: spoc_email_id,
@@ -189,20 +201,13 @@ export const registerBusiness = async (req, res) => {
                                   `,
                                 };
 
-                                // Send email
-                                transporter.sendMail(
-                                  mailData,
-                                  (error, info) => {
-                                    if (error) {
-                                      console.error(
-                                        "Error sending email:",
-                                        error
-                                      );
-                                    } else {
-                                      console.log("Email sent:", info.response);
-                                    }
+                                transporter.sendMail(mailData, (error, info) => {
+                                  if (error) {
+                                    console.error("Error sending email:", error);
+                                  } else {
+                                    console.log("Email sent:", info.response);
                                   }
-                                );
+                                });
 
                                 res.json({
                                   message: "Business registered successfully",
@@ -222,8 +227,8 @@ export const registerBusiness = async (req, res) => {
             }
           );
         });
-      }
-    );
+      });
+    });
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({ message: "Error processing registration" });
