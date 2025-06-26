@@ -9,7 +9,7 @@ export default function Navbar() {
 
 
   return (
-    <nav id="main-navbar" className=" bg-[#001040] w-full h-[100px] sticky top-0 z-50 ">
+    <nav id="main-navbar" className=" bg-[#001040] w-full h-[100px] fixed top-0 left-0 z-50 ">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-10 md:px-16 lg:px-20 py-4">
         <div className="w-[150px] sm:w-[200px] md:w-[250px] lg:w-[296px] h-[32px] sm:h-[40px] md:h-[48px] lg:h-[52px]">
           <img

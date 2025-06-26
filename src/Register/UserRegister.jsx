@@ -124,17 +124,19 @@ function Userregistration() {
           User Registration
         </h2>
 
-        <InputField label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
-        <InputField label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
-        <InputField label="Email" name="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} />
-        <InputField label="Mobile Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} error={errors.phone} />
+        <InputField placeholder="First Name"  label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
+        <InputField placeholder="Last Name" label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
+        <InputField placeholder="Email" label="Email" name="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} />
+        <InputField placeholder="Mobile Number" label="Mobile Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} error={errors.phone} />
 
         {/* Password field with eye icon */}
         <InputField
           label="Password"
           name="password"
+          placeholder="Password"
           type={showPassword.password ? 'text' : 'password'}
           value={formData.password}
+          
           onChange={handleChange}
           error={errors.password}
           showToggle
@@ -180,6 +182,7 @@ const InputField = ({
   name,
   value,
   onChange,
+  placeholder,
   error,
   type = 'text',
   showToggle = false,
@@ -190,6 +193,7 @@ const InputField = ({
     <label className="block font-medium text-gray-700 mb-1">{label}</label>
     <div className="relative">
       <input
+       placeholder={placeholder}
         type={type}
         name={name}
         value={value}

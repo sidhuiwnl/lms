@@ -22,7 +22,7 @@ export function Edit() {
         console.log("Token is valid:", response.data);
       } catch (error) {
         console.error("Token verification error:", error);
-        navigate("/login");
+        navigate("/lmslogin");
       }
     };
 
@@ -45,7 +45,7 @@ export function Edit() {
   };
 
   return (
-    <div className="d-flex flex-column flex-lg-row h-lg-full ">
+    <div className="d-flex flex-column flex-lg-row h-lg-full pt-[100px] ">
       <nav className="h-screen border border-r-neutral-950 p-6 ">
               <div className="flex items-center justify-between mb-6  lg:w-50   ">
                 <h3 className="text-xl font-bold ">My Spine Coach</h3>

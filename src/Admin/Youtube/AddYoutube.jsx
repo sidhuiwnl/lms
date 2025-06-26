@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-
+import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function AddYoutubeData() {
@@ -62,6 +62,7 @@ export default function AddYoutubeData() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            placeholder="Youtube Title"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
           />
         </div>
@@ -72,6 +73,7 @@ export default function AddYoutubeData() {
             value={youtubeLink}
             onChange={(e) => setYoutubeLink(e.target.value)}
             required
+            placeholder="Youtube Embedded Link"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
           />
         </div>
@@ -82,6 +84,9 @@ export default function AddYoutubeData() {
         >
           {loading ? "Submitting..." : "Add Video"}
         </button>
+         <NavLink to="/" className="flex flex-col items-center mt-2" >
+                 <span className="text-blue-600 ">Move to Home</span>
+        </NavLink>
       </form>
     </div>
   );

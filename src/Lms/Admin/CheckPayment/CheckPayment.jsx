@@ -94,6 +94,7 @@ export default function CheckPayment() {
                 id="email"
                 value={email}
                 readOnly
+                placeholder="Email Id"
               />
             </div>
 
@@ -106,6 +107,7 @@ export default function CheckPayment() {
                 name="checkno"
                 id="checkno"
                 required
+                placeholder="Cheque No"
               />
               {chequeNumberError && (
                 <p style={{ color: "red" ,fontSize:"12px"}}>{chequeNumberError}</p>
@@ -122,6 +124,7 @@ export default function CheckPayment() {
                 id="quantity"
                 value={quantity}
                 readOnly
+                placeholder="Quantity"
               />
             </div>
 
@@ -135,6 +138,7 @@ export default function CheckPayment() {
                 id="amount"
                 value={amount}
                 readOnly
+                placeholder="Amount"
               />
             </div>
 <div className="flex justify-center">

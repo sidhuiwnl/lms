@@ -35,7 +35,7 @@ function Grade() {
 
 
   return (
-    <div className="container mx-auto px-2 mt-6 max-w-screen-lg py-10">
+    <div className="container mx-auto px-2 mt-6 max-w-screen-lg pt-[100px] pl-4 mb-10">
   <div className="overflow-x-auto rounded-md shadow-sm  border">
     <table className="min-w-full text-xs text-left text-gray-700  bg-white border border-gray-200">
       <thead className="uppercase text-white bg-[#001040]">

@@ -207,6 +207,7 @@ function UpdateBookDetails() {
             onChange={handleChange}
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            placeholder="Book title"
           />
         </div>
 
@@ -217,6 +218,7 @@ function UpdateBookDetails() {
             name="author_detail"
             value={book.author_detail}
             onChange={handleChange}
+            placeholder="Author Details"
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -227,13 +229,14 @@ function UpdateBookDetails() {
             type="number"
             name="quantity"
             min="1"
+            placeholder="Quantity"
             value={book.quantity}
             onChange={handleChange}
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-row flex-wrap">
           <div>
             <label className="block text-gray-700 font-medium mb-1">Kindle Price ($)</label>
             <input
@@ -259,9 +262,9 @@ function UpdateBookDetails() {
               placeholder="0.00"
             />
           </div>
-        </div>
+        
 
-        <div className="grid grid-cols-2 gap-4">
+        
           <div>
             <label className="block text-gray-700 font-medium mb-1">Hardcover Price ($)</label>
             <input

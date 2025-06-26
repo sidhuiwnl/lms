@@ -47,7 +47,7 @@ export default function BlogPreview() {
   }, [blogId]);
 
   return (
-    <section className="min-h-screen px-4 py-10 sm:px-6 lg:px-16 flex flex-col lg:flex-row gap-8">
+    <section className=" min-h-screen pt-[100px] pl-4 mt-10 sm:px-6 lg:px-16 flex flex-col lg:flex-row gap-8">
       {/* Left Side: Blog Content */}
       <div className="w-full lg:w-2/3 space-y-6 overflow-y-scroll max-h-[calc(100vh-80px)] pr-2 scrollbar-hide">
         {blog ? (
@@ -72,7 +72,7 @@ export default function BlogPreview() {
             <Form />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 mb-2">
             <h2 className="text-xl font-semibold text-[#001040]">
               Latest Blogs
             </h2>

@@ -108,7 +108,7 @@ function InvitedRegister() {
             
           if (res.data.message === "User registered and enrolled successfully.") {
             toast.success("Registration successful!");
-            // navigate("/login");
+            navigate("/lmslogin");
             setFullname("");
             setEmail("");
             setPhone("");
@@ -342,7 +342,7 @@ function InvitedRegister() {
                   <p className="logpara">
                     Already have an account?{" "}
                     <Link
-                      to="/login"
+                      to="/lmslogin"
                       style={{ textDecoration: "none", fontWeight: "600" }}
                       className="register-link"
                     >

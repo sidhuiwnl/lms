@@ -22,7 +22,7 @@ export default function Blog() {
   };
 
   return (
-    <div className="container py-4">  
+    <div className=" container py-4">  
     <Helmet>
         <title>Insights on Spine Health – Dr. Ken Hansraj's Blog
 </title>
@@ -32,7 +32,7 @@ export default function Blog() {
 " />
         <link rel="canonical" href="https://drken.us/blog" /> 
     </Helmet>
-      <div className="row">
+      <div className="pt-[100px] pl-4 row">
         {blogs.map((blog) => (
           <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={blog.id}>
             <div className="bg-white border rounded-xl shadow-md p-4 h-100 d-flex flex-column">

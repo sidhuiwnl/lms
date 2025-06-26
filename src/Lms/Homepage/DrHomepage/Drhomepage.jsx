@@ -57,7 +57,7 @@ function Drkenhome() {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 pt-[100px] pl-4">
       {/* Video Section */}
       <div className="content-container">
         <div className={activeTab === "lessons" ? "video-wrapper my-2" : "video-wrapper1 my-2"}>

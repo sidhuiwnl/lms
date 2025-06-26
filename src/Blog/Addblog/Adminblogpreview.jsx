@@ -42,7 +42,7 @@ export default function Adminblogpreview() {
   }, [blogId]);
 
   return (
-    <section className="py-10 sm:px-8 md:px-16 flex flex-col sm:flex-row gap-10">
+    <section className="pt-[100px] pl-4 mt-5 m-10 flex flex-col sm:flex-row gap-10">
       {/* Left Side: Blog Content */}
       <div className="container">
         {blogs ? (

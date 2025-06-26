@@ -57,7 +57,7 @@ export default function BookPage() {
         <link rel="canonical" href="https://drken.us/book" />
       </Helmet>
 
-      <div className="container py-4">
+      <div className="pt-[100px] pl-4 container mt-5">
         <div className="row">
           {books.map((book) => (
             <div key={book.id} className="col-sm-12 col-md-6 col-lg-4 mb-4">

@@ -66,7 +66,7 @@ function Checkoutpage() {
   const isAllSelected = cartItems.length > 0 && selectedItems.length === cartItems.length;
 
   return (
-    <div className='checkout-container'>
+    <div className='pt-[100px] pl-4 mt-5 checkout-container'>
       <div className='checkout-card'>
         <div className='table-responsive'>
           <table className='checkout-table'>
@@ -79,14 +79,14 @@ function Checkoutpage() {
                     onChange={handleSelectAll}
                     disabled={cartItems.length === 0}
                   />
-                  <span className='ms-2'>Select all</span>
+                  <span className='ms-2 text-sm'>Select all</span>
                 </th>
-                <th className='text-white'>Image</th>
-                <th className='text-white'>Product</th>
-                <th className='text-white'>Quantity</th>
-                <th className='text-white'>Price</th>
-                <th className='text-white'>Total</th>
-                <th className='text-white'>Action</th>
+                <th className='text-white text-sm'>Image</th>
+                <th className='text-white text-sm'>Product</th>
+                <th className='text-white text-sm'>Quantity</th>
+                <th className='text-white text-sm'>Price</th>
+                <th className='text-white text-sm'>Total</th>
+                <th className='text-white text-sm'>Action</th>
               </tr>
             </thead>
             <tbody>

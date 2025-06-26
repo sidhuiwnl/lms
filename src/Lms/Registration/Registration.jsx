@@ -98,7 +98,7 @@ function Registerpage() {
         .then((res) => {
           if (res.data.message === "User registered successfully.") {
             toast.success("Registration successful!");
-            navigate("/login");
+            navigate("/lmslogin");
             setFullname("");
             setEmail("");
             setPhone("");

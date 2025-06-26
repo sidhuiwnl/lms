@@ -130,6 +130,7 @@ function Courseupdation() {
                 name="courseFullName"
                 type="text"
                 className="form-control"
+                placeholder="Course Full Name"
               />
             </div>
           </div>
@@ -141,6 +142,7 @@ function Courseupdation() {
                 name="courseShortName"
                 type="text"
                 className="form-control"
+                placeholder="Course Short Name"
               />
             </div>
           </div>
@@ -180,6 +182,7 @@ function Courseupdation() {
                 name="courseStartDate"
                 type="date"
                 className="form-control"
+                
               />
             </div>
           </div>

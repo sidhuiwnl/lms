@@ -76,7 +76,7 @@ function Contact() {
   };
 
   return (
-    <div id='contact-1' className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-20 py-8 md:py-12 font-normal">
+    <div id='contact-1' className="max-w-7xl mx-auto  pt-[100px] pl-4 mt-5 font-normal">
       <Helmet>
         <title>Contact Dr. Ken Hansraj – Get in Touch</title>
         <meta name="description" content="Have questions or need assistance? Contact Dr. Ken Hansraj for expert advice on spine health." />

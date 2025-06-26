@@ -68,7 +68,7 @@ function CertificateBadge() {
   };
 
   return (
-    <div className="container ">
+    <div className="container pt-[100px] pl-4">
       <ToastContainer />
       <div className="container certificateparts">
         <h5 className="certificatepara text-center py-3">

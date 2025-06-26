@@ -51,11 +51,11 @@ function Userprofile() {
 
 
   return (
-   <div className="container-fluid bg-light min-vh-100 p-3 pt-5 pt-md-4">
+   <div className="container-fluid bg-light min-vh-100  pt-[100px] pl-4 mt-5">
 
           <div className="row flex-column flex-md-row">
       {/* Sidebar */}
-      <div className="col-md-3 mb-3 mb-md-0">
+      <div className="col-md-3 mb-3 mb-md-0  ">
         <div className="bg-white p-3 shadow-sm rounded h-100">
           <h5 className="mb-4">Hello, {currentUser.first_name}</h5>
           <ul className="list-group list-group-flush">

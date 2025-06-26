@@ -36,7 +36,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
         console.log("Token is valid:", response.data);
       } catch (error) {
         console.error("Token verification error:", error);
-        navigate("/login");
+        navigate("/lmslogin");
       }
     };
     verifyToken();

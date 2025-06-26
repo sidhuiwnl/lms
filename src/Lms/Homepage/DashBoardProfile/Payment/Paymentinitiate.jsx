@@ -14,12 +14,16 @@ const stripePromise = loadStripe(
 function PaymentInitiate() {
   const [sessionId, setSessionId] = useState(null);
   const [hasPaid, setHasPaid] = useState(false); // Track payment status
-  const { id } = useParams();
-  const history = useNavigate();
-
+  const { id } = useParams(); // mza
+  
+  
+  // const decodedId = atob(id)
   const decodedId = atob(id)
 
-  console.log(hasPaid)
+  
+  const navigate = useNavigate()
+
+ 
 
   // Fetch payment verification
   useEffect(() => {
@@ -34,11 +38,17 @@ function PaymentInitiate() {
       });
   }, [id]);
 
+  const urlDecodedId = decodeURIComponent(id)
+  console.log("url",urlDecodedId)
+
+  
+
+  
   // Function to handle checkout
   const handleCheckout = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}payment/create-payment-intent/${decodedId}`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}payment/create-payment-intent/${id}`,
         {
           items: [{ name: "My Spine Coach", price: 1000, quantity: 1 }], // Adjust this data as needed
         }
@@ -55,7 +65,7 @@ function PaymentInitiate() {
       if (error) {
         console.error("Stripe Checkout Error:", error);
       } else {
-        history(`/user/${id}/payment`);
+        navigate(`/allcourselist/${urlDecodedId}`)
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);

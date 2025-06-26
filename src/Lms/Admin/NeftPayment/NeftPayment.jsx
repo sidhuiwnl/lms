@@ -94,6 +94,7 @@ export default function NeftPayment() {
                 id="email"
                 value={email}
                 required
+                placeholder="Email Id"
               />
             </div>
 
@@ -106,6 +107,7 @@ export default function NeftPayment() {
                 name="transactionid"
                 id="transactionid"
                 required
+                placeholder="Transaction Id"
               />
               {transactionError && (
                 <p style={{ color: "red",fontSize:"12px" }}>{transactionError}</p>
@@ -122,6 +124,7 @@ export default function NeftPayment() {
                 id="quantity"
                 value={quantity}
                 required
+                placeholder="Quantity"
               />
             </div>
 
@@ -134,6 +137,7 @@ export default function NeftPayment() {
                 name="amount"
                 id="amount"
                 value={amount}
+                placeholder="Amount"
                 readOnly/>
             </div>
 <div className="flex justify-center">

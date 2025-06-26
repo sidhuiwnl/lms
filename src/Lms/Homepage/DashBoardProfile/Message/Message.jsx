@@ -43,7 +43,7 @@ export function Message() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100 pt-[100px]">
       {/* Sidebar */}
       <nav className=" text-gray-50 lg:w-60 border border-neutral-900 p-6">
         {/* Logo */}

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 html, body {
   margin: 0;
   padding: 0;
@@ -8,10 +7,9 @@ html, body {
   min-height: 100vh; 
   overflow-x: hidden;
   font-family: "Montserrat", "Arial", sans-serif;
-  font-weight: 700;
+  font-weight: 400;
    
 }
-
 
 .montserrat-main {
   font-family: "Montserrat", sans-serif;
@@ -48,7 +46,6 @@ html, body {
 
 @media (max-width:769px){
 .headingarea{
-  font-weight: 700;
   font-size: 35px;
 }
 .keynotespeakerhead{

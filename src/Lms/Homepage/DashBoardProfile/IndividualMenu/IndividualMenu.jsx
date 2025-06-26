@@ -43,7 +43,7 @@ export function Indiviualmenu() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100 pt-[100px] ">
       <nav className="border border-neutral-900 p-6 ">
         <div className="flex items-center justify-between mb-6  lg:w-50   ">
           <h3 className="text-xl font-bold ">My Spine Coach</h3>

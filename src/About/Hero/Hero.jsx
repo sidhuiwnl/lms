@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 
 export default function Hero() {
   return (
-    <section className="relative w-full">
+    <section className="pt-[100px] pl-4 relative w-full">
       <Helmet>
         <title>About Dr. Ken Hansraj – Spine Surgeon & Global Health Consultant</title>
         <meta name="description" content="Learn about Dr. Ken Hansraj's mission to eradicate spinal problems through research, education, and patient care." />

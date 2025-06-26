@@ -152,7 +152,7 @@ function App() {
 
         <Route path="/lmslogin" element={[<Login/>]} />
         <Route path="/lmsregister" element={<Registerpage />} />
-        <Route path="/myspinecoach" element={[<Drmenubar/>,<Drkenhome/>]} />
+        <Route path="/myspinecoach" element={[<Drmenubar/>,<Drkenhome/> ]} />
         <Route path="/user/:id"
             element={[<DrMenuBarUser />, <Drkenhome />]}/>
         <Route

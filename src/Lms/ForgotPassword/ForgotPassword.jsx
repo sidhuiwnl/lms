@@ -4,6 +4,7 @@ import "./ForgotPassword.css"; // Import the CSS file for styling
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import imlogin from "../../assets/bannerlog.jpg";
+import { NavLink } from "react-router-dom";
 
 
 const LmsForgotPassword = () => {
@@ -78,6 +79,7 @@ const LmsForgotPassword = () => {
           onChange={handleEmailChange}
           className="formcontrolbox my-2 w-full"
           required
+          placeholder="Email"
         />
           </div>
         </div>
@@ -91,6 +93,7 @@ const LmsForgotPassword = () => {
           {loading ? "Sending..." : "Submit"}
         </button>
       </form>
+      <NavLink to="/" className="text-black my-2">Move to Home</NavLink>
       {message && <p className="forgot-password__message">{message}</p>}
     </div>
     </div>

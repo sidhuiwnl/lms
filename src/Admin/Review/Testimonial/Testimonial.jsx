@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 
 export default function Reviews() {
   const [books, setBooks] = useState([]);
@@ -100,6 +101,7 @@ export default function Reviews() {
             onChange={handleReviewChange}
             className="border border-gray-300 p-2 w-full rounded"
             required
+            placeholder="Name"
           />
         </div>
 
@@ -114,6 +116,7 @@ export default function Reviews() {
             onChange={handleReviewChange}
             className="border border-gray-300 p-2 w-full rounded"
             required
+            placeholder="Stars"
           />
         </div>
 
@@ -125,6 +128,7 @@ export default function Reviews() {
             onChange={handleReviewChange}
             className="border border-gray-300 p-2 w-full rounded"
             required
+            placeholder="Country"
           />
         </div>
 
@@ -137,6 +141,7 @@ export default function Reviews() {
             className="border border-gray-300 p-2 w-full rounded"
             rows={4}
             required
+            placeholder="Review Content"
           />
         </div>
 
@@ -178,6 +183,7 @@ export default function Reviews() {
             onChange={handleTestimonialChange}
             className="border border-gray-300 p-2 w-full rounded"
             required
+            placeholder="Patient Name"
           />
         </div>
 
@@ -192,6 +198,7 @@ export default function Reviews() {
             required
             minLength="100" 
             maxLength="500"
+            placeholder="Testimonial"
           />
         </div>
 
@@ -201,6 +208,9 @@ export default function Reviews() {
         >
           Submit Testimonial
         </button>
+         <NavLink to="/" className="flex flex-col items-center mt-4" >
+                 <span className="text-blue-600 ">Move to Home</span>
+        </NavLink>
       </form>
     </div>
   );

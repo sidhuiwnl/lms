@@ -10,13 +10,17 @@ export const createPaymentIntent = async (req, res) => {
     const { items, success_url, cancel_url } = req.body;
     const { id } = req.params;
 
+    const decodedId = atob(id)
+
+    const encodedId = encodeURIComponent(id);
+
     if (!items || items.length === 0) {
       return res.status(400).json({ error: "No items provided." });
     }
 
     // Update the has_paid field in the user table
     const updateQuery = "UPDATE user SET has_paid = 1 WHERE user_id = ?";
-    db.query(updateQuery, [id], (err, result) => {
+    db.query(updateQuery, [decodedId], (err, result) => {
       if (err) {
         console.error("Error updating user payment status: ", err);
         return res.status(500).json({ error: "Database update failed." });
@@ -27,7 +31,7 @@ export const createPaymentIntent = async (req, res) => {
         INSERT INTO user_enrollment (user_id, time_created) 
         VALUES (?, NOW())
       `;
-      db.query(enrollmentQuery, [id], (err, enrollmentResult) => {
+      db.query(enrollmentQuery, [decodedId], (err, enrollmentResult) => {
         if (err) {
           console.error("Error inserting into user_enrollment: ", err);
           return res.status(500).json({ error: "Database insertion failed." });
@@ -50,8 +54,8 @@ export const createPaymentIntent = async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: `${process.env.DOMAIN}/user/${id}/payment`,
-            cancel_url: `${process.env.DOMAIN}/user/${id}/payment`,
+            success_url: `${process.env.DOMAIN}/user/${encodedId}`,
+            cancel_url: `${process.env.DOMAIN}/user/${encodedId}`,
           })
           .then((session) => {
             res.json({ id: session.id });

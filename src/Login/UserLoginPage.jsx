@@ -76,6 +76,7 @@ function UserLogin() {
           <input
             type="text"
             name="emailOrUsername"
+            placeholder='Email'
             value={formData.emailOrUsername}
             onChange={handleChange}
             className={`w-full px-4 py-2 border ${errors.emailOrUsername ? 'border-red-500' : 'border-gray-300'} rounded focus:outline-none focus:ring-2 focus:ring-[#001040]`}
@@ -89,6 +90,7 @@ function UserLogin() {
           <input
             type="password"
             name="password"
+            placeholder='Password'
             value={formData.password}
             onChange={handleChange}
             className={`w-full px-4 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded focus:outline-none focus:ring-2 focus:ring-[#001040]`}

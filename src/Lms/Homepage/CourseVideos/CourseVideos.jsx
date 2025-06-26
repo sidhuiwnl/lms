@@ -578,7 +578,7 @@ function CourseVideos() {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid pt-[100px] pl-4 mb-10">
         <div className="row">
           <h4 className="px-6 py-4 text-lg" style={{color:"#001040"}}>{moduleName}</h4>
           <ToastContainer />
@@ -1268,7 +1268,7 @@ function CourseVideos() {
                 // Corrected condition
                 if (id === "undefined" || id === undefined) {
                   handleClose(); // Close the modal
-                  navigate(`/`); // Change the route to the default path
+                  navigate(`/myspinecoach`); // Change the route to the default path
                   window.location.reload(); // Force a reload to fetch new content
                 } else {
                   if (haspaid === true) {

@@ -62,7 +62,7 @@ function Admindatapage() {
   }, []);
 
   return (
-    <div className="overflow-hidden bg-gray-100 p-4">
+    <div className="overflow-hidden bg-gray-100 pt-[100px] pl-4 mt-5 ">
       <h1 className="text-center text-3xl font-bold my-6">Leads Page</h1>
       <div className="flex flex-col md:flex-row justify-center gap-4 mb-6 border-b pb-4 flex-wrap">
         {["Blog Leads", "Email Subscribers", "ContactLeads", "Blogs", "Books"].map((category) => (

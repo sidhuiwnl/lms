@@ -175,7 +175,7 @@ function BookPurchase() {
   const availableFormats = getAvailableFormats(book);
 
   return (
-    <div className="max-w-7xl mx-auto p-6 my-5 bg-white text-[#001040]">
+    <div className="max-w-7xl mx-auto pt-[100px] pl-4 my-5 bg-white text-[#001040]">
       {/* ... Other JSX (cart/profile buttons, images, etc.) remains unchanged ... */}
 
       <div className="flex flex-col md:flex-row gap-8">

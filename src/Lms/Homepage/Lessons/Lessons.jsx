@@ -19,7 +19,7 @@ function Lessons() {
 
   const decodedId = id && id !== "undefined" ? atob(id) : "guest";
   
-
+  
   const navigate = useNavigate();
   useEffect(() => {
     const checkAuth = async () => {
@@ -70,10 +70,15 @@ function Lessons() {
     setModalContent(null);
   };
 
-  const handleLoginRedirect = () => {
+ const handleLoginRedirect = () => {
+  if (!isAuthenticated || decodedId === "guest") {
     navigate("/lmslogin");
-    handleCloseModal();
-  };
+  } else {
+    navigate(`/user/${id}/payment`);
+  }
+  handleCloseModal();
+};
+
 
   return (
     <div className="ml-5 ">
@@ -82,26 +87,27 @@ function Lessons() {
           {/* If the user has paid, show all modules */}
           {hasPaid ? (
                   <Link
-        to={`/ken/1/${e.moduleId}/${id}`}
-        className="lessonview text-decoration-none flex flex-col sm:flex-row items-center sm:items-start sm:text-left text-center gap-4 w-full p-4 rounded-3 shadow"
-        style={{ color: "#001040" }}
-      >
-        <div className="sm:w-1/4 w-full flex justify-center">
-          <img
-            src={e.module_image}
-            alt="lesson"
-            className="rounded lesson w-40 h-40 object-cover"
-          />
-        </div>
-        <div className="col-lg-6 d-flex gap-2 flex-column justify-content-center items-center text-center lg:items-start lg:text-left sm:mt-5 textpart">
+                  to={`/ken/1/${e.moduleId}/${id}`}
+                  className="col-sm-12 lessonview  text-decoration-none"
+                  style={{ color: "#001040" }}>
+                  <div className="col-lg-4 d-flex flex-column justify-content-center items-center  gap-2">
+                    <img
+                      src={e.module_image}
+                      alt="lesson"
+                      className="rounded-3 lesson"
+                      accept=".jpg,.jpeg,.png,.tiff,.tif"
+                    />
+                  </div>
+                 <div className="col-lg-6 d-flex gap-2 flex-column justify-content-center  items-center text-center lg:items-start lg:text-left sm:mt-5 textpart">
                     <h5>Chapter {e.moduleId}</h5>
                     <h3>{e.modulename}</h3>
                     <p>{e.activities}</p>
                    </div>
-        <div className="flex items-center justify-center w-10 sm:mt-20 h-10 ml-auto mr-4 sm:mr-6">
-            <FontAwesomeIcon icon={faAngleRight} />
-        </div>
-      </Link>
+
+                  <div className="flex items-center justify-center sm:mt-20 w-10 h-10 ml-auto mr-4 sm:mr-6">
+                      <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </Link>
 
           ) : (
             <div>
@@ -159,32 +165,37 @@ function Lessons() {
       ))}
 
       
-      <Modal
-        show={showModal}
-        onHide={handleCloseModal}
-        centered
-        className="modeltext"
-      >
-        <Modal.Header closeButton style={{ borderBottom: "none" }}>
-          <Modal.Title style={{color:"#291571"}}>Login Required</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ borderBottom: "none", fontSize: "18px", textAlign: "start" }}>
-  <p>
-    <b>Please log in to access this Chapter.</b>
-  </p>
-</Modal.Body>
+    <Modal
+  show={showModal}
+  onHide={handleCloseModal}
+  centered
+  className="modeltext"
+>
+  <Modal.Header closeButton style={{ borderBottom: "none" }}>
+    <Modal.Title style={{ color: "#291571" }}>
+      {(!isAuthenticated || decodedId === "guest") ? "Login Required" : "Payment Required"}
+    </Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body style={{ borderBottom: "none", fontSize: "18px", textAlign: "start" }}>
+    <p>
+      <b>
+        Please {(!isAuthenticated || decodedId === "guest") ? "log in" : "complete your payment"} to access this chapter.
+      </b>
+    </p>
+  </Modal.Body>
+
+  <Modal.Footer style={{ borderTop: "none", display: "flex", justifyContent: "space-between" }}>
+    <Button className="logbutton" onClick={handleLoginRedirect}>
+      {(!isAuthenticated || decodedId === "guest") ? "Login" : "Go to Payment"}
+    </Button>
+    <Button className="border-0 logbutton1" onClick={handleCloseModal}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
 
 
-        <Modal.Footer style={{ borderTop: "none", display: "flex", justifyContent: "space-between" }}>
-  <Button className="logbutton" onClick={handleLoginRedirect}>
-    Login
-  </Button>
-  <Button className="border-0 logbutton1" onClick={handleCloseModal} >
-    Close
-  </Button>
-</Modal.Footer>
-
-      </Modal>
     </div>
   );
 }
