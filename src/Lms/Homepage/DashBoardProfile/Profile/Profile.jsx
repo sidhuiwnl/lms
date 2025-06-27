@@ -82,17 +82,7 @@ export function Indiviualdashboardmain() {
       });
   }, [id]);
 
-    function getTimeBasedGreeting() {
-    const hours = new Date().getHours();
-
-      if (hours < 12) {
-        return "Good morning";
-      } else if (hours < 18) {
-        return "Good afternoon";
-      } else {
-        return "Good evening";
-      }
-    }
+    
 
  useEffect(() => {
   const weekDays = getWeekDays(selectedDate);
@@ -305,8 +295,9 @@ export function Indiviualdashboardmain() {
         </div>
 
           <div className="col-span-12 ">
-            <div className="rounded-2xl shadow-sm border border-neutral-900 p-2 sm:p-4">
+            <div className="rounded-xl shadow-sm border-none overflow-hidden p-2 sm:p-4 ">
               <FullCalendar
+            
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
                 events={events}
@@ -329,9 +320,11 @@ export function Indiviualdashboardmain() {
                   }
                 }}
                 themeSystem="standard"
-                dayCellClassNames="transition-colors text-black bg-slate-300 text-xs sm:text-sm"
-                dayHeaderClassNames="text-gray-600 font-medium text-xs sm:text-sm"
-                eventClassNames="bg-blue-400 border-none text-white rounded-md px-1 py-0.5 text-xs sm:text-sm"
+                
+                dayCellClassNames=" text-xs sm:text-sm"
+
+                dayHeaderClassNames="text-black font-medium text-xs sm:text-sm "
+                eventClassNames=" border-none !text-blue-500 rounded-md px-1 py-0.5 text-xs sm:text-sm"
                 buttonText={{
                   today: 'Today',
                   month: 'Month',
@@ -340,6 +333,7 @@ export function Indiviualdashboardmain() {
                   prev: 'chevron-left',
                   next: 'chevron-right',
                 }}
+                
                 viewClassNames="border-none"
                 headerToolbarClassNames="border-none mb-1 sm:mb-2"
                 titleFormat={{ year: 'numeric', month: 'short' }}
@@ -348,7 +342,7 @@ export function Indiviualdashboardmain() {
                 nowIndicatorClassNames="bg-blue-500"
                 // Mobile optimizations
                 dayMaxEvents={3} // Limit events shown per day on small screens
-                moreLinkClassNames="text-xs" // Style for "+x more" links
+                moreLinkClassNames="text-xs text-black" // Style for "+x more" links
                 handleWindowResize={true} // Better resize handling
               />
             </div>

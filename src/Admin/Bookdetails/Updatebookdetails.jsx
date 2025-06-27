@@ -24,10 +24,10 @@ function UpdateBookDetails() {
     title: "",
     author_detail: "",
     quantity: 0,
-    kindle: "",
-    audible: "",
-    hardcover: "",
-    audio_cd: "",
+    kindle: 0,
+    audible: 0,
+    hardcover: 0,
+    audio_cd: 0,
     book_description: "",
     stars: 0,
     editorial_review : "",
@@ -47,10 +47,10 @@ function UpdateBookDetails() {
           title: res.data.book.title || "",
           author_detail: res.data.book.author_detail || "",
           quantity: res.data.book.quantity || 0,
-          kindle: res.data.book.kindle || "",
-          audible: res.data.book.audible || "",
-          hardcover: res.data.book.hardcover || "",
-          audio_cd: res.data.book.audio_cd || "",
+          kindle: res.data.book.kindle || 0,
+          audible: res.data.book.audible || 0,
+          hardcover: res.data.book.hardcover || 0,
+          audio_cd: res.data.book.audio_cd || 0,
           book_description: res.data.book.book_description || "",
           stars: res.data.book.stars || 0,
           editorial_review: res.data.book.editorial_review || "",
@@ -208,6 +208,7 @@ function UpdateBookDetails() {
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
             placeholder="Book title"
+
           />
         </div>
 
@@ -236,7 +237,7 @@ function UpdateBookDetails() {
           />
         </div>
 
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-col flex-wrap w-full">
           <div>
             <label className="block text-gray-700 font-medium mb-1">Kindle Price ($)</label>
             <input
@@ -331,7 +332,14 @@ function UpdateBookDetails() {
             required
             minLength="100"
             maxLength="200"
+            placeholder="Book Description"
           />
+          {book.book_description.length > 0 &&
+            (book.book_description.length < 100 || book.book_description.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                Description must be between 100 and 500 characters.
+              </p>
+            )}
         </div>
 
       
@@ -391,6 +399,12 @@ function UpdateBookDetails() {
             rows={5}
             placeholder="Enter an editorial review (50-1000 characters)"
           />
+          {book.editorial_review?.length > 0 &&
+            (book.editorial_review?.length < 100 || book.editorial_review?.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                Editorial Review must be between 100 and 500 characters.
+              </p>
+            )}
         </div>
 
         <div>
@@ -406,6 +420,12 @@ function UpdateBookDetails() {
             rows={5}
             placeholder="Write about the author (50-1000 characters)"
           />
+          {book.about_author?.length > 0 &&
+            (book.about_author?.length < 100 || book.about_author?.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                About Author section must be between 100 and 500 characters.
+              </p>
+          )}
         </div>
 
 
@@ -419,7 +439,7 @@ function UpdateBookDetails() {
           </button>
           <button
             type="button"
-            // onClick={() => navigate("/admin/view-books")}
+            onClick={() => navigate("/adminpage")}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-100 transition"
           >
             Cancel

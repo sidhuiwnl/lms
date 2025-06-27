@@ -35,11 +35,7 @@
     color: white ;
 }
 
-.logbutton:hover{
-    color: #001040;
-    background-color: white;
-    border: 1px solid #001040;   
-}
+
 
 
 .logbutton1{
@@ -47,11 +43,7 @@
     color: white;
 }
 
-.logbutton1:hover{
-    color: #ffa200;
-    background-color: white;
-    border: 1px solid #ffa200;   
-}
+
 
 
 

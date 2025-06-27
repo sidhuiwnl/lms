@@ -153,12 +153,12 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
           {/* <!-- Card stats --> */}
           
          <div className="row g-6 mb-6">
-  <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div 
-    className="card border  h-48 shadow-md "
-    style={{ borderColor: "#D3D3D3" }}
+      <div className="col-xl-3 col-sm-6 col-12 my-2">
+        <div 
+        className="card border  h-50 shadow-md "
+        style={{ borderColor: "#D3D3D3" }}
     >
-      <div className="card-body">
+      <div className="card-body ">
         <div className="row">
           <div className="col">
             <span className="h6 font-semibold text-muted text-sm d-block mb-2">
@@ -176,8 +176,8 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
       </div>
     </div>
   </div>
-  <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div className="card border shadow-md" style={{ borderColor: "#D3D3D3" }}>
+   <div className="col-xl-3 col-sm-6 col-12 my-2">
+    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -202,7 +202,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
     </div>
   </div>
   <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div className="card border shadow-md" style={{ borderColor: "#D3D3D3" }}>
+    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -239,8 +239,8 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
       </div>
     </div>
   </div>
-  <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div className="card border shadow-md" style={{ borderColor: "#D3D3D3" }}>
+  <div className="col-xl-3 col-sm-6 col-12 my-2 ">
+    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -414,8 +414,8 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
             </thead>
              <tbody>
               {subscribers.map((value, index) => (
-                <tr className="bg-white" key={index}>
-                  <td>
+                <tr className="bg-white " key={index}>
+                  <td >
                     <img
                       alt="..."
                       src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
@@ -445,6 +445,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
                       bgColor="#001040"
                       animateOnRender="true"
                       transitionDuration="1s"
+                      labelClassName="text-xs text-white"
                     />
                   </td>
                 </tr>
@@ -506,6 +507,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
                       bgColor="#001040"
                       animateOnRender="true"
                       transitionDuration="1s"
+                      labelClassName="text-xs text-white"
                     />
                   </td>
                 </tr>

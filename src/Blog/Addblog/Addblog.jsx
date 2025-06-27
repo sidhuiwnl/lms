@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 
 function Addblog() {
   const [title, setTitle] = useState('');
@@ -8,6 +9,7 @@ function Addblog() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const quillRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleContentChange = (value) => {
     setContent(value);
@@ -188,6 +190,13 @@ function Addblog() {
           disabled={isLoading}
         >
           {isLoading ? 'Submitting...' : 'Submit'}
+        </button>
+        <button
+        type='submit'
+        className='p-2 mx-2 rounded border hover:bg-black/50'
+        onClick={() => navigate("/adminpage")}
+        >
+          Cancel
         </button>
       </form>
     </div>

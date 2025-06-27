@@ -104,20 +104,20 @@ function Drkenhome() {
               </div>
             </div>
 
-            <div className="row my-3 py-3">
+            <div className="row my-3 py-3 ">
               <div className="d-flex justify-content-between text-center flex-wrap px-5 py-3 space-y-3">
                 <div className="col-auto">
                   <Link
                     to="#"
                     onClick={() => setActiveTab("overview")}
-                    className={activeTab === "overview" ? "active-link text-white" : "font-bold"}
+                    className={activeTab === "overview" ? "active-link text-white " : "font-bold"}
                     style={{ textDecoration: "none", color: "#001040" }}
                   >
                     Overview
                   </Link>
                 </div>
 
-                <div className="col-auto">
+                <div className="col-auto my-2">
                   <Link
                     to="#"
                     onClick={() => setActiveTab("Instructor")}
@@ -141,7 +141,7 @@ function Drkenhome() {
               </div>
             </div>
             <hr />
-            <div className="content-area">{renderContent()}</div>
+              <div className="content-area">{renderContent()}</div>
           </div>
         </div>
       </div>

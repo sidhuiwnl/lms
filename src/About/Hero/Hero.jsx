@@ -23,7 +23,7 @@ export default function Hero() {
 
 
       {/* Content block overlayed after background image */}
-      <div className="relative px-4 sm:px-6 md:px-8 lg:px-10 w-sm lg:w-2xl p-3 z-10 t-5">
+      <div className="relative px-7 sm:px-7 md:px-8 lg:px-10  lg:w-2xl  z-10 t-5">
         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 max-w-full md:max-w-[650px] lg:max-w-[700px] p-4 sm:p-5 md:p-6 lg:p-8 ">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-semibold text-[#001040] my-2 sm:my-3">
             Dr. Kenneth Hansraj,

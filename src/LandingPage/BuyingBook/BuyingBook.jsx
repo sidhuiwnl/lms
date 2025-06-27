@@ -6,7 +6,7 @@ export default function BuyingBook() {
 
   const handleBuyNow = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    nav("/book/2");
+    nav("book/Mg==");
   };
 
   return (

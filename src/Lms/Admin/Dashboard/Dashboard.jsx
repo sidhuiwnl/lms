@@ -248,7 +248,7 @@ export default function Dashboard() {
                 style={{ borderColor: "#D3D3D3" }}
                 >
              
-                  <div class="card-body   rounded-2xl">
+                  <div class="card-body  rounded-2xl">
                     <div class="row ">
                       <div class="col">
                         <span class="h6 font-semibold text-muted text-sm d-block mb-2 ">
@@ -296,7 +296,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6  col-12">
-                <div class="card shadow-md border  lg:h-60" style={{ borderColor: "#D3D3D3" }}>
+                <div class="card shadow-md border h-60  lg:h-60" style={{ borderColor: "#D3D3D3" }}>
              
                   <div class="card-body  rounded-xl  ">
                     <div class="row">

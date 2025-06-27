@@ -57,11 +57,11 @@
 
 // export default Aboutpage;
 
-
+import { useNavigate } from "react-router-dom";
 
 
 function Aboutpage() {
-  
+  const navigate = useNavigate()
 
   return (
     <div className="container py-5">
@@ -92,7 +92,12 @@ function Aboutpage() {
             </ul>
 
             <div className="mt-4">
-              <button className="btn btn-light rounded-circle p-2" >
+              <button 
+              onClick={() =>{
+                  navigate('/about')
+                }}
+              className="btn btn-light rounded-circle p-2" 
+              >
                 <img src="./arrow.png" alt="Arrow" style={{ width: "16px", height: "16px" }} />
               </button>
             </div>
@@ -100,6 +105,7 @@ function Aboutpage() {
             {/* Floating Spine Image */}
             <div className="position-absolute " style={{ bottom: "-60px", right: "-10px" }}>
               <div
+                
                 className="rounded-circle bg-warning d-flex justify-content-center align-items-center shadow"
                 style={{
                   width: "150px",

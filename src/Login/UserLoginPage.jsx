@@ -51,8 +51,14 @@ function UserLogin() {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/login`, formData);
 
+      if(response.data.role === "admin"){
+        localStorage.setItem("admin-token",response.data.token)
+      }else{
+        localStorage.setItem("user-token", response.data.token);
+      }
+
       toast.success('Login successful!');
-      localStorage.setItem("user-token", response.data.token);
+      
 
       if (response.data.role === "user") {
         navigate("/");

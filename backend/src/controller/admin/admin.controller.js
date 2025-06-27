@@ -783,11 +783,15 @@ export const getUserStats = async (req, res) => {
 
 export const paymentCheckOut = async (req, res) => {
   const { company_id } = req.params;
+
+    console.log(req.body.quantity)
+
+    const encodedId = encodeURIComponent(company_id);
   try {
     const customer = await stripe.customers.create({
       metadata: {
         userId: req.body.id,
-        quatity: req.body.quatity,
+        quatity: req.body.quantity,
       },
     });
 
@@ -806,8 +810,8 @@ export const paymentCheckOut = async (req, res) => {
           quantity: item.quantity,
         };
       }),
-      success_url: `${process.env.DOMAIN}/admindashboard/${company_id}/dashboard`,
-      cancel_url: `${process.env.DOMAIN}/admindashboard/${company_id}/dashboard`,
+      success_url: `${process.env.DOMAIN}/admindashboard/${encodedId}/dashboard`,
+      cancel_url: `${process.env.DOMAIN}/admindashboard/${encodedId}/dashboard`,
     });
 
     res.json({ url: session.url });

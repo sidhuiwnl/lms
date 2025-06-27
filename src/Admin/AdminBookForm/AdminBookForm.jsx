@@ -2,16 +2,19 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminBookForm() {
+  const navigate = useNavigate()
+
   const [form, setForm] = useState({
     title: '',
     author_detail: '',
     quantity: 1,
-    kindle: '',
-    audible: '',
-    hardcover: '',
-    audio_cd: '',
+    kindle: 0,
+    audible: 0,
+    hardcover: 0,
+    audio_cd: 0,
     book_description: '',
     stars: 1
   });
@@ -95,8 +98,8 @@ export default function AdminBookForm() {
   };
 
   return (
-    <section className='py-10 w-full h-full'>
-       <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow">
+    <section className='py-10 px-3 w-full h-full'>
+       <div className="max-w-3xl mx-auto p-6 border bg-white rounded shadow">
        <h2 className="text-xl font-bold mb-4">Add New Book</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -109,6 +112,7 @@ export default function AdminBookForm() {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             required
+            placeholder='Title'
           />
         </div>
 
@@ -122,6 +126,7 @@ export default function AdminBookForm() {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             required
+            placeholder='Author Detail'
           />
         </div>
 
@@ -136,63 +141,72 @@ export default function AdminBookForm() {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             required
+            placeholder='Quantity'
           />
         </div>
 
         {/* Format Prices */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex flex-col flex-wrap">
           <div>
             <label htmlFor="kindle" className="block font-medium mb-1">Kindle Price</label>
             <input
-              type="text"
+              type="number"
               name="kindle"
+               min="0"
               id="kindle"
-              step="any"
+              step="0.01"
               value={form.kindle}
               onChange={handleChange}
               className="w-full border p-2 rounded"
               required
+              placeholder='Kindle Price'
             />
           </div>
 
           <div>
             <label htmlFor="audible" className="block font-medium mb-1">Audible Price</label>
             <input
-              type="text"
+             type="number"
               name="audible"
+               min="0"
               id="audible"
-              step="any"
+              step="0.01"
               value={form.audible}
               onChange={handleChange}
               className="w-full border p-2 rounded"
               required
+              placeholder='Audible Price'
             />
           </div>
 
           <div>
             <label htmlFor="hardcover" className="block font-medium mb-1">Hardcover Price</label>
             <input
-              type="text"
+              type="number"
               name="hardcover"
+               min="0"
               id="hardcover"
-              step="any"
+              step="0.01"
               value={form.hardcover}
               onChange={handleChange}
               className="w-full border p-2 rounded"
               required
+              placeholder='Hardcover Price'
             />
           </div>
 
           <div>
             <label htmlFor="audio_cd" className="block font-medium mb-1">Audio CD Price</label>
             <input
-              type="text"
+              type="number"
+              min="0"
               name="audio_cd"
               id="audio_cd"
-              step="any"
+              step="0.01"
               value={form.audio_cd}
               onChange={handleChange}
               className="w-full border p-2 rounded"
+              placeholder='Audio CD Price'
               required
             />
           </div>
@@ -209,8 +223,15 @@ export default function AdminBookForm() {
             className="w-full border p-2 rounded"
             required
             minLength="100"
-            maxLength="200"
+            maxLength="500"
+            placeholder='Book Description'
           />
+          {form.book_description.length > 0 &&
+            (form.book_description.length < 100 || form.book_description.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                Description must be between 100 and 500 characters.
+              </p>
+            )}
         </div>
 
         <div>
@@ -225,6 +246,8 @@ export default function AdminBookForm() {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             required
+            placeholder='Stars'
+            
           />
           {/* Add visualization of stars */}
           <div className="flex mt-2">
@@ -263,19 +286,26 @@ export default function AdminBookForm() {
             </div>
           )}
         </div>
-              <div>
-        <label htmlFor="editorial_review" className="block font-medium mb-1">Editorial Review</label>
-        <textarea
-          name="editorial_review"
-          id="editorial_review"
-          value={form.editorial_review}
-          onChange={handleChange}
-          rows={4}
-          className="w-full border p-2 rounded"
-          required
-          minLength="100"
-          maxLength="200"
-        />
+        <div>
+          <label htmlFor="editorial_review" className="block font-medium mb-1">Editorial Review</label>
+          <textarea
+            name="editorial_review"
+            id="editorial_review"
+            value={form.editorial_review}
+            onChange={handleChange}
+            rows={4}
+            className="w-full border p-2 rounded"
+            required
+            minLength="100"
+            maxLength="500"
+            placeholder='Editorial Review'
+          />
+          {form.editorial_review?.length > 0 &&
+            (form.editorial_review?.length < 100 || form.editorial_review?.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                Editorial Review must be between 100 and 500 characters.
+              </p>
+            )}
       </div>
 
       <div>
@@ -289,8 +319,15 @@ export default function AdminBookForm() {
           className="w-full border p-2 rounded"
           required
           minLength="100"
-          maxLength="200"
+          maxLength="500"
+          placeholder='About Author'
         />
+         {form.about_author?.length > 0 &&
+            (form.about_author?.length < 100 || form.about_author?.length > 500) && (
+              <p className="text-red-600 text-sm mt-1">
+                About Author section must be between 100 and 500 characters.
+              </p>
+          )}
       </div>
 
 
@@ -300,7 +337,15 @@ export default function AdminBookForm() {
           disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Book'}
         </button>
+         
       </form>
+           <button
+            type="submit"
+            onClick={() => navigate("/adminpage")}
+            className="px-4 py-2 mt-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-100 transition"
+          >
+            Cancel
+          </button>
         </div> 
       <ToastContainer/>
     </section>

@@ -7,7 +7,7 @@ export default function Lift() {
    const nav = useNavigate("")
    const handleBuyNow = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    nav("/book/2"); 
+    nav("/book/Mw=="); 
   };
   return (
     <section className="py-10 px-4 flex flex-col  md:flex-row items-center justify-center w-full space-y-10 md:space-y-0 md:space-x-20">

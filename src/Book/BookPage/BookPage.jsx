@@ -60,7 +60,7 @@ export default function BookPage() {
       <div className="pt-[100px] pl-4 container mt-5">
         <div className="row">
           {books.map((book) => (
-            <div key={book.id} className="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div key={book.id} className="col-sm-12 col-md-6  col-lg-4 mb-4">
               <div className="card h-100 shadow-md border-1 p-2">
                 {/* Image occupying full card width */}
                 <div
@@ -71,26 +71,34 @@ export default function BookPage() {
                   {/* Production
                   `${import.meta.env.VITE_BACKEND_URL}/api/${book.images[0].replace(/\\/g, "/")}
                     */}
-                  <img
-                    src={
-                      book.images?.[0]
-                        ? `${import.meta.env.VITE_BACKEND_URL}/${book.images[0].replace(/\\/g, "/")}`
-                        : "https://via.placeholder.com/400x600"
-                    }
-                    alt={book.title}
-                    className="card-img-top img-fluid"
-                    style={{ height: "200px", objectFit: "contain" }}
-                  />
+                  <div
+                    style={{ height: "200px", overflow: "hidden" }}
+                    className="d-flex justify-content-center align-items-center"
+                    role="button"
+                    onClick={() => navigate(`/book/${btoa(book.id)}`)}
+                  >
+                    <img
+                      src={
+                        book.images?.[0]
+                          ? `${import.meta.env.VITE_BACKEND_URL}/${book.images[0].replace(/\\/g, "/")}`
+                          : "https://via.placeholder.com/400x600"
+                      }
+                      alt={book.title}
+                      className="card-img-top img-fluid"
+                      style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
+                    />
+                </div>
+
                 </div>
 
                 {/* Card Body */}
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title fw-semibold">{book.title}</h5>
+                <div className="card-body d-flex flex-column ">
+                  <h5 className="card-title fw-semibold mb-0">{book.title}</h5>
                   <div className="d-flex justify-content-between">
                     <p className="text-[#ffa200] font-extrabold mb-1" style={{ fontSize: "25px" }}>
                       ${getFirstAvailablePrice(book)}
                     </p>
-                    <p className="text-[#ffa200] mb-2" style={{ fontSize: "22px" }}>
+                    <p className="text-[#ffa200] " style={{ fontSize: "22px" }}>
                       {"★".repeat(book.stars)}
                     </p>
                   </div>

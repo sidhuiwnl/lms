@@ -6,9 +6,9 @@ function Overview() {
   const [selectedStory, setSelectedStory] = useState("jimsStory");
 
   return (
-    <div className="container unique-story-container">
+    <div className="container unique-story-container ">
       <div className="row unique-story-header">
-        <div className="col-sm-12 col-md-4">
+        <div className="col-sm-12 col-lg-4">
           <button
             className={`btn unique-left-btn ${selectedStory === "jimsStory" ? "active" : ""}`}
             onClick={() => setSelectedStory("jimsStory")}
@@ -16,7 +16,7 @@ function Overview() {
             Jim's Story <br /> Burning the Candle at Both Ends
           </button>
         </div>
-        <div className="col-sm-12 col-md-4">
+        <div className="col-sm-12 col-lg-4">
           <button
             className={`btn unique-left-btn ${selectedStory === "alejandrosStory" ? "active" : ""}`}
             onClick={() => setSelectedStory("alejandrosStory")}
@@ -24,7 +24,7 @@ function Overview() {
             Alejandro’s Story <br /> Harnessing Spinal Energies
           </button>
         </div>
-        <div className="col-sm-12 col-md-4 text-end">
+        <div className="col-sm-12 col-lg-4 text-end">
           <button
             className={`btn unique-right-btn ${selectedStory === "jillsStory" ? "active" : ""}`}
             onClick={() => setSelectedStory("jillsStory")}

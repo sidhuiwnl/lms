@@ -32,14 +32,14 @@ export default function Blog() {
 " />
         <link rel="canonical" href="https://drken.us/blog" /> 
     </Helmet>
-      <div className="pt-[100px] pl-4 row">
+      <div className="pt-[100px] pl-4  row">
         {blogs.map((blog) => (
           <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={blog.id}>
             <div className="bg-white border rounded-xl shadow-md p-4 h-100 d-flex flex-column">
               <img src="/blog.jpg" alt="Default Blog" className="w-100 h-40 object-cover rounded mb-3"/>
               <div className="flex-grow-1">
                 <h2 className="text-lg font-semibold mb-2 text-black">{blog.title}</h2>
-                <p className="text-black/50 small">{getPreview(blog.content)}</p>
+                <p className="text-black/50 small line-clamp-3">{getPreview(blog.content)}</p>
               </div>
               <Link to={`/blog/${btoa(blog.id)}`} className="mt-auto" >
                 <button className="btn btn-sm btn-warning w-full mt-3 ">View More</button>

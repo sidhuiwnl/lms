@@ -134,7 +134,7 @@ function App() {
         {/* <Route path="http://18.232.97.230/lms" element={[<Navbar/>,<Mainbanner/>,<Footer/>]}/> */}
         
         <Route path="/checkout" element={[<Navbar/>,<Checkoutpage/>,<Footer/>]}/>
-        <Route path="/addblog" element={[<ProtectedRoute><Addblog/></ProtectedRoute>]}/>
+        <Route path="/admin/addblog" element={[<ProtectedRoute><Addblog/></ProtectedRoute>]}/>
         <Route path="/admin/login" element={[<Adminlogin/>]}/>
         <Route path="/adminpage" element={[<Navbar/>,<ProtectedRoute><Admindatapage/></ProtectedRoute>]}/>
         <Route path="/admin/book" element={[<ProtectedRoute><AdminBookForm/></ProtectedRoute>]} />

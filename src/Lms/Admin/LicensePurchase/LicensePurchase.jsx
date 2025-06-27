@@ -179,6 +179,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
 
 const stripePromise = loadStripe(
   "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPppv K7P85i00ecnTPLf9"
@@ -216,12 +217,16 @@ export default function LicensePurchase() {
   // Checkout function for online payment
   function checkout(itemPrice, quantity) {
     fetch(
-      `${import.meta.env.VITE_REACT_APP_API_URL}admin/create-checkout-session/${decodedId}`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}admin/create-checkout-session/${id}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         mode: "cors",
-        body: JSON.stringify({ items: [{ id: 1, quantity, price: itemPrice, name: itemName }] })
+        body: JSON.stringify({
+          id: decodedId,
+          quantity,
+          items: [{ id: 1, quantity, price: itemPrice, name: itemName }]
+    })
       }
     )
       .then((res) =>

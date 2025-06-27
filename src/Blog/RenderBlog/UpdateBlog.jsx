@@ -243,7 +243,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function UpdateBlogPage() {
@@ -252,6 +252,7 @@ function UpdateBlogPage() {
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const quillRef = useRef(null);
+  const navigate = useNavigate()
 
    const decodedId = atob(blogId)
   // Fetch blog post
@@ -416,10 +417,17 @@ function UpdateBlogPage() {
 
         <button 
           type="submit" 
-          className="btn btn-primary my-3"
+          className="btn btn-primary my-4"
           disabled={isLoading}
         >
           {isLoading ? 'Updating...' : 'Update'}
+        </button>
+        <button
+        type='submit'
+        className="mx-2 border p-2 rounded hover:bg-black/50"
+        onClick={() => navigate("/adminpage")}
+        >
+          Cancel
         </button>
       </form>
 

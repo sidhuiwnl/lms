@@ -37,7 +37,7 @@ export default function Adminblogview() {
               />
               <div className="flex-grow-1">
                 <h2 className="text-lg font-semibold mb-2 text-black">{blog.title}</h2>
-                <p className="text-neutral-800 small">{getPreview(blog.content)}</p>
+                <p className="text-neutral-800 small line-clamp-3">{getPreview(blog.content)}</p>
               </div>
               <Link to={`/admin/blog/${btoa(blog.id)}`} className="mt-auto text-decoration-none">
                 <button className="btn btn-sm btn-warning w-full mt-3 ">View More</button>

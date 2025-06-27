@@ -87,7 +87,29 @@ export function handleUpdateBook(req, res) {
       return res.status(404).json({ message: "Book not found" });
     }
 
-    const existingImages = JSON.parse(rows[0].images || '[]');
+    let existingImages = [];
+
+try {
+  // Case 1: MySQL JSON column is returned as string
+  if (typeof rows[0].images === 'string') {
+    existingImages = JSON.parse(rows[0].images || '[]');
+  } 
+  // Case 2: MySQL JSON column is already parsed into an array
+  else if (Array.isArray(rows[0].images)) {
+    existingImages = rows[0].images;
+  } 
+  // Fallback for old comma-separated string values
+  else {
+    existingImages = String(rows[0].images || '')
+      .split(',')
+      .map(img => img.trim())
+      .filter(Boolean);
+  }
+} catch (e) {
+  console.error("Failed to parse images column:", e);
+  existingImages = [];
+}
+
     const maxImages = 5;
     const availableSlots = maxImages - existingImages.length;
     

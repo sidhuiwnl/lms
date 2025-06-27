@@ -17,7 +17,7 @@ router.post("/uploadImage", authenticateAdmin, upload.single('image'), (req, res
     }
     
    
-    const imageUrl = `${req.protocol}://${req.get('host')}/api/uploads/${req.file.filename}`;
+    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     
     
     return res.status(200).json({ 

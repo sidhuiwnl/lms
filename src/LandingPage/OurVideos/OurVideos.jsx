@@ -24,25 +24,26 @@ export default function OurVideos() {
     <section className="py-10 px-4 flex flex-col items-center space-y-10">
       <h1 className="headingarea text-center py-4">Our Videos</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl justify-items-center">
+      <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl">
         {visibleVideos.map((video) => (
           <div
             key={video.id}
-            className="flex flex-col items-center space-y-2 text-center mx-2"
+            className="flex flex-col items-center text-center w-full sm:w-auto max-w-[400px] flex-shrink-0"
           >
-            <iframe
-              src={video.yotubelLink}
-              className="w-[370px] max-w-[382px] h-[215px] sm:h-[251px] rounded-lg shadow-lg"
-              allowFullScreen
-            />
-            <p className="text-[#001040] font-medium text-base sm:text-lg">
+            <div className="w-full aspect-video">
+              <iframe
+                src={video.yotubelLink}
+                className="w-full h-full rounded-lg shadow-lg"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-[#001040] font-medium text-base sm:text-lg px-2 mt-2">
               {video.title}
             </p>
           </div>
         ))}
       </div>
 
-      {/* Toggle Button Logic */}
       {videos.length > 3 && (
         <p
           onClick={() => setShowAll(!showAll)}

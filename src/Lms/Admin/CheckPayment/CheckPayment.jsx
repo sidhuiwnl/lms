@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { toast } from "react-toastify";
 
 export default function CheckPayment() {
   const { quantity } = useParams();
@@ -65,10 +65,10 @@ export default function CheckPayment() {
       .post(`${import.meta.env.VITE_REACT_APP_API_URL}admin/checktransation/${decodedId}`, key)
       .then((res) => {
         if (res.data.status === "inserted") {
-          toast("Thank you! Your license will update after Admin Approval.");
+          toast.success("Thank you! Your license will update after Admin Approval.");
           window.location.assign(`/admindashboard/${id}/purlicense`);
         } else {
-          toast("Sorry, please refill the details.");
+          toast.error("Sorry, please refill the details.");
           window.location.reload();
         }
       });

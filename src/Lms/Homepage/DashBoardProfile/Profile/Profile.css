@@ -167,4 +167,11 @@
 
 
 
+.fc .fc-event-title {
+  color: #ffff !important;
+  background-color: #001040 !important; /* red-500 */
+}
 
+.fc .fc-daygrid-day-number {
+  color: black !important; /* red-500 */
+}

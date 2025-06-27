@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Payment.css"; // Custom CSS for styling
 import { useNavigate, useParams } from "react-router-dom";
 import MySpineCoach from "../../../../assets/MySpineCoach.jpg"; // Example image
-
+import { FaCheck } from "react-icons/fa";
 
 const stripePromise = loadStripe(
   "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPp3MhvK7P85i00ecnTPLf9"
@@ -86,7 +86,10 @@ function PaymentInitiate() {
           </p>
           {hasPaid ? (
             <div className="paid-message">
-              <p className=" text-center">✅</p>
+              <div className=" flex flex-col items-center">
+                <FaCheck className="text-green-600 text-2xl"/>
+              </div>
+
               <p className="paid-text text-center">You have already purchased this course</p>
             </div>
           ) : (
