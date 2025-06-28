@@ -117,7 +117,12 @@ function InvitedRegister() {
             setOtherProfession("");
             setPassword("");
             setConfirmPassword("");
-          } else if (
+          } else if(
+            res.data.message === "Email Doesn't Exist you cannot register"
+          ){
+            toast("This Email is not present in invited Learners")
+          }
+          else if (
             res.data.message === "Registration failed. Please try again."
           ) {
             toast.error("Registration failed. Please try again.");
@@ -243,7 +248,7 @@ function InvitedRegister() {
                   {/* Job Status Dropdown */}
                   <div className="form-group">
                     <label htmlFor="jobStatus" className="text-start">
-                      Proffesion
+                      Profession
                     </label>
                     <select
                       id="jobStatus"

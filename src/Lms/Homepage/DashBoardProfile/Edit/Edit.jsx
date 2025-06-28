@@ -7,6 +7,7 @@ import EditProfile from "./EditProfile";
 import {  FaEnvelope,FaCreditCard,FaSignOutAlt,FaChartArea } from "react-icons/fa";
 import { useState } from "react";
 
+
 export function Edit() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -46,7 +47,7 @@ export function Edit() {
 
   return (
     <div className="d-flex flex-column flex-lg-row h-lg-full pt-[100px] ">
-      <nav className="h-screen border border-r-neutral-950 p-6 ">
+      <nav className=" border border-r-neutral-950 p-6 ">
               <div className="flex items-center justify-between mb-6  lg:w-50   ">
                 <h3 className="text-xl font-bold ">My Spine Coach</h3>
                 <button

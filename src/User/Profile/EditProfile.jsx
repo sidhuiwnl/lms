@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 function EditProfile() {
   const [user, setUser] = useState({
@@ -79,6 +80,7 @@ function EditProfile() {
 
   return (
     <div className="container mt-4">
+      <ToastContainer/>
       <form onSubmit={handleSubmit}>
         <h2 style={{color:"#001040"}}>Edit Profile</h2>
         <div className="mb-3">

@@ -42,7 +42,7 @@ router.get("/getBookById/:id",handleGetBookById)
 router.post("/addBlog",authenticateAdmin,handleCreatBlog)
 router.get("/blogs",handleAllBlogs)
 router.get("/blog/:blogId",getParticularBlog)
-router.delete("/blog/:blogId",authenticateAdmin,deleteBlogController)
+router.delete("/blog/:blogId",deleteBlogController)
 router.put("/blog/:blogId",authenticateAdmin,updateBlogController)
 
 

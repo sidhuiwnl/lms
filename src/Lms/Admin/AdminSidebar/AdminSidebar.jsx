@@ -104,7 +104,7 @@ function Adminsidebar({ isOpen, toggleSidebar }) {
           </li>
           <li className="mb-2">
             <Link
-              to={`/admindashboard/${id}/purelicense`}
+              to={`/admindashboard/${id}/purchaselicense`}
               className="flex items-center p-3 text-white hover:bg-[#002060] rounded-md transition-colors duration-200"
             >
               <FontAwesomeIcon icon={faIdBadge} className="min-w-[20px] text-center mr-3" />

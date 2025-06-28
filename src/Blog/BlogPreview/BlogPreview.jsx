@@ -49,7 +49,7 @@ export default function BlogPreview() {
   return (
     <section className=" min-h-screen pt-[100px] pl-4 mt-10 sm:px-6 lg:px-16 flex flex-col lg:flex-row gap-8">
       {/* Left Side: Blog Content */}
-      <div className="w-full lg:w-2/3 space-y-6 overflow-y-scroll max-h-[calc(100vh-80px)] pr-2 scrollbar-hide">
+      <div className="w-full lg:w-2/3 pb-15 overflow-y-scroll max-h-[calc(100vh-80px)] pr-2 scrollbar-hide">
         {blog ? (
           <>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#001040] leading-tight">

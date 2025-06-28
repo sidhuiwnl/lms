@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import "./main.css";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Notenrolledfile() {
   var { id } = useParams();
@@ -64,6 +64,7 @@ export default function Notenrolledfile() {
     <>
       <div class="h-screen flex-grow-1 overflow-y-lg-auto">
         {/* <!-- Header --> */}
+        <ToastContainer/>
         <header class="bg-surface-primary border-bottom pt-6">
           <div class="container-fluid">
             <div class="mb-npx">

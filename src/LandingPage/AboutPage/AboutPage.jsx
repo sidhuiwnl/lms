@@ -64,7 +64,7 @@ function Aboutpage() {
   const navigate = useNavigate()
 
   return (
-    <div className="container py-5">
+    <div className="container py-11">
      
       <div className="row align-items-start gx-4 gy-5">
 
@@ -82,7 +82,7 @@ function Aboutpage() {
         </div>
 
         {/* Right Card Section */}
-        <div className="col-md-6 mb-10 mt-10 lg:mt-10 md:mt-8  d-flex justify-content-center">
+        <div className="col-md-6 mb-10 mt-15 lg:mt-10 md:mt-8  d-flex justify-content-center">
           <div className="position-relative  text-white rounded p-5 shadow" style={{ maxWidth: "480px",backgroundColor:"#001040" }}>
             <h1 className=" mb-3 fs-2" style={{color:"#ffa200"}}>Dr. Ken Hansraj</h1>
             <ul className="list-unstyled">

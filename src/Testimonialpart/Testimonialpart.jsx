@@ -73,7 +73,7 @@ function Testimonialpart() {
                       <h5 className="text-center mb-3" style={{ color: '#FFA200' }}>
                         Patient
                       </h5>
-                      <p className="text-muted mb-0">{testimonial.content}</p>
+                      <p className=" text-black mb-0">{testimonial.content}</p>
                     </div>
                     
                   </div>

@@ -163,7 +163,7 @@ function Login() {
                       </div>
                     )}
                     <div className="d-flex justify-content-between mt-1">
-                      <a href="/forgot-password" className="passlink">
+                      <a href="/forgot_password" className="passlink">
                         Between 8 and
                         <br />
                         72 characters

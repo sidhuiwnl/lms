@@ -140,7 +140,7 @@ function App() {
         <Route path="/admin/book" element={[<ProtectedRoute><AdminBookForm/></ProtectedRoute>]} />
         <Route path="/updateblog" element={[<ProtectedRoute><Updateblog/></ProtectedRoute>]}/>
         <Route path="/renderblog" element={[<ProtectedRoute><Blogs/></ProtectedRoute>]} />
-        <Route path="/bookupdate/:blogId" element={[<ProtectedRoute><Updatebookdetails/></ProtectedRoute>]}/>
+        <Route path="/bookupdate/:bookId" element={[<ProtectedRoute><Updatebookdetails/></ProtectedRoute>]}/>
         <Route path="/admin/blog/:blogId" element={[<Navbar/>,<Adminblogpreview/>,<Footer/>]} />
         <Route path="/admin/renderblog/:blogId" element={[<ProtectedRoute><UpdateBlogPage/></ProtectedRoute>]} />
         <Route path="/admin/youtube" element={[<ProtectedRoute><AddYoutubeData/></ProtectedRoute>]} />
@@ -201,7 +201,7 @@ function App() {
             <Route path="admincredential" element={<AdminCredential />} />
             <Route path="category" element={<Categorycreation />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="purelicense" element={<LicensePurchase />} />
+            <Route path="purchaselicense" element={<LicensePurchase />} />
             <Route path="check/:quantity" element={<CheckPayment />} />
             <Route path="neft/:quantity" element={<NeftPayment />} />
             <Route path="notenroll" element={<Notenrolledfile />} />

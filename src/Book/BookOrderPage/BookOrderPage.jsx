@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import AdditionalDetail from '../AdditionalDetail/AdditionalDetail';
 
 function BookPurchase() {
@@ -177,7 +177,7 @@ function BookPurchase() {
   return (
     <div className="max-w-7xl mx-auto pt-[100px] pl-4 my-5 bg-white text-[#001040]">
       {/* ... Other JSX (cart/profile buttons, images, etc.) remains unchanged ... */}
-
+      <ToastContainer/>
       <div className="flex flex-col md:flex-row gap-8">
         <div className="md:w-1/3">
           {/* Image section remains unchanged */}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function EditProfile() {
   const [user, setUser] = useState({
@@ -19,12 +19,13 @@ function EditProfile() {
     axios
       .get(`${import.meta.env.VITE_REACT_APP_API_URL}user/user/${decodedId}`)
       .then((res) => {
+        console.log(res.data.profile)
         const userData = res.data;
         setUser({
           first_name: userData.first_name.trim(),
           phone: userData.phone,
           profession: userData.profession || "Student",
-          profile_image: userData.profile_image,
+          profile_image: userData.profile_image || "",
         });
       })
       .catch((err) => {
@@ -55,6 +56,8 @@ function EditProfile() {
     formData.append("first_name", user.first_name); // No change for first_name
     formData.append("phone", user.phone);
     formData.append("profession", user.profession);
+
+    
     if (user.profile_image) {
       formData.append("profile_image", user.profile_image); // Append the file if present
     }
@@ -83,6 +86,7 @@ function EditProfile() {
 
   return (
     <div className="container mt-4">
+      <ToastContainer/>
       <form onSubmit={handleSubmit}>
         <h2 style={{color:"#001040"}}>Edit Profile</h2>
         <div className="mb-3">

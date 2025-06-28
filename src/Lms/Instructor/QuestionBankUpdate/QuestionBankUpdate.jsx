@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function QuestionBankUpdate() {
   const [module, setModule] = useState([]);
@@ -66,10 +67,12 @@ function QuestionBankUpdate() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
+
       {/* Header */}
       <div className="bg-[#001040] rounded-t-xl px-6 py-5">
         <h2 className="text-2xl font-bold text-white">Question Bank Update</h2>    
       </div>
+      <ToastContainer/>
       
       {/* Main Content */}
       <div className="bg-white shadow-md rounded-b-xl p-6">

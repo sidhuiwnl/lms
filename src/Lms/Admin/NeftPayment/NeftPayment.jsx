@@ -63,7 +63,7 @@ export default function NeftPayment() {
       .then((res) => {
         if (res.data.status === "inserted") {
           toast.success("Thank you! Your license will update after Admin Approval");
-          window.location.assign(`/admindashboard/${id}/purlicense`);
+          window.location.assign(`/admindashboard/${id}/purchaselicense`);
         } else {
           toast.error("Sorry, please refill the details");
           window.location.reload();

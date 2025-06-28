@@ -391,7 +391,7 @@ export const registerUser = async(req, res) => {
                                   <div style="padding: 15px; border: 1px solid #4CAF50; border-radius: 8px; margin-top: 10px; background-color: #001040;">
                                     <h3 style="color: #4CAF50; margin-bottom: 10px;">Getting Started</h3>
                                     <p style="margin: 0; color: white;">To begin your journey, please log in and explore your course materials:</p>
-                                    <p style="margin: 0;"><a href="${process.env.DOMAIN}" style="color: #4CAF50; font-weight: bold;">Go to LMS Login</a></p>
+                                    <p style="margin: 0;"><a href="${process.env.DOMAIN}/lmslogin" style="color: #4CAF50; font-weight: bold;">Go to LMS Login</a></p>
                                   </div>          
                                   <p style="margin-top: 20px; color: white;">Once logged in, you’ll have access to all the resources and support you need to excel in the course.</p>                                 
                                   <p style="color: white;">If you have any questions or need assistance, feel free to reach out to our support team at <a href="mailto:support@yourwebsite.com" style="color: #4CAF50;">support@yourwebsite.com</a>.</p>
@@ -450,8 +450,25 @@ export const invitedRegisterUser = (req, res) => {
   if (!fullname || !email || !phone_no || !password) {
     return res.json({ message: "All fields are required." });
   }
-  const defaultProfileImage = path.join("/uploads", "face1.jpg");
+
+
+
   db.query(
+    "SELECT email FROM invite_learners WHERE email = ?",
+    [email],
+    (err,invitedRows) => {
+      if (err) {
+        console.error(err);
+        return res.json({ message: "Error checking email in Invited Learner table." });
+      }
+
+
+      if(invitedRows.length === 0){
+        return res.json({ message: "Email Doesn't Exist you cannot register" });
+      }
+
+      const defaultProfileImage = path.join("/uploads", "face1.jpg");
+    db.query(
     "SELECT email FROM user WHERE email = ?",
     [email],
     (err, userRows) => {
@@ -625,7 +642,7 @@ export const invitedRegisterUser = (req, res) => {
                                       <div style="padding: 15px; border: 1px solid #4CAF50; border-radius: 8px; margin-top: 10px; background-color: #001a66;">
                                         <h3 style="color: #4CAF50; margin-bottom: 10px;">Getting Started</h3>
                                         <p style="margin: 0;">To begin your journey, please log in and explore your course materials:</p>
-                                        <p style="margin: 0;"><a href="${process.env.DOMAIN}" style="color: #4CAF50; font-weight: bold;">Go to LMS Login</a></p>
+                                        <p style="margin: 0;"><a href="${process.env.DOMAIN}/lmslogin" style="color: #4CAF50; font-weight: bold;">Go to LMS Login</a></p>
                                       </div>
                                 
                                       <p style="margin-top: 20px;">Once logged in, you’ll have access to all the resources and support you need to excel in the course.</p>
@@ -690,7 +707,12 @@ export const invitedRegisterUser = (req, res) => {
       );
     }
   );
+    }
+  )
+  
 };
+
+
 
 const jwtSecret = process.env.JWT_SECRET || "your_jwt_secret_key";
 

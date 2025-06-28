@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function CheckPayment() {
   const { quantity } = useParams();
@@ -66,7 +66,7 @@ export default function CheckPayment() {
       .then((res) => {
         if (res.data.status === "inserted") {
           toast.success("Thank you! Your license will update after Admin Approval.");
-          window.location.assign(`/admindashboard/${id}/purlicense`);
+          window.location.assign(`/admindashboard/${id}/purchaselicense`);
         } else {
           toast.error("Sorry, please refill the details.");
           window.location.reload();
@@ -77,6 +77,7 @@ export default function CheckPayment() {
 
   return (
      <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl">
+      <ToastContainer/>
     <div className="max-w-3xl mx-auto ">
  <div className="bg-white rounded-xl shadow-lg overflow-hidden">
        <div className="px-6 py-5 bg-[#001040]">

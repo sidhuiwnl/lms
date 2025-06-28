@@ -130,6 +130,11 @@ export const countTotalUsers = (req, res) => {
 
 export const inviteLearners = async (req, res) => {
   const { company_id } = req.params;
+
+  const decoded_company_id = Buffer.from(company_id, 'base64').toString('utf-8');
+
+  
+  
   const { emails } = req.body;
 
   if (!emails || typeof emails !== "string") {
@@ -147,7 +152,7 @@ export const inviteLearners = async (req, res) => {
     const checkEmailQuery =
       "SELECT email FROM invite_learners WHERE company_id = ? AND email IN (?)";
     const [existingEmailsResult] = await connection.query(checkEmailQuery, [
-      company_id,
+      decoded_company_id,
       emailArray,
     ]);
 
@@ -170,7 +175,7 @@ export const inviteLearners = async (req, res) => {
     const getLicenseQuery =
       "SELECT license, invite FROM license WHERE company_id = ?";
     const [licenseResults] = await connection.query(getLicenseQuery, [
-      company_id,
+      decoded_company_id,
     ]);
 
     if (licenseResults.length === 0) {
@@ -190,13 +195,13 @@ export const inviteLearners = async (req, res) => {
     await connection.query(updateLicenseQuery, [
       updatedLicense,
       updatedInvite,
-      company_id,
+      decoded_company_id,
     ]);
 
     // Step 4: Insert new learners
     const insertQuery =
       "INSERT INTO invite_learners (company_id, email) VALUES ?";
-    const values = emailsToInvite.map((email) => [company_id, email]);
+    const values = emailsToInvite.map((email) => [decoded_company_id, email]);
     await connection.query(insertQuery, [values]);
 
     // Step 5: Send emails (mocked for now)
@@ -223,7 +228,11 @@ export const inviteLearners = async (req, res) => {
 
 // Email sending function
 const sendEmail = (email, company_id) => {
+
+
   const URL = `${process.env.DOMAIN}/inv_register/${company_id}`;
+
+  console.log(URL)
 
   const mailOptions = {
     from: "sivaranji5670@gmail.com", // sender email

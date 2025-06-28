@@ -43,6 +43,7 @@ function MessageHistory() {
   const handleSubmit = async () => {
     if (recipients.length === 0 || !subject || !message) {
       setResponseMessage("Please fill in all fields.");
+      toast("Please fill in all fields.")
       return;
     }
 
@@ -106,7 +107,8 @@ function MessageHistory() {
           onClick={() => handleViewChange("compose")}
           
         >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-icon lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>          Compose Message
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-icon lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>          
+        Compose Message
         </button>
         <button
           className={`nav-btn flex gap-2 ${view === "history" ? "bg-[#001040] rounded-t-xl" : "bg-[#001040] rounded-t-xl"}`}

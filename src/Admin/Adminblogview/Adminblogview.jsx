@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Adminblogview() {
+  const navigate = useNavigate()
   const [blogs, setBlogs] = useState([]);
 
   async function getBlog() {
@@ -13,6 +16,7 @@ export default function Adminblogview() {
       setBlogs(response.data.blogs);
     } catch (err) {
       console.error("Error fetching blogs:", err);
+      toast.error("Error fetching blogs:", err)
     }
   }
 
@@ -24,8 +28,29 @@ export default function Adminblogview() {
     return text.length > 200 ? text.slice(0, 200) + "..." : text;
   };
 
+  const handleDelete = async (blogId) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${blogId}`
+    );
+    if (response.data.message === "Blog deleted successfully") {
+      toast.success("Blog Deleted Successfully")
+      setBlogs((prev) => prev.filter((b) => b.id !== blogId)); // Remove from UI
+    }
+  } catch (err) {
+    console.error("Error deleting blog:", err);
+  }
+};
+
+
   return (
     <div className="container py-4">
+      <button
+            onClick={() => navigate("/admin/addblog")}
+            className="btn btn-warning text-white px-4 mb-2" 
+          >
+            ADD BLOG
+          </button>
       <div className="row">
         {blogs.map((blog) => (
           <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={blog.id}>
@@ -45,6 +70,9 @@ export default function Adminblogview() {
               <Link to={`/admin/renderblog/${btoa(blog.id)}`} className="mt-auto text-decoration-none">
                 <button className="btn btn-sm btn-warning w-full mt-3 ">Update</button>
               </Link>
+             <div  className="mt-auto text-decoration-none">
+                <button onClick={() => handleDelete(blog.id)} className="btn btn-sm btn-warning w-full mt-3 ">Delete</button>
+              </div>
             </div>
           </div>
         ))}

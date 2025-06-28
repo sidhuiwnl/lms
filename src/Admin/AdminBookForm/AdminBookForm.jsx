@@ -97,6 +97,11 @@ export default function AdminBookForm() {
     }
   };
 
+  const handleRemoveFile = (indexToRemove) => {
+  setSelectedFiles(prevFiles => prevFiles.filter((_, index) => index !== indexToRemove));
+};
+
+
   return (
     <section className='py-10 px-3 w-full h-full'>
        <div className="max-w-3xl mx-auto p-6 border bg-white rounded shadow">
@@ -278,10 +283,19 @@ export default function AdminBookForm() {
               <p className="text-sm font-medium">Selected files:</p>
               <ul className="text-sm text-gray-600">
                 {selectedFiles.map((file, index) => (
-                  <li key={index} className="mt-1">
-                    {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                  <li key={index} className="mt-1 flex justify-between items-center">
+                    <span>
+                      {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveFile(index)}
+                      className="ml-4 text-red-600 hover:underline text-xs"
+                    >
+                      Delete
+                    </button>
                   </li>
-                ))}
+                  ))}
               </ul>
             </div>
           )}

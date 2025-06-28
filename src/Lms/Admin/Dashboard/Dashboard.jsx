@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useNavigate, NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
+  const navigate = useNavigate()
   const [totallicense, setTotallicense] = useState("");
   const [learnerinvited, setLearnerinvited] = useState("");
   const [learnerjoiner, setLearnerjoiner] = useState("");
@@ -86,7 +88,7 @@ export default function Dashboard() {
 
     // Send the invitation request to the server
     axios
-      .post(`${import.meta.env.VITE_REACT_APP_API_URL}admin/invite_learners/${decodedId}`, key)
+      .post(`${import.meta.env.VITE_REACT_APP_API_URL}admin/invite_learners/${id}`, key)
       .then((res) => {
         console.log(res);
         if (
@@ -218,6 +220,7 @@ export default function Dashboard() {
   return (
     <>
       <div class="container-fluid">
+        <ToastContainer/>
         <header class="bg-surface-primary border-bottom ">
           <div class="container-fluid">
             <div class="mb-npx p-5">
@@ -244,7 +247,7 @@ export default function Dashboard() {
             <div class="row g-6 mb-6  ">
               <div class="col-xl-4 col-sm-6 col-12">
                 <div 
-                class="card shadow-md border h-60"
+                class="card shadow-md border lg:h-60"
                 style={{ borderColor: "#D3D3D3" }}
                 >
              
@@ -296,7 +299,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6  col-12">
-                <div class="card shadow-md border h-60  lg:h-60" style={{ borderColor: "#D3D3D3" }}>
+                <div class="card shadow-md border lg:h-60" style={{ borderColor: "#D3D3D3" }}>
              
                   <div class="card-body  rounded-xl  ">
                     <div class="row">
@@ -325,9 +328,9 @@ export default function Dashboard() {
                         completed: {completedData.length}
                       </span>
                       {totallicense === 0 ? (
-                        <span className="product-sold-out textend">
+                        <NavLink to={`/admindashboard/${id}/purchaselicense`} className="product-sold-out textend">
                           Add License
-                        </span>
+                        </NavLink>
                        
                       ) : (
                        
@@ -363,7 +366,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div class="col-xl-4 col-sm-6  col-12">
-                <div class="card shadow-md border  h-60" style={{ borderColor: "#D3D3D3" }}> 
+                <div class="card shadow-md border  lg:h-60" style={{ borderColor: "#D3D3D3" }}> 
              
                   <div class="card-body  rounded-xl">
                     <div class="row">

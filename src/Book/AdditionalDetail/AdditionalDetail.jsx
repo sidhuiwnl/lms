@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function AdditionalDetail({ reviews,book }) {
 
@@ -61,7 +61,7 @@ export default function AdditionalDetail({ reviews,book }) {
 
   return (
     <div className="py-10">
-      
+      <ToastContainer/>
       <div className="flex justify-center space-x-4  pb-2 mb-6">
         {tabs.map((tab) => (
           <button

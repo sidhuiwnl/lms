@@ -19,7 +19,7 @@ const ResetPassword = () => {
 
     // Check if passwords match
     if (newPassword !== confirmPassword) {
-      // toast("Passwords do not match");
+      toast("Passwords do not match");
       // return;
       setError("Passwords do not match");
       return;

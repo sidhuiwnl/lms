@@ -176,6 +176,7 @@
 
 import React, { useState, useRef, useCallback } from 'react';
 import JoditEditor from 'jodit-react';
+import { ToastContainer } from 'react-toastify';
 
 const Quilltxt = () => {
   const [content, setContent] = useState('');
@@ -275,6 +276,7 @@ const Quilltxt = () => {
 
   return (
     <div className="container">
+      <ToastContainer/>
       <div className='row'>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

@@ -4,7 +4,7 @@ import "./CompanyRegister.css";
 import { Link,NavLink,useNavigate } from "react-router-dom";
 import loginim from "../../assets/logimg.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function CompanyRegister() {
   const [formData, setFormData] = useState({
@@ -170,6 +170,7 @@ function CompanyRegister() {
 
   return (
     <div className="container-fluid p-0 m-0">
+      <ToastContainer/>
       <div className="row p-3 p-md-0">
         <div className="col-lg-4 d-none d-lg-block p-0 m-0">
           <img src={loginim} className="login-image1" alt="Login" />

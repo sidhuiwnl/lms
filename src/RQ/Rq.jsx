@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { ToastContainer } from "react-toastify";
 
 function RichTextEditor() {
   const [value, setValue] = useState("");
@@ -57,6 +58,7 @@ function RichTextEditor() {
 
   return (
     <div>
+      <ToastContainer/>
       <ReactQuill
         ref={quillRef}
         theme="snow"

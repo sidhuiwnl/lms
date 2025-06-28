@@ -102,7 +102,7 @@ export default function HeroSection() {
 
         <div className="w-full lg:w-1/2 flex flex-col mt-10 items-center md:items-start text-center lg:text-left">
           <div className="text-start mainsection">
-            <p className="text-[#001040] font-bold text-2xl sm:text-3xl md:text-4xl int">International Best-Selling Author.</p>
+            <p className="text-[#001040] font-bold text-2xl sm:text-3xl md:text-4xl ">International Best-Selling Author.</p>
             <p className="text-[#001040] font-bold text-2xl sm:text-3xl md:text-4xl">Global Health Consultant.</p>
             <p className="text-[#001040] font-bold text-2xl sm:text-3xl md:text-4xl">U.S. Spine Surgeon.</p>
             <p className="text-[#001040] font-bold subheadken my-3">Buy Dr. Ken Hansraj’s Best-Selling Book</p>

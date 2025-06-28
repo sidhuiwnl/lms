@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DropdownTreeSelect from 'react-dropdown-tree-select';
 import 'react-dropdown-tree-select/dist/styles.css';
+import { ToastContainer } from 'react-toastify';
 
 const CategoryDropdown = () => {
   const [selected, setSelected] = useState([]);
@@ -122,6 +123,7 @@ const CategoryDropdown = () => {
 
   return (
     <div className='m-1'>
+      <ToastContainer/>
      <h6>Select the module</h6>
       <DropdownTreeSelect
         data={data}

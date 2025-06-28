@@ -103,15 +103,15 @@ export const updateBlogController = (req, res) => {
 
 export const deleteBlogController = (req, res) => {
   const { blogId } = req.params;
-  const adminId = req.adminId;
+  
 
-  if (!blogId || !adminId) {
-    return res.status(400).json({ message: 'blogId and adminId are required' });
+  if (!blogId) {
+    return res.status(400).json({ message: 'blogId  are required' });
   }
 
   db.query(
-    'DELETE FROM blog WHERE id = ? AND admin_id = ?',
-    [blogId, adminId],
+    'DELETE FROM blog WHERE id = ? ',
+    [blogId],
     (error, result) => {
       if (error) {
         console.error('Error deleting blog:', error);

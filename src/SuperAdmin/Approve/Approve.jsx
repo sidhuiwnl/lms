@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Approve.css";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 export function Approve() {
   const [checktransation, setChecktransation] = useState([]);
   const [checkapproved, setCheckapproved] = useState([]);
@@ -106,7 +107,7 @@ export function Approve() {
 
   return (
     <div className="container-fluid">
-
+      <ToastContainer/>
 
        <div className="row py-3">
                       <div className="col-sm-10  mb-4 mb-sm-0">

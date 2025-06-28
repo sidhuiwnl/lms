@@ -37,6 +37,7 @@ function UpdateBookDetails() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
   
+  console.log(selectedFiles)
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -87,21 +88,22 @@ function UpdateBookDetails() {
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+  const { name, value, type } = e.target;
 
-    if (type === 'number') {
-      const parsedValue = value === '' ? '' : Number(value);
-      setBook({
-        ...book,
-        [name]: parsedValue
-      });
-    } else {
-      setBook({
-        ...book,
-        [name]: value
-      });
-    }
-  };
+  if (type === 'number') {
+    const parsed = Number(value);
+    setBook({
+      ...book,
+      [name]: isNaN(parsed) ? 0 : parsed, // or null if DB allows
+    });
+  } else {
+    setBook({
+      ...book,
+      [name]: value,
+    });
+  }
+};
+
 
   const handleStarClick = (rating) => {
     setBook({
@@ -128,11 +130,11 @@ function UpdateBookDetails() {
   
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+    e.preventDefault();
+    setIsSubmitting(true);
 
   try {
-    const formData = new FormData();
+      const formData = new FormData();
       
       Object.keys(book).forEach(key => {
         formData.append(key, book[key]);
@@ -141,6 +143,8 @@ function UpdateBookDetails() {
       selectedFiles.forEach(file => {
         formData.append('images', file);
       });
+
+      console.log(selectedFiles)
 
     const res = await axios.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/updateBook/${decodedId}`,
@@ -152,12 +156,19 @@ function UpdateBookDetails() {
       }
     );
 
-    if (res.status === 200) {
-      toast.success("Book updated successfully!");
-      // navigate("/admin/view-books");
+   if (res.status === 200) {
+      toast.success(res.data.message || "Book updated successfully!");
+    } else {
+      toast.error(res.data.message || "Something went wrong while updating.");
     }
   } catch (error) {
-    toast.error("Failed to update book");
+    if (error.response) {
+     
+      toast.error(error.response.data.message || "Update failed due to server error");
+    } else {
+      
+      toast.error("Something went wrong");
+    }
     console.error(error);
   } finally {
     setIsSubmitting(false);
@@ -179,7 +190,7 @@ function UpdateBookDetails() {
         <div className="bg-red-50 p-4 rounded-md">
           <p className="text-red-600">{error}</p>
           <button
-            onClick={() => navigate("/admin/view-books")}
+            onClick={() => navigate("/adminpage")}
             className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             Return to Book List

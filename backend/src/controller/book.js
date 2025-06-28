@@ -75,7 +75,11 @@ export function handleGetAllBooks(req, res) {
 export function handleUpdateBook(req, res) {
   const bookId = req.params.id;
   const bookData = req.body;
+
+  console.log(bookData)
   const newUploadedImages = req.files ? req.files.map(file => file.path.replace(/\\/g, '\\\\')) : [];
+
+  
 
   db.query(`SELECT images FROM book WHERE id = ?`, [bookId], (error, rows) => {
     if (error) {
@@ -113,12 +117,11 @@ try {
     const maxImages = 5;
     const availableSlots = maxImages - existingImages.length;
     
-    if (availableSlots <= 0) {
-      return res.status(400).json({ 
-        message: "Cannot add more images. Maximum limit of 5 images has been reached." 
-      });
-    }
-    
+    if (newUploadedImages.length > 0 && availableSlots <= 0) {
+  return res.status(400).json({ 
+    message: "Cannot add more images. Maximum limit of 5 images has been reached." 
+  });
+}
     const imagesToAdd = newUploadedImages.slice(0, availableSlots);
     const updatedImages = [...existingImages, ...imagesToAdd];
     
@@ -135,6 +138,7 @@ try {
       hardcover,
       audio_cd,
       book_description,
+      stars,
       editorial_review,
       about_author
     } = bookData;
@@ -150,6 +154,7 @@ try {
         audio_cd = ?, 
         book_description = ?, 
         images = ?, 
+        stars = ?,
         editorial_review = ?,
         about_author = ?,
         updated_at = CURRENT_TIMESTAMP
@@ -164,6 +169,7 @@ try {
         audio_cd,
         book_description,
         JSON.stringify(updatedImages),
+        parseInt(stars),
         editorial_review,
         about_author,
         bookId
@@ -184,6 +190,7 @@ try {
     );
   });
 }
+
 
 export function handleDeleteBook(req, res) {
   const bookId = req.params.id;
@@ -249,6 +256,8 @@ export function handleDeleteBook(req, res) {
   });
 }
 
+
+
 export function handleGetBookById(req, res) {
   const bookId = req.params.id;
 
@@ -280,3 +289,5 @@ export function handleGetBookById(req, res) {
     }
   );
 }
+
+

@@ -83,7 +83,7 @@ export const updateUserProfile = (req, res) => {
   // Handle image upload, use a default if no file is uploaded
   const profile_image = req.file
     ? path.join("/uploads", req.file.filename)
-    : "face1.jpg";
+    : "/uploads/face1.jpg";
 
   const fieldsToUpdate = {};
 
