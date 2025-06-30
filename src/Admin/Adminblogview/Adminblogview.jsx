@@ -39,6 +39,7 @@ export default function Adminblogview() {
     }
   } catch (err) {
     console.error("Error deleting blog:", err);
+    toast.error("Error deleting blog:", err)
   }
 };
 
