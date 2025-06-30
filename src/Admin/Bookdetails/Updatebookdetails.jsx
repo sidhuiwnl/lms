@@ -31,7 +31,8 @@ function UpdateBookDetails() {
     book_description: "",
     stars: 0,
     editorial_review : "",
-    about_author : ""
+    about_author : "",
+    source_link : ""
   });
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -55,7 +56,8 @@ function UpdateBookDetails() {
           book_description: res.data.book.book_description || "",
           stars: res.data.book.stars || 0,
           editorial_review: res.data.book.editorial_review || "",
-          about_author: res.data.book.about_author || ""
+          about_author: res.data.book.about_author || "",
+          source_link : res.data.book.source_link || ""
         });
         
         // Set existing images from response
@@ -352,7 +354,19 @@ function UpdateBookDetails() {
               </p>
             )}
         </div>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Book Source Link</label>
+          <input
+            type="text"
+            name="source_link"
+            value={book.source_link}
+            onChange={handleChange}
+            className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="Source Link"
 
+          />
+        </div>
       
 
         {/* New Images Section */}

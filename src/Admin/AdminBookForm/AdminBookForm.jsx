@@ -16,10 +16,12 @@ export default function AdminBookForm() {
     hardcover: 0,
     audio_cd: 0,
     book_description: '',
-    stars: 1
+    stars: 1,
+    source_link : ""
   });
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     if (type === 'number') {
@@ -83,7 +85,8 @@ export default function AdminBookForm() {
           book_description: '',
           stars: 1,
           editorial_review : "",
-          about_author : ""
+          about_author : "",
+          source_link : ""
         });
         setSelectedFiles([]);
       } else {
@@ -228,15 +231,28 @@ export default function AdminBookForm() {
             className="w-full border p-2 rounded"
             required
             minLength="100"
-            maxLength="500"
+            maxLength="1500"
             placeholder='Book Description'
           />
           {form.book_description.length > 0 &&
-            (form.book_description.length < 100 || form.book_description.length > 500) && (
+            (form.book_description.length < 100 || form.book_description.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
                 Description must be between 100 and 500 characters.
               </p>
             )}
+        </div>
+         <div>
+          <label htmlFor="Source Link" className="block font-medium mb-1">Source Link</label>
+          <input
+            type="text"
+            name="source_link"
+            id="source_link"
+            value={form.source_link}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            required
+            placeholder='Source Link(Example: Amazon Link)'
+          />
         </div>
 
         <div>
@@ -309,13 +325,13 @@ export default function AdminBookForm() {
             onChange={handleChange}
             rows={4}
             className="w-full border p-2 rounded"
-            required
+            
             minLength="100"
-            maxLength="500"
+            maxLength="1000"
             placeholder='Editorial Review'
           />
           {form.editorial_review?.length > 0 &&
-            (form.editorial_review?.length < 100 || form.editorial_review?.length > 500) && (
+            (form.editorial_review?.length < 100 || form.editorial_review?.length > 1000) && (
               <p className="text-red-600 text-sm mt-1">
                 Editorial Review must be between 100 and 500 characters.
               </p>
@@ -333,11 +349,11 @@ export default function AdminBookForm() {
           className="w-full border p-2 rounded"
           required
           minLength="100"
-          maxLength="500"
+          maxLength="1000"
           placeholder='About Author'
         />
          {form.about_author?.length > 0 &&
-            (form.about_author?.length < 100 || form.about_author?.length > 500) && (
+            (form.about_author?.length < 100 || form.about_author?.length > 1000) && (
               <p className="text-red-600 text-sm mt-1">
                 About Author section must be between 100 and 500 characters.
               </p>

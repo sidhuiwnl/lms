@@ -26,12 +26,13 @@ export function handleCreateBook(req, res) {
     images = [], 
     stars,
     editorial_review,
-    about_author 
+    about_author,
+    source_link 
   } = bookData;
 
   db.query(
-    `INSERT INTO book (title, author_detail, quantity, kindle, audible, hardcover, audio_cd, book_description, images, stars, editorial_review, about_author) 
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO book (title, author_detail, quantity, kindle, audible, hardcover, audio_cd, book_description, images, stars, editorial_review, about_author,source_link ) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       title, 
       author_detail, 
@@ -44,7 +45,8 @@ export function handleCreateBook(req, res) {
       JSON.stringify(images), 
       stars,
       editorial_review,
-      about_author
+      about_author,
+      source_link 
     ],
     (error, result) => {
       if (error) {
@@ -140,7 +142,8 @@ try {
       book_description,
       stars,
       editorial_review,
-      about_author
+      about_author,
+      source_link
     } = bookData;
 
     db.query(
@@ -157,6 +160,7 @@ try {
         stars = ?,
         editorial_review = ?,
         about_author = ?,
+        source_link = ?,
         updated_at = CURRENT_TIMESTAMP
       WHERE id = ?`,
       [
@@ -172,6 +176,7 @@ try {
         parseInt(stars),
         editorial_review,
         about_author,
+        source_link,
         bookId
       ],
       (error, result) => {

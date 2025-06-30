@@ -97,7 +97,7 @@ export default function BookPage() {
                   </div>
 
                   <div className="card-body d-flex flex-column">
-                    <h5 className="card-title fw-semibold mb-0">{book.title}</h5>
+                    <h5 className="card-title fw-semibold mb-0 line-clamp-2">{book.title}</h5>
                     <div className="d-flex justify-content-between">
                       <p className="text-[#ffa200] font-extrabold mb-1" style={{ fontSize: "25px" }}>
                         ${getFirstAvailablePrice(book)}

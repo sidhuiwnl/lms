@@ -18,6 +18,8 @@ function BookPurchase() {
   const [showModal, setShowModal] = useState(false);
   const [token, setToken] = useState('');
 
+ 
+
   const decodedId = atob(id)
 
   // Helper to get available formats with prices > 0
@@ -39,6 +41,7 @@ function BookPurchase() {
   const shouldTruncate = wordCount > 500;
   const preview = words.slice(0, 400).join(' ');
   const remaining = words.slice(400).join(' ');
+ 
 
   useEffect(() => {
     setLoading(true);
@@ -77,6 +80,8 @@ function BookPurchase() {
         setLoading(false);
       });
   }, [id]);
+
+  
 
   useEffect(() => {
     const fetchBookReviews = async () => {
@@ -250,7 +255,11 @@ function BookPurchase() {
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <button
               onClick={() => {
-                token ? navigate('') : navigate('/login');
+                  if (book?.source_link) {
+                    window.open(book?.source_link, '_blank'); //
+                  } else {
+                    toast.error("No source link provided.");
+                  }
               }}
               className="bg-[#ffa200] text-white px-5 py-2 font-semibold border border-gray-400"
             >
