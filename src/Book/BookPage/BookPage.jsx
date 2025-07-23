@@ -64,7 +64,7 @@ export default function BookPage() {
               <div className="col-sm-12 col-md-6 col-lg-4">
                 <div className="bg-white rounded-xl shadow-md p-4 h-100 d-flex flex-column justify-center align-items-center text-center">
                   <h2 className="font-semibold mb-2 text-xl">No Books Available</h2>
-                  <p className=" small">
+                  <p className=" small ">
                     Currently, there are no books to display. Please check back later.
                   </p>
                 </div>

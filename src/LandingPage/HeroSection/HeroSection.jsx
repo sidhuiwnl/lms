@@ -113,7 +113,7 @@ export default function HeroSection() {
             <p className="pt">Meditations To Boost Back Health</p>
           </div>
 
-          <div className="d-flex gap-2 md-gap-4 mt-4">
+          <div className="d-flex gap-2 p-2 md-gap-4 mt-4">
             <button
               className=" px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 firstbtn mx-1 shadow-sm"
               onClick={Bookspage}
@@ -125,13 +125,13 @@ export default function HeroSection() {
               className=" px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 secondbtn shadow-sm"  
             >
               <Link
-  to="/myspinecoach"
-  rel="noopener noreferrer"
-  className="px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 secondbtn shadow-sm"
->
-  <img src="./play.png" alt="Play Icon" className="w-10 h-10" />
-  <span className="text-white font-bold text-base sm:text-lg text-decoration-none" >My Spine Coach</span>
-</Link>        
+                to="/myspinecoach"
+                rel="noopener noreferrer"
+                className="px-1 px-md-2 py-1 py-md-2 flex items-center justify-center gap-2 secondbtn shadow-sm"
+              >
+                <img src="./play.png" alt="Play Icon" className="w-10 h-10" />
+                <span className="text-white font-bold text-base sm:text-lg text-decoration-none" >My Spine Coach</span>
+            </Link>        
             </button>
           </div>
         </div>

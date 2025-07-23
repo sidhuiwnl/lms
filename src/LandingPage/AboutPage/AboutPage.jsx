@@ -64,7 +64,7 @@ function Aboutpage() {
   const navigate = useNavigate()
 
   return (
-    <div className="container py-11">
+    <div className="container py-15">
      
       <div className="row align-items-start gx-4 gy-5">
 
@@ -73,16 +73,16 @@ function Aboutpage() {
           <h2 className="mb-4 headingarea">
             About me<span style={{ color: "#F99420" }}>.</span>
           </h2>
-          <p className="abtpara">
+          <p className="text-dark text-[16px] md:text-[18px]">
             For more than 20 years, Dr. Ken Hansraj has dedicated his life to eradicating spinal problems. With in-depth knowledge and vast experience in spine care, he has discovered and simplified the core factors and strategies that can be applied to improve spinal health. His work helps people understand spine wellness and spinal conditions, and enhances their physical, mental, and emotional well-being through the spine.
           </p>
-          <p className="abtpara mt-3">
+          <p className="text-dark mt-3 text-[16px] md:text-[18px]">
             Dr. Ken’s work has influenced people in every country to feel better and do more. His studies on spine care costs, text neck, and backpack forces have shaped global positions and trends.
           </p>
         </div>
 
         {/* Right Card Section */}
-        <div className="col-md-6 mb-10 mt-15 lg:mt-10 md:mt-8  d-flex justify-content-center">
+        <div className="col-md-6 mb-10 mt-12 lg:mt-10 md:mt-8  d-flex justify-content-center">
           <div className="position-relative  text-white rounded p-5 shadow" style={{ maxWidth: "480px",backgroundColor:"#001040" }}>
             <h1 className=" mb-3 fs-2" style={{color:"#ffa200"}}>Dr. Ken Hansraj</h1>
             <ul className="list-unstyled">

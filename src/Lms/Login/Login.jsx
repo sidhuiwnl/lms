@@ -70,7 +70,7 @@ function Login() {
            
 
             if (role_id === 4) {
-              navigate(`/user/${encode_user_id}`);
+              navigate(`/user/${encode_user_id}?tab=lessons`);
             } else if (role_id === 5) {
               navigate(`/admindashboard/${encode_company_id}/dashboard`);
             } else if (role_id === 2) {

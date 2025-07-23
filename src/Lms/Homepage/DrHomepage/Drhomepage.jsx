@@ -9,9 +9,11 @@ import icon2 from "../../../assets/mingcute_time-line.png";
 import frontgif from "../../../assets/looping3.gif";
 import axios from "axios";
 import Instructors from "../Instructors/Instructors";
+import { useSearchParams } from "react-router-dom";
 
 function Drkenhome() {
   const location = useLocation();
+  const [searchParams] = useSearchParams()
   const [activeTab, setActiveTab] = useState("overview");
   const [count, setCount] = useState({
     moduleCount: "",
@@ -34,14 +36,13 @@ function Drkenhome() {
   }, []);
 
   useEffect(() => {
-    if (location.pathname.includes("mycourses")) {
-      setActiveTab("lessons");
-    } else if (location.pathname.includes("instructor")) {
-      setActiveTab("Instructor");
-    } else {
-      setActiveTab("overview");
-    }
-  }, [location.pathname]);
+  const tab = searchParams.get("tab");
+  if (tab === "lessons" || tab === "Instructor" || tab === "overview") {
+    setActiveTab(tab);
+  } else {
+    setActiveTab("overview");
+  }
+}, [location.search]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -108,8 +109,7 @@ function Drkenhome() {
               <div className="d-flex justify-content-between text-center flex-wrap px-5 py-3 space-y-3">
                 <div className="col-auto">
                   <Link
-                    to="#"
-                    onClick={() => setActiveTab("overview")}
+                    to="?tab=overview"
                     className={activeTab === "overview" ? "active-link text-white " : "font-bold"}
                     style={{ textDecoration: "none", color: "#001040" }}
                   >
@@ -119,8 +119,7 @@ function Drkenhome() {
 
                 <div className="col-auto my-2">
                   <Link
-                    to="#"
-                    onClick={() => setActiveTab("Instructor")}
+                    to="?tab=Instructor"
                     className={activeTab === "Instructor" ? "active-link text-white" : "font-bold"}
                     style={{ textDecoration: "none", color: "#001040" }}
                   >
@@ -130,8 +129,7 @@ function Drkenhome() {
 
                 <div className="col-auto">
                   <Link
-                    to="#"
-                    onClick={() => setActiveTab("lessons")}
+                     to="?tab=lessons"
                     className={activeTab === "lessons" ? "active-link text-white" : "font-bold"}
                     style={{ textDecoration: "none", color: "#001040" }}
                   >

@@ -573,7 +573,7 @@ function QuestionUpdate() {
           )}
         </div>
 <div className="d-flex justify-content-end">
-        <button onClick={handleSubmit}  className="btn bg-[#001040] text-white"
+        <button onClick={handleSubmit}  className=" bg-[#001040] text-white p-3 rounded-lg"
             >
           Update Questions
         </button>

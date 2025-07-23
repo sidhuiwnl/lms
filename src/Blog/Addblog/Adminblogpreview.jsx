@@ -8,11 +8,11 @@ export default function Adminblogpreview() {
 
   
   const [blogs, setBlog] = useState(null); // keep blogs
-  const [latestBlogs, setLatestBlogs] = useState([]);
+  // const [latestBlogs, setLatestBlogs] = useState([]);
 
    const decodedId = atob(blogId)
 
-  // Fetch selected blog
+ 
   const fetchBlog = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blog/${decodedId}`);
@@ -22,27 +22,26 @@ export default function Adminblogpreview() {
     }
   };
 
-  // Fetch all blogs and sort by latest
-  const fetchLatestBlogs = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blogs`);
-      const sorted = response.data.blogs.sort(
-        (a, b) => new Date(b.created_at) - new Date(a.created_at)
-      );
-      const filtered = sorted.filter((b) => b.id !== parseInt(blogId)); // exclude current
-      setLatestBlogs(filtered.slice(0, 2));
-    } catch (err) {
-      console.error("Error fetching latest blogs:", err);
-    }
-  };
+  // const fetchLatestBlogs = async () => {
+  //   try {
+  //     const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/blogs`);
+  //     const sorted = response.data.blogs.sort(
+  //       (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  //     );
+  //     const filtered = sorted.filter((b) => b.id !== parseInt(blogId)); // exclude current
+  //     setLatestBlogs(filtered.slice(0, 2));
+  //   } catch (err) {
+  //     console.error("Error fetching latest blogs:", err);
+  //   }
+  // };
 
   useEffect(() => {
     fetchBlog();
-    fetchLatestBlogs();
+    // fetchLatestBlogs();
   }, [blogId]);
 
   return (
-    <section className="pt-[100px] pl-4 mt-5 m-10 flex flex-col sm:flex-row gap-10">
+    <section className="pt-[100px] min-h-[100vh] pl-4 mt-5 m-10 flex flex-col sm:flex-row gap-10">
       {/* Left Side: Blog Content */}
       <div className="container">
         {blogs ? (

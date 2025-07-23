@@ -16,7 +16,7 @@ export default function Hero() {
 
       {/* Background Image */}
       <div
-          className="w-full h-[600px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat"
+          className="w-full h-[700px] sm:h-[600px] md:h-[700px] lg:h-[800px] bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('./surgery.png')" }}
       >
 

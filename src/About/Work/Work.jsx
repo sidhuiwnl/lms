@@ -42,7 +42,7 @@ export default function Work() {
   setTimeout(() => navigate("/contact"), 100);
   };
   return (
-    <section className="container py-5">
+    <section className="container py-10">
       <div className="flex flex-col justify-center items-center space-y-6 text-center">
         
         

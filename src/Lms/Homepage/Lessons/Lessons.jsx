@@ -81,7 +81,7 @@ function Lessons() {
 
 
   return (
-    <div className="ml-5 ">
+    <div className="ml-5" id="lessons">
       {module.map((e) => (
         <div key={e.moduleId} className="row sm:ml-5 lessoncard w-full py-2 rounded-3 my-4">
           {/* If the user has paid, show all modules */}

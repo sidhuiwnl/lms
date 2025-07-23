@@ -79,7 +79,7 @@ export default function Footer() {
               {SOCIAL.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <a key={item.id} href={item.link} className="text-white fs-5">
+                  <a target="_blank" key={item.id} href={item.link} className="text-white fs-5">
                     <Icon />
                   </a>
                 );

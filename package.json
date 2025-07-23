@@ -48,9 +48,11 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.6.0",
     "react-scroll": "^1.9.3",
+    "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
     "reactstrap": "^9.2.3",
     "recharts": "^2.15.3",
+    "slick-carousel": "^1.8.1",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.5",
     "xlsx": "^0.18.5"

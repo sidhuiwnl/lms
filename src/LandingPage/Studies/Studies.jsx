@@ -76,7 +76,7 @@ import { STUDIES } from "../../utils/Links";
 
 export default function Studies() {
   return (
-    <section className="py-20 flex flex-col md:flex-row items-center justify-center relative space-y-10 md:space-y-0 md:space-x-6">
+    <section className="py-20  flex flex-col md:flex-row items-center  relative space-y-10 md:space-y-0 md:space-x-6">
     
      
      <div className="hidden md:flex relative rounded-r-full bg-[#FFA200] w-full max-w-[400px] h-[180px] md:h-[230px] text-white items-center justify-center px-8">
@@ -85,21 +85,16 @@ export default function Studies() {
           <h1 className="text-3xl md:text-3xl font-bold text-white">Studies.</h1>
         </div>
     </div>
-
-      
-      
-      
-     
       <h1 className="headingarea d-block d-md-none text-center">Completed Studies</h1>
       
-      <div className="flex flex-row justify-center gap-6 md:gap-10">
+      <div className="flex flex-row justify-center  gap-6 md:gap-10">
         {STUDIES.map((study) => (
           <div key={study.id}>
             <img
               src={study.img}
               alt={study.alt}
               title={study.title}
-              className="mt-5"
+              className="mt-10"
             />
             <p className="text-[20px] md:text-[32px] text-[#001040] mt-3 text-center">
               {study.name}

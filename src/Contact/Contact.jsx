@@ -85,12 +85,12 @@ function Contact() {
         <link rel="canonical" href="https://drken.us/contact" />
       
       </Helmet>
-      <div className="flex flex-col md:flex-row  gap-8 sm:gap-12">
+      <div className="flex flex-col md:flex-row  gap-8 sm:gap-12 p-3">
         
         <div className="w-full lg:w-1/2 xl:w-7/12  space-y-2"> 
           <div className="bg-white p-6 rounded-lg">
              <h1 className=" my-1 md:my-5 headingarea contacttxt">Contact Us</h1>
-            <p className=" text-[#ffa200] text-2xl mb-4">For Patient Inquiries, Please Contact:</p>
+            <p className=" text-[#ffa200] text-xl mb-4">For Patient Inquiries, Please Contact:</p>
             <p className="mb-6 text-[#001040] text-lg">The Spine Center at Community Primary Care of Premier Medical Group</p>
 
             <div className="space-y-4">
@@ -119,7 +119,7 @@ function Contact() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="w-full border rounded-lg lg:w-2/5 xl:w-1/3 2xl:w-1/4">
+        <div className="w-full border rounded-lg lg:w-2/5 xl:w-1/3 2xl:w-1/4 mb-5 ">
 
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg font-normal">
             <p className="text-center text-gray-600 mb-6">

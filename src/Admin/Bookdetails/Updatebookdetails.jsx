@@ -344,13 +344,13 @@ function UpdateBookDetails() {
             rows="4"
             required
             minLength="100"
-            maxLength="200"
+            maxLength="1500"
             placeholder="Book Description"
           />
           {book.book_description.length > 0 &&
-            (book.book_description.length < 100 || book.book_description.length > 500) && (
+            (book.book_description.length < 100 || book.book_description.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                Description must be between 100 and 500 characters.
+                Description must be between 100 and 1500 characters.
               </p>
             )}
         </div>
@@ -417,17 +417,17 @@ function UpdateBookDetails() {
             name="editorial_review"
             value={book.editorial_review}
             onChange={handleChange}
-            minLength={50}
-            maxLength={1000}
+            minLength={100}
+            maxLength={1500}
             required
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={5}
             placeholder="Enter an editorial review (50-1000 characters)"
           />
           {book.editorial_review?.length > 0 &&
-            (book.editorial_review?.length < 100 || book.editorial_review?.length > 500) && (
+            (book.editorial_review?.length < 100 || book.editorial_review?.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                Editorial Review must be between 100 and 500 characters.
+                Editorial Review must be between 100 and 1500 characters.
               </p>
             )}
         </div>
@@ -438,17 +438,17 @@ function UpdateBookDetails() {
             name="about_author"
             value={book.about_author}
             onChange={handleChange}
-            minLength={50}
-            maxLength={1000}
+            minLength={100}
+            maxLength={1500}
             required
             className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={5}
             placeholder="Write about the author (50-1000 characters)"
           />
           {book.about_author?.length > 0 &&
-            (book.about_author?.length < 100 || book.about_author?.length > 500) && (
+            (book.about_author?.length < 100 || book.about_author?.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                About Author section must be between 100 and 500 characters.
+                About Author section must be between 100 and 1500 characters.
               </p>
           )}
         </div>

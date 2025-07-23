@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 export default function LatestBook() {
   return (
     <>
-      <section className="container-fluid  px-md-4 py-5">
+      <section className="container-fluid  px-md-4 py-10">
         <div className="row align-items-center p-3 flex-column-reverse flex-lg-row">
           {/* Text Content */}
           <motion.div
-            className="col-12 col-lg-7 mt-4 mt-lg-0"
+            className="col-12 col-lg-7  mt-lg-0 "
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -44,7 +44,7 @@ export default function LatestBook() {
 
           {/* Book Image */}
           <motion.div
-            className="col-12 col-lg-5 mt-5 text-center mb-4 mb-lg-0"
+            className="col-12 col-lg-5  text-center mb-4 mb-lg-0"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}

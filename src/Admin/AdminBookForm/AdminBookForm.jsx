@@ -237,7 +237,7 @@ export default function AdminBookForm() {
           {form.book_description.length > 0 &&
             (form.book_description.length < 100 || form.book_description.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                Description must be between 100 and 500 characters.
+                Description must be between 100 and 1500 characters.
               </p>
             )}
         </div>
@@ -331,9 +331,9 @@ export default function AdminBookForm() {
             placeholder='Editorial Review'
           />
           {form.editorial_review?.length > 0 &&
-            (form.editorial_review?.length < 100 || form.editorial_review?.length > 1000) && (
+            (form.editorial_review?.length < 100 || form.editorial_review?.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                Editorial Review must be between 100 and 500 characters.
+                Editorial Review must be between 100 and 1500 characters.
               </p>
             )}
       </div>
@@ -353,9 +353,9 @@ export default function AdminBookForm() {
           placeholder='About Author'
         />
          {form.about_author?.length > 0 &&
-            (form.about_author?.length < 100 || form.about_author?.length > 1000) && (
+            (form.about_author?.length < 100 || form.about_author?.length > 1500) && (
               <p className="text-red-600 text-sm mt-1">
-                About Author section must be between 100 and 500 characters.
+                About Author section must be between 100 and 1500 characters.
               </p>
           )}
       </div>
