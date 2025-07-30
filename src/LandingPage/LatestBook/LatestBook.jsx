@@ -21,7 +21,7 @@ export default function LatestBook() {
               className="mb-4 text-danger fw-bold text-center text-lg-start"
               style={{ fontSize: "1.5rem" }}
             >
-              <p className="mb-2">
+              <p className="mb-2 text-lg leading-relaxed break-words">
                 Watch Your Back: Nine Proven Strategies to Reduce Your Neck and Back Pain Without Surgery
               </p>
             </div>

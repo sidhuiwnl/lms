@@ -155,7 +155,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
          <div className="row g-6 mb-6">
       <div className="col-xl-3 col-sm-6 col-12 my-2">
         <div 
-        className="card border  h-50 shadow-md "
+        className="card border h-60 shadow-md "
         style={{ borderColor: "#D3D3D3" }}
     >
       <div className="card-body ">
@@ -177,7 +177,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
     </div>
   </div>
    <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
+    <div className="card border shadow-md  h-60" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -202,7 +202,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
     </div>
   </div>
   <div className="col-xl-3 col-sm-6 col-12 my-2">
-    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
+    <div className="card border shadow-md  h-60" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -234,13 +234,13 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         <hr  style={{ color : "#D3D3D3" }} />
         <div className="d-flex">
           <span>Company ${revenue.business_registration_amount}</span>
-          <span>Self-User ${revenue.self_registration_amount}</span>
+          <span className="ml-2">Self-User ${revenue.self_registration_amount}</span>
         </div>
       </div>
     </div>
   </div>
   <div className="col-xl-3 col-sm-6 col-12 my-2 ">
-    <div className="card border shadow-md  h-50" style={{ borderColor: "#D3D3D3" }}>
+    <div className="card border shadow-md  h-60" style={{ borderColor: "#D3D3D3" }}>
       <div className="card-body">
         <div className="row">
           <div className="col">
@@ -268,7 +268,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         </div>
         <h3 className="p-3">Organization</h3>
         <br />
-        <div className="container-fluid ">
+        <div>
           <div className="row">
             <div className="col-lg-6">
               <div className="table-responsive lg:mt-10 mb-5    border-none  w-full overflow-x-auto">
@@ -397,8 +397,12 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
         <div className="table-responsive mx-2 overflow-auto">
           <table className="table table-hover table-nowrap ">
             <thead className="bg-gray-100">
-              <tr>
-                <th scope="col" className="text-light">
+              <tr >
+                <th 
+                scope="col" 
+                className="text-light"
+                style={{ width: "300px", minWidth: "300px" }}
+                >
                   Name
                 </th>
                 <th scope="col" className="text-light">
@@ -414,15 +418,15 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
             </thead>
              <tbody>
               {subscribers.map((value, index) => (
-                <tr className="bg-white " key={index}>
-                  <td >
+                <tr className="bg-white" key={index}>
+                  <td>
                     <img
                       alt="..."
                       src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                       className="avatar avatar-sm rounded-circle me-2"
                     />
                     <a
-                      className="text-heading font-semibold text-decoration-none"
+                      className="text-heading  font-semibold text-decoration-none"
                       href="#"
                     >
                       {value.first_name}
@@ -460,7 +464,11 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
           <table className="table table-hover table-nowrap ">
             <thead className="bg-white">
               <tr>
-                <th scope="col" className="text-light">
+                <th 
+                scope="col" 
+                className="text-light"
+                style={{ width: "300px", minWidth: "300px" }}
+                >
                   Name
                 </th>
                 <th scope="col" className="text-light">
@@ -476,7 +484,7 @@ setDisplayTotal(monthly.reduce((sum, data) => sum + Number(data.monthly_revenue)
             </thead>
             <tbody>
               {activeuser.map((value, index) => (
-                <tr className="bg-white" key={index}>
+                <tr className="bg-white " key={index}>
                   <td>
                     <img
                       alt="..."

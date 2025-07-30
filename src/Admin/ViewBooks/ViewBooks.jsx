@@ -73,7 +73,7 @@ export default function ViewBooks() {
         </div>
         <div className="row mb-4"></div>
 
-        <div className="row g-4 ">
+        <div className="row g-4  ">
           {books.map((book) => (
             <div className="col-12 col-md-6 col-lg-4 " key={book.id}>
               <div className="card  shadow-sm">
@@ -98,26 +98,29 @@ export default function ViewBooks() {
                     <p className="text-warning fw-bold">${getFirstAvailablePrice(book)}</p>
                     <p className="text-warning">{"★".repeat(book.stars)}</p>
                   </div>
-                  <div className="mt-auto d-flex justify-content-between gap-2">
-                    <button
-                      onClick={() => navigate(`/bookupdate/${btoa(book.id)}`)}
-                      className="btn btn-sm btn-secondary w-100"
-                    >
-                      UPDATE
-                    </button>
-                    <button
-                      onClick={() => navigate(`/book/${btoa(book.id)}`)}
-                      className="btn btn-sm btn-warning text-white w-100"
-                    >
-                      View Details
-                    </button>
-                    <button
-                      onClick={() => handleDelete(book.id)}
-                      className="btn btn-sm btn-secondary w-100"
-                    >
-                      Delete
-                    </button>
-                  </div>
+                  <div className="mt-auto d-flex flex-wrap justify-content-between gap-2">
+  <button
+    onClick={() => navigate(`/bookupdate/${btoa(book.id)}`)}
+    className="btn btn-sm btn-secondary flex-grow-1"
+    style={{ minWidth: "100px" }}
+  >
+    UPDATE
+  </button>
+  <button
+    onClick={() => navigate(`/book/${btoa(book.id)}`)}
+    className="btn btn-sm btn-warning text-white flex-grow-1"
+    style={{ minWidth: "100px" }}
+  >
+    View Details
+  </button>
+  <button
+    onClick={() => handleDelete(book.id)}
+    className="btn btn-sm btn-secondary flex-grow-1"
+    style={{ minWidth: "100px" }}
+  >
+    Delete
+  </button>
+</div>
                 </div>
               </div>
             </div>

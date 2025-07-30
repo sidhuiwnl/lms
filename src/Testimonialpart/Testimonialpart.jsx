@@ -72,7 +72,7 @@ function Testimonialpart() {
             <div>
               {testimonials.map((testimonial) => (
                   <div key={testimonial.id}>
-                    <div className="card border-0 shadow-sm mx-3">
+                    <div className="card border-1 shadow-sm mx-3">
                       <div className="card-body p-4">
                         <div className="d-flex align-items-center mb-3">
                           <div

@@ -436,18 +436,19 @@ const Question = () => {
               <label htmlFor="questionType" className="labelcourse">
                 Select Question Type
               </label>
-              <select
+              <Input
+              type="select"
                 id="questionType"
                 value={questionType}
                 onChange={handleQuestionTypeChange}
-                className="w-full fc1">
+                className="w-full fc1 p-3">
                 <option value="Select Question Type" disabled>Select Question type</option>
                 <option value="multiple choice">Multiple Choice</option>
                 <option value="description">Description</option>
                 {/* <option value="true/false">True/False</option> */}
                 <option value="match_following">match_following</option>
                 <option value="check">Multi Select</option>
-              </select>
+              </Input>
             </div>
           </div>
         </form>
@@ -481,11 +482,11 @@ const Question = () => {
           <div style={{ marginTop: "10px" }}>
             {options.map((optionObj, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
-                <label htmlFor={`option${index + 1}`} className="labelcourse">
+                <label htmlFor={`option${index + 1}`} className="labelcourse  ">
                   Option {index + 1}:
                 </label>
                 <input
-                  className="border border-gray-600 rounded-md px-3 py-2"
+                  className="border  border-gray-800 rounded-md px-2  py-3"
                   type="text"
                   placeholder={`Option ${String.fromCharCode(65 + index)}`} // A, B, C, D, etc.
                   value={optionObj.option}
@@ -528,14 +529,15 @@ const Question = () => {
 
 
             {/* Checkbox for correct options */}
-            <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <div  style={{ marginTop: "10px", marginBottom: "10px"}}>
               <label>Select Correct Options:</label>
               <div style={{ marginLeft: "10px" }}>
                 {options.map(
                   (option, index) =>
                     option.option.trim() && (
-                      <div key={index}>
+                      <div key={index} >
                         <input
+                          placeholder="Option"
                           type="checkbox"
                           id={`correctOption${index}`}
                           checked={correctOptions.includes(option.option)} // Check if this option is in the correctOptions array
@@ -583,6 +585,7 @@ const Question = () => {
               >
                 <div style={{ display: "flex", marginBottom: "10px" }}>
                   <input
+                  
                     type="text"
                     value={leftItem}
                     onChange={(e) =>
@@ -647,7 +650,7 @@ const Question = () => {
                   Option {index + 1}:
                 </label>
                 <input
-                className="border border-gray-600 rounded-md px-3 py-2"
+                className="border  border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   placeholder={`Option ${String.fromCharCode(65 + index)}`} // A, B, C, D, etc.
                   value={optionObj.option}
@@ -694,11 +697,12 @@ const Question = () => {
 
 
             <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-              <label className="labelcourse">Select Correct Option</label>{" "}
+              <label className="labelcourse">Select Correct Option:</label>{" "}
               &nbsp;
               <select
                 value={correctOption}
                 onChange={(e) => setCorrectOption(e.target.value)}
+                className="border border-black p-2 rounded-lg"
               >
                 <option>Select Correct Option</option>
                 {options.map(
@@ -722,6 +726,7 @@ const Question = () => {
               <div key={index} style={{ marginBottom: "20px" }}>
                 <label>Keyword {index + 1}:</label>
                 <input
+                placeholder="Keyword"
                 className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   value={keyword.keyword}
@@ -732,6 +737,7 @@ const Question = () => {
                 />
                 <label style={{ marginLeft: "20px" }}>Marks:</label>
                 <input
+                placeholder="Marks"
                 className="border border-gray-600 rounded-md px-3 py-2"
                   type="text"
                   value={keyword.marks}

@@ -93,7 +93,7 @@ export function Approve() {
   };
 
   return (
-    <div className="container-fluid">
+    <div>
       <ToastContainer />
       <div className="row py-3">
         <div className="col-sm-10 mb-4 mb-sm-0">
@@ -110,12 +110,12 @@ export function Approve() {
 
       <div className="row">
         {/* Cheque Transaction Table */}
-        <div className="rounded-2 p-4 shadow border-0 mb-5 w-100">
-          <div className="d-flex justify-content-between my-3">
+        <div className="rounded-2 p-3 shadow border  mb-5 w-100">
+          <div className="d-flex justify-content-between  my-3">
             <h5 className="mb-0 pointer mr-2">Cheque Transaction</h5>
             {activeTable === 1 ? (
               <button
-                className="flex items-center px-4 py-2 mr-2  rounded-md bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
+                className="flex items-center px-4 py-2 mr-2   bg-green-500 text-gray-50 font-semibold hover:bg-green-600 transition ease-in-out duration-300"
                 onClick={() => setActiveTable(2)}
               >
                 Approved
@@ -206,7 +206,7 @@ export function Approve() {
         </div>
 
         {/* NEFT Transaction Table */}
-        <div className="shadow border-0 mb-7">
+        <div className="shadow border rounded-lg mb-7 p-3">
           <div className="card-header d-flex justify-content-between my-3 p-0">
             <h5 className="mb-0 pointer mr-2">NEFT Transaction</h5>
             {activeTable2 === 1 ? (

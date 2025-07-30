@@ -117,7 +117,7 @@ function Drkenhome() {
                   </Link>
                 </div>
 
-                <div className="col-auto my-2">
+                <div className="col-auto">
                   <Link
                     to="?tab=Instructor"
                     className={activeTab === "Instructor" ? "active-link text-white" : "font-bold"}

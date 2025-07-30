@@ -246,7 +246,7 @@ export default function LicensePurchase() {
         <h3>We Provide Best Catalogue</h3>
       </div>
 
-      <div className="max-w-md px-4 py-6 bg-gray-50 rounded-lg border shadow-md m-auto">
+      <div className="max-w-md px-4 py-6  bg-gray-50 rounded-lg border shadow-md m-auto">
         <div className="text-center p-3">
           <span className="text-2xl font-semibold">$20</span> / License
           <br /><br />
@@ -280,15 +280,22 @@ export default function LicensePurchase() {
           <li>Skills platform for insights and analytics</li>
         </ul>
 
-        <div className=" flex gap-10 text-center mt-5">
+        <div className=" flex gap-5 text-center mt-5">
           <button
             onClick={() => checkout(20, quantity)}
+            style={{
+              borderRadius : "10px"
+            }}
             className="bg-[#001040] text-gray-50 px-5 py-2 rounded-lg mr-2  transition ease-in-out duration-300">
             Online Payment
           </button>
 
           <button
             onClick={() => setIsOpen(true)}
+              style={{
+              borderRadius : "10px",
+              
+            }}
             className="bg-neutral-800 text-gray-50 px-5 py-2 rounded-lg hover:bg-gray-600 transition ease-in-out duration-300">
             Offline Payment
           </button>

@@ -219,7 +219,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div class="container-fluid">
+      <div>
         <ToastContainer/>
         <header class="bg-surface-primary border-bottom ">
           <div class="container-fluid">
@@ -467,11 +467,16 @@ export default function Dashboard() {
                 </div>
 
                 {/* Improved Table with Horizontal Scrolling */}
-                <div className="relative overflow-x-auto shadow-sm ">
+                <div className="relative overflow-x-auto shadow-sm  ">
                   <div className="inline-block min-w-full align-middle rounded-0">
                     <div className="overflow-hidden">
-                      <table className="w-full divide-y divide-gray-200">
-                        <thead className="bg-blue-700">
+                      <table 
+                      className="w-full divide-y divide-gray-200 ">
+                        <thead
+                         style={{
+                          borderRadius : "0px"
+                        }} 
+                        className="bg-blue-700 ">
                           <tr>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                               Name

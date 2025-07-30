@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+.orangecircle {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+  background-color: #ffa200;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .sidebar-open {
@@ -51,13 +67,7 @@
   border-radius: 5px;
   border: 0px;
 }
-.orangecircle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: 1px solid;
-  border: 1px solid orange;
-}
+
 
 .numberclr {
   color: #001040;

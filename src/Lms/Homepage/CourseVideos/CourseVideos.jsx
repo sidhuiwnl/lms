@@ -1171,60 +1171,52 @@ function CourseVideos() {
               <div></div>
             )}
            <h5 className="mb-4">Chapters</h5>
-{chapter.map((e) => (
-  <div
-    className="d-flex align-items-center my-3"
-    key={e.moduleid}
-  >
-    {/* Circle with number */}
-    <div
-      className="orangecircle d-flex justify-content-center align-items-center"
-      style={{
-        width: "40px",
-        height: "40px",
-        borderRadius: "50%",
-        backgroundColor: "#ffa200",
-        color: "#fff",
-        fontWeight: "bold",
-        fontSize: "16px",
-      }}
-    >
-      {e.moduleid}
-    </div>
+          {chapter.map((e) => (
+            <div
+              className="d-flex align-items-center my-3"
+              key={e.moduleid}
+            >
+              {/* Circle with number */}
+              <div
+                className="orangecircle d-flex justify-content-center align-items-center"
+              >
+                {e.moduleid}
+              </div>
 
-    {/* Right side card */}
-    <div className="card border-0 px-3 mx-3 flex-grow-1">
-      {haspaid ? (
-        <Link
-          style={{
-            textDecoration: "none",
-            color: "#001040",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-          to={`/ken/${course}/${parseInt(e.moduleid)}/${id}`}
-        >
-          <span>{e.modulename}</span>
-          <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
-        </Link>
-      ) : (
-        <div
-          style={{
-            color: "#999",
-            cursor: "not-allowed",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <span>{e.modulename}</span>
-          <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
-        </div>
-      )}
-    </div>
-  </div>
-))}
+              {/* Right side card */}
+              <div className="card border-0 px-3 mx-3 flex-grow-1">
+                {haspaid ? (
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#001040",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    to={`/ken/${course}/${parseInt(e.moduleid)}/${id}`}
+                  >
+                    <span>{e.modulename}</span>
+                    <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
+                  </Link>
+                ) : (
+                  <div
+                    style={{
+                     
+                      color: "#999",
+                      cursor: "not-allowed",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span>{e.modulename}</span>
+                    <FontAwesomeIcon icon={faAngleRight} className="text-dark" />
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
 
           </div>
         </div>
