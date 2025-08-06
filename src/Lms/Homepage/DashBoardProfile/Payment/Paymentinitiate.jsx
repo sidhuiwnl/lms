@@ -3,13 +3,19 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./Payment.css"; // Custom CSS for styling
-import { useNavigate, useParams } from "react-router-dom";
+import { data, useNavigate, useParams } from "react-router-dom";
 import MySpineCoach from "../../../../assets/MySpineCoach.jpg"; // Example image
 import { FaCheck } from "react-icons/fa";
+import { PayPalScriptProvider,PayPalButtons, } from "@paypal/react-paypal-js";
+
 
 const stripePromise = loadStripe(
   "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPp3MhvK7P85i00ecnTPLf9"
 );
+
+const initalOptions = {
+  clientId : import.meta.env.VITE_PAYPAL_CLIENT_ID
+}
 
 function PaymentInitiate() {
   const [sessionId, setSessionId] = useState(null);
@@ -93,9 +99,22 @@ function PaymentInitiate() {
               <p className="paid-text text-center">You have already purchased this course</p>
             </div>
           ) : (
-            <button className="purchase-button bg-[#001040] rounded-t-xl" onClick={handleCheckout}>
-              Purchase
-            </button>
+            <PayPalScriptProvider options={initalOptions}>
+                <PayPalButtons
+                style={{ layout: "vertical" }}
+                createOrder={( data,action) => {
+                  return action.order.create({
+                    purchase_units : [
+                      {
+                        amount : {
+                          value : "10.00"
+                        }
+                      }
+                    ]
+                  })
+                }}
+                  />
+            </PayPalScriptProvider>
           )}
         </div>
       </div>
