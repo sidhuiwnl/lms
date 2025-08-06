@@ -6,6 +6,14 @@
   margin-top: 20px;
 }
 
+.paypal-wrapper {
+  margin-top: 100px; /* Creates spacing below header */
+  padding-bottom: 200px; /* Ensures space for expanded iframe */
+  z-index: 1;
+  position: relative;
+}
+
+
 /* Payment card styling */
 .payment-card {
   display: flex;

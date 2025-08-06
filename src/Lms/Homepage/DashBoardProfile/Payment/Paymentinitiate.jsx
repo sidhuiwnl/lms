@@ -14,7 +14,8 @@ const stripePromise = loadStripe(
 );
 
 const initalOptions = {
-  clientId : import.meta.env.VITE_PAYPAL_CLIENT_ID
+  clientId : import.meta.env.VITE_PAYPAL_CLIENT_ID,
+
 }
 
 function PaymentInitiate() {
@@ -99,22 +100,32 @@ function PaymentInitiate() {
               <p className="paid-text text-center">You have already purchased this course</p>
             </div>
           ) : (
-            <PayPalScriptProvider options={initalOptions}>
-                <PayPalButtons
-                style={{ layout: "vertical" }}
-                createOrder={( data,action) => {
-                  return action.order.create({
-                    purchase_units : [
-                      {
-                        amount : {
-                          value : "10.00"
-                        }
-                      }
-                    ]
-                  })
-                }}
+              <div className="w-full max-h-[600px] overflow-auto">
+                <PayPalScriptProvider
+
+                    options={initalOptions}
+                >
+
+                  <PayPalButtons
+                      fundingSource="card"
+                      style={{ layout: "horizontal",  }}
+                      createOrder={( data,action) => {
+                        return action.order.create({
+                          purchase_units : [
+                            {
+                              amount : {
+                                value : "10.00"
+                              }
+                            }
+                          ]
+                        })
+                      }}
                   />
-            </PayPalScriptProvider>
+                </PayPalScriptProvider>
+              </div>
+
+
+
           )}
         </div>
       </div>
