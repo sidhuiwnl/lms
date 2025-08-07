@@ -6,13 +6,28 @@
   margin-top: 20px;
 }
 
-.paypal-wrapper {
-  margin-top: 100px; /* Creates spacing below header */
-  padding-bottom: 200px; /* Ensures space for expanded iframe */
-  z-index: 1;
-  position: relative;
+/* Payment.css */
+
+.payment-container {
+  padding-bottom: 200px; /* Ensures space below for expanding iframe */
 }
 
+.payment-card {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.paypal-wrapper {
+  position: relative; /* Contains the iframe */
+  overflow: hidden;
+  margin-top: 20px;
+  min-height: 50px; /* Prevents cutoff */
+  z-index: 1;
+}
 
 /* Payment card styling */
 .payment-card {

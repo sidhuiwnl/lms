@@ -100,32 +100,25 @@ function PaymentInitiate() {
               <p className="paid-text text-center">You have already purchased this course</p>
             </div>
           ) : (
-              <div className="w-full max-h-[600px] overflow-auto">
-                <PayPalScriptProvider
-
-                    options={initalOptions}
-                >
-
-                  <PayPalButtons
-                      fundingSource="card"
-                      style={{ layout: "horizontal",  }}
-                      createOrder={( data,action) => {
-                        return action.order.create({
-                          purchase_units : [
-                            {
-                              amount : {
-                                value : "10.00"
-                              }
-                            }
-                          ]
-                        })
-                      }}
-                  />
-                </PayPalScriptProvider>
-              </div>
-
-
-
+             <div className="paypal-wrapper">
+              <PayPalScriptProvider options={initalOptions}>
+                <PayPalButtons
+                  fundingSource="card"
+                  style={{ layout: "horizontal" }}
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: "10.00"
+                          }
+                        }
+                      ]
+                    });
+                  }}
+                />
+              </PayPalScriptProvider>
+            </div>
           )}
         </div>
       </div>
