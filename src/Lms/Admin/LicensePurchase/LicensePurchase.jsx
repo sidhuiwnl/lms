@@ -180,28 +180,49 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
+import { PayPalScriptProvider,PayPalButtons } from "@paypal/react-paypal-js";
 
-const stripePromise = loadStripe(
-  "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPppv K7P85i00ecnTPLf9"
-);
+// const stripePromise = loadStripe(
+//   "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPppv K7P85i00ecnTPLf9"
+// );
+
+const initalOptions = {
+  clientId : import.meta.env.VITE_PAYPAL_CLIENT_ID,
+
+}
 
 export default function LicensePurchase() {
   const itemName = "License";
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  const[totalPrice,setTotalPrice] = useState(20)
+  const PRICE_PER_ITEM = 20;
+
+ 
+
   const { id } = useParams();
   const nav = useNavigate();
 
   const decodedId = atob(id);
 
   const increment = () => {
-    setQuantity(quantity + 1);
+    setQuantity((prev) => {
+      const nextQuantity = prev + 1
+      setTotalPrice(nextQuantity * PRICE_PER_ITEM)
+      return nextQuantity
+    });
+
   };
 
   const decrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity((prev) => {
+        const previousQuantity = prev - 1;
+        setTotalPrice(previousQuantity * PRICE_PER_ITEM)
+        return previousQuantity
+      });
+      
     }
   };
 
@@ -239,6 +260,8 @@ export default function LicensePurchase() {
         console.log(e.error);
       });
   }
+
+
 
   return (
     <div className="bg-gray-100 py-10">
@@ -279,27 +302,49 @@ export default function LicensePurchase() {
           <li>Co-branded experience with learner priority technical support</li>
           <li>Skills platform for insights and analytics</li>
         </ul>
-
-        <div className=" flex gap-5 text-center mt-5">
-          <button
+          {/* <button
             onClick={() => checkout(20, quantity)}
             style={{
               borderRadius : "10px"
             }}
             className="bg-[#001040] text-gray-50 px-5 py-2 rounded-lg mr-2  transition ease-in-out duration-300">
             Online Payment
-          </button>
-
+          </button> */}
           <button
             onClick={() => setIsOpen(true)}
               style={{
               borderRadius : "10px",
               
             }}
-            className="bg-neutral-800 text-gray-50 px-5 py-2 rounded-lg hover:bg-gray-600 transition ease-in-out duration-300">
+            className="bg-neutral-800 mb-2 w-full text-gray-50 px-5 py-2 rounded-lg hover:bg-gray-600 transition ease-in-out duration-300">
             Offline Payment
           </button>
-        </div>
+        
+          <PayPalScriptProvider options={initalOptions}>
+              <PayPalButtons
+              key={totalPrice}
+                 fundingSource="card"
+                 style={{ layout: "horizontal" }}
+                 createOrder={(data, actions) => {
+                return actions.order.create({
+                    purchase_units: [
+                        {
+                          amount: {
+                              value: totalPrice
+                            }
+                              }
+                               ]
+                             });
+                           }}
+                    onApprove={checkout}       
+                    onCancel={() => {
+                        toast("Payment Process has been cancelled!Please Try again")
+                        }}
+                    onError={() => {
+                        toast.error("There is a problem with the payment system currently,Please Try again")
+                        }}
+                       />
+          </PayPalScriptProvider>
       </div>
 
       {/* Modal */}

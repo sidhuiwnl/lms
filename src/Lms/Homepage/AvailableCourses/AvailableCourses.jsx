@@ -69,7 +69,7 @@ function Availablecourses() {
                 </div>
                 <div className="my-4">
                   <Link
-                    to={`/user/${id || "undefined"}`}
+                    to={`/user/${id || "undefined"}?tab=lessons`}
                     className="coursebutton text-decoration-none p-2 rounded-3"
                   >
                     Go to course

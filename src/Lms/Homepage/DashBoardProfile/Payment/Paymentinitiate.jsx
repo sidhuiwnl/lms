@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./Payment.css"; // Custom CSS for styling
-import { data, useNavigate, useParams } from "react-router-dom";
+import { data, redirect, useNavigate, useParams } from "react-router-dom";
 import MySpineCoach from "../../../../assets/MySpineCoach.jpg"; // Example image
 import { FaCheck } from "react-icons/fa";
 import { PayPalScriptProvider,PayPalButtons, } from "@paypal/react-paypal-js";
@@ -61,18 +61,11 @@ function PaymentInitiate() {
         }
       );
 
-      const { id: sessionId } = response.data;
-      setSessionId(sessionId);
 
-      const stripe = await stripePromise;
-      const { error } = await stripe.redirectToCheckout({
-        sessionId,
-      });
-
-      if (error) {
-        console.error("Stripe Checkout Error:", error);
-      } else {
-        navigate(`/allcourselist/${urlDecodedId}`)
+      if(response.status === 200){
+         navigate(`/allcourselist/${urlDecodedId}`)
+      }else{
+        alert("Error processing payment process")
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);
@@ -115,6 +108,13 @@ function PaymentInitiate() {
                         }
                       ]
                     });
+                  }}
+                  onApprove={handleCheckout}
+                  onCancel={() => {
+                    alert("Payment Process has been cancelled!Please Try again")
+                  }}
+                  onError={() => {
+                    alert("There is a problem with the payment system currently,Please Try again")
                   }}
                 />
               </PayPalScriptProvider>
