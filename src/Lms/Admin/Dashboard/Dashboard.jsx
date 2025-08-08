@@ -270,7 +270,7 @@ export default function Dashboard() {
                       <span class="badge badge-pill bg-soft-success text-success me-2">
                         {/* <i class="bi bi-arrow-up me-1"></i>13% */}
                       </span>
-                      <Link to={`/admindashboard/${id}/purelicense`}>
+                      <Link to={`/admindashboard/${id}/purchaselicense`}>
                           <span className="flex items-center gap-2 text-blue-600">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

@@ -918,6 +918,62 @@ export const paymentWebhook = async (req, res) => {
   res.status(200).send("Webhook event received").end();
 };
 
+export const paypalPaymentHook = async (req, res) => {
+  try {
+    const {
+      transaction_id,
+      customer_email,
+      customer_name,
+      amount,
+      description,
+      quantity,
+    } = req.body;
+
+    // Insert into checkout_details table
+    const insertDetailsQuery = `
+      INSERT INTO checkout_details
+      (transaction_id, customer_email, customer_name, amount, description, quantity, pay_date, pay_status)
+      VALUES (?, ?, ?, ?, ?, ?, NOW(), 'completed');
+    `;
+
+    db.query(
+      insertDetailsQuery,
+      [transaction_id, customer_email, customer_name, amount, description, quantity],
+      (error, result) => {
+        if (error) {
+          console.error("Error inserting PayPal transaction details: ", error);
+        } else {
+          console.log("PayPal transaction details inserted successfully.");
+        }
+      }
+    );
+
+    // Update license quantity for the company
+    const updateLicenseQuery = `
+      UPDATE license 
+      SET license = license + ? 
+      WHERE company_id = (SELECT company_id FROM business_register WHERE spoc_email_id = ?);
+    `;
+
+    db.query(
+      updateLicenseQuery,
+      [quantity, customer_email],
+      (error, result) => {
+        if (error) {
+          console.error("Error updating license quantity: ", error);
+        } else {
+          console.log("License quantity updated successfully.");
+        }
+      }
+    );
+
+    res.status(200).json({ message: "PayPal payment processed successfully" });
+  } catch (error) {
+    console.error("Error handling PayPal payment:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 export const getCoursesAndUserDetail = (req, res) => {
   const { id } = req.params;
 

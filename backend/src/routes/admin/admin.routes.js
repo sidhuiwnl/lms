@@ -19,6 +19,7 @@ import {
   paymentCheckOut,
   paymentWebhook,
   remainderMail,
+  paypalPaymentHook
 } from "../../controller/admin/admin.controller.js";
 const router = express.Router();
 
@@ -44,6 +45,8 @@ router.post(
   express.raw({ type: "application/json" }),
   paymentWebhook
 );
+
+router.post("/paypalPayment",paypalPaymentHook)
 
 router.get("/getcourse/:id", getCoursesAndUserDetail);
 router.get("/getactivecount/:id",getActiveCount);

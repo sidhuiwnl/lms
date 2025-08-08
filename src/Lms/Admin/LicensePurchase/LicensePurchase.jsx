@@ -1,180 +1,4 @@
-// import React, { useState } from "react";
-// import { useNavigate, useParams } from "react-router-dom";
-// import { loadStripe } from "@stripe/stripe-js";
-// import "./LicensePurchase.css";
 
-
-// const stripePromise = loadStripe(
-//     "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPp3MhvK7P85i00ecnTPLf9"
-// );
-
-// export default function LicensePurchase() {
-//   const itemName = "License";
-//   const [quantity, setQuantity] = useState(1);
-//   const { id } = useParams();
-//   const nav = useNavigate();
-
-//   const decodedId = atob(id)
-
-//   const increment = () => {
-//     setQuantity(quantity + 1);
-//   };
-
-//   const decrement = () => {
-//     if (quantity > 1) {
-//       setQuantity(quantity - 1);
-//     }
-//   };
-
-//   // Redirect based on selected payment method
-//   function handlecheck() {
-//     window.location.assign(`/admindashboard/${id}/check/${quantity}`);
-//   }
-
-//   function handleneft() {
-//     window.location.assign(`/admindashboard/${id}/neft/${quantity}`);
-//   }
-
-//   // Checkout function for online payment
-//   function checkout(itemPrice, quantity) {
-//     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/create-checkout-session/${decodedId}`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       mode: "cors",
-//       body: JSON.stringify({
-//         items: [
-//           { id: 1, quantity: quantity, price: itemPrice, name: itemName },
-//         ],
-//       }),
-//     })
-//       .then((res) =>
-//         res.ok ? res.json() : res.json().then((json) => Promise.reject(json))
-//       )
-//       .then(({ url }) => {
-//         window.location = url;
-//       })
-//       .catch((e) => {
-//         console.log(e.error);
-//       });
-//   }
-
-//   return (
-//     <div className="license-container">
-//     <div className="lpart">
-//       <div className="p-3">
-//         <h3 className="text-center">We Provide Best Catalogue</h3>
-//       </div>
-    
-//         <div className="container">
-//           <div className="row">
-//             <div className="col-lg-12 col-md-12 mb-4 ">
-//               <div className="card  shadow-lg">
-//                 <div className="card-body">
-//                   <div className="text-center p-3">
-//                     <span className="h2">$20</span>/License
-//                     <br />
-//                     <br />
-//                     <h4>
-//                       <button onClick={increment} className="btn neftbtn1  px-3">
-//                         +
-//                       </button>
-//                       <span className="btquantity py-2 px-3 rounded-5">{quantity}</span>
-                      
-                      
-//                       <button onClick={decrement} className="btn neftbtn1  px-3 rounded-2">
-//                         -
-//                       </button>
-//                     </h4>
-//                     <br />
-//                   </div>
-//                   <p className="card-text">
-//                     For most businesses that want to optimize web queries
-//                   </p>
-//                 </div>
-//                 <ul className="list-group list-group-flush">
-//                   <li className="list-group-item">
-//                     <i className="bi bi-check"></i> Access catalog of 5,800+
-//                     from top universities and companies
-//                   </li>
-//                   <li className="list-group-item">
-//                     <i className="bi bi-check"></i> Co-branded experience with
-//                     learner priority technical support
-//                   </li>
-//                   <li className="list-group-item">
-//                     <i className="bi bi-check"></i> Skills platform for insights
-//                     and analytics
-//                   </li>
-//                 </ul>
-//                 <div className="card-body text-center">
-//                   <button
-//                     className="btn neftbtn btn-lg mx-2"
-//                     onClick={() => {
-//                       checkout(20, quantity);
-//                     }}
-//                     style={{ borderRadius: "30px" }}
-//                   >
-//                     Online Payment
-//                   </button>
-//                   <button
-//                     className="btn neftbtn btn-lg mx-2"
-//                     data-bs-toggle="modal"
-//                     data-bs-target="#exampleModal"
-//                     style={{ borderRadius: "30px" }} >
-//                     Offline Payment
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Modal for Offline Payment Selection */}
-//             <div
-//               className="modal fade"
-//               id="exampleModal"
-//               tabIndex="-1"
-//               aria-labelledby="exampleModalLabel"
-//               aria-hidden="true">
-//               <div className="modal-dialog modal-dialog-centered">
-//                 <div className="modal-content">
-//                   <div className="modal-header modleborderbottom">
-//                     <h5 className="modal-title" id="exampleModalLabel">
-//                       Payment Mode
-//                     </h5>
-//                     <button
-//                       type="button"
-//                       className="btn-close"
-//                       data-bs-dismiss="modal"
-//                       aria-label="Close"
-//                     ></button>
-//                   </div>
-//                   <div className="modal-body p-5">
-//                     <h5>Choose the payment method types.</h5>
-//                     <div className="d-flex justify-content-between py-2">
-//                       <button
-//                         type="button"
-//                         className="btn neftbtn"
-//                         onClick={handleneft}>
-//                         NEFT
-//                       </button>
-//                       <button
-//                         type="button"
-//                         className="btn neftbtn"
-//                         onClick={handlecheck}
-//                       >
-//                         Cheque
-//                       </button>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-// </div>
-//   );
-// }
 
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -261,6 +85,35 @@ export default function LicensePurchase() {
       });
   }
 
+  const paypalCheckout = async({ transaction_id,customer_email,customer_name,amount,description,quantity}) => {
+
+    const paymentData = {
+        transaction_id: transaction_id,
+        customer_email: customer_email,
+        customer_name: customer_name,
+        amount: amount,
+        description: description,
+        quantity: quantity,
+      };
+
+      try{
+        const response = fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/paypalPayment`,{
+      method : "POST",
+      headers: { "Content-Type": "application/json" },
+      body : JSON.stringify(paymentData)
+    })
+
+    if(response.ok){
+      toast.success("Payment processed successfully!");
+    }else{
+       toast.error("Payment saved, but server returned an error.");
+    }
+      }catch(error){
+        console.error("Error sending PayPal data to server:", error);
+        toast.error("Error processing PayPal payment.");
+      }
+  }
+
 
 
   return (
@@ -326,7 +179,8 @@ export default function LicensePurchase() {
                  fundingSource="card"
                  style={{ layout: "horizontal" }}
                  createOrder={(data, actions) => {
-                return actions.order.create({
+                  
+                 return actions.order.create({
                     purchase_units: [
                         {
                           amount: {
@@ -336,14 +190,24 @@ export default function LicensePurchase() {
                                ]
                              });
                            }}
-                    onApprove={checkout}       
-                    onCancel={() => {
+                onApprove={() => {
+                  paypalCheckout({
+                    customer_email : "velayuthamsiva55@gmail.com",
+                    customer_name : "velayuthamsiva55@gmail.com",
+                    transaction_id : 1,
+                    amount: totalPrice,
+                    description: itemName,
+                    quantity: quantity
+
+                  })
+                }}  
+                onCancel={() => {
                         toast("Payment Process has been cancelled!Please Try again")
-                        }}
-                    onError={() => {
+                  }}
+                onError={() => {
                         toast.error("There is a problem with the payment system currently,Please Try again")
-                        }}
-                       />
+                  }}
+                  />
           </PayPalScriptProvider>
       </div>
 
