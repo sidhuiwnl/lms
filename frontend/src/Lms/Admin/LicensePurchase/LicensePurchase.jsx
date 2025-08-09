@@ -1,10 +1,11 @@
 
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 import { PayPalScriptProvider,PayPalButtons } from "@paypal/react-paypal-js";
+import axios from "axios";
 
 // const stripePromise = loadStripe(
 //   "pk_test_51OT2FaSHtllxmCJSGKaAzZmIfYDedAkOkUhZqLs8GAvPlEQsasgY7zKxH0iDm4E1Nu11OEyVv7kCPppv K7P85i00ecnTPLf9"
@@ -19,7 +20,8 @@ export default function LicensePurchase() {
   const itemName = "License";
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [spocname, setSpocname] = useState("");
+  const [companyMail, setCompanyMail] = useState("");
   const[totalPrice,setTotalPrice] = useState(20)
   const PRICE_PER_ITEM = 20;
 
@@ -38,6 +40,16 @@ export default function LicensePurchase() {
     });
 
   };
+
+  useEffect(() => {
+      axios
+        .get(`${import.meta.env.VITE_REACT_APP_API_URL}admin/getspocname/${decodedId}`)
+        .then((res) => {
+          console.log(res);
+          setSpocname(res.data.spoc_name);
+          setCompanyMail(res.data.company_email);
+        });
+    }, [id]);
 
   const decrement = () => {
     if (quantity > 1) {
@@ -59,31 +71,31 @@ export default function LicensePurchase() {
     window.location.assign(`/admindashboard/${id}/neft/${quantity}`);
   }
 
-  // Checkout function for online payment
-  function checkout(itemPrice, quantity) {
-    fetch(
-      `${import.meta.env.VITE_REACT_APP_API_URL}admin/create-checkout-session/${id}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        mode: "cors",
-        body: JSON.stringify({
-          id: decodedId,
-          quantity,
-          items: [{ id: 1, quantity, price: itemPrice, name: itemName }]
-    })
-      }
-    )
-      .then((res) =>
-        res.ok ? res.json() : res.json().then((json) => Promise.reject(json))
-      )
-      .then(({ url }) => {
-        window.location = url;
-      })
-      .catch((e) => {
-        console.log(e.error);
-      });
-  }
+  // // Checkout function for online payment
+  // function checkout(itemPrice, quantity) {
+  //   fetch(
+  //     `${import.meta.env.VITE_REACT_APP_API_URL}admin/create-checkout-session/${id}`,
+  //     {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       mode: "cors",
+  //       body: JSON.stringify({
+  //         id: decodedId,
+  //         quantity,
+  //         items: [{ id: 1, quantity, price: itemPrice, name: itemName }]
+  //   })
+  //     }
+  //   )
+  //     .then((res) =>
+  //       res.ok ? res.json() : res.json().then((json) => Promise.reject(json))
+  //     )
+  //     .then(({ url }) => {
+  //       window.location = url;
+  //     })
+  //     .catch((e) => {
+  //       console.log(e.error);
+  //     });
+  // }
 
   const paypalCheckout = async({ transaction_id,customer_email,customer_name,amount,description,quantity}) => {
 
@@ -155,14 +167,7 @@ export default function LicensePurchase() {
           <li>Co-branded experience with learner priority technical support</li>
           <li>Skills platform for insights and analytics</li>
         </ul>
-          {/* <button
-            onClick={() => checkout(20, quantity)}
-            style={{
-              borderRadius : "10px"
-            }}
-            className="bg-[#001040] text-gray-50 px-5 py-2 rounded-lg mr-2  transition ease-in-out duration-300">
-            Online Payment
-          </button> */}
+          
           <button
             onClick={() => setIsOpen(true)}
               style={{
@@ -190,7 +195,20 @@ export default function LicensePurchase() {
                                ]
                              });
                            }}
-                onApprove={() => {
+                onApprove={(_,actions) => {
+                  // return actions.order.capture().then((details) =>{
+                  //   const payer = details.payment_source.paypal
+                  //   const purchase = details.purchase_units?.[0] || {}
+
+                  //   paypalCheckout({
+                  //     customer_email : payer.email_address,
+                  //     transaction_id : details.id,
+                  //     customer_name : payer.name,
+                  //     amount : totalPrice,
+                  //     description : itemName,
+                  //     quantity : quantity
+                  //   })
+                  // })
                   paypalCheckout({
                     customer_email : "velayuthamsiva55@gmail.com",
                     customer_name : "velayuthamsiva55@gmail.com",

@@ -18,9 +18,9 @@ function InvitedRegister() {
 
   const {id} = useParams()
 
-  const decodedId= atob(id)
+  const preDecoded = atob(id)
 
-  
+  const decodedId = atob(preDecoded)
   
 
   const [errors, setErrors] = useState({});

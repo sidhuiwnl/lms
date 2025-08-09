@@ -229,10 +229,10 @@ export const inviteLearners = async (req, res) => {
 // Email sending function
 const sendEmail = (email, company_id) => {
 
+  const encodedCompanyId = Buffer.from(company_id.toString(), "utf-8").toString("base64");
+  const URL = `${process.env.DOMAIN}/inv_register/${encodedCompanyId}`;
 
-  const URL = `${process.env.DOMAIN}/inv_register/${company_id}`;
-
-  console.log(URL)
+  
 
   const mailOptions = {
     from: "sivaranji5670@gmail.com", // sender email
@@ -524,8 +524,10 @@ export const remainderMail = (req, res) => {
   const { company_id } = req.params; // Extract company_id from request parameters
   const { email } = req.body; // Extract email from request body
 
+  
+  const encodedCompanyId = Buffer.from(company_id.toString(), "utf-8").toString("base64");
   // URL for registration, specific to the company
-  const URL = `${process.env.DOMAIN}/inv_register/${company_id}`;
+  const URL = `${process.env.DOMAIN}/inv_register/${encodedCompanyId}`;
 
   // Create the email options
   const remainderMail = {

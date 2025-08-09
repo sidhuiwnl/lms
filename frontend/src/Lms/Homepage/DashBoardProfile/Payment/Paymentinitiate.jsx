@@ -7,6 +7,7 @@ import { data, redirect, useNavigate, useParams } from "react-router-dom";
 import MySpineCoach from "../../../../assets/MySpineCoach.jpg"; // Example image
 import { FaCheck } from "react-icons/fa";
 import { PayPalScriptProvider,PayPalButtons, } from "@paypal/react-paypal-js";
+import { toast } from "react-toastify";
 
 
 const stripePromise = loadStripe(
@@ -65,7 +66,7 @@ function PaymentInitiate() {
       if(response.status === 200){
          navigate(`/allcourselist/${urlDecodedId}`)
       }else{
-        alert("Error processing payment process")
+        toast("Error processing payment process")
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);
@@ -111,10 +112,10 @@ function PaymentInitiate() {
                   }}
                   onApprove={handleCheckout}
                   onCancel={() => {
-                    alert("Payment Process has been cancelled!Please Try again")
+                    toast("Payment Process has been cancelled!Please Try again")
                   }}
                   onError={() => {
-                    alert("There is a problem with the payment system currently,Please Try again")
+                    toast("There is a problem with the payment system currently,Please Try again")
                   }}
                 />
               </PayPalScriptProvider>
