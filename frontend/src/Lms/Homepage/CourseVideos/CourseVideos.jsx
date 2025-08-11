@@ -51,6 +51,9 @@ function CourseVideos() {
 
   const [haspaid, setHasPaid] = useState();
 
+  const isLastModule = !chapter.find(ch => ch.moduleid === (parseInt(module) + 1));
+
+  
   
   
  let decodedId = id === undefined || id === "undefined" ? 0 : atob(id);
@@ -157,6 +160,7 @@ function CourseVideos() {
   };
 
   const handleNext = (a) => {
+    console.log(currentDepth)
     if (activeContent === "quiz") {
       if (currentIndex < questions.length - 1) {
         setCurrentIndex(currentIndex + 1);
@@ -183,7 +187,9 @@ function CourseVideos() {
             handleContentChange("quiz", nextQuizItem.questions || []);
             setHideCircularBar(true); // Show circular bar for post-assessment quiz
           }
-        } else if (currentDepth === 3) {
+        }
+        
+        else if (currentDepth === 3) {
           if (a === 2) {
             const nextVideoItem = sidebarItems.find(
               (item) => item.depth === "2"
@@ -569,6 +575,8 @@ function CourseVideos() {
 
   const [startQuiz, setStartQuiz] = useState(false);
 
+  
+
   const [hideCircularBar, setHideCircularBar] = useState(true);
 
   // Function to handle starting the quiz
@@ -718,6 +726,7 @@ function CourseVideos() {
                 </div>
               ) : (
                 activeContent === "quiz" &&
+                
                 !loading &&
                 !error && (
                   <div>
@@ -898,20 +907,48 @@ function CourseVideos() {
                         </div>
 
                         <div className="d-flex justify-content-end">
-                          <button
-                            style={{ color: "001040" }}
-                            className="nxtbtn rounded-2 my-5 px-5"
-                            onClick={() => {
-                              if (currentDepth === 1) {
-                                handleNext(2); // Navigate to depth 2
-                              } else if (currentDepth === 3) {
-                                handleShow();
-                              }
-                            }}
-                          >
-                            {currentDepth === 3 ? "Next Chapter" : "NEXT"}
-                          </button>
-                        </div>
+                    {isLastModule ? (
+                      // Two buttons for last module
+                      <div className="d-flex gap-3">
+                        <button
+                          style={{ 
+                            backgroundColor: "#f99420", 
+                            color: "white",
+                            border: "none"
+                          }}
+                          className="btn rounded-2 my-5 px-4"
+                          onClick={() => {
+                            // Handle course completion
+                            navigate(`/user/${id}`);
+                          }}
+                        >
+                          Complete Course
+                        </button>
+                        <button
+                          style={{ color: "#001040" }}
+                          className="nxtbtn rounded-2 my-5 px-5"
+                          onClick={handleAttempt}
+                        >
+                          Retake Quiz
+                        </button>
+                      </div>
+                    ) : (
+                      // Single button for other modules
+                      <button
+                        style={{ color: "001040" }}
+                        className="nxtbtn rounded-2 my-5 px-5"
+                        onClick={() => {
+                          if (currentDepth === 1) {
+                            handleNext(2); // Navigate to depth 2
+                          } else if (currentDepth === 3) {
+                            handleShow();
+                          }
+                        }}
+                      >
+                        {currentDepth === 3 ? "Next Chapter" : "NEXT"}
+                      </button>
+                    )}
+                  </div>
                       </div>
                     ) : (
                       <div className="quizpart rounded-2 p-4">
@@ -1095,7 +1132,7 @@ function CourseVideos() {
                 )
               )}
 
-              {!loading && !error && activeContent === "video" && (
+              {!loading && startQuiz && !error && activeContent === "video" && (
                 <div>
                   <h4>{moduleName}</h4>
                   {/* Render all video content first */}
@@ -1118,25 +1155,60 @@ function CourseVideos() {
 
                   {/* Show the "Next" button after all videos have been rendered */}
                   <div
-                    className="d-flex justify-content-end my-3"
-                    style={{ position: "relative", zIndex: 10 }} // Ensure button is on top of other elements
-                  >
-                    <button
-                      style={{
-                        backgroundColor: "#001040",
-                        color: "white",
-                        zIndex: 10, // Ensure button is clickable
-                      }}
-                      className="btn prevbtn my-5"
-                      onClick={handleNext}
-                    >
-                      Next
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+            className="d-flex justify-content-end my-3"
+            style={{ position: "relative", zIndex: 10 }}
+          >
+            {isLastModule ? (
+              // Two buttons for last module
+              <div className="d-flex gap-3">
+                <button
+                  style={{
+                    backgroundColor: "#f99420",
+                    color: "white",
+                    border: "none",
+                    zIndex: 10,
+                  }}
+                  className="btn my-5 px-4"
+                  onClick={() => {
+                    // Handle course completion
+                    navigate(`/user/${id}?tab=lessons`);
+                  }}
+                >
+                  Lessons
+                </button>
+                <button
+                  style={{
+                    backgroundColor: "#001040",
+                    color: "white",
+                    zIndex: 10,
+                  }}
+                  className="btn prevbtn my-5 px-4"
+                  onClick={() => {
+                    navigate(`/ken/${course}/1/${id}`);
+                  }}
+                >
+                  Take First Quiz
+                </button>
+              </div>
+            ) : (
+              // Single button for other modules
+              <button
+                style={{
+                  backgroundColor: "#001040",
+                  color: "white",
+                  zIndex: 10,
+                }}
+                className="btn prevbtn my-5"
+                onClick={handleNext}
+              >
+                Next
+              </button>
+            )}
           </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
 
           <div className="col-md-12 sm:w-full col-lg-3 mt-5">
             {hideCircularBar ? (
@@ -1154,7 +1226,8 @@ function CourseVideos() {
                 </div>
                 <hr />
                 <div className="circular-question-numbers d-flex flex-wrap border  p-3 rounded-3">
-                  {questions.map((_, index) => (
+                  {questions.length > 0 ? (
+                    questions.map((_, index) => (
                     <div
                       key={index}
                       className={`circle m-1 ${
@@ -1164,14 +1237,18 @@ function CourseVideos() {
                     >
                       {index + 1}
                     </div>
-                  ))}
+                  ))
+                  ) : (
+                    <p>No Modules available</p>
+                  )}
                 </div>
               </>
             ) : (
               <div></div>
             )}
            <h5 className="mb-4">Chapters</h5>
-          {chapter.map((e) => (
+          {chapter.length > 0 ? (
+            chapter.map((e) => (
             <div
               className="d-flex align-items-center my-3"
               key={e.moduleid}
@@ -1216,7 +1293,10 @@ function CourseVideos() {
                 )}
               </div>
             </div>
-          ))}
+          ))
+          ) : (
+            <p>No Chapters Available</p>
+          )}
 
           </div>
         </div>
