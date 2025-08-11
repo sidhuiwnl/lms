@@ -931,6 +931,8 @@ export const paypalPaymentHook = async (req, res) => {
       quantity,
     } = req.body;
 
+    console.log("inserting")
+
     // Insert into checkout_details table
     const insertDetailsQuery = `
       INSERT INTO checkout_details
@@ -970,6 +972,7 @@ export const paypalPaymentHook = async (req, res) => {
     );
 
     res.status(200).json({ message: "PayPal payment processed successfully" });
+    console.log("inserted")
   } catch (error) {
     console.error("Error handling PayPal payment:", error);
     res.status(500).json({ message: "Internal Server Error" });

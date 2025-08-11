@@ -327,10 +327,30 @@ export default function Dashboard() {
                       <span class="badge badge-pill bg-soft-success text-success mt-2 sm:mt-2 me-2 p-2">
                         completed: {completedData.length}
                       </span>
-                      {totallicense === 0 ? (
-                        <NavLink to={`/admindashboard/${id}/purchaselicense`} className="product-sold-out textend">
-                          Add License
-                        </NavLink>
+                      {totallicense ===  0 ? (
+                        <Link  to={`/admindashboard/${id}/purchaselicense`} className="flex my-2 text-green-600">
+                          <span className="flex items-center gap-2 text-green-600">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="lucide lucide-copy-plus"
+                            >
+                              <line x1="15" x2="15" y1="12" y2="18" />
+                              <line x1="12" x2="18" y1="15" y2="15" />
+                              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                            Add License
+                          </span>
+                          
+                        </Link>
                        
                       ) : (
                        

@@ -3,7 +3,7 @@
 import React, { useState,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { PayPalScriptProvider,PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
 
@@ -109,27 +109,31 @@ export default function LicensePurchase() {
       };
 
       try{
-        const response = fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/paypalPayment`,{
-      method : "POST",
-      headers: { "Content-Type": "application/json" },
-      body : JSON.stringify(paymentData)
-    })
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}admin/paypalPayment`,{
+          method : "POST",
+          headers: { "Content-Type": "application/json" },
+          body : JSON.stringify(paymentData)
+        })
 
-    if(response.ok){
-      toast.success("Payment processed successfully!");
-    }else{
-       toast.error("Payment saved, but server returned an error.");
-    }
-      }catch(error){
-        console.error("Error sending PayPal data to server:", error);
-        toast.error("Error processing PayPal payment.");
-      }
+        
+        console.log((await response).status)
+
+        if(response.status === 200){
+          toast.success("Payment processed successfully!");
+        }else{
+          toast.error("Payment saved, but server returned an error.");
+        }
+          }catch(error){
+            console.error("Error sending PayPal data to server:", error);
+            toast.error("Error processing PayPal payment.");
+          }
   }
 
 
 
   return (
     <div className="bg-gray-100 py-10">
+      <ToastContainer/>
       <div className="text-center mb-5">
         <h3>We Provide Best Catalogue</h3>
       </div>
@@ -196,28 +200,33 @@ export default function LicensePurchase() {
                              });
                            }}
                 onApprove={(_,actions) => {
-                  // return actions.order.capture().then((details) =>{
-                  //   const payer = details.payment_source.paypal
-                  //   const purchase = details.purchase_units?.[0] || {}
+                  return actions.order.capture().then((details) =>{
 
-                  //   paypalCheckout({
-                  //     customer_email : payer.email_address,
-                  //     transaction_id : details.id,
-                  //     customer_name : payer.name,
-                  //     amount : totalPrice,
-                  //     description : itemName,
-                  //     quantity : quantity
-                  //   })
-                  // })
-                  paypalCheckout({
-                    customer_email : "velayuthamsiva55@gmail.com",
-                    customer_name : "velayuthamsiva55@gmail.com",
-                    transaction_id : 1,
-                    amount: totalPrice,
-                    description: itemName,
-                    quantity: quantity
+                    
 
+                    const payer = details.payer
+                    
+
+                    console.log(details)
+
+                    paypalCheckout({
+                      customer_email : payer.email_address,
+                      transaction_id : details.id,
+                      customer_name : payer.name.given_name,
+                      amount : totalPrice,
+                      description : itemName,
+                      quantity : quantity
+                    })
                   })
+                  // paypalCheckout({
+                  //   customer_email : "velayuthamsiva55@gmail.com",
+                  //   customer_name : "velayuthamsiva55@gmail.com",
+                  //   transaction_id : 1,
+                  //   amount: totalPrice,
+                  //   description: itemName,
+                  //   quantity: quantity
+
+                  // })
                 }}  
                 onCancel={() => {
                         toast("Payment Process has been cancelled!Please Try again")
